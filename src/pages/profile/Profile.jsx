@@ -1,5 +1,5 @@
 import Navbar from '../../components/navbar/Navbar'
-import PorfileForm from '../../components/profileForm/PorfileForm';
+import EditProfile from '../../components/editProfile';
 import Sidebar from '../../components/sidebar/Sidebar'
 
 import './profile.scss'
@@ -32,25 +32,25 @@ const Profile = () => {
         "group_session_price": null,
         "personal_session_price": null
     };
-    
+
     console.log(userProfile);
-    
+
 
     // code end for form
 
 
 
-  return (
-<div className="profile">
-        <Sidebar/>
-        <div className="profileContainer">
-        <Navbar/>
-        <div className="formForProfile">
-            <PorfileForm/>
+    return (
+        <div className="profile">
+            <Sidebar />
+            <div className="profileContainer">
+                <Navbar />
+                <div className="formForProfile">
+                    <EditProfile />
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
-  )
+    )
 }
 
 
