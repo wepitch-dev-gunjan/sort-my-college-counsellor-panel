@@ -1,6 +1,6 @@
 import React from 'react'
 import "./widget.scss"
-import PersonIcon from '@mui/icons-material/Person';
+
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import GroupsIcon from '@mui/icons-material/Groups';
 import Diversity1Icon from '@mui/icons-material/Diversity1';

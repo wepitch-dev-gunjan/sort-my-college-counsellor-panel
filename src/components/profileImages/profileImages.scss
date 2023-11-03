@@ -1,0 +1,50 @@
+.profileImages{
+ width: 100%;
+ background-color: blue;
+ padding: 20px;   
+ .coverImage{
+    width: 100%;
+    height: 300px;
+    background-color: green;
+    border: 2px solid black;
+    .fileImput{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.5;
+          }
+
+    }
+}
+ .profileImage{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: bisque;
+    border: 2px solid black;
+    margin-top: -100px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .fileImput{
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.5;
+          }
+    }
+ }
+}

@@ -1,8 +1,9 @@
 import Navbar from '../../components/navbar/Navbar'
 import EditProfile from '../../components/editProfile';
 import Sidebar from '../../components/sidebar/Sidebar'
-
 import './profile.scss'
+import ProfileImages from '../../components/profileImages/ProfileImages';
+
 const Profile = () => {
     // COde start for form 
     const userProfile = {
@@ -46,6 +47,7 @@ const Profile = () => {
             <div className="profileContainer">
                 <Navbar />
                 <div className="formForProfile">
+                    <ProfileImages/>
                     <EditProfile />
                 </div>
             </div>

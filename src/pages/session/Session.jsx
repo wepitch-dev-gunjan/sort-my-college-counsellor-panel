@@ -1,7 +1,7 @@
 import "./session.scss"
 import Sidebar from '../../components/sidebar/Sidebar'
 import Navbar from '../../components/navbar/Navbar'
-import Widgets from "../../components/widgets/Widgets"
+// import Widgets from "../../components/widgets/Widgets"
 import SessionsCard from "../../components/sessionsCard/SessionsCard"
 // import { Widgets } from "@mui/icons-material"
 const Session = () => {

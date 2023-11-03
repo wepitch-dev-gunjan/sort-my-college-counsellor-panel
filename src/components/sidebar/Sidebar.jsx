@@ -4,6 +4,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PaymentIcon from '@mui/icons-material/Payment';
 import React from 'react'
 import {Link} from 'react-router-dom'
+import PersonIcon from '@mui/icons-material/Person';
 
 
 const Sidebar = () => {
@@ -40,7 +41,7 @@ const Sidebar = () => {
 
         <Link to="/profile">
         <li>
-          <PaymentIcon className="iconNew"/>
+          <PersonIcon className="iconNew"/>
           <span>Profile</span>
         </li>
         </Link>
