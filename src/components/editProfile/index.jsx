@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import './style.scss';
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const EditProfile = () => {
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+
+const EditProfile = ({ isOpen, onClose }) => {
+
   const [tempQualification, setTempQualification] = useState("");
   const [tempLanguage, setTempLanguage] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -33,7 +39,9 @@ const EditProfile = () => {
     group_session_price: null,
     personal_session_price: null,
   });
-
+  if (!isOpen) {
+    return null;
+  }
 
   const isValidEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -325,14 +333,19 @@ const EditProfile = () => {
 
         <div>
           <label>Date of Birth:</label>
-          <DatePicker
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={['DatePicker']}>
+              <DatePicker label="Basic date picker" />
+            </DemoContainer>
+          </LocalizationProvider>
+          {/* <DatePicker
             selected={formData.date_of_birth}
             onChange={date => setFormData({ ...formData, date_of_birth: date })}
             dateFormat="dd/MM/yyyy"
             maxDate={new Date()} // To ensure users can't select a future date
             showYearDropdown
             dropdownMode="select"
-          />
+          /> */}
         </div>
         <div>
           <label>Group Session Price:</label>
