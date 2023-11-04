@@ -2,6 +2,7 @@ import Navbar from '../../components/navbar/Navbar'
 import EditProfile from '../../components/editProfile';
 import Sidebar from '../../components/sidebar/Sidebar'
 import './profile.scss'
+import { useState } from 'react';
 import ProfileImages from '../../components/profileImages/ProfileImages';
 
 const Profile = () => {
@@ -36,6 +37,14 @@ const Profile = () => {
 
     console.log(userProfile);
 
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const openPopup = () => {
+        setIsPopupOpen(true);
+      };
+    
+      const closePopup = () => {
+        setIsPopupOpen(false);
+      };
 
     // code end for form
 
@@ -48,7 +57,10 @@ const Profile = () => {
                 <Navbar />
                 <div className="formForProfile">
                     <ProfileImages/>
-                    <EditProfile />
+                    <button onClick={openPopup}>Open Popup</button>
+                    <button onClick={openPopup}>New Popup</button>
+
+                    <EditProfile isOpen={isPopupOpen} onClose={closePopup}/>
                 </div>
             </div>
         </div>

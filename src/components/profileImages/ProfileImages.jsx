@@ -37,15 +37,23 @@ const ProfileImages = () => {
                 accept="image/*"
                 />
         </div>
-        <div className="profileImage">
-                <img src={profilePic} alt="Profile" className="profile-photo" />
-                <input
-                type="file"
-                onChange={handleProfilePicChange}
-                className="file-input"
-                accept="image/*"
-                />
+        <div className="profileImageSection">
+          <div className="profileDetails">
+                <div className="profileImage">
+                  <img src={profilePic} alt="Profile" className="profile-photo" />
+                  <input
+                  type="file"
+                  onChange={handleProfilePicChange}
+                  className="file-input"
+                  accept="image/*"
+                  />
+                </div>
+                <div className="profiletiltle">
+                  Sandeep Singh Bisht
+                </div>
+            </div>
         </div>
+
     </div>
   )
 }
