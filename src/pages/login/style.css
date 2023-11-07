@@ -1,0 +1,33 @@
+.Login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.Google-login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #dd4b39;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.Google-login-button:hover {
+  background-color: #ca3527;
+}
+
+.Google-icon {
+  margin-right: 10px;
+}
