@@ -1,42 +1,43 @@
-.session{
-    display:flex;
-    .sessionContainer{
-        flex: 6;
+.session {
+  display: flex;
+  .sessionContainer {
+    flex: 6;
+  }
+  .sessionList {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+    flex-wrap: wrap;
+  }
+  .addSession {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      padding: 10px;
+      cursor: pointer;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin-left: 10px;
+      &:hover {
+        background-color: black;
+      }
     }
-    .sessionList{
-        display: flex;
-        gap: 30px;
-        padding: 30px;
-        height: 80vh;
-        flex-wrap: wrap;
-        
+    .sessionSort {
+      .SortDropdown {
+        padding: 8px;
+        border-radius: 9px;
+        margin-left: 8px;
+        font-weight: 600;
+      }
     }
-    .addSession{
-        display: flex;
-        flex-direction: row-reverse;
-        padding: 20px;
-        justify-content: space-between;
-        align-items: center;
-        button{
-            padding: 10px;
-            cursor: pointer;
-            background-color: blue;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            margin-left: 10px;
-            &:hover{
-                background-color: black;
-            }
-        }
-        .sessionSort{
-            .SortDropdown{
-                padding: 8px;
-                border-radius: 9px;
-                margin-left: 8px;
-                font-weight: 600;
-            }
-        }
-    }
+  }
 
+  .add-session-button {
+    width: 300px;
+  }
 }

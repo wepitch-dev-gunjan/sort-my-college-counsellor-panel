@@ -1,0 +1,31 @@
+.ProfileDropDownMenu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--background-color);
+  border: 0.5px solid rgb(0, 0, 0);
+  border-radius: 50px;
+  padding: 6px 8px;
+
+  .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      border-radius: 50%;
+      width: 52px;
+    }
+  }
+  .mid {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .right {
+    display: flex;
+    justify-content: center;
+    width: 20px;
+    border: 0.5px solid var(--border-light);
+  }
+}

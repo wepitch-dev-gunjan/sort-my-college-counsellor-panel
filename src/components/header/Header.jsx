@@ -3,29 +3,30 @@ import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import "./header.scss";
 import { UserContext } from '../../context/UserContext';
+import ProfileDropDownMenu from '../dropdownMenu/profileDropDownMenu';
+import logo from '../../assets/logo.svg'
 
 const Header = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['token']); // 'token' is the name of your cookie
+  const [tokenCookie, setTokenCookie, removeTokenCookie] = useCookies(['token']);
+  const [userCookie, setUserCookie, removeUserCookie] = useCookies(['user']);
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
 
+  // console.log(user)
   const handleLogout = () => {
-    removeCookie('token'); // Update this path if your cookie is set to a specific path
+    removeTokenCookie('token');
+    removeUserCookie('user');
     setUser({ ...user, isLoggedIn: false });
-    navigate('/login'); // Navigate to login page after removing the token cookie
+    navigate('/login');
   };
 
   return (
     <div className="header">
       <div className="leftSide">
-        Counsellor
+        <img src={logo} alt="" />
       </div>
       <div className="rightSide">
-        Setting
-        {/* Add a button to handle logout */}
-        <button onClick={handleLogout} className="logoutButton">
-          Logout
-        </button>
+        <ProfileDropDownMenu name={user.name} image={user.profile_pic} />
       </div>
     </div>
   );
