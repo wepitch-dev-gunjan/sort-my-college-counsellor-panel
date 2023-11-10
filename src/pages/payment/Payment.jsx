@@ -5,11 +5,9 @@ import "./payment.scss"
 const Payment = () => {
   return (
     <div className="payment">
-        <Sidebar/>
-        <div className="paymentContainer">
-        <Navbar/>
+      <div className="paymentContainer">
         This is payments
-        </div>
+      </div>
     </div>
   )
 }

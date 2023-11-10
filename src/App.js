@@ -1,24 +1,40 @@
 import * as React from 'react';
 import './style.scss'
 import { useContext } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from './context/UserContext';
 import Home from './pages/home/Home';
 import Session from './pages/session';
 import Payment from './pages/payment/Payment';
 import Profile from './pages/profile/Profile';
 import Login from './pages/login';
+import Header from './components/header/Header';
+import Sidebar from './components/sidebar/Sidebar';
+import { useCookies } from 'react-cookie';
 
 // Example authentication state, you should replace this with your authentication logic
 
 function App() {
   const { user, setUser } = useContext(UserContext);
   const { isLoggedIn } = user;
+  const [tokenCookie, setTokenCookie, removeTokenCookie] = useCookies(['token']);
+  const [userCookie, setUserCookie, removeUserCookie] = useCookies(['user']);
+  const navigate = useNavigate();
+
+  // console.log(user)
+  const handleLogout = () => {
+    removeTokenCookie('token');
+    removeUserCookie('user');
+    setUser({ ...user, isLoggedIn: false });
+    navigate('/login');
+  };
   return (
-    <BrowserRouter>
-      <div className='App'>
-        {/* {isLoggedIn && <Header />}
-        {isLoggedIn && <Sidebar />} */}
+    <div>
+      {isLoggedIn && <Header handleLogout={handleLogout} />}
+      <div className="main">
+        {isLoggedIn && (
+          <Sidebar />
+        )}
         <Routes>
           {isLoggedIn ? (
             <>
@@ -35,7 +51,7 @@ function App() {
           )}
         </Routes>
       </div>
-    </BrowserRouter>
+    </div>
   );
 }
 

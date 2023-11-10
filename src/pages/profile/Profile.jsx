@@ -40,11 +40,11 @@ const Profile = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const openPopup = () => {
         setIsPopupOpen(true);
-      };
-    
-      const closePopup = () => {
+    };
+
+    const closePopup = () => {
         setIsPopupOpen(false);
-      };
+    };
 
     // code end for form
 
@@ -52,15 +52,13 @@ const Profile = () => {
 
     return (
         <div className="profile">
-            <Sidebar />
             <div className="profileContainer">
-                <Navbar />
                 <div className="formForProfile">
-                    <ProfileImages/>
+                    <ProfileImages />
                     <button onClick={openPopup}>Open Popup</button>
                     <button onClick={openPopup}>New Popup</button>
 
-                    <EditProfile isOpen={isPopupOpen} onClose={closePopup}/>
+                    <EditProfile isOpen={isPopupOpen} onClose={closePopup} />
                 </div>
             </div>
         </div>

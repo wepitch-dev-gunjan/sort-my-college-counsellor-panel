@@ -87,3 +87,13 @@ input {
     background-color: var(--background-color);
   }
 }
+
+.main {
+  display: flex;
+  height: calc(100vh - 82px);
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}

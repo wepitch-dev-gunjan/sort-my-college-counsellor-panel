@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
 
-const SidebarMenuButton = ({ href, icon: Icon, text }) => {
+const SidebarMenuButton = ({ href, icon: Icon, text, expand }) => {
   return (
-    <div className='SidebarMenuButton-container'>
-      <Link to={href}>
+    <Link to={href}>
+      <div className='SidebarMenuButton-container' style={{ width: `${expand ? '250px' : ''}` }}>
         <li className='inner-container'>
           <Icon />
-          <span>{text}</span>
+          {expand && <span>{text}</span>}
         </li>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

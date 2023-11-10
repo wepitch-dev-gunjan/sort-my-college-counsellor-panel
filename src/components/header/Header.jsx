@@ -1,24 +1,11 @@
 import React, { useContext } from 'react';
-import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 import "./header.scss";
 import { UserContext } from '../../context/UserContext';
 import ProfileDropDownMenu from '../dropdownMenu/profileDropDownMenu';
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/logo.svg';
 
-const Header = () => {
-  const [tokenCookie, setTokenCookie, removeTokenCookie] = useCookies(['token']);
-  const [userCookie, setUserCookie, removeUserCookie] = useCookies(['user']);
-  const navigate = useNavigate();
-  const { user, setUser } = useContext(UserContext);
-
-  // console.log(user)
-  const handleLogout = () => {
-    removeTokenCookie('token');
-    removeUserCookie('user');
-    setUser({ ...user, isLoggedIn: false });
-    navigate('/login');
-  };
+const Header = ({ handleLogout }) => {
+  const { user } = useContext(UserContext);
 
   return (
     <div className="header">
@@ -26,7 +13,7 @@ const Header = () => {
         <img src={logo} alt="" />
       </div>
       <div className="rightSide">
-        <ProfileDropDownMenu name={user.name} image={user.profile_pic} />
+        <ProfileDropDownMenu name={user.name} image={user.profile_pic} onClick={handleLogout} />
       </div>
     </div>
   );
