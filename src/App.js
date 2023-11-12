@@ -3,7 +3,6 @@ import './style.scss'
 import { useContext } from 'react'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from './context/UserContext';
-import Home from './pages/home/Home';
 import Session from './pages/session';
 import Payment from './pages/payment/Payment';
 import Profile from './pages/profile/Profile';
@@ -11,6 +10,7 @@ import Login from './pages/login';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import { useCookies } from 'react-cookie';
+import Dashboard from './pages/dashboard';
 
 // Example authentication state, you should replace this with your authentication logic
 
@@ -21,7 +21,6 @@ function App() {
   const [userCookie, setUserCookie, removeUserCookie] = useCookies(['user']);
   const navigate = useNavigate();
 
-  // console.log(user)
   const handleLogout = () => {
     removeTokenCookie('token');
     removeUserCookie('user');
@@ -38,7 +37,7 @@ function App() {
         <Routes>
           {isLoggedIn ? (
             <>
-              <Route path='/' element={<Home />} />
+              <Route path='/' element={<Dashboard />} />
               <Route path='/session' element={<Session />} />
               <Route path='/payment' element={<Payment />} />
               <Route path='/profile' element={<Profile />} />

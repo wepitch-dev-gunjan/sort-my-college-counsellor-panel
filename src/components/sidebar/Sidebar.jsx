@@ -5,8 +5,7 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import React, { useState } from 'react'
 import SidebarMenuButton from "../buttons/sidebarMenuButton";
 import RightLeftArrow from "../buttons/rightLeftArrow";
-
-
+import GroupIcon from '@mui/icons-material/Group';
 const Sidebar = () => {
   const [expand, setExpand] = useState(true);
 
@@ -19,6 +18,7 @@ const Sidebar = () => {
         <SidebarMenuButton href='/' icon={DashboardIcon} text='Dashboard' expand={expand} />
         <SidebarMenuButton href='/session' icon={AccessTimeIcon} text='Session' expand={expand} />
         <SidebarMenuButton href='/payment' icon={PaymentIcon} text='Payment' expand={expand} />
+        <SidebarMenuButton href='/Users' icon={GroupIcon} text='Users' expand={expand} />
       </div>
     </div>
   )

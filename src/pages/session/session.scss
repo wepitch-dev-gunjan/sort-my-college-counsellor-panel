@@ -1,5 +1,13 @@
 .session {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  .session-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+  }
   .sessionContainer {
     flex: 6;
   }
@@ -38,6 +46,7 @@
   }
 
   .add-session-button {
-    width: 300px;
+    width: 200px;
+    border-radius: 50px;
   }
 }

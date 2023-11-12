@@ -22,11 +22,18 @@ const Session = () => {
     return (
         <>
             <div className="session">
+                <div className="session-header">
+                    <div className="left">
+                        gfgf
+                    </div>
+                    <div className="right">
+                        <div className='primary-button add-session-button' onClick={setAddMode}>Add Session
+                        </div>
+                    </div>
+                </div>
                 <div className="sessionContainer">
                     <div className="add-session">
 
-                    </div>
-                    <div className='primary-button add-session-button' onClick={setAddMode}>Add Session
                     </div>
                     {addMode && <AddSession sessions={sessions} setSessions={setSessions} setAddMode={setAddMode} />}
                     <div className="sessionList">

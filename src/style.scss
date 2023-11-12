@@ -1,7 +1,7 @@
 :root {
   /* Primary Colors */
   --primary-color: #1f0a68;
-  --primary-dark: #2980b9;
+  --primary-dark: #b1a0eb;
   --primary-light: #f7f4ff;
 
   /* Secondary Colors */
@@ -37,6 +37,14 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif !important;
+}
+
+body {
+  background-color: var(--primary-light);
+}
+
+h1 {
+  color: var(--primary-color);
 }
 
 input {
@@ -96,4 +104,16 @@ input {
 a {
   text-decoration: none;
   color: var(--primary-color);
+}
+
+.green {
+  color: rgb(27, 225, 27) !important;
+}
+
+.red {
+  color: red !important;
+}
+
+.blue {
+  color: blue !important;
 }

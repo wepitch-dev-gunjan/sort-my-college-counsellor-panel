@@ -6,13 +6,13 @@
   padding: 20px;
   transition: all 0.3s ease;
   cursor: pointer;
-  a {
-    text-decoration: none;
-    color: var(--primary-color);
-  }
   .inner-container {
     display: flex;
     gap: 8px;
+  }
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
   }
   &:hover {
     background-color: var(--background-color);
