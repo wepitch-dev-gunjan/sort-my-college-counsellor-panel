@@ -34,7 +34,7 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
       </div>
       {isDropdownOpen && (
         <div ref={dropdownRef} className="dropdown-menu">
-          <DropDownMenuButton onClick={() => navigate('login')} icon={PersonIcon} text='Profile' />
+          <DropDownMenuButton onClick={() => navigate('/profile')} icon={PersonIcon} text='Profile' />
           <DropDownMenuButton onClick={onClick} icon={AiOutlineLogout} text='Log out' />
         </div>
       )}

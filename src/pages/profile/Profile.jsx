@@ -1,9 +1,8 @@
-import Navbar from '../../components/navbar/Navbar'
 import EditProfile from '../../components/editProfile';
-import Sidebar from '../../components/sidebar/Sidebar'
 import './profile.scss'
 import { useState } from 'react';
 import ProfileImages from '../../components/profileImages/ProfileImages';
+import ProfilePic from '../../components/profilePic';
 
 const Profile = () => {
     // COde start for form 
@@ -51,16 +50,13 @@ const Profile = () => {
 
 
     return (
-        <div className="profile">
-            <div className="profileContainer">
-                <div className="formForProfile">
-                    <ProfileImages />
-                    <button onClick={openPopup}>Open Popup</button>
-                    <button onClick={openPopup}>New Popup</button>
+        <div className="profile-container">
+            <ProfilePic />
+            {/* <ProfileImages /> */}
+            {/* <button onClick={openPopup}>Open Popup</button>
+            <button onClick={openPopup}>New Popup</button> */}
 
-                    <EditProfile isOpen={isPopupOpen} onClose={closePopup} />
-                </div>
-            </div>
+            {/* <EditProfile isOpen={isPopupOpen} onClose={closePopup} /> */}
         </div>
     )
 }

@@ -3,6 +3,7 @@ import "./header.scss";
 import { UserContext } from '../../context/UserContext';
 import ProfileDropDownMenu from '../dropdownMenu/profileDropDownMenu';
 import logo from '../../assets/logo.svg';
+import AddSessionButton from '../buttons/addSessionButton';
 
 const Header = ({ handleLogout }) => {
   const { user } = useContext(UserContext);
@@ -13,6 +14,7 @@ const Header = ({ handleLogout }) => {
         <img src={logo} alt="" />
       </div>
       <div className="rightSide">
+        <AddSessionButton />
         <ProfileDropDownMenu name={user.name} image={user.profile_pic} onClick={handleLogout} />
       </div>
     </div>

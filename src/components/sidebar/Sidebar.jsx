@@ -6,6 +6,9 @@ import React, { useState } from 'react'
 import SidebarMenuButton from "../buttons/sidebarMenuButton";
 import RightLeftArrow from "../buttons/rightLeftArrow";
 import GroupIcon from '@mui/icons-material/Group';
+import ReviewsIcon from '@mui/icons-material/Reviews';
+import FeedIcon from '@mui/icons-material/Feed';
+
 const Sidebar = () => {
   const [expand, setExpand] = useState(true);
 
@@ -16,9 +19,11 @@ const Sidebar = () => {
       </div>
       <div className="sidebar-container">
         <SidebarMenuButton href='/' icon={DashboardIcon} text='Dashboard' expand={expand} />
-        <SidebarMenuButton href='/session' icon={AccessTimeIcon} text='Session' expand={expand} />
-        <SidebarMenuButton href='/payment' icon={PaymentIcon} text='Payment' expand={expand} />
-        <SidebarMenuButton href='/Users' icon={GroupIcon} text='Users' expand={expand} />
+        <SidebarMenuButton href='/session' icon={AccessTimeIcon} text='My Sessions' expand={expand} />
+        <SidebarMenuButton href='/payment' icon={PaymentIcon} text='My Payments' expand={expand} />
+        <SidebarMenuButton href='/users' icon={GroupIcon} text='My Users' expand={expand} />
+        <SidebarMenuButton href='/feedback' icon={ReviewsIcon} text='User Feedbacks' expand={expand} />
+        <SidebarMenuButton href='/feeds' icon={FeedIcon} text='My Feeds' expand={expand} />
       </div>
     </div>
   )
