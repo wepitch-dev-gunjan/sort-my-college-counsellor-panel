@@ -98,7 +98,12 @@ input {
 
 .main {
   display: flex;
-  height: calc(100vh - 82px);
+  .main-content {
+    overflow-y: auto;
+    display: flex;
+    height: calc(100vh - 114px);
+    width: 100%;
+  }
 }
 
 a {

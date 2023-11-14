@@ -36,25 +36,28 @@ function App() {
       {isLoggedIn && <Header handleLogout={handleLogout} />}
       <div className="main">
         {isLoggedIn && <Sidebar />}
-        <Routes>
-          {isLoggedIn ? (
-            <>
-              <Route path='/' element={<Dashboard />} />
-              <Route path='/session' element={<Session />} />
-              <Route path='/payment' element={<Payment />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/users' element={<Users />} />
-              <Route path='/feedbacks' element={<Feedbacks />} />
-            </>
-          ) : (
-            <>
-              <Route path="*" element={<Navigate replace to="/login" />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Login />} />
-              <Route path="/password-reset" element={<Login />} />
-            </>
-          )}
-        </Routes>
+        <div className={`${isLoggedIn && 'main-content'}`}>
+          <Routes>
+            {isLoggedIn ? (
+              <>
+                <Route path='/' element={<Dashboard />} />
+                <Route path='/session' element={<Session />} />
+                <Route path='/payment' element={<Payment />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/users' element={<Users />} />
+                <Route path='/feedbacks' element={<Feedbacks />} />
+              </>
+            ) : (
+              <>
+                <Route path="*" element={<Navigate replace to="/login" />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Login />} />
+                <Route path="/password-reset" element={<Login />} />
+              </>
+            )}
+          </Routes>
+        </div>
+
       </div>
     </div>
   );
