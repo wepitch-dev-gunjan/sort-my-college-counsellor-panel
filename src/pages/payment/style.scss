@@ -1,7 +1,37 @@
 .payment{
-    display:flex;
-    .paymentContainer{
-        flex: 6;
-    }
-
+    width: 100%;
 }
+.RecentPayments-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px;
+    width: 100%;
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      .see-all-button {
+        font-weight: 800;
+        color: var(--primary-dark);
+        cursor: pointer;
+      }
+    }
+    .table {
+      .row {
+        display: flex;
+        border-bottom: 1px solid rgba(24, 45, 107, 0.253);
+        padding: 20px;
+        margin: 29px;
+        text-align: start;
+        justify-content: space-between;
+        .col {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          font-size: 20px;
+          color: var(--text-dark);
+        }
+      }
+    }
+  }
