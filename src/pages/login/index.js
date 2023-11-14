@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { FaGoogle, FaEye, FaEyeSlash } from 'react-icons/fa';
-import './style.scss';
-import Logo from '../../assets/logo.svg';
-import { TextField, InputAdornment, IconButton } from '@mui/material';
+import React, { useState } from "react";
+import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import "./style.scss";
+import Logo from "../../assets/logo.svg";
+import { TextField, InputAdornment, IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,7 +11,7 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     setIsLoading(true);
-    window.location.href = 'http://localhost:9000/counsellor/auth/google';
+    window.location.href = "http://localhost:9000/counsellor/auth/google";
   };
 
   const togglePasswordVisibility = () => {
@@ -19,9 +20,8 @@ const Login = () => {
 
   return (
     <div className="container">
-      <div className='Login-container'>
+      <div className="Login-container">
         <div className="img">
-
           <img src={Logo} alt="sortmycollege" />
         </div>
         <div className="login-inputs">
@@ -45,18 +45,36 @@ const Login = () => {
               ),
             }}
           />
-          <p>Forgot your password?</p>
-          <button className='Google-login-button' onClick={handleGoogleLogin} disabled={isLoading}>
-            {isLoading ? 'Logging in...' : 'Login'}
+          <p className="forgot">
+            <Link to="/password-reset"> Forgot your password?</Link>
+          </p>
+
+          <div className="buttons">
+            <button
+              className="Google-login-button"
+              onClick={handleGoogleLogin}
+              disabled={isLoading}
+            >
+              {isLoading ? "Logging in..." : "Login"}
+            </button>
+          </div>
+          <button
+            className="Google-login-button"
+            onClick={handleGoogleLogin}
+            disabled={isLoading}
+          >
+            <FaGoogle className="Google-icon" />
+            {isLoading ? "Logging in..." : "Login with Google"}
           </button>
         </div>
-        <div>
-          <p>Or</p>
+        <p>Or</p>
+        <hr />
+        <div className="signup">
+          <p>
+            Don't have a account?
+            <Link to="/signup"> Sign Up</Link>
+          </p>
         </div>
-        <button className='Google-login-button' onClick={handleGoogleLogin} disabled={isLoading}>
-          <FaGoogle className='Google-icon' />
-          {isLoading ? 'Logging in...' : 'Login with Google'}
-        </button>
       </div>
     </div>
   );
