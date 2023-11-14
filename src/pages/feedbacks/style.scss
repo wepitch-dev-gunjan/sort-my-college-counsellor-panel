@@ -1,0 +1,64 @@
+.Feedbacks-container{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    padding: 20px;
+    gap: 40px;
+    .feedbacks-dashbaord{
+        display: flex;
+        flex-direction: column;
+  
+        gap: 40px;
+        padding: 20px;
+    }
+    .feedbacksBoxContainer{
+
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        gap: 30px;
+        .feedbacksBox{
+            height: 250px;
+            width: 48%;
+            padding: 15px;
+            border: 1px solid rgba(24, 45, 107, 0.253);
+            border-radius: 9px;
+            .feebacksBoxUp{
+                display: flex;
+                column-gap: 20px;
+                .feedbacksImage{
+                    img{
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 50%;
+                    }
+                }
+                .feedbackUser{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    .feedbackUserTitle{
+                        font-size: 30px;
+
+
+                    }
+
+
+                }
+            }
+            .feebacksBoxDown{
+                padding-top: 20px;
+                .feedbacksComment{
+                font-size: 14px; 
+                text-align: justify;              
+                }
+            }
+            .feedbacksImage{
+
+            }
+        }
+    }
+}

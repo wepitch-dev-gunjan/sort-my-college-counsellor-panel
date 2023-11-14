@@ -1,4 +1,4 @@
-import "./sidebar.scss"
+import "./style.scss"
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PaymentIcon from '@mui/icons-material/Payment';
@@ -22,7 +22,8 @@ const Sidebar = () => {
         <SidebarMenuButton href='/' icon={DashboardIcon} text='Dashboard' expand={expand} />
         <SidebarMenuButton href='/session' icon={AccessTimeIcon} text='My Sessions' expand={expand} />
         <SidebarMenuButton href='/payment' icon={PaymentIcon} text='My Payments' expand={expand} />
-        <SidebarMenuButton href='/users' icon={GroupIcon} text='My Users' expand={expand} />
+        <SidebarMenuButton href='/users' icon={GroupIcon} text='My Followers' expand={expand} />
+        <SidebarMenuButton href='/feedbacks' icon={ReviewsIcon} text='User Feedbacks' expand={expand} />
         <SidebarMenuButton href='/feeds' icon={FeedIcon} text='My Feeds' expand={expand} />
         <SidebarMenuButton href='/profile' icon={PersonIcon} text='Profile' expand={expand} />
       </div>

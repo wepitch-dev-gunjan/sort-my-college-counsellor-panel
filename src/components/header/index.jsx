@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import "./header.scss";
+import "./style.scss";
 import { UserContext } from '../../context/UserContext';
 import ProfileDropDownMenu from '../dropdownMenu/profileDropDownMenu';
 import logo from '../../assets/logo.svg';
