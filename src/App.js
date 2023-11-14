@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { UserContext } from './context/UserContext';
 import Session from './pages/session';
-import Payment from './pages/payment/Payment';
+import Payment from './pages/payment';
 import Profile from './pages/profile/Profile';
 import Login from './pages/login';
 import Header from './components/header/Header';

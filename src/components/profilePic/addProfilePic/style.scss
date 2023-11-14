@@ -1,7 +1,58 @@
 .AddProfilePic-container {
+  z-index: 999;
   display: flex;
+  flex-direction: column;
+  position: absolute;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
   backdrop-filter: blur(10px); /* Adjust the value based on your preference */
   background-color: #11111140;
+  .middle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    align-items: center;
+  }
+  .bottom {
+    display: flex;
+    padding: 20px;
+    gap: 12px;
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 20px;
+      width: 100%;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      color: var(--text-light);
+      background-color: var(--primary-dark);
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: #755cc7;
+      }
+    }
+  }
+
+  input[type="range"] {
+    /* Rotate the slider vertically */
+    writing-mode: bt-lr; /* for IE/Edge */
+    writing-mode: lr-bt;
+    -webkit-appearance: slider-vertical;
+    height: 500px; /* Set the height as needed */
+    width: 10px; /* Set the width as needed */
+    margin: 0 10px; /* Adjust the margin as needed */
+  }
+}
+
+.avatar-editor-container {
+  display: flex;
+  flex-direction: column;
+  border: 5px solid var(--border-light);
+  border-radius: 5px;
+  box-shadow: 2px 2px 40px #11111165;
 }

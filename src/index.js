@@ -5,6 +5,7 @@ import App from './App';
 import { UserProvider } from './context/UserContext';
 import { BrowserRouter } from 'react-router-dom';
 import { SessionProvider } from './context/SessionContext';
+import { ProfileProvider } from './context/ProfileContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,7 +13,9 @@ root.render(
     <BrowserRouter>
         <UserProvider >
             <SessionProvider >
-                <App />
+                <ProfileProvider>
+                    <App />
+                </ProfileProvider>
             </SessionProvider>
         </UserProvider>
     </BrowserRouter>

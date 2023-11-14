@@ -7,7 +7,6 @@ import { backend_url } from "../../config"
 import { useEffect } from "react"
 import AddSession from "../../components/addSession"
 import { SessionContext } from "../../context/SessionContext"
-import AddSessionButton from "../../components/buttons/addSessionButton"
 const Session = () => {
     const [sessions, setSessions] = useState([]);
     const { user } = useContext(UserContext);

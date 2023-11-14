@@ -1,11 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import './style.scss';
+import { ProfileContext } from '../../../context/ProfileContext';
 
 const AddProfilePic = () => {
   const [image, setImage] = useState(null);
   const [scale, setScale] = useState(1);
   const editorRef = useRef(null);
+  const { profilePicEditMode, setProfilePicEditMode } = useContext(ProfileContext)
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -27,31 +29,43 @@ const AddProfilePic = () => {
     }
   };
 
+  const handleCancel = () => {
+    setProfilePicEditMode(false)
+  }
+
   return (
     <div className='AddProfilePic-container'>
       <input type="file" onChange={handleImageChange} accept="image/*" />
       {image && (
         <>
-          <AvatarEditor
-            ref={editorRef}
-            image={image}
-            width={250}
-            height={250}
-            border={50}
-            color={[255, 255, 255, 0.6]} // RGBA
-            scale={scale}
-            rotate={0}
-          />
-          <br />
-          <input
-            type="range"
-            onChange={handleScaleChange}
-            min="1"
-            max="2"
-            step="0.01"
-            defaultValue="1"
-          />
-          <button onClick={onSave}>Save</button>
+          <div className="middle">
+            <div className="avatar-editor-container">
+              <AvatarEditor
+                ref={editorRef}
+                image={image}
+                width={500}
+                height={500}
+                border={50}
+                borderRadius={250} // Half of width and height to create a circle
+                color={[255, 255, 255, 0.6]} // RGBA
+                scale={scale}
+                rotate={0}
+              />
+              <div className="bottom">
+                <button onClick={onSave}>Save</button>
+                <button onClick={handleCancel}>Cancel</button>
+              </div>
+            </div>
+            <input
+              type="range"
+              onChange={handleScaleChange}
+              min="1"
+              max="2"
+              step="0.01"
+              defaultValue="1"
+            />
+          </div>
+
         </>
       )}
     </div>
