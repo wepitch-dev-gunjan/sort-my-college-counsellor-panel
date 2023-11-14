@@ -14,9 +14,8 @@ export const UserProvider = ({ children }) => {
     email: cookies.user?.email || '',
     profile_pic: cookies.user?.profile_pic || '',
     token: cookies?.token || '',
-    // isLoggedIn: !!cookies.token,
-    isLoggedIn: true,
-
+    isLoggedIn: !!cookies.token,
+    // isLoggedIn: true,
   });
 
   // Redirect to login page if there is no token

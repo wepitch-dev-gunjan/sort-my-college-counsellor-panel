@@ -1,12 +1,14 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, forwardRef, useImperativeHandle } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import './style.scss';
 import { ProfileContext } from '../../../context/ProfileContext';
+import { IoCloudUploadOutline } from "react-icons/io5";
 
-const AddProfilePic = () => {
+const AddProfilePic = forwardRef((props, ref) => {
   const [image, setImage] = useState(null);
   const [scale, setScale] = useState(1);
   const editorRef = useRef(null);
+  const fileRef = useRef(null);
   const { profilePicEditMode, setProfilePicEditMode } = useContext(ProfileContext)
 
   const handleImageChange = (e) => {
@@ -25,17 +27,52 @@ const AddProfilePic = () => {
     if (editorRef.current) {
       const canvasScaled = editorRef.current.getImageScaledToCanvas();
       const imageData = canvasScaled.toDataURL();
-      console.log(imageData); // You can send this data to server or use as needed
+      console.log(imageData); // You can send this data to the server or use as needed
     }
   };
 
   const handleCancel = () => {
     setProfilePicEditMode(false)
-  }
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      const droppedFile = e.dataTransfer.files[0];
+      const fileReader = new FileReader();
+      fileReader.onload = (event) => setImage(event.target.result);
+      fileReader.readAsDataURL(droppedFile);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
   return (
     <div className='AddProfilePic-container'>
-      <input type="file" onChange={handleImageChange} accept="image/*" />
+      {!image &&
+        <div className="drop-area-container">
+          <div
+            ref={ref}
+            className="drop-area"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onClick={() => fileRef.current.click()}
+          >
+            <IoCloudUploadOutline size='100' />
+            Drag & Drop here
+            <p>or</p>
+            <div className="browse-button">
+              Browse File
+            </div>
+          </div>
+        </div>
+      }
+      <input ref={fileRef} type="file" onChange={handleImageChange} accept="image/*" style={{ display: 'none' }} />
       {image && (
         <>
           <div className="middle">
@@ -65,11 +102,10 @@ const AddProfilePic = () => {
               defaultValue="1"
             />
           </div>
-
         </>
       )}
     </div>
   );
-};
+});
 
 export default AddProfilePic;
