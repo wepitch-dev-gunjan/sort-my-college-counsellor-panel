@@ -23,7 +23,6 @@ const Sidebar = () => {
         <SidebarMenuButton href='/session' icon={AccessTimeIcon} text='My Sessions' expand={expand} />
         <SidebarMenuButton href='/payment' icon={PaymentIcon} text='My Payments' expand={expand} />
         <SidebarMenuButton href='/users' icon={GroupIcon} text='My Users' expand={expand} />
-        <SidebarMenuButton href='/feedback' icon={ReviewsIcon} text='User Feedbacks' expand={expand} />
         <SidebarMenuButton href='/feeds' icon={FeedIcon} text='My Feeds' expand={expand} />
         <SidebarMenuButton href='/profile' icon={PersonIcon} text='Profile' expand={expand} />
       </div>
