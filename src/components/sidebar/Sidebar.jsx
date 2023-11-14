@@ -8,6 +8,7 @@ import RightLeftArrow from "../buttons/rightLeftArrow";
 import GroupIcon from '@mui/icons-material/Group';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import FeedIcon from '@mui/icons-material/Feed';
+import PersonIcon from '@mui/icons-material/Person';
 
 const Sidebar = () => {
   const [expand, setExpand] = useState(true);
@@ -24,6 +25,7 @@ const Sidebar = () => {
         <SidebarMenuButton href='/users' icon={GroupIcon} text='My Users' expand={expand} />
         <SidebarMenuButton href='/feedback' icon={ReviewsIcon} text='User Feedbacks' expand={expand} />
         <SidebarMenuButton href='/feeds' icon={FeedIcon} text='My Feeds' expand={expand} />
+        <SidebarMenuButton href='/profile' icon={PersonIcon} text='Profile' expand={expand} />
       </div>
     </div>
   )
