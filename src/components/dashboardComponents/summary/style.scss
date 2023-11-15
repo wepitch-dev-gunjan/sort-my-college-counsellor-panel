@@ -10,6 +10,9 @@
     text-align: center;
     width: 300px;
 }
+.counsellor img{
+    border-radius: 20px;
+}
 .notification {
     display: flex;
     width: 300px;
@@ -24,7 +27,7 @@
     text-align: center;
     background-color: var(--primary-dark);
     border-radius: 20px;
-    padding: 10px 5px;
+    padding: 12px 4px;
     color: white;
 }
 .sessions{
