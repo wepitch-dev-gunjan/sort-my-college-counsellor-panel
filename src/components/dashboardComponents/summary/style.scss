@@ -3,5 +3,33 @@
     gap: 40px;
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 300px;
+}
+.counsellor{
+    align-items: center;
+    text-align: center;
+    width: 300px;
+}
+.notification {
+    display: flex;
+    width: 300px;
+    gap: 20px;
+}
+.notification img{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+.session-content{
+    text-align: center;
+    background-color: var(--primary-dark);
+    border-radius: 20px;
+    padding: 10px 5px;
+    color: white;
+}
+.sessions{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 400px;
 }

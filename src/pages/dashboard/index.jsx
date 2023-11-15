@@ -15,7 +15,7 @@ const Dashboard = () => {
           <Widget heading='SESSIONS' value='1000' />
         </div>
       </div>
-             
+
       {/* recent payments */}
       <RecentPayments />
     </div>
