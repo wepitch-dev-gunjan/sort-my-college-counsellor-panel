@@ -37,42 +37,42 @@ const Payment = () => {
       service: 'Group session',
       date: '24 May 2024',
       payment: '$1,000',
-      status: 'Cancelled'
+      status: 'Delivered'
     },
     {
       id: '12354',
       service: 'Group session',
       date: '24 May 2024',
       payment: '$1,000',
-      status: 'Cancelled'
+      status: 'Delivered'
     },
     {
       id: '12354',
       service: 'Group session',
       date: '24 May 2024',
       payment: '$1,000',
-      status: 'Cancelled'
+      status: 'Delivered'
     },
     {
       id: '12354',
       service: 'Group session',
       date: '24 May 2024',
       payment: '$1,000',
-      status: 'Cancelled'
+      status: 'Delivered'
     },
     {
       id: '12354',
       service: 'Group session',
       date: '24 May 2024',
       payment: '$1,000',
-      status: 'Cancelled'
+      status: 'Delivered'
     },
     {
       id: '12354',
       service: 'Group session',
       date: '24 May 2024',
       payment: '$1,000',
-      status: 'Cancelled'
+      status: 'Delivered'
     }
   ]);
   
@@ -81,7 +81,7 @@ const Payment = () => {
       <div className='RecentPayments-container'>
       <div className="top">
         <h1>All Payments</h1>
-       
+    
       </div>
       <div className="table">
         <div className="row">
