@@ -6,8 +6,10 @@ import Tooltip from '@mui/material/Tooltip';
 import { Typography } from '@mui/material';
 import AddProfilePic from './addProfilePic';
 import { ProfileContext } from '../../context/ProfileContext';
+import useClickOutside from '../../customHooks/useClickOutside';
 
 const ProfilePic = () => {
+  const addProfilePicRef = useRef(null);
   const { user, setUser } = useContext(UserContext);
   const { profilePicEditMode, setProfilePicEditMode } = useContext(ProfileContext)
 
@@ -16,11 +18,15 @@ const ProfilePic = () => {
     setProfilePicEditMode(prev => !prev);
   };
 
+  useClickOutside(addProfilePicRef, () => {
+    setProfilePicEditMode(prev => !prev);
+  })
+
   return (
     <>
-      <div className="add-profile-pic-panel">
-        {profilePicEditMode && <AddProfilePic />}
-      </div>
+      {profilePicEditMode && <div className="add-profile-pic-panel">
+        <AddProfilePic ref={addProfilePicRef} />
+      </div>}
       <div className="ProfilePic-container">
         <img src={user.profile_pic} alt="Profile" className="profile-pic" />
         <Tooltip
