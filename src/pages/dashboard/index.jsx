@@ -1,9 +1,11 @@
 import RecentPayments from '../../components/dashboardComponents/RecentPayments';
+import Summary from '../../components/dashboardComponents/summary';
 import Widget from '../../components/dashboardComponents/widget';
 import './style.scss'
-
+       
 const Dashboard = () => {
   return (
+    <div className="all-dashboard">
     <div className='Dashboard-container'>
       <div className="business-dashbaord">
         <h1>Business Dashboard</h1>
@@ -13,11 +15,15 @@ const Dashboard = () => {
           <Widget heading='SESSIONS' value='1000' />
         </div>
       </div>
-
+             
       {/* recent payments */}
       <RecentPayments />
     </div>
+    <div className="summary">
+      <Summary />
+    </div>
+    </div>
   );
 };
-
+       
 export default Dashboard;

@@ -16,3 +16,8 @@
     }
   }
 }
+.all-dashboard{
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 283px);
+}
