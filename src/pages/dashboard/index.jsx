@@ -1,9 +1,12 @@
+import { useContext } from 'react';
 import RecentPayments from '../../components/dashboardComponents/RecentPayments';
 import Summary from '../../components/dashboardComponents/summary';
 import Widget from '../../components/dashboardComponents/widget';
 import './style.scss'
+import { MediaQueryContext } from '../../context/MediaQueryContext';
        
 const Dashboard = () => {
+  const {smallScreen} = useContext(MediaQueryContext);
   return (
     <div className="all-dashboard">
       <div className='Dashboard-container'>
@@ -20,7 +23,7 @@ const Dashboard = () => {
       <RecentPayments />
       </div>
       <div className="summary">
-        <Summary />
+        {!smallScreen && <Summary />}
       </div>
     </div>
   );

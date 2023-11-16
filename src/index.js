@@ -6,11 +6,13 @@ import { UserProvider } from './context/UserContext';
 import { BrowserRouter } from 'react-router-dom';
 import { SessionProvider } from './context/SessionContext';
 import { ProfileProvider } from './context/ProfileContext';
+import { MediaQueryProvider } from './context/MediaQueryContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
+    <MediaQueryProvider>
         <UserProvider >
             <SessionProvider >
                 <ProfileProvider>
@@ -18,6 +20,7 @@ root.render(
                 </ProfileProvider>
             </SessionProvider>
         </UserProvider>
+    </MediaQueryProvider>
     </BrowserRouter>
 );
 

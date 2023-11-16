@@ -30,7 +30,7 @@ function Summary() {
         <img src="https://tse2.mm.bing.net/th?id=OIP.avb9nDfw3kq7NOoP0grM4wHaEK&pid=Api&P=0&h=180" alt="" />
         <div className="content">
             <h3>New message</h3>
-            <p>hii this...</p>
+            <p>hii this is abc...</p>
         </div>
     </div>
     <h3>Recent Session</h3>
