@@ -6,7 +6,7 @@ import './style.scss'
 const Dashboard = () => {
   return (
     <div className="all-dashboard">
-    <div className='Dashboard-container'>
+      <div className='Dashboard-container'>
       <div className="business-dashbaord">
         <h1>Business Dashboard</h1>
         <div className="widgets-container">
@@ -18,10 +18,10 @@ const Dashboard = () => {
 
       {/* recent payments */}
       <RecentPayments />
-    </div>
-    <div className="summary">
-      <Summary />
-    </div>
+      </div>
+      <div className="summary">
+        <Summary />
+      </div>
     </div>
   );
 };

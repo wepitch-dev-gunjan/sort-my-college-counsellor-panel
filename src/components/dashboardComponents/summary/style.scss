@@ -3,7 +3,10 @@
     gap: 40px;
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 30vw;
+    height: calc(100%);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .counsellor{
     align-items: center;
