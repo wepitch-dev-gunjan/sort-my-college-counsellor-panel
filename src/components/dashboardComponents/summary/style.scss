@@ -35,7 +35,15 @@
 }
 .sessions{
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     gap: 20px;
-    width: 400px;
+    width: 100%;
+    overflow-x: auto !important;
+    height: 100%;
+}
+.notify{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    overflow-y: auto;
 }
