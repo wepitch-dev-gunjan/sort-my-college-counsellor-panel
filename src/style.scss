@@ -102,9 +102,8 @@ input {
 .main {
   display: flex;
   .main-content {
-    overflow-y: auto;
     display: flex;
-    height: calc(100vh - 114px);
+    height: calc(100vh - 90px);
     width: 100%;
   }
 }

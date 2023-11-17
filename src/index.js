@@ -7,20 +7,23 @@ import { BrowserRouter } from 'react-router-dom';
 import { SessionProvider } from './context/SessionContext';
 import { ProfileProvider } from './context/ProfileContext';
 import { MediaQueryProvider } from './context/MediaQueryContext';
+import { NotificationProvider } from './context/NotificationContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
-    <MediaQueryProvider>
-        <UserProvider >
-            <SessionProvider >
-                <ProfileProvider>
-                    <App />
-                </ProfileProvider>
-            </SessionProvider>
-        </UserProvider>
-    </MediaQueryProvider>
+        <MediaQueryProvider>
+            <UserProvider >
+                <SessionProvider >
+                    <ProfileProvider>
+                        <NotificationProvider>
+                            <App />
+                        </NotificationProvider>
+                    </ProfileProvider>
+                </SessionProvider>
+            </UserProvider>
+        </MediaQueryProvider>
     </BrowserRouter>
 );
 

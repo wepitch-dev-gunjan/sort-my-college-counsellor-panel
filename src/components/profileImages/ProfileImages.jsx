@@ -25,7 +25,6 @@ const ProfileImages = () => {
     };
   };
 
-
   return (
     <div className='profileImages'>
       <div className="coverImage">
@@ -49,7 +48,7 @@ const ProfileImages = () => {
             />
           </div>
           <div className="profiletiltle">
-            Sandeep Singh Bisht
+            {user.name}
           </div>
         </div>
       </div>
