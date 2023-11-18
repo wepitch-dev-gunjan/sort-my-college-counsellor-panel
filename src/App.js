@@ -64,3 +64,10 @@ function App() {
 }
 
 export default App;
+
+// Webinar Feature
+// Reward points
+// Admin Approval of profile
+// Counsellor have to register first with payment
+// purchase domain for server
+// webinar recording feature - show recordings on the panel

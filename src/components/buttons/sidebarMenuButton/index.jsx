@@ -16,12 +16,10 @@ const SidebarMenuButton = ({ href, icon: Icon, text, expand }) => {
       <div>
         <Link to={href}>
           <div
-            className="SidebarMenuButton-container"
+            className={`SidebarMenuButton-container ${location.pathname === href && "active"
+              }`}
             style={{
-              width: `${expand ? "250px" : ""}`,
-              background: `${
-                location.pathname == href ? "var(--border-dark)" : ""
-              }`,
+              width: `${expand ? "250px" : ""}`
             }}
           >
             <div className="inner-container">
