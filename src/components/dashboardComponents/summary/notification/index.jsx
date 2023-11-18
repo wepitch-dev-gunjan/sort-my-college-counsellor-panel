@@ -1,9 +1,9 @@
-import { useContext, useState } from 'react';
-import axios from 'axios';
-import './style.scss';
-import { backend_url } from '../../../../config';
-import { NotificationContext } from '../../../../context/NotificationContext';
-import { UserContext } from '../../../../context/UserContext';
+import { useContext, useState } from "react";
+import axios from "axios";
+import "./style.scss";
+import { backend_url } from "../../../../config";
+import { NotificationContext } from "../../../../context/NotificationContext";
+import { UserContext } from "../../../../context/UserContext";
 
 const Notification = ({ title, message, read, index, notificationId }) => {
   const { notifications, setNotifications } = useContext(NotificationContext);
@@ -14,19 +14,26 @@ const Notification = ({ title, message, read, index, notificationId }) => {
     if (!isRead) {
       try {
         // Update the database via an API call using Axios
-        await axios.put(`${backend_url}/counsellor/notification/${notificationId}`, { read: true }, {
-          headers: {
-            Athorization: user.token
+        await axios.put(
+          `${backend_url}/counsellor/notification/${notificationId}`,
+          { read: true },
+          {
+            headers: {
+              Athorization: user.token,
+            },
           }
-        });
+        );
 
         // Update local state and UI
         const updatedNotifications = [...notifications];
-        updatedNotifications[index] = { ...updatedNotifications[index], read: true };
+        updatedNotifications[index] = {
+          ...updatedNotifications[index],
+          read: true,
+        };
         setNotifications(updatedNotifications);
         setIsRead(true);
       } catch (error) {
-        console.error('Error updating notification status:', error);
+        console.error("Error updating notification status:", error);
         // Handle error scenarios here
       }
     }
@@ -34,7 +41,7 @@ const Notification = ({ title, message, read, index, notificationId }) => {
 
   return (
     <div
-      className={`Notification-container ${isRead && 'read'}`}
+      className={`Notification-container ${isRead && "read"}`}
       onClick={handleNotificationClick}
     >
       <h4>{title}</h4>
