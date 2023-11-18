@@ -4,6 +4,7 @@ import "./style.scss";
 import Logo from "../../assets/logo.svg";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
+import { backend_url } from "../../config";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +12,7 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     setIsLoading(true);
-    window.location.href = "http://localhost:9000/counsellor/auth/google";
+    window.location.href = `${backend_url}/auth/google`;
   };
 
   const togglePasswordVisibility = () => {
