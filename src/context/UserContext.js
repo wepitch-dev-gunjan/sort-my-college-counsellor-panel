@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom"; // Assuming you are using React 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const cookieValue = document.cookie;
+  console.log(cookieValue);
   const [cookies] = useCookies(["token", "user"]);
   const navigate = useNavigate();
   // Initialize the user state with the token and isLoggedIn properties
