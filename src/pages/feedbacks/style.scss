@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 20px;
+  // padding: 20px;
   overflow-y: auto;
   gap: 20px;
   .feedbacks-dashbaord {
@@ -15,15 +15,15 @@
   .feedbacksBoxContainer {
     padding: 20px;
     display: flex;
-    width: calc(100% - 283px);
+    // width: calc(100% - 283px);
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
+    // justify-content: space-between;
+    gap: 32px;
 
     .feedbacksBox {
       height: 200px;
-      width: 48%;
+      // width: 48%;
       overflow: hidden;
       text-overflow: ellipsis;
       padding: 32px;
