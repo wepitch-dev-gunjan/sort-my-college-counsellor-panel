@@ -5,6 +5,8 @@ import ProfileImages from "../../components/profileImages/ProfileImages";
 import ProfilePic from "../../components/profilePic";
 import CoverImage from "../../components/coverImage";
 import { UserContext } from "../../context/UserContext";
+import Users from "../user";
+import BasicInfo from "../../components/basicInfo";
 
 const Profile = () => {
   // COde start for form
@@ -12,6 +14,7 @@ const Profile = () => {
   const [userProfile, setUserProfile] = useState({
     name: "John Doe",
     email: "johndoe@example.com",
+    designation: "React Developer@ Wepitch",
     followers_count: 0,
     experience_in_years: 5,
     total_sessions_attended: 0,
@@ -25,7 +28,7 @@ const Profile = () => {
       country: "Sample Country",
     },
     gender: "Male",
-    age: null,
+    age: 34,
     client_testimonials: [],
     group_session_price: null,
     personal_session_price: null,
@@ -47,10 +50,27 @@ const Profile = () => {
 
   return (
     <div className="Profile-container">
-      <CoverImage src={coverImage} />
-      <div className="profile-pic">
+      <div className="profile-body">
+        <CoverImage src={coverImage} />
+        <div className="profile-pic">
+          <ProfilePic src={user.profile_pic} />
+        </div>
+        <div className="profile-info">
+          <div className="top">
+            <h1>{user.name}</h1>
+            <h3>{userProfile.designation}</h3>
+          </div>
 
-        <ProfilePic src={user.profile_pic} />
+          <div className="middle">
+            <BasicInfo
+              email={userProfile.email} age={userProfile.age} gender={userProfile.gender}
+            />
+          </div>
+
+          <div className="bottom">
+
+          </div>
+        </div>
       </div>
       {/* <ProfileImages /> */}
       {/* <button onClick={openPopup}>Open Popup</button>

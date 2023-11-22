@@ -13,12 +13,12 @@ const Comment = ({ id, owner_name, owner_img, text, visibility }) => {
         <div className="top">
           <span>{owner_name}</span>
           <div className="icons">
-            <Tooltip title="Edit" placement="right">
+            <Tooltip title="Edit" placement="bottom">
               <div className="edit-icon">
                 <CiEdit size="16" />
               </div>
             </Tooltip>
-            <Tooltip title="Delete" placement="right">
+            <Tooltip title="Delete" placement="bottom">
               <div className="delete-icon">
                 <RiDeleteBinLine size="16" />
               </div>
