@@ -6,6 +6,17 @@
   left: 0;
 }
 
+.CoverImage-container {
+  align-items: center;
+  img {
+    width: 500px;
+
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+  }
+}
+
 .ProfilePic-container {
   position: relative;
   height: 200px;
