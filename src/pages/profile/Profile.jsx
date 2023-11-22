@@ -1,13 +1,15 @@
 import EditProfile from "../../components/editProfile";
 import "./profile.scss";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ProfileImages from "../../components/profileImages/ProfileImages";
 import ProfilePic from "../../components/profilePic";
 import CoverImage from "../../components/coverImage";
+import { UserContext } from "../../context/UserContext";
 
 const Profile = () => {
   // COde start for form
-  const userProfile = {
+  const { user, setUser } = useContext(UserContext);
+  const [userProfile, setUserProfile] = useState({
     name: "John Doe",
     email: "johndoe@example.com",
     followers_count: 0,
@@ -27,9 +29,10 @@ const Profile = () => {
     client_testimonials: [],
     group_session_price: null,
     personal_session_price: null,
-  };
+  });
 
-  console.log(userProfile);
+  const [coverImage, setCoverImage] = useState('https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=')
+
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => {
@@ -43,9 +46,12 @@ const Profile = () => {
   // code end for form
 
   return (
-    <div className="profile-container">
-      <CoverImage />
-      <ProfilePic />
+    <div className="Profile-container">
+      <CoverImage src={coverImage} />
+      <div className="profile-pic">
+
+        <ProfilePic src={user.profile_pic} />
+      </div>
       {/* <ProfileImages /> */}
       {/* <button onClick={openPopup}>Open Popup</button>
             <button onClick={openPopup}>New Popup</button> */}

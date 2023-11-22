@@ -1,6 +1,11 @@
-.profile-container {
+.Profile-container {
   display: flex;
   width: 100%;
   padding: 20px;
   flex-direction: column;
+  .profile-pic {
+    display: flex;
+    justify-content: center;
+    transform: translateY(-50%);
+  }
 }

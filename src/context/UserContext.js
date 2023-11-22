@@ -11,9 +11,9 @@ export const UserProvider = ({ children }) => {
   // Initialize the user state with the token and isLoggedIn properties
   const [user, setUser] = useState({
     _id: cookies.user?._id || "",
-    name: cookies.user?.name || "",
-    email: cookies.user?.email || "",
-    profile_pic: cookies.user?.profile_pic || "",
+    name: cookies.user?.name || "Avatar",
+    email: cookies.user?.email || "demo.email@domain.com",
+    profile_pic: cookies.user?.profile_pic || "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
     token: cookies.token || "",
     // isLoggedIn: !!cookies.token,
     isLoggedIn: true,

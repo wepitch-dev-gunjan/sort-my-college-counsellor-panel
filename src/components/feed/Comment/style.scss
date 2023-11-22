@@ -21,6 +21,10 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+      .icons {
+        display: flex;
+        gap: 4px;
+      }
       span {
         font-weight: 700;
         cursor: pointer;

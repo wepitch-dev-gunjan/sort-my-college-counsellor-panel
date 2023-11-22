@@ -8,7 +8,7 @@ import AddProfilePic from "./addProfilePic";
 import { ProfileContext } from "../../context/ProfileContext";
 import useClickOutside from "../../customHooks/useClickOutside";
 
-const ProfilePic = () => {
+const ProfilePic = ({ src }) => {
   const addProfilePicRef = useRef(null);
   const { user, setUser } = useContext(UserContext);
   const { profilePicEditMode, setProfilePicEditMode } =
@@ -30,11 +30,8 @@ const ProfilePic = () => {
           <AddProfilePic ref={addProfilePicRef} />
         </div>
       )}
-      <div className="CoverImage-container">
-        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="" />
-      </div>
       <div className="ProfilePic-container">
-        <img src={user.profile_pic} alt="Profile" className="profile-pic" />
+        <img src={src} alt="Profile" />
         <Tooltip
           title={
             <Typography style={{ fontSize: "16px" }}>
