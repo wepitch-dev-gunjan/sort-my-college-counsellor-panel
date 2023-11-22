@@ -8,6 +8,7 @@ import { UserContext } from "../../context/UserContext";
 import Users from "../user";
 import BasicInfo from "../../components/basicInfo";
 import ContactInfo from "../../components/contactInfo";
+import OtherInfo from "../../components/otherInfo";
 
 const Profile = () => {
   // COde start for form
@@ -22,7 +23,7 @@ const Profile = () => {
     total_sessions_attended: 0,
     how_will_i_help: [],
     qualifications: ["Sample Qualification 1", "Sample Qualification 2"],
-    languages_spoken: ["English", "Hindi"],
+    languages_spoken: ["English", "Hindi", "Malyalam", "Spanish"],
     location: {
       pin_code: 123456,
       city: "Sample City",
@@ -73,6 +74,10 @@ const Profile = () => {
             <ContactInfo
               phone={userProfile.phone}
               location={userProfile.location}
+            />
+            <OtherInfo
+              years={userProfile.experience_in_years}
+              languages={userProfile.languages_spoken}
             />
           </div>
 
