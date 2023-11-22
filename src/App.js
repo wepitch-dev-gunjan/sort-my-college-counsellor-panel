@@ -14,11 +14,14 @@ import Dashboard from "./pages/dashboard";
 import Users from "./pages/user";
 import Feedbacks from "./pages/feedbacks";
 import MyFeeds from "./pages/myfeeds";
+import Notifications from "./components/notifications";
+import { NotificationContext } from "./context/NotificationContext";
 
 // Example authentication state, you should replace this with your authentication logic
 
 function App() {
   const { user, setUser } = useContext(UserContext);
+  const { notificationsEnable } = useContext(NotificationContext);
   const { isLoggedIn } = user;
   const [tokenCookie, setTokenCookie, removeTokenCookie] = useCookies([
     "token",
@@ -32,10 +35,12 @@ function App() {
     setUser({ ...user, isLoggedIn: false });
     navigate("/login");
   };
+
   return (
     <div>
       {isLoggedIn && <Header handleLogout={handleLogout} />}
       <div className="main">
+        {notificationsEnable && <Notifications />}
         {isLoggedIn && <Sidebar />}
         <div className={`${isLoggedIn && "main-content"}`}>
           <Routes>

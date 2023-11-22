@@ -4,10 +4,12 @@ import { UserContext } from "../../context/UserContext";
 import ProfileDropDownMenu from "../dropdownMenu/profileDropDownMenu";
 import logo from "../../assets/logo.svg";
 import AddSessionButton from "../buttons/addSessionButton";
-import Notification from "../notification";
+import NotificationButton from "../notificationButton";
+import { NotificationContext } from "../../context/NotificationContext";
 
 const Header = ({ handleLogout }) => {
   const { user } = useContext(UserContext);
+  const { setNotificationsEnable } = useContext(NotificationContext);
 
   return (
     <div className="header">
@@ -16,7 +18,9 @@ const Header = ({ handleLogout }) => {
       </div>
       <div className="rightSide">
         <AddSessionButton />
-        <Notification />
+        <NotificationButton
+          onClick={() => setNotificationsEnable((prev) => !prev)}
+        />
         <ProfileDropDownMenu
           name={user.name}
           image={user.profile_pic}

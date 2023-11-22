@@ -3,6 +3,7 @@ import { createContext, useState } from "react";
 export const NotificationContext = createContext();
 
 export const NotificationProvider = ({ children }) => {
+  const [notificationsEnable, setNotificationsEnable] = useState(true);
   const [notifications, setNotifications] = useState([
     {
       title: "New Follower",
@@ -26,7 +27,14 @@ export const NotificationProvider = ({ children }) => {
     },
   ]);
   return (
-    <NotificationContext.Provider value={{ notifications, setNotifications }}>
+    <NotificationContext.Provider
+      value={{
+        notifications,
+        setNotifications,
+        notificationsEnable,
+        setNotificationsEnable,
+      }}
+    >
       {children}
     </NotificationContext.Provider>
   );
