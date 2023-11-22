@@ -32,7 +32,7 @@ const Sidebar = () => {
           expand={expand}
         />
         <SidebarMenuButton
-          href="/paymet"
+          href="/payment"
           icon={PaymentIcon}
           text="My Payments"
           expand={expand}
