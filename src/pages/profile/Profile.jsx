@@ -7,6 +7,7 @@ import CoverImage from "../../components/coverImage";
 import { UserContext } from "../../context/UserContext";
 import Users from "../user";
 import BasicInfo from "../../components/basicInfo";
+import ContactInfo from "../../components/contactInfo";
 
 const Profile = () => {
   // COde start for form
@@ -17,6 +18,7 @@ const Profile = () => {
     designation: "React Developer@ Wepitch",
     followers_count: 0,
     experience_in_years: 5,
+    phone: "1236547920",
     total_sessions_attended: 0,
     how_will_i_help: [],
     qualifications: ["Sample Qualification 1", "Sample Qualification 2"],
@@ -34,8 +36,9 @@ const Profile = () => {
     personal_session_price: null,
   });
 
-  const [coverImage, setCoverImage] = useState('https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=')
-
+  const [coverImage, setCoverImage] = useState(
+    "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
+  );
 
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const openPopup = () => {
@@ -63,13 +66,17 @@ const Profile = () => {
 
           <div className="middle">
             <BasicInfo
-              email={userProfile.email} age={userProfile.age} gender={userProfile.gender}
+              email={userProfile.email}
+              age={userProfile.age}
+              gender={userProfile.gender}
+            />
+            <ContactInfo
+              phone={userProfile.phone}
+              location={userProfile.location}
             />
           </div>
 
-          <div className="bottom">
-
-          </div>
+          <div className="bottom"></div>
         </div>
       </div>
       {/* <ProfileImages /> */}
