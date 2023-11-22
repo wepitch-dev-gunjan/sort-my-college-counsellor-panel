@@ -3,15 +3,17 @@
   flex-direction: column;
   gap: 40px;
   padding: 20px;
-  .top {
+  .see-all-button {
+    font-weight: 800;
+    color: var(--primary-dark);
+    cursor: pointer;
+    display: flex;
+    justify-content: end;
+  }
+  .payments-top {
     display: flex;
     justify-content: space-between;
     align-items: end;
-    .see-all-button {
-      font-weight: 800;
-      color: var(--primary-dark);
-      cursor: pointer;
-    }
   }
   .table {
     .row {
