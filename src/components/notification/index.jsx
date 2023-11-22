@@ -2,8 +2,8 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import "./style.scss";
 const Notification = () => {
   return (
-    <div className="Notification-container">
-      <IoIosNotificationsOutline size="16" />
+    <div className="Notifications-container">
+      <IoIosNotificationsOutline size="24" />
     </div>
   );
 };
