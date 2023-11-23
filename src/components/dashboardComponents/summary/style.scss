@@ -27,8 +27,9 @@
 
 .sessions {
   display: flex;
+  flex-direction: column;
   gap: 20px;
   width: 100%;
-  overflow-x: auto !important;
+  overflow-y: auto !important;
   height: 320px;
 }
