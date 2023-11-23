@@ -10,19 +10,20 @@ const Notifications = forwardRef((_, ref) => {
   const { notifications, setNotifications } = useContext(NotificationContext);
   const { user } = useContext(UserContext);
 
-  const handleNotificationClick = async (notificationId, read, i) => {
-    if (read) {
+  const handleNotificationClick = async (notificationId, i, read) => {
+    console.log(notificationId, i, read)
+    if (!read) {
       try {
         // Update the database via an API call using Axios
-        await axios.put(
-          `${backend_url}/counsellor/notification/${notificationId}`,
-          { read: true },
-          {
-            headers: {
-              Authorization: user.token, // Fixed typo in Authorization
-            },
-          }
-        );
+        // await axios.put(
+        //   `${backend_url}/counsellor/notification/${notificationId}`,
+        //   { read: true },
+        //   {
+        //     headers: {
+        //       Authorization: user.token, // Fixed typo in Authorization
+        //     },
+        //   }
+        // );
 
         // Update local state and UI
         const updatedNotifications = [...notifications];
@@ -48,6 +49,7 @@ const Notifications = forwardRef((_, ref) => {
             message={notification.message}
             handleNotificationClick={handleNotificationClick}
             index={i}
+            read={notification.read}
           />
         </div>
       ))}
