@@ -11,7 +11,6 @@ const Notifications = forwardRef((_, ref) => {
   const { user } = useContext(UserContext);
 
   const handleNotificationClick = async (notificationId, i, read) => {
-    console.log(notificationId, i, read)
     if (!read) {
       try {
         // Update the database via an API call using Axios
