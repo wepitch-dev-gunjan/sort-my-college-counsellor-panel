@@ -45,7 +45,6 @@ function Summary() {
         },
     ])
 
-    const { notifications, setNotifications } = useContext(NotificationContext);
     return (
         <div className="summary-dashboard">
             <h1>Summary</h1>
@@ -54,12 +53,7 @@ function Summary() {
                 <h4>Sandeep Abc</h4>
                 <p>Counsellor</p>
             </div>
-            <h3>Notifications</h3>
-            <div className="notifications-container">
-                {notifications.map((notification, i) => (
-                    <Notification key={i} title={notification.title} message={notification.message} read />
-                ))}
-            </div>
+
             <h3>Recent Sessions</h3>
             <div className="sessions">
                 {sessions.map((session, i) => (

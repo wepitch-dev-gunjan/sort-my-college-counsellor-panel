@@ -4,7 +4,6 @@ import { UserContext } from '../../context/UserContext';
 
 const ProfileImages = () => {
   const { user } = useContext(UserContext);
-
   const [profilePic, setProfilePic] = useState('default-profile.jpg');
   const [coverPic, setCoverPic] = useState('default-cover.jpg');
 
