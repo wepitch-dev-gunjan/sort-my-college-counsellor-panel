@@ -21,7 +21,10 @@ const NotificationButton = ({ onClick }) => {
       }}
     >
       <div
-        onClick={() => onClick((prev) => !prev)}
+        onClick={() => onClick((prev) => {
+          if (!prev)
+            return true;
+        })}
         className="NotificationsButton-container"
       >
         <IoIosNotificationsOutline size="24" />

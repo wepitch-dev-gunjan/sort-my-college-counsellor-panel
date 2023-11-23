@@ -1,12 +1,12 @@
+import React, { useContext, useRef, forwardRef } from "react";
 import "./style.scss";
-import { NotificationContext } from "../../context/NotificationContext";
-import { useContext } from "react";
 import Notification from "./notification";
+import { NotificationContext } from "../../context/NotificationContext";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import { backend_url } from "../../config";
 
-const Notifications = () => {
+const Notifications = forwardRef((_, ref) => {
   const { notifications, setNotifications } = useContext(NotificationContext);
   const { user } = useContext(UserContext);
 
@@ -19,7 +19,7 @@ const Notifications = () => {
           { read: true },
           {
             headers: {
-              Athorization: user.token,
+              Authorization: user.token, // Fixed typo in Authorization
             },
           }
         );
@@ -37,8 +37,9 @@ const Notifications = () => {
       }
     }
   };
+
   return (
-    <div className="Notifications-container">
+    <div ref={ref} className="Notifications-container">
       {notifications.map((notification, i) => (
         <div key={i}>
           <Notification
@@ -52,6 +53,6 @@ const Notifications = () => {
       ))}
     </div>
   );
-};
+});
 
 export default Notifications;

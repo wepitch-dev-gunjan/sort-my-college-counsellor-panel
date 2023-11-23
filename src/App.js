@@ -16,12 +16,15 @@ import Feedbacks from "./pages/feedbacks";
 import MyFeeds from "./pages/myfeeds";
 import Notifications from "./components/notifications";
 import { NotificationContext } from "./context/NotificationContext";
+import { useRef } from "react";
+import useClickOutside from "./customHooks/useClickOutside";
 
 // Example authentication state, you should replace this with your authentication logic
 
 function App() {
   const { user, setUser } = useContext(UserContext);
-  const { notificationsEnable } = useContext(NotificationContext);
+  const notificationRef = useRef(null);
+  const { notificationsEnable, setNotificationsEnable } = useContext(NotificationContext);
   const { isLoggedIn } = user;
   const [tokenCookie, setTokenCookie, removeTokenCookie] = useCookies([
     "token",
@@ -36,11 +39,14 @@ function App() {
     navigate("/login");
   };
 
+  useClickOutside(notificationRef, () => {
+    setNotificationsEnable(false);
+  })
   return (
     <div>
       {isLoggedIn && <Header handleLogout={handleLogout} />}
       <div className="main">
-        {notificationsEnable && <Notifications />}
+        {notificationsEnable && <Notifications ref={notificationRef} />}
         {isLoggedIn && <Sidebar />}
         <div className={`${isLoggedIn && "main-content"}`}>
           <Routes>
