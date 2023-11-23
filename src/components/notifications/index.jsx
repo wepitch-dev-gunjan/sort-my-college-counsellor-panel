@@ -39,7 +39,6 @@ const Notifications = () => {
   };
   return (
     <div className="Notifications-container">
-      <h3>Notifications</h3>
       {notifications.map((notification, i) => (
         <div key={i}>
           <Notification
