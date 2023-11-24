@@ -10,10 +10,6 @@
   border-left: 1px solid #11111126;
   .counsellor {
     width: 100%;
-    .counsellor-main-content {
-      // align-items: center;
-      // text-align: center;
-    }
     img {
       border-radius: 20px;
     }
@@ -28,6 +24,15 @@
 }
 
 .sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  overflow-y: auto !important;
+  height: 320px;
+}
+
+.users {
   display: flex;
   flex-direction: column;
   gap: 20px;
