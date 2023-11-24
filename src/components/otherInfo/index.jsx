@@ -1,6 +1,11 @@
 import "./style.scss";
 
-const OtherInfo = ({ years, languages }) => {
+const OtherInfo = ({
+  years,
+  languages,
+  group_session_price,
+  personal_session_price,
+}) => {
   return (
     <div className="OtherInfo-container">
       <div className="heading">
@@ -54,7 +59,31 @@ const OtherInfo = ({ years, languages }) => {
             </div>
 
             <div className="info-value">
-              <p>fkasjfsafsdf sdfsdfsd fd sd fdf dfd fd dfd </p>
+              <p>fka fd sd fdf dfd fd dfd </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Group session price</p>
+            </div>
+
+            <div className="info-value">
+              <p>${group_session_price} </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Personal session price</p>
+            </div>
+
+            <div className="info-value">
+              <p>${personal_session_price} </p>
             </div>
           </div>
         </div>

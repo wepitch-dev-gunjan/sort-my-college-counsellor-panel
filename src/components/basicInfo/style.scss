@@ -1,6 +1,7 @@
 .BasicInfo-container {
   width: 100%;
   display: flex;
+  z-index: -10;
   flex-direction: column;
   background-color: var(--background-light);
   padding: 24px;

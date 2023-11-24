@@ -17,7 +17,7 @@ const Profile = () => {
   const [userProfile, setUserProfile] = useState({
     name: "John Doe",
     email: "johndoe@example.com",
-    designation: "React Developer@ Wepitch",
+    designation: "React Developer @ Wepitch",
     followers_count: 0,
     experience_in_years: 5,
     phone: "1236547920",
@@ -79,6 +79,8 @@ const Profile = () => {
             <OtherInfo
               years={userProfile.experience_in_years}
               languages={userProfile.languages_spoken}
+              group_session_price={userProfile.group_session_price}
+              personal_session_price={userProfile.personal_session_price}
             />
             <EducationInfo qualifications={userProfile.qualifications} />
           </div>

@@ -12,8 +12,18 @@ const CoverImage = ({ src }) => {
             Change cover picture
           </Typography>
         }
-        placement="right"
+        placement="bottom"
         arrow
+        PopperProps={{
+          modifiers: [
+            {
+              name: "offset",
+              options: {
+                offset: [0, 10],
+              },
+            },
+          ],
+        }}
       >
         <div className="pic-upload-container">
           <FaCamera size="25" className="camera-icon" />
