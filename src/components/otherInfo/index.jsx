@@ -13,6 +13,7 @@ const OtherInfo = ({ years, languages }) => {
             <div className="info-field">
               <p>Experience</p>
             </div>
+
             <div className="info-value">
               <p>{`${years}+ years`}</p>
             </div>
@@ -30,6 +31,30 @@ const OtherInfo = ({ years, languages }) => {
                   i < languages.length - 1 ? "," : ""
                 }`}</p>
               ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Nationality</p>
+            </div>
+
+            <div className="info-value">
+              <p>Indian</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Apprach of counselling</p>
+            </div>
+
+            <div className="info-value">
+              <p>fkasjfsafsdf sdfsdfsd fd sd fdf dfd fd dfd </p>
             </div>
           </div>
         </div>

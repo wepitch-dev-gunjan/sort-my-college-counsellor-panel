@@ -81,6 +81,7 @@ function Summary() {
   return (
     <div className="summary-dashboard">
       <h1>Summary</h1>
+
       {/* <div className="counsellor">
         <img
           src="https://tse2.mm.bing.net/th?id=OIP.avb9nDfw3kq7NOoP0grM4wHaEK&pid=Api&P=0&h=180"
@@ -103,6 +104,7 @@ function Summary() {
           />
         ))}
       </div>
+
       <h3>Recent Followers</h3>
       <div className="users">
         {followers.map((followers, i) => (

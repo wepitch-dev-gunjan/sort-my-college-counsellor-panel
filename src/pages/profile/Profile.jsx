@@ -9,6 +9,7 @@ import Users from "../user";
 import BasicInfo from "../../components/basicInfo";
 import ContactInfo from "../../components/contactInfo";
 import OtherInfo from "../../components/otherInfo";
+import EducationInfo from "../../components/educationInfo";
 
 const Profile = () => {
   // COde start for form
@@ -79,6 +80,7 @@ const Profile = () => {
               years={userProfile.experience_in_years}
               languages={userProfile.languages_spoken}
             />
+            <EducationInfo qualifications={userProfile.qualifications} />
           </div>
 
           <div className="bottom"></div>
