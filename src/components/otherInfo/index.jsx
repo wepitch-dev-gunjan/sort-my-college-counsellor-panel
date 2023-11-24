@@ -71,7 +71,7 @@ const OtherInfo = ({
             </div>
 
             <div className="info-value">
-              <p>${group_session_price} </p>
+              <p>INR {group_session_price} </p>
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@ const OtherInfo = ({
             </div>
 
             <div className="info-value">
-              <p>${personal_session_price} </p>
+              <p>INR {personal_session_price} </p>
             </div>
           </div>
         </div>

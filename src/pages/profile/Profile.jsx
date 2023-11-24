@@ -34,8 +34,8 @@ const Profile = () => {
     gender: "Male",
     age: 34,
     client_testimonials: [],
-    group_session_price: null,
-    personal_session_price: null,
+    group_session_price: "12365",
+    personal_session_price: "78965",
   });
 
   const [coverImage, setCoverImage] = useState(
