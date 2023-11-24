@@ -9,6 +9,7 @@
     border-radius: 20px;
     object-fit: cover;
     width: 100%;
+    -webkit-user-drag: none;
     height: 400px;
   }
 }

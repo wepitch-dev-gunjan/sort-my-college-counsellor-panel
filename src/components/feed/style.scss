@@ -5,6 +5,7 @@
   gap: 16px;
   img {
     width: 100%;
+    -webkit-user-drag: none;
   }
   .middle {
     display: flex;
