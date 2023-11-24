@@ -9,7 +9,7 @@ const CoverImage = ({ src }) => {
       <Tooltip
         title={
           <Typography style={{ fontSize: "16px" }}>
-            Change profile picture
+            Change cover picture
           </Typography>
         }
         placement="right"

@@ -8,7 +8,7 @@ const NotificationButton = ({ onClick }) => {
   const unreadNotifications = notifications.filter(
     (notification) => !notification.read
   ).length;
-  console.log(unreadNotifications)
+  console.log(unreadNotifications);
   return (
     <Tooltip
       title={
@@ -28,14 +28,15 @@ const NotificationButton = ({ onClick }) => {
       }}
     >
       <div
-        onClick={() => onClick((prev) => {
-          if (!prev)
-            return true;
-        })}
+        onClick={() =>
+          onClick((prev) => {
+            if (!prev) return true;
+          })
+        }
         className="NotificationsButton-container"
       >
-        <div className={`${unreadNotifications ? 'unread-notifications' : ''}`} >
-          {unreadNotifications ? unreadNotifications : ''}
+        <div className={`${unreadNotifications ? "unread-notifications" : ""}`}>
+          {unreadNotifications ? unreadNotifications : ""}
         </div>
         <IoIosNotificationsOutline size="24" />
       </div>
