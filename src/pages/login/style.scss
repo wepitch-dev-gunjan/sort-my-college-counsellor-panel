@@ -54,17 +54,16 @@
   gap: 20px;
 }
 
-hr{
+hr {
   width: 100%;
 }
 
 .signup {
-  a {
-    color:#3b06fd;
-    font-weight: 600;
-  }
+  color: #3b06fd;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.forgot :hover{
+.forgot :hover {
   color: #3700ff;
 }

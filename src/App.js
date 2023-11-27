@@ -26,7 +26,8 @@ import { ProfileContext } from "./context/ProfileContext";
 function App() {
   const { user, setUser } = useContext(UserContext);
   const notificationRef = useRef(null);
-  const { notificationsEnable, setNotificationsEnable } = useContext(NotificationContext);
+  const { notificationsEnable, setNotificationsEnable } =
+    useContext(NotificationContext);
   const { isLoggedIn } = user;
   const [tokenCookie, setTokenCookie, removeTokenCookie] = useCookies([
     "token",
@@ -43,7 +44,8 @@ function App() {
 
   useClickOutside(notificationRef, () => {
     setNotificationsEnable(false);
-  })
+  });
+
   return (
     <div>
       {isLoggedIn && <Header handleLogout={handleLogout} />}
