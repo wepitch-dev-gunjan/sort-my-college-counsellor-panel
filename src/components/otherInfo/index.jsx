@@ -1,11 +1,38 @@
+import React, { useState } from 'react';
 import "./style.scss";
 
 const OtherInfo = ({
-  years,
-  languages,
-  group_session_price,
-  personal_session_price,
+  years: initialYears,
+  languages: initialLanguages,
+  group_session_price: initialGroupSessionPrice,
+  personal_session_price: initialPersonalSessionPrice,
+  editProfileEnable,
+  nationality: initialNationality,
+  counsellingApproach: initialCounsellingApproach
 }) => {
+  const [years, setYears] = useState(initialYears);
+  const [languages, setLanguages] = useState(initialLanguages);
+  const [groupSessionPrice, setGroupSessionPrice] = useState(initialGroupSessionPrice);
+  const [personalSessionPrice, setPersonalSessionPrice] = useState(initialPersonalSessionPrice);
+  const [nationality, setNationality] = useState(initialNationality);
+  const [counsellingApproach, setCounsellingApproach] = useState(initialCounsellingApproach);
+
+  const handleYearsChange = (e) => {
+    setYears(e.target.value);
+  };
+
+  const handleLanguagesChange = (e) => {
+    const updatedLanguages = e.target.value.split(',');
+    setLanguages(updatedLanguages);
+  };
+
+  const handleGroupSessionPriceChange = (e) => {
+    setGroupSessionPrice(e.target.value);
+  };
+
+  const handlePersonalSessionPriceChange = (e) => {
+    setPersonalSessionPrice(e.target.value);
+  };
   return (
     <div className="OtherInfo-container">
       <div className="heading">
@@ -20,7 +47,11 @@ const OtherInfo = ({
             </div>
 
             <div className="info-value">
-              <p>{`${years}+ years`}</p>
+              {editProfileEnable ? (
+                <input type="text" value={years} onChange={handleYearsChange} />
+              ) : (
+                <p>{`${years}+ years`}</p>
+              )}
             </div>
           </div>
         </div>
@@ -31,11 +62,13 @@ const OtherInfo = ({
               <p>Languages</p>
             </div>
             <div className="info-value">
-              {languages.map((language, i) => (
-                <p key={i}>{`${language}${
-                  i < languages.length - 1 ? "," : ""
-                }`}</p>
-              ))}
+              {editProfileEnable ? (
+                <input type="text" value={languages.join(',')} onChange={handleLanguagesChange} />
+              ) : (
+                languages.map((language, i) => (
+                  <p key={i}>{`${language}${i < languages.length - 1 ? ',' : ''}`}</p>
+                ))
+              )}
             </div>
           </div>
         </div>
@@ -45,9 +78,12 @@ const OtherInfo = ({
             <div className="info-field">
               <p>Nationality</p>
             </div>
-
             <div className="info-value">
-              <p>Indian</p>
+              {editProfileEnable ? (
+                <input type="text" value={nationality} onChange={(e) => setNationality(e.target.value)} />
+              ) : (
+                <p>{nationality}</p>
+              )}
             </div>
           </div>
         </div>
@@ -55,11 +91,14 @@ const OtherInfo = ({
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Apprach of counselling</p>
+              <p>Approach of counselling</p>
             </div>
-
             <div className="info-value">
-              <p>fka fd sd fdf dfd fd dfd </p>
+              {editProfileEnable ? (
+                <input type="text" value={counsellingApproach} onChange={(e) => setCounsellingApproach(e.target.value)} />
+              ) : (
+                <p>{counsellingApproach}</p>
+              )}
             </div>
           </div>
         </div>
@@ -69,9 +108,12 @@ const OtherInfo = ({
             <div className="info-field">
               <p>Group session price</p>
             </div>
-
             <div className="info-value">
-              <p>INR {group_session_price} </p>
+              {editProfileEnable ? (
+                <input type="text" value={groupSessionPrice} onChange={handleGroupSessionPriceChange} />
+              ) : (
+                <p>INR {groupSessionPrice}</p>
+              )}
             </div>
           </div>
         </div>
@@ -81,9 +123,12 @@ const OtherInfo = ({
             <div className="info-field">
               <p>Personal session price</p>
             </div>
-
             <div className="info-value">
-              <p>INR {personal_session_price} </p>
+              {editProfileEnable ? (
+                <input type="text" value={personalSessionPrice} onChange={handlePersonalSessionPriceChange} />
+              ) : (
+                <p>INR {personalSessionPrice}</p>
+              )}
             </div>
           </div>
         </div>

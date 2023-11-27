@@ -33,6 +33,8 @@ const Profile = () => {
     },
     gender: "Male",
     age: 34,
+    nationality: 'Indian',
+    counselling_approach: 'Google meeting online',
     client_testimonials: [],
     group_session_price: "12365",
     personal_session_price: "78965",
@@ -97,6 +99,8 @@ const Profile = () => {
               languages={userProfile.languages_spoken}
               group_session_price={userProfile.group_session_price}
               personal_session_price={userProfile.personal_session_price}
+              counsellingApproach={userProfile.counselling_approach}
+              nationality={userProfile.nationality}
               editProfileEnable={editProfileEnable}
             />
             <EducationInfo
