@@ -3,12 +3,14 @@ import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import "./style.scss";
 import Logo from "../../assets/logo.svg";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { backend_url } from "../../config";
 import { DatePicker } from "@mui/x-date-pickers";
 
 const Login = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingLogin, setIsLoadingLogin] = useState(false);
+  const [isLoadingLoginGoogle, setIsLoadingLoginGoogle] = useState(false);
+  const [isLoadingSignup, setIsLoadingSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [signUpEnable, setSignUpEnable] = useState(false);
   const [name, setName] = useState("");
@@ -21,7 +23,7 @@ const Login = () => {
   const [dobError, setDobError] = useState(null);
 
   const handleGoogleLogin = () => {
-    setIsLoading(true);
+    setIsLoadingLoginGoogle(true);
     window.location.href = `${backend_url}/auth/google`;
   };
 
@@ -51,7 +53,6 @@ const Login = () => {
       setEmailError("Email is required.");
       isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      console.log("I m in");
       setEmailError("Invalid email format.");
       isValid = false;
     } else {
@@ -77,13 +78,15 @@ const Login = () => {
 
   const handleLogin = () => {
     if (validateLoginFields()) {
-      setIsLoading(true);
+      setIsLoadingLogin(true);
+      // Perform login action
     }
   };
 
   const handleSignUp = () => {
     if (validateSignUpFields()) {
-      setIsLoading(true);
+      setIsLoadingSignup(true);
+      // Perform sign-up action
     }
   };
 
@@ -91,7 +94,6 @@ const Login = () => {
     if (!email) {
       setEmailError("Email is required.");
     } else if (!/\S+@\S+\.\S+/.test(email)) {
-      console.log("I m in");
       setEmailError("Invalid email format.");
     } else {
       setEmailError(null);
@@ -106,19 +108,21 @@ const Login = () => {
         </div>
         <div className="login-inputs">
           {signUpEnable && (
-            <TextField
-              id="outlined-basic"
-              label="Name"
-              variant="outlined"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                setNameError(null); // Clear the error when the value changes
-              }}
-              onBlur={() => !name && setNameError("Name is required.")}
-              error={!!nameError}
-              helperText={nameError}
-            />
+            <>
+              <TextField
+                id="outlined-basic"
+                label="Name"
+                variant="outlined"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  setNameError(null);
+                }}
+                onBlur={() => !name && setNameError("Name is required.")}
+                error={!!nameError}
+                helperText={nameError}
+              />
+            </>
           )}
           <TextField
             id="outlined-basic"
@@ -127,7 +131,7 @@ const Login = () => {
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
-              setEmailError(null); // Clear the error when the value changes
+              setEmailError(null);
             }}
             onBlur={handleEmailBlur}
             error={!!emailError}
@@ -142,7 +146,7 @@ const Login = () => {
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setPasswordError(null); // Clear the error when the value changes
+              setPasswordError(null);
             }}
             onBlur={() =>
               !password && setPasswordError("Password is required.")
@@ -177,9 +181,9 @@ const Login = () => {
               <button
                 className="Google-login-button"
                 onClick={handleSignUp}
-                disabled={isLoading}
+                disabled={isLoadingSignup}
               >
-                {isLoading ? "Signing up..." : "Sign Up"}
+                {isLoadingSignup ? "Signing up..." : "Sign Up"}
               </button>
             </div>
           )}
@@ -188,7 +192,7 @@ const Login = () => {
               <button
                 className="Google-login-button"
                 onClick={() => setSignUpEnable(false)}
-                disabled={isLoading}
+                disabled={isLoadingSignup}
               >
                 Cancel
               </button>
@@ -204,9 +208,9 @@ const Login = () => {
               <button
                 className="Google-login-button"
                 onClick={handleLogin}
-                disabled={isLoading}
+                disabled={isLoadingLogin}
               >
-                {isLoading ? "Logging in..." : "Login"}
+                {isLoadingLogin ? "Logging in..." : "Login"}
               </button>
             </div>
           )}
@@ -215,28 +219,24 @@ const Login = () => {
             <button
               className="Google-login-button"
               onClick={handleGoogleLogin}
-              disabled={isLoading}
+              disabled={isLoadingLoginGoogle}
             >
               <FaGoogle className="Google-icon" />
-              {isLoading ? "Logging in..." : "Login with Google"}
+              {isLoadingLoginGoogle ? "Logging in..." : "Login with Google"}
             </button>
           )}
-          {!signUpEnable && (
-            <>
-              <p>Or</p>
-              <hr />
-            </>
-          )}
+          {!signUpEnable && <p className="or">Or</p>}
+          {!signUpEnable && <hr />}
         </div>
         {!signUpEnable && (
-          <div>
+          <>
             <p>
-              Don't have an account?
-              <div className="signup" onClick={() => setSignUpEnable(true)}>
+              {`Don't have an account? `}
+              <span className="signup" onClick={() => setSignUpEnable(true)}>
                 Sign Up
-              </div>
+              </span>
             </p>
-          </div>
+          </>
         )}
       </div>
     </div>

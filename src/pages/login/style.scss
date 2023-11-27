@@ -50,8 +50,13 @@
 
 .login-inputs {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 20px;
+  .or {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 hr {
