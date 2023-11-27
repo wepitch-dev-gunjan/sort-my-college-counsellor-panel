@@ -3,7 +3,7 @@ import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import "./style.scss";
 import Logo from "../../assets/logo.svg";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { backend_url } from "../../config";
 import { DatePicker } from "@mui/x-date-pickers";
 
@@ -47,11 +47,11 @@ const Login = () => {
       setNameError(null);
     }
 
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
       setEmailError("Email is required.");
       isValid = false;
-    } else if (regex.test(email)) {
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      console.log("I m in");
       setEmailError("Invalid email format.");
       isValid = false;
     } else {
@@ -87,6 +87,17 @@ const Login = () => {
     }
   };
 
+  const handleEmailBlur = () => {
+    if (!email) {
+      setEmailError("Email is required.");
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      console.log("I m in");
+      setEmailError("Invalid email format.");
+    } else {
+      setEmailError(null);
+    }
+  };
+
   return (
     <div className="container">
       <div className="Login-container">
@@ -118,7 +129,7 @@ const Login = () => {
               setEmail(e.target.value);
               setEmailError(null); // Clear the error when the value changes
             }}
-            onBlur={() => !email && setEmailError("Email is required.")}
+            onBlur={handleEmailBlur}
             error={!!emailError}
             helperText={emailError}
           />
