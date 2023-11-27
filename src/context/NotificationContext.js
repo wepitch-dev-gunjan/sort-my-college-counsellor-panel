@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const NotificationContext = createContext();
 
 export const NotificationProvider = ({ children }) => {
-  const [notificationsEnable, setNotificationsEnable] = useState(true);
+  const [notificationsEnable, setNotificationsEnable] = useState(false);
   const [notifications, setNotifications] = useState([
     {
       _id: "12365451",

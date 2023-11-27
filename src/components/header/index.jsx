@@ -7,6 +7,8 @@ import AddSessionButton from "../buttons/addSessionButton";
 import NotificationButton from "../notificationButton";
 import { NotificationContext } from "../../context/NotificationContext";
 import useClickOutside from "../../customHooks/useClickOutside";
+import VerifyProfilePopup from "../verifyProfilePopup";
+import { ProfileContext } from "../../context/ProfileContext";
 
 const Header = ({ handleLogout }) => {
   const notificationRef = useRef(null);
@@ -14,6 +16,7 @@ const Header = ({ handleLogout }) => {
     setNotificationsEnable(false);
   })
   const { user } = useContext(UserContext);
+  const { profile } = useContext(ProfileContext)
   const { setNotificationsEnable } = useContext(NotificationContext);
 
   return (
@@ -22,6 +25,7 @@ const Header = ({ handleLogout }) => {
         <img src={logo} alt="" />
       </div>
       <div className="rightSide">
+        {!profile.verified && <VerifyProfilePopup />}
         <AddSessionButton />
         <NotificationButton
           ref={notificationRef}

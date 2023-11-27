@@ -18,6 +18,8 @@ import Notifications from "./components/notifications";
 import { NotificationContext } from "./context/NotificationContext";
 import { useRef } from "react";
 import useClickOutside from "./customHooks/useClickOutside";
+import VerifyProfilePopup from "./components/verifyProfilePopup";
+import { ProfileContext } from "./context/ProfileContext";
 
 // Example authentication state, you should replace this with your authentication logic
 
