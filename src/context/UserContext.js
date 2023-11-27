@@ -5,19 +5,18 @@ import { useNavigate } from "react-router-dom"; // Assuming you are using React 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const cookieValue = document.cookie;
-  console.log("cookies", cookieValue);
-  const [cookies] = useCookies(["token", "user"]);
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(['user']);
+  console.log(cookies);
   // Initialize the user state with the token and isLoggedIn properties
   const [user, setUser] = useState({
     _id: cookies.user?._id || "",
-    name: cookies.user?.name || "",
-    email: cookies.user?.email || "",
-    profile_pic: cookies.user?.profile_pic || "",
-    token: cookies?.token || "",
+    name: cookies.user?.name || "Avatar",
+    email: cookies.user?.email || "demo.email@domain.com",
+    profile_pic: cookies.user?.profile_pic || "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
+    token: cookies.token || "",
     isLoggedIn: !!cookies.token,
-    // isLoggedIn: true,
+    // isLoggedIn: false,
   });
 
   // Redirect to login page if there is no token

@@ -103,7 +103,7 @@ input {
   display: flex;
   .main-content {
     display: flex;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 98px);
     width: 100%;
   }
 }
@@ -123,4 +123,52 @@ a {
 
 .blue {
   color: blue !important;
+}
+
+/* Define the custom scrollbar styles */
+
+/* Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a0a0a0; /* Set the color of the scrollbar thumb */
+  border-radius: 6px; /* Set the border radius of the thumb */
+}
+
+/* Firefox */
+/* Please note that as of my last update in January 2022, Firefox did not support styling the scrollbar. */
+
+/* MS Edge and IE */
+/* Styling for older versions of Microsoft Edge and Internet Explorer */
+/* Edge Legacy and IE 11 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #a0a0a0 transparent;
+}
+
+/* Apply the custom scrollbar styles to the desired element */
+/* Replace 'your-element' with the appropriate selector for your scrollbar */
+* {
+  /* Include the scrollbar styles */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #a0a0a0 transparent; /* For Firefox */
+
+  /* Webkit (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0;
+    border-radius: 6px;
+  }
+
+  /* MS Edge and IE */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #a0a0a0 transparent;
+  }
 }

@@ -1,65 +1,100 @@
-import EditProfile from '../../components/editProfile';
-import './profile.scss'
-import { useState } from 'react';
-import ProfileImages from '../../components/profileImages/ProfileImages';
-import ProfilePic from '../../components/profilePic';
+import "./profile.scss";
+import { useContext, useState } from "react";
+import ProfilePic from "../../components/profilePic";
+import CoverImage from "../../components/coverImage";
+import { UserContext } from "../../context/UserContext";
+import BasicInfo from "../../components/basicInfo";
+import ContactInfo from "../../components/contactInfo";
+import OtherInfo from "../../components/otherInfo";
+import EducationInfo from "../../components/educationInfo";
+import { ProfileContext } from "../../context/ProfileContext";
 
 const Profile = () => {
-    // COde start for form 
-    const userProfile = {
-        "name": "John Doe",
-        "email": "johndoe@example.com",
-        "followers_count": 0,
-        "experience_in_years": 5,
-        "total_sessions_attended": 0,
-        "how_will_i_help": [],
-        "qualifications": [
-            "Sample Qualification 1",
-            "Sample Qualification 2"
-        ],
-        "languages_spoken": [
-            "English",
-            "Hindi"
-        ],
-        "location": {
-            "pin_code": 123456,
-            "city": "Sample City",
-            "state": "Sample State",
-            "country": "Sample Country"
-        },
-        "gender": "Male",
-        "age": null,
-        "client_testimonials": [],
-        "group_session_price": null,
-        "personal_session_price": null
-    };
+  const { user, setUser } = useContext(UserContext);
+  const { profile, setProfile } = useContext(ProfileContext);
+  const [initialUserProfileBackup, setInitialUserProfileBackup] = useState(profile);
+  const { editProfileEnable, setEditProfileEnable } = useContext(ProfileContext)
 
-    console.log(userProfile);
+  const [coverImage, setCoverImage] = useState(
+    "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
+  );
 
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const openPopup = () => {
-        setIsPopupOpen(true);
-    };
+  // Function to handle saving changes
+  const handleSave = () => {
+    setInitialUserProfileBackup(profile);
+    setEditProfileEnable(false);
+  };
 
-    const closePopup = () => {
-        setIsPopupOpen(false);
-    };
-
-    // code end for form
+  // Function to handle cancelling changes
+  const handleCancel = () => {
+    setProfile(initialUserProfileBackup);
+    setEditProfileEnable(false);
+  };
 
 
-
-    return (
-        <div className="profile-container">
-            <ProfilePic />
-            {/* <ProfileImages /> */}
-            {/* <button onClick={openPopup}>Open Popup</button>
-            <button onClick={openPopup}>New Popup</button> */}
-
-            {/* <EditProfile isOpen={isPopupOpen} onClose={closePopup} /> */}
+  return (
+    <div className="Profile-container">
+      <div className="profile-body">
+        <CoverImage src={coverImage} />
+        <div className="profile-pic">
+          <ProfilePic src={user.profile_pic} />
         </div>
-    )
-}
+        <div className="edit-profile">
+          <div
+            className="edit-profile-button"
+            onClick={() => setEditProfileEnable(true)}
+          >
+            Edit profile
+          </div>
+        </div>
+        <div className="profile-info">
+          <div className="top">
+            <h1>{user.name}</h1>
+            <h3>{profile.designation}</h3>
+          </div>
+          <div className="middle">
+            <BasicInfo
+              email={profile.email}
+              age={profile.age}
+              gender={profile.gender}
+              editProfileEnable={editProfileEnable}
+            />
+            <ContactInfo
+              phone={profile.phone}
+              location={profile.location}
+              editProfileEnable={editProfileEnable}
+            />
+            <OtherInfo
+              years={profile.experience_in_years}
+              languages={profile.languages_spoken}
+              group_session_price={profile.group_session_price}
+              personal_session_price={profile.personal_session_price}
+              counsellingApproach={profile.counselling_approach}
+              nationality={profile.nationality}
+              editProfileEnable={editProfileEnable}
+            />
+            <EducationInfo
+              qualifications={profile.qualifications}
+              editProfileEnable={editProfileEnable}
+            />
+          </div>
+          <div className="bottom">
+            {editProfileEnable && (
+              <div className="buttons">
+                <div className="edit-profile-button" onClick={handleSave}>
+                  Save
+                </div>
+                <div className="edit-profile-button" onClick={handleCancel}>
+                  Cancel
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
 
+      </div>
+    </div>
+  );
+};
 
-export default Profile
+export default Profile;

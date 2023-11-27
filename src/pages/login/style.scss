@@ -50,21 +50,25 @@
 
 .login-inputs {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 20px;
+  .or {
+    display: flex;
+    justify-content: center;
+  }
 }
 
-hr{
+hr {
   width: 100%;
 }
 
 .signup {
-  a {
-    color:#3b06fd;
-    font-weight: 600;
-  }
+  color: #3b06fd;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.forgot :hover{
+.forgot :hover {
   color: #3700ff;
 }
