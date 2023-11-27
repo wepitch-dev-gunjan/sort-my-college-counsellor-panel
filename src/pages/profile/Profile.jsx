@@ -105,16 +105,16 @@ const Profile = () => {
             />
           </div>
           <div className="bottom">
-            <div className="buttons">
-              <div
-                className="edit-profile-button"
-                onClick={handleSave}
-              >Save</div>
-              <div
-                className="edit-profile-button"
-                onClick={handleCancel}
-              >Cancel</div>
-            </div>
+            {editProfileEnable && (
+              <div className="buttons">
+                <div className="edit-profile-button" onClick={handleSave}>
+                  Save
+                </div>
+                <div className="edit-profile-button" onClick={handleCancel}>
+                  Cancel
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
