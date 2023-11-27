@@ -5,6 +5,7 @@
   gap: 4px;
   padding: 12px;
   border-bottom: 1px solid #11111124;
+  background-color: var(--background-color);
   cursor: pointer;
   &::after {
     content: "";
@@ -26,6 +27,7 @@
   }
 }
 .read {
+  background-color: var(--background-light);
   &::after {
     content: "";
     position: absolute;
