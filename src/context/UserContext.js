@@ -15,8 +15,8 @@ export const UserProvider = ({ children }) => {
     email: cookies.user?.email || "demo.email@domain.com",
     profile_pic: cookies.user?.profile_pic || "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
     token: cookies.token || "",
-    // isLoggedIn: !!cookies.token,
-    isLoggedIn: false,
+    isLoggedIn: !!cookies.token,
+    // isLoggedIn: false,
   });
 
   // Redirect to login page if there is no token
