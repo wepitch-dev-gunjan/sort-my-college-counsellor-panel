@@ -1,6 +1,17 @@
 import "./style.scss";
+import React, { useState } from "react";
 
-const EducationInfo = ({ qualifications }) => {
+const EducationInfo = ({
+  qualifications: initialQualifications,
+  editProfileEnable,
+}) => {
+  const [qualifications, setQualifications] = useState(initialQualifications);
+
+  const handleQualificationsChange = (e) => {
+    const updatedQualifications = e.target.value.split(",");
+    setQualifications(updatedQualifications);
+  };
+
   return (
     <div className="BasicInfo-container">
       <div className="heading">
@@ -14,11 +25,19 @@ const EducationInfo = ({ qualifications }) => {
               <p>Qualification</p>
             </div>
             <div className="info-value">
-              {qualifications.map((qualification, i) => (
-                <p key={i}>{`${qualification}${
-                  i < qualifications.length - 1 ? "," : ""
-                }`}</p>
-              ))}
+              {editProfileEnable ? (
+                <input
+                  type="text"
+                  value={qualifications.join(",")}
+                  onChange={handleQualificationsChange}
+                />
+              ) : (
+                qualifications.map((qualification, i) => (
+                  <p key={i}>{`${qualification}${
+                    i < qualifications.length - 1 ? "," : ""
+                  }`}</p>
+                ))
+              )}
             </div>
           </div>
         </div>
