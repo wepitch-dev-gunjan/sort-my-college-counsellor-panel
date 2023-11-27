@@ -6,7 +6,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(["token", "user"]);
+  const [cookies, setCookie] = useCookies();
   console.log(cookies);
   // Initialize the user state with the token and isLoggedIn properties
   const [user, setUser] = useState({
