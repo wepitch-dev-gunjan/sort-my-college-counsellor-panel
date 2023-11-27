@@ -1,7 +1,6 @@
 .BasicInfo-container {
   width: 100%;
   display: flex;
-  z-index: -10;
   flex-direction: column;
   background-color: var(--background-light);
   padding: 24px;
@@ -28,6 +27,10 @@
         }
         .info-value {
           width: 100%;
+          input {
+            z-index: 999;
+            border: 1px solid #111;
+          }
         }
       }
     }

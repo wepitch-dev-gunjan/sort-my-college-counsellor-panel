@@ -14,7 +14,7 @@ import EducationInfo from "../../components/educationInfo";
 const Profile = () => {
   // COde start for form
   const { user, setUser } = useContext(UserContext);
-  const [userProfile, setUserProfile] = useState({
+  const initialUserProfile = {
     name: "John Doe",
     email: "johndoe@example.com",
     designation: "React Developer @ Wepitch",
@@ -36,22 +36,29 @@ const Profile = () => {
     client_testimonials: [],
     group_session_price: "12365",
     personal_session_price: "78965",
-  });
+  };
+  const [userProfile, setUserProfile] = useState(initialUserProfile);
+  const [initialUserProfileBackup, setInitialUserProfileBackup] = useState(
+    initialUserProfile
+  );
+  const [editProfileEnable, setEditProfileEnable] = useState(false)
 
   const [coverImage, setCoverImage] = useState(
     "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
   );
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const openPopup = () => {
-    setIsPopupOpen(true);
+  // Function to handle saving changes
+  const handleSave = () => {
+    setInitialUserProfileBackup(userProfile);
+    setEditProfileEnable(false);
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false);
+  // Function to handle cancelling changes
+  const handleCancel = () => {
+    setUserProfile(initialUserProfileBackup);
+    setEditProfileEnable(false);
   };
 
-  // code end for form
 
   return (
     <div className="Profile-container">
@@ -60,39 +67,58 @@ const Profile = () => {
         <div className="profile-pic">
           <ProfilePic src={user.profile_pic} />
         </div>
+        <div className="edit-profile">
+          <div
+            className="edit-profile-button"
+            onClick={() => setEditProfileEnable(true)}
+          >
+            Edit profile
+          </div>
+        </div>
         <div className="profile-info">
           <div className="top">
             <h1>{user.name}</h1>
             <h3>{userProfile.designation}</h3>
           </div>
-
           <div className="middle">
             <BasicInfo
               email={userProfile.email}
               age={userProfile.age}
               gender={userProfile.gender}
+              editProfileEnable={editProfileEnable}
             />
             <ContactInfo
               phone={userProfile.phone}
               location={userProfile.location}
+              editProfileEnable={editProfileEnable}
             />
             <OtherInfo
               years={userProfile.experience_in_years}
               languages={userProfile.languages_spoken}
               group_session_price={userProfile.group_session_price}
               personal_session_price={userProfile.personal_session_price}
+              editProfileEnable={editProfileEnable}
             />
-            <EducationInfo qualifications={userProfile.qualifications} />
+            <EducationInfo
+              qualifications={userProfile.qualifications}
+              editProfileEnable={editProfileEnable}
+            />
           </div>
-
-          <div className="bottom"></div>
+          <div className="bottom">
+            <div className="buttons">
+              <div
+                className="edit-profile-button"
+                onClick={handleSave}
+              >Save</div>
+              <div
+                className="edit-profile-button"
+                onClick={handleCancel}
+              >Cancel</div>
+            </div>
+          </div>
         </div>
-      </div>
-      {/* <ProfileImages /> */}
-      {/* <button onClick={openPopup}>Open Popup</button>
-            <button onClick={openPopup}>New Popup</button> */}
 
-      {/* <EditProfile isOpen={isPopupOpen} onClose={closePopup} /> */}
+      </div>
     </div>
   );
 };

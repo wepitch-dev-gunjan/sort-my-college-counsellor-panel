@@ -1,6 +1,16 @@
+import React, { useState } from 'react';
 import './style.scss'
 
-const BasicInfo = ({ email, age, gender }) => {
+const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
+  const [editedValues, setEditedValues] = useState({ email, age, gender });
+
+  const handleInput = (fieldName, value) => {
+    setEditedValues((prevValues) => ({
+      ...prevValues,
+      [fieldName]: value,
+    }));
+  };
+
   return (
     <div className='BasicInfo-container'>
       <div className="heading">
@@ -14,7 +24,15 @@ const BasicInfo = ({ email, age, gender }) => {
               <p>Email</p>
             </div>
             <div className="info-value">
-              <p>{email}</p>
+              {editProfileEnable ? (
+                <input
+                  type="text"
+                  value={editedValues.email}
+                  onChange={(e) => handleInput('email', e.target.value)}
+                />
+              ) : (
+                <p>{editedValues.email}</p>
+              )}
             </div>
           </div>
         </div>
@@ -25,7 +43,15 @@ const BasicInfo = ({ email, age, gender }) => {
               <p>Gender</p>
             </div>
             <div className="info-value">
-              <p>{gender}</p>
+              {editProfileEnable ? (
+                <input
+                  type="text"
+                  value={editedValues.gender}
+                  onChange={(e) => handleInput('gender', e.target.value)}
+                />
+              ) : (
+                <p>{editedValues.gender}</p>
+              )}
             </div>
           </div>
         </div>
@@ -36,7 +62,15 @@ const BasicInfo = ({ email, age, gender }) => {
               <p>Age</p>
             </div>
             <div className="info-value">
-              <p>{age}</p>
+              {editProfileEnable ? (
+                <input
+                  type="text"
+                  value={editedValues.age}
+                  onChange={(e) => handleInput('age', e.target.value)}
+                />
+              ) : (
+                <p>{editedValues.age}</p>
+              )}
             </div>
           </div>
         </div>
