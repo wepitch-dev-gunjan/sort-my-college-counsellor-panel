@@ -13,6 +13,7 @@ const Login = () => {
   const [isLoadingSignup, setIsLoadingSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [signUpEnable, setSignUpEnable] = useState(false);
+  const [forgotPasswordEnable, setForgotPasswordEnable] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -107,6 +108,23 @@ const Login = () => {
           <img src={Logo} alt="sortmycollege" />
         </div>
         <div className="login-inputs">
+          {forgotPasswordEnable && (
+            <>
+              <TextField
+                id="outlined-basic"
+                label="Enter new Password"
+                variant="outlined"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  setNameError(null);
+                }}
+                onBlur={() => !name && setNameError("Password is required.")}
+                error={!!nameError}
+                helperText={nameError}
+              />
+            </>
+          )}
           {signUpEnable && (
             <>
               <TextField
@@ -200,7 +218,9 @@ const Login = () => {
           )}
           {!signUpEnable && (
             <p className="forgot">
-              <Link to="/password-reset"> Forgot your password?</Link>
+              <div onClick={() => setForgotPasswordEnable(true)}>
+                Forgot your password?
+              </div>
             </p>
           )}
           {!signUpEnable && (
