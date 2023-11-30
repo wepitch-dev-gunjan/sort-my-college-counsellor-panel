@@ -270,11 +270,14 @@ const Login = () => {
               </button>
             </div>
           )}
-          {signUpEnable && (
+          {(signUpEnable || forgotPasswordEnable) && (
             <div className="buttons">
               <button
                 className="Google-login-button"
-                onClick={() => setSignUpEnable(false)}
+                onClick={() => {
+                  setSignUpEnable(false);
+                  setForgotPasswordEnable(false);
+                }}
                 disabled={isLoadingSignup}
               >
                 Cancel

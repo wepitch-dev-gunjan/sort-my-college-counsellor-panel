@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './style.scss'
+import React, { useState } from "react";
+import "./style.scss";
 
 const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
   const [editedValues, setEditedValues] = useState({ email, age, gender });
@@ -12,7 +12,7 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
   };
 
   return (
-    <div className='BasicInfo-container'>
+    <div className="BasicInfo-container">
       <div className="heading">
         <h2>Basic info</h2>
       </div>
@@ -28,7 +28,7 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
                 <input
                   type="text"
                   value={editedValues.email}
-                  onChange={(e) => handleInput('email', e.target.value)}
+                  onChange={(e) => handleInput("email", e.target.value)}
                 />
               ) : (
                 <p>{editedValues.email}</p>
@@ -44,11 +44,14 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input
-                  type="text"
+                <select
                   value={editedValues.gender}
-                  onChange={(e) => handleInput('gender', e.target.value)}
-                />
+                  onChange={(e) => handleInput("gender", e.target.value)}
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
               ) : (
                 <p>{editedValues.gender}</p>
               )}
@@ -66,7 +69,7 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
                 <input
                   type="text"
                   value={editedValues.age}
-                  onChange={(e) => handleInput('age', e.target.value)}
+                  onChange={(e) => handleInput("age", e.target.value)}
                 />
               ) : (
                 <p>{editedValues.age}</p>

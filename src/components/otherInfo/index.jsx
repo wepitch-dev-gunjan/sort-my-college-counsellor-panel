@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./style.scss";
+import { FaRupeeSign } from "react-icons/fa";
 
 const OtherInfo = ({
   years: initialYears,
@@ -8,21 +9,27 @@ const OtherInfo = ({
   personal_session_price: initialPersonalSessionPrice,
   editProfileEnable,
   nationality: initialNationality,
-  counsellingApproach: initialCounsellingApproach
+  counsellingApproach: initialCounsellingApproach,
 }) => {
   const [years, setYears] = useState(initialYears);
   const [languages, setLanguages] = useState(initialLanguages);
-  const [groupSessionPrice, setGroupSessionPrice] = useState(initialGroupSessionPrice);
-  const [personalSessionPrice, setPersonalSessionPrice] = useState(initialPersonalSessionPrice);
+  const [groupSessionPrice, setGroupSessionPrice] = useState(
+    initialGroupSessionPrice
+  );
+  const [personalSessionPrice, setPersonalSessionPrice] = useState(
+    initialPersonalSessionPrice
+  );
   const [nationality, setNationality] = useState(initialNationality);
-  const [counsellingApproach, setCounsellingApproach] = useState(initialCounsellingApproach);
+  const [counsellingApproach, setCounsellingApproach] = useState(
+    initialCounsellingApproach
+  );
 
   const handleYearsChange = (e) => {
     setYears(e.target.value);
   };
 
   const handleLanguagesChange = (e) => {
-    const updatedLanguages = e.target.value.split(',');
+    const updatedLanguages = e.target.value.split(",");
     setLanguages(updatedLanguages);
   };
 
@@ -32,6 +39,10 @@ const OtherInfo = ({
 
   const handlePersonalSessionPriceChange = (e) => {
     setPersonalSessionPrice(e.target.value);
+  };
+
+  const handleIncrementYears = () => {
+    setYears((prevYears) => prevYears + 1);
   };
   return (
     <div className="OtherInfo-container">
@@ -48,7 +59,14 @@ const OtherInfo = ({
 
             <div className="info-value">
               {editProfileEnable ? (
-                <input type="text" value={years} onChange={handleYearsChange} />
+                <>
+                  <input
+                    type="text"
+                    value={years}
+                    onChange={handleYearsChange}
+                  />
+                  <button onClick={handleIncrementYears}>+</button>
+                </>
               ) : (
                 <p>{`${years}+ years`}</p>
               )}
@@ -63,10 +81,16 @@ const OtherInfo = ({
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input type="text" value={languages.join(',')} onChange={handleLanguagesChange} />
+                <input
+                  type="text"
+                  value={languages.join(",")}
+                  onChange={handleLanguagesChange}
+                />
               ) : (
                 languages.map((language, i) => (
-                  <p key={i}>{`${language}${i < languages.length - 1 ? ',' : ''}`}</p>
+                  <p key={i}>{`${language}${
+                    i < languages.length - 1 ? "," : ""
+                  }`}</p>
                 ))
               )}
             </div>
@@ -80,7 +104,13 @@ const OtherInfo = ({
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input type="text" value={nationality} onChange={(e) => setNationality(e.target.value)} />
+                <select
+                  value={nationality}
+                  onChange={(e) => setNationality(e.target.value)}
+                >
+                  <option value="Indian">Indian</option>
+                  <option value="Foreign">Foreign</option>
+                </select>
               ) : (
                 <p>{nationality}</p>
               )}
@@ -95,7 +125,11 @@ const OtherInfo = ({
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input type="text" value={counsellingApproach} onChange={(e) => setCounsellingApproach(e.target.value)} />
+                <input
+                  type="text"
+                  value={counsellingApproach}
+                  onChange={(e) => setCounsellingApproach(e.target.value)}
+                />
               ) : (
                 <p>{counsellingApproach}</p>
               )}
@@ -110,9 +144,15 @@ const OtherInfo = ({
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input type="text" value={groupSessionPrice} onChange={handleGroupSessionPriceChange} />
+                <input
+                  type="text"
+                  value={groupSessionPrice}
+                  onChange={handleGroupSessionPriceChange}
+                />
               ) : (
-                <p>INR {groupSessionPrice}</p>
+                <p>
+                  <FaRupeeSign /> {groupSessionPrice}
+                </p>
               )}
             </div>
           </div>
@@ -125,9 +165,15 @@ const OtherInfo = ({
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input type="text" value={personalSessionPrice} onChange={handlePersonalSessionPriceChange} />
+                <input
+                  type="text"
+                  value={personalSessionPrice}
+                  onChange={handlePersonalSessionPriceChange}
+                />
               ) : (
-                <p>INR {personalSessionPrice}</p>
+                <p>
+                  <FaRupeeSign /> {personalSessionPrice}
+                </p>
               )}
             </div>
           </div>
