@@ -6,17 +6,19 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie] = useCookies(["user"]);
   console.log(cookies);
   // Initialize the user state with the token and isLoggedIn properties
   const [user, setUser] = useState({
     _id: cookies.user?._id || "",
     name: cookies.user?.name || "Avatar",
     email: cookies.user?.email || "demo.email@domain.com",
-    profile_pic: cookies.user?.profile_pic || "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
+    profile_pic:
+      cookies.user?.profile_pic ||
+      "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
     token: cookies.token || "",
     isLoggedIn: !!cookies.token,
-    // isLoggedIn: false,
+    // isLoggedIn: true,
   });
 
   // Redirect to login page if there is no token
