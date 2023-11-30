@@ -123,7 +123,7 @@ const Login = () => {
                   setPasswordError(null);
                 }}
                 onBlur={() =>
-                  !password && setPasswordError("Password is required.")
+                  !password && setPasswordError("New password is required.")
                 }
                 error={!!passwordError}
                 helperText={passwordError}
@@ -156,7 +156,7 @@ const Login = () => {
                   setPasswordError(null);
                 }}
                 onBlur={() =>
-                  !password && setPasswordError("Password is required.")
+                  !password && setPasswordError("Confirm password is required.")
                 }
                 error={!!passwordError}
                 helperText={passwordError}

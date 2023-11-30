@@ -39,7 +39,7 @@ const AddCoverImage = forwardRef((props, ref) => {
   };
 
   const handleCancel = () => {
-    setCoverImageEditMode(false);
+    setCoverImageEditMode(true);
   };
 
   const handleDrop = (e) => {
