@@ -1,9 +1,9 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
 export const ProfileContext = createContext();
 
 export const ProfileProvider = ({ children }) => {
-  const [editProfileEnable, setEditProfileEnable] = useState(false)
+  const [editProfileEnable, setEditProfileEnable] = useState(false);
   const [profile, setProfile] = useState({
     name: "John Doe",
     email: "johndoe@example.com",
@@ -23,16 +23,27 @@ export const ProfileProvider = ({ children }) => {
     },
     gender: "Male",
     age: 34,
-    nationality: 'Indian',
-    counselling_approach: 'Google meeting online',
+    nationality: "Indian",
+    counselling_approach: "Google meeting online",
     client_testimonials: [],
-    group_session_price: "12365",
-    personal_session_price: "78965",
-    verified: false
+    group_session_price: "1000",
+    personal_session_price: "5000",
+    verified: false,
   });
 
   const [profilePicEditMode, setProfilePicEditMode] = useState(false);
-  return <ProfileContext.Provider value={{ profile, setProfile, profilePicEditMode, setProfilePicEditMode, editProfileEnable, setEditProfileEnable }}>
-    {children}
-  </ProfileContext.Provider>
-}
+  return (
+    <ProfileContext.Provider
+      value={{
+        profile,
+        setProfile,
+        profilePicEditMode,
+        setProfilePicEditMode,
+        editProfileEnable,
+        setEditProfileEnable,
+      }}
+    >
+      {children}
+    </ProfileContext.Provider>
+  );
+};

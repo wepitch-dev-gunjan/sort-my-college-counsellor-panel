@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.scss";
-import { FaRupeeSign } from "react-icons/fa";
+import { FaIndianRupeeSign } from "react-icons/fa6";
 
 const OtherInfo = ({
   years: initialYears,
@@ -40,7 +40,7 @@ const OtherInfo = ({
   const handlePersonalSessionPriceChange = (e) => {
     setPersonalSessionPrice(e.target.value);
   };
-
+  //increment years
   const handleIncrementYears = () => {
     setYears((prevYears) => prevYears + 1);
   };
@@ -151,7 +151,7 @@ const OtherInfo = ({
                 />
               ) : (
                 <p>
-                  <FaRupeeSign /> {groupSessionPrice}
+                  <FaIndianRupeeSign /> {groupSessionPrice}
                 </p>
               )}
             </div>
@@ -172,7 +172,7 @@ const OtherInfo = ({
                 />
               ) : (
                 <p>
-                  <FaRupeeSign /> {personalSessionPrice}
+                  <FaIndianRupeeSign /> {personalSessionPrice}
                 </p>
               )}
             </div>
