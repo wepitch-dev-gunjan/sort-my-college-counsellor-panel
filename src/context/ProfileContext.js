@@ -36,14 +36,14 @@ export const ProfileProvider = ({ children }) => {
   return (
     <ProfileContext.Provider
       value={{
+        profilePicEditMode,
         profile,
         setProfile,
-        profilePicEditMode,
         coverImageEditMode,
         setCoverImageEditMode,
         setProfilePicEditMode,
-        editProfileEnable,
         setEditProfileEnable,
+        editProfileEnable,
       }}
     >
       {children}
