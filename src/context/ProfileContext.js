@@ -32,12 +32,15 @@ export const ProfileProvider = ({ children }) => {
   });
 
   const [profilePicEditMode, setProfilePicEditMode] = useState(false);
+  const [coverImageEditMode, setCoverImageEditMode] = useState(false);
   return (
     <ProfileContext.Provider
       value={{
         profile,
         setProfile,
         profilePicEditMode,
+        coverImageEditMode,
+        setCoverImageEditMode,
         setProfilePicEditMode,
         editProfileEnable,
         setEditProfileEnable,

@@ -39,7 +39,7 @@ const AddCoverImage = forwardRef((props, ref) => {
   };
 
   const handleCancel = () => {
-    setCoverImageEditMode(true);
+    setCoverImageEditMode(false);
   };
 
   const handleDrop = (e) => {
@@ -91,8 +91,8 @@ const AddCoverImage = forwardRef((props, ref) => {
               <AvatarEditor
                 ref={editorRef}
                 image={image}
-                width={500}
-                height={500}
+                width={800}
+                height={400}
                 border={50}
                 color={[255, 255, 255, 0.6]} // RGBA
                 scale={scale}
