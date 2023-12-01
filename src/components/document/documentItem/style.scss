@@ -1,0 +1,29 @@
+.Documents {
+  .row {
+    .col {
+      display: flex;
+      justify-content: start;
+      width: 100%;
+      gap: 12px;
+      .dropdown {
+        width: 100%;
+      }
+      .upload {
+        width: 100%;
+        .upload-btn {
+          background-color: var(--background-light);
+          color: aqua;
+        }
+      }
+    }
+  }
+  select {
+    padding: 12px;
+    font-size: 12px;
+    border-radius: 8px;
+    option {
+      padding: 16px;
+      font: 16px;
+    }
+  }
+}

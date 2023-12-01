@@ -1,13 +1,27 @@
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./style.scss";
 
 const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
-  const [editedValues, setEditedValues] = useState({ email, age, gender });
+  const [editedValues, setEditedValues] = useState({
+    email,
+    age,
+    gender,
+    dob: null,
+  });
 
   const handleInput = (fieldName, value) => {
     setEditedValues((prevValues) => ({
       ...prevValues,
       [fieldName]: value,
+    }));
+  };
+
+  const handleDateChange = (date) => {
+    setEditedValues((prevValues) => ({
+      ...prevValues,
+      dob: date,
     }));
   };
 
@@ -62,14 +76,14 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Age</p>
+              <p>Date of birth</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={editedValues.age}
-                  onChange={(e) => handleInput("age", e.target.value)}
+                <DatePicker
+                  selected={editedValues.dob}
+                  onChange={handleDateChange}
+                  dateFormat="dd/MM/yyyy"
                 />
               ) : (
                 <p>{editedValues.age}</p>

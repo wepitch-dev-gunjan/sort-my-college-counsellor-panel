@@ -8,12 +8,15 @@ import ContactInfo from "../../components/contactInfo";
 import OtherInfo from "../../components/otherInfo";
 import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
+import Document from "../../components/document";
 
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
   const { profile, setProfile } = useContext(ProfileContext);
-  const [initialUserProfileBackup, setInitialUserProfileBackup] = useState(profile);
-  const { editProfileEnable, setEditProfileEnable } = useContext(ProfileContext)
+  const [initialUserProfileBackup, setInitialUserProfileBackup] =
+    useState(profile);
+  const { editProfileEnable, setEditProfileEnable } =
+    useContext(ProfileContext);
 
   const [coverImage, setCoverImage] = useState(
     "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
@@ -30,7 +33,6 @@ const Profile = () => {
     setProfile(initialUserProfileBackup);
     setEditProfileEnable(false);
   };
-
 
   return (
     <div className="Profile-container">
@@ -77,6 +79,10 @@ const Profile = () => {
               qualifications={profile.qualifications}
               editProfileEnable={editProfileEnable}
             />
+            <Document
+              // qualifications={profile.qualifications}
+              editProfileEnable={editProfileEnable}
+            />
           </div>
           <div className="bottom">
             {editProfileEnable && (
@@ -91,7 +97,6 @@ const Profile = () => {
             )}
           </div>
         </div>
-
       </div>
     </div>
   );
