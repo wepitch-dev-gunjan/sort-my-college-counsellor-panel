@@ -121,11 +121,6 @@ const Documents = ({ index, onDocumentChange, onDelete }) => {
               style={{ display: "none" }}
             />
             <div className="up-icons">
-              <Tooltip title="Edit" placement="bottom">
-                <div className="edit-icon">
-                  <CiEdit size="16" />
-                </div>
-              </Tooltip>
               <Tooltip title="Delete" placement="bottom">
                 <div
                   className="delete-icon"
@@ -157,11 +152,6 @@ const Documents = ({ index, onDocumentChange, onDelete }) => {
               style={{ display: "none" }}
             />
             <div className="up-icons">
-              <Tooltip title="Edit" placement="bottom">
-                <div className="edit-icon">
-                  <CiEdit size="16" />
-                </div>
-              </Tooltip>
               <Tooltip title="Delete" placement="bottom">
                 <div
                   className="delete-icon"

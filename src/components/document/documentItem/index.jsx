@@ -65,11 +65,6 @@ const DocumentItem = ({
             />
 
             <div className="up-icons">
-              <Tooltip title="Edit" placement="bottom">
-                <div className="edit-icon">
-                  <CiEdit size="16" />
-                </div>
-              </Tooltip>
               {editEnable && (
                 <Tooltip title="Delete" placement="bottom">
                   <div
