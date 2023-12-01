@@ -8,7 +8,10 @@ import ContactInfo from "../../components/contactInfo";
 import OtherInfo from "../../components/otherInfo";
 import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
-import Document from "../../components/document";
+import Document from '../../components/document';
+
+import { backend_url } from "../../config";
+import axios from "axios";
 
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
@@ -23,9 +26,20 @@ const Profile = () => {
   );
 
   // Function to handle saving changes
-  const handleSave = () => {
-    setInitialUserProfileBackup(profile);
-    setEditProfileEnable(false);
+  const handleSave = async () => {
+    try {
+      const endpointUrl = `${backend_url}/${user._id}`; // Replace with your actual endpoint URL
+
+      const response = await axios.put(endpointUrl, profile);
+      setProfile(response.data)
+      console.log(profile)
+      setInitialUserProfileBackup(response.data);
+      setEditProfileEnable(false);
+    } catch (error) {
+      // Handle errors if the request fails
+      console.error('Error while saving:', error);
+      // You might want to handle the error state here
+    }
   };
 
   // Function to handle cancelling changes
@@ -56,33 +70,30 @@ const Profile = () => {
           </div>
           <div className="middle">
             <BasicInfo
-              email={profile.email}
-              age={profile.age}
-              gender={profile.gender}
+              profile={profile}
               editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
             />
             <ContactInfo
-              phone={profile.phone}
-              location={profile.location}
+              profile={profile}
               editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
             />
-            <OtherInfo
-              years={profile.experience_in_years}
-              languages={profile.languages_spoken}
-              group_session_price={profile.group_session_price}
-              personal_session_price={profile.personal_session_price}
-              counsellingApproach={profile.counselling_approach}
-              nationality={profile.nationality}
+            {/* <OtherInfo
+              profile={profile}
               editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
             />
             <EducationInfo
-              qualifications={profile.qualifications}
+              profile={profile}
+              setProfile={setProfile}
               editProfileEnable={editProfileEnable}
             />
             <Document
-              // qualifications={profile.qualifications}
+              profile={profile}
+              setProfile={setProfile}
               editProfileEnable={editProfileEnable}
-            />
+            /> */}
           </div>
           <div className="bottom">
             {editProfileEnable && (

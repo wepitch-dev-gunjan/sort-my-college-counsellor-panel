@@ -1,36 +1,35 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
+import { UserContext } from './UserContext';
+import axios from 'axios';
+import { backend_url } from '../config';
 
 export const ProfileContext = createContext();
 
 export const ProfileProvider = ({ children }) => {
-  const [editProfileEnable, setEditProfileEnable] = useState(false);
-  const [profile, setProfile] = useState({
-    name: "John Doe",
-    email: "johndoe@example.com",
-    designation: "React Developer @ Wepitch",
-    followers_count: 0,
-    experience_in_years: 5,
-    phone: "1236547920",
-    total_sessions_attended: 0,
-    how_will_i_help: [],
-    qualifications: ["Sample Qualification 1", "Sample Qualification 2"],
-    languages_spoken: ["English", "Hindi", "Malyalam", "Spanish"],
-    location: {
-      pin_code: 123456,
-      city: "Sample City",
-      state: "Sample State",
-      country: "Sample Country",
-    },
-    gender: "Male",
-    age: 34,
-    nationality: "Indian",
-    counselling_approach: "Google meeting online",
-    client_testimonials: [],
-    group_session_price: "1000",
-    personal_session_price: "5000",
-    verified: false,
-  });
+  const { user } = useContext(UserContext);
+  const [profile, setProfile] = useState({});
 
+  useEffect(() => {
+    if (user.isLoggedIn) {
+      const fetchProfile = async () => {
+        try {
+          const response = await axios.get(`${backend_url}/${user._id}`);
+          setProfile(response.data[0]);
+        } catch (err) {
+          console.error('Error fetching profile:', err);
+          // Handle error by displaying a message or taking specific action
+        }
+      };
+
+      fetchProfile();
+      console.log("profile", profile)
+    }
+  }, [user]);
+
+  useEffect(() => {
+    console.log("profile", profile);
+  }, [profile]);
+  const [editProfileEnable, setEditProfileEnable] = useState(false)
   const [profilePicEditMode, setProfilePicEditMode] = useState(false);
   const [coverImageEditMode, setCoverImageEditMode] = useState(false);
   return (

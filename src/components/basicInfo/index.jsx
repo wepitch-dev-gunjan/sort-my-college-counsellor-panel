@@ -3,25 +3,18 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.scss";
 
-const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
-  const [editedValues, setEditedValues] = useState({
-    email,
-    age,
-    gender,
-    dob: null,
-  });
-
+const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
   const handleInput = (fieldName, value) => {
-    setEditedValues((prevValues) => ({
-      ...prevValues,
+    setProfile(prev => ({
+      ...prev,
       [fieldName]: value,
     }));
   };
 
   const handleDateChange = (date) => {
-    setEditedValues((prevValues) => ({
+    setProfile((prevValues) => ({
       ...prevValues,
-      dob: date,
+      date_of_birth: date,
     }));
   };
 
@@ -41,11 +34,11 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
               {editProfileEnable ? (
                 <input
                   type="text"
-                  value={editedValues.email}
+                  value={profile.email}
                   onChange={(e) => handleInput("email", e.target.value)}
                 />
               ) : (
-                <p>{editedValues.email}</p>
+                <p>{profile.email}</p>
               )}
             </div>
           </div>
@@ -59,7 +52,7 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
             <div className="info-value">
               {editProfileEnable ? (
                 <select
-                  value={editedValues.gender}
+                  value={profile.gender}
                   onChange={(e) => handleInput("gender", e.target.value)}
                 >
                   <option value="male">Male</option>
@@ -67,7 +60,7 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
                   <option value="other">Other</option>
                 </select>
               ) : (
-                <p>{editedValues.gender}</p>
+                <p>{profile.gender}</p>
               )}
             </div>
           </div>
@@ -81,12 +74,12 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
             <div className="info-value">
               {editProfileEnable ? (
                 <DatePicker
-                  selected={editedValues.dob}
+                  selected={profile.date_of_birth}
                   onChange={handleDateChange}
                   dateFormat="dd/MM/yyyy"
                 />
               ) : (
-                <p>{editedValues.age}</p>
+                <p>{profile.date_of_birth}</p>
               )}
             </div>
           </div>

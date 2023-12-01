@@ -3,46 +3,28 @@ import "./style.scss";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 
 const OtherInfo = ({
-  years: initialYears,
-  languages: initialLanguages,
-  group_session_price: initialGroupSessionPrice,
-  personal_session_price: initialPersonalSessionPrice,
+  profile,
+  setProfile,
   editProfileEnable,
-  nationality: initialNationality,
-  counsellingApproach: initialCounsellingApproach,
+
 }) => {
-  const [years, setYears] = useState(initialYears);
-  const [languages, setLanguages] = useState(initialLanguages);
-  const [groupSessionPrice, setGroupSessionPrice] = useState(
-    initialGroupSessionPrice
-  );
-  const [personalSessionPrice, setPersonalSessionPrice] = useState(
-    initialPersonalSessionPrice
-  );
-  const [nationality, setNationality] = useState(initialNationality);
-  const [counsellingApproach, setCounsellingApproach] = useState(
-    initialCounsellingApproach
-  );
+  const handleInput = (field, value) => {
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      [field]: value,
+    }));
+  };
 
   const handleYearsChange = (e) => {
-    setYears(e.target.value);
+    const value = parseInt(e.target.value);
+    if (!isNaN(value)) {
+      handleInput('years_of_experience', value);
+    }
   };
 
   const handleLanguagesChange = (e) => {
     const updatedLanguages = e.target.value.split(",");
-    setLanguages(updatedLanguages);
-  };
-
-  const handleGroupSessionPriceChange = (e) => {
-    setGroupSessionPrice(e.target.value);
-  };
-
-  const handlePersonalSessionPriceChange = (e) => {
-    setPersonalSessionPrice(e.target.value);
-  };
-  //increment years
-  const handleIncrementYears = () => {
-    setYears((prevYears) => prevYears + 1);
+    handleInput('languages', updatedLanguages);
   };
   return (
     <div className="OtherInfo-container">
@@ -62,13 +44,13 @@ const OtherInfo = ({
                 <>
                   <input
                     type="text"
-                    value={years}
+                    value={profile.experience_in_years}
                     onChange={handleYearsChange}
                   />
-                  <button onClick={handleIncrementYears}>+</button>
+                  <button onClick={e => handleYearsChange(e.target.value)}>+</button>
                 </>
               ) : (
-                <p>{`${years}+ years`}</p>
+                <p>{`${profile.experience_in_years}+ years`}</p>
               )}
             </div>
           </div>
@@ -83,14 +65,13 @@ const OtherInfo = ({
               {editProfileEnable ? (
                 <input
                   type="text"
-                  value={languages.join(",")}
+                  value={profile.languages_spoken.join(",")}
                   onChange={handleLanguagesChange}
                 />
               ) : (
-                languages.map((language, i) => (
-                  <p key={i}>{`${language}${
-                    i < languages.length - 1 ? "," : ""
-                  }`}</p>
+                profile.languages_spoken.map((language, i) => (
+                  <p key={i}>{`${language}${i < profile.languages_spoken.length - 1 ? "," : ""
+                    }`}</p>
                 ))
               )}
             </div>
@@ -105,14 +86,14 @@ const OtherInfo = ({
             <div className="info-value">
               {editProfileEnable ? (
                 <select
-                  value={nationality}
-                  onChange={(e) => setNationality(e.target.value)}
+                  value={profile.nationality}
+                  onChange={(e) => handleInput('nationality', e.target.value)}
                 >
                   <option value="Indian">Indian</option>
                   <option value="Foreign">Foreign</option>
                 </select>
               ) : (
-                <p>{nationality}</p>
+                <p>{profile.nationality}</p>
               )}
             </div>
           </div>
@@ -127,11 +108,11 @@ const OtherInfo = ({
               {editProfileEnable ? (
                 <input
                   type="text"
-                  value={counsellingApproach}
-                  onChange={(e) => setCounsellingApproach(e.target.value)}
+                  value={profile.approach_of_counselling}
+                  onChange={(e) => handleInput("approach_of_counselling", e.target.value)}
                 />
               ) : (
-                <p>{counsellingApproach}</p>
+                <p>{profile.approach_of_counselling}</p>
               )}
             </div>
           </div>
@@ -146,12 +127,12 @@ const OtherInfo = ({
               {editProfileEnable ? (
                 <input
                   type="text"
-                  value={groupSessionPrice}
-                  onChange={handleGroupSessionPriceChange}
+                  value={profile.group_session_price}
+                  onChange={e => handleInput("group_session_price", e.target.value)}
                 />
               ) : (
                 <p>
-                  <FaIndianRupeeSign /> {groupSessionPrice}
+                  <FaIndianRupeeSign /> {profile.group_session_price}
                 </p>
               )}
             </div>
@@ -167,12 +148,12 @@ const OtherInfo = ({
               {editProfileEnable ? (
                 <input
                   type="text"
-                  value={personalSessionPrice}
-                  onChange={handlePersonalSessionPriceChange}
+                  value={profile.personal_session_price}
+                  onChange={e => handleInput("group_session_price", e.target.value)}
                 />
               ) : (
                 <p>
-                  <FaIndianRupeeSign /> {personalSessionPrice}
+                  <FaIndianRupeeSign /> {profile.personal_session_price}
                 </p>
               )}
             </div>

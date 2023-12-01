@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.scss';
 
-const ContactInfo = ({ phone: initialPhone, location: initialLocation, editProfileEnable }) => {
-  const [phone, setPhone] = useState(initialPhone);
-  const [location, setLocation] = useState(initialLocation);
-
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
+const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
+  const handleInput = (fieldName, value) => {
+    setProfile(prev => ({
+      ...prev,
+      [fieldName]: value,
+    }));
   };
 
   const handleLocationChange = (e, field) => {
-    setLocation((prevLocation) => ({
-      ...prevLocation,
-      [field]: e.target.value,
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      location: {
+        ...prevProfile.location,
+        [field]: e.target.value,
+      },
     }));
   };
 
@@ -30,9 +33,9 @@ const ContactInfo = ({ phone: initialPhone, location: initialLocation, editProfi
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input type="text" value={phone} onChange={handlePhoneChange} />
+                <input type="text" value={profile.phone_no} onChange={e => handleInput("phone_no", e.target.value)} />
               ) : (
-                <p>{phone}</p>
+                <p>{profile.phone_no}</p>
               )}
             </div>
           </div>
@@ -46,17 +49,17 @@ const ContactInfo = ({ phone: initialPhone, location: initialLocation, editProfi
             <div className="info-value">
               {editProfileEnable ? (
                 <>
-                  <input type="text" value={location.country} onChange={(e) => handleLocationChange(e, 'country')} />
-                  <input type="text" value={location.state} onChange={(e) => handleLocationChange(e, 'state')} />
-                  <input type="text" value={location.city} onChange={(e) => handleLocationChange(e, 'city')} />
-                  <input type="text" value={location.pin_code} onChange={(e) => handleLocationChange(e, 'pin_code')} />
+                  {profile.location?.country && <input type="text" placeholder='Country' value={profile.location.country} onChange={(e) => handleLocationChange(e, 'country')} />}
+                  {profile.location?.state && <input type="text" placeholder='State' value={profile.location.state} onChange={(e) => handleLocationChange(e, 'state')} />}
+                  {profile.location?.city && <input type="text" placeholder='City' value={profile.location.city} onChange={(e) => handleLocationChange(e, 'city')} />}
+                  {profile.location.pin_code && <input type="text" placeholder='Pin-code' value={profile.location.pin_code} onChange={(e) => handleLocationChange(e, 'pin_code')} />}
                 </>
               ) : (
                 <>
-                  <p>{`${location.country},`}</p>
-                  <p>{`${location.state},`}</p>
-                  <p>{`${location.city},`}</p>
-                  <p>{location.pin_code}</p>
+                  <p>{`${profile.location?.country},`}</p>
+                  <p>{`${profile.location?.state},`}</p>
+                  <p>{`${profile.location?.city},`}</p>
+                  <p>{profile.location?.pin_code}</p>
                 </>
               )}
             </div>
