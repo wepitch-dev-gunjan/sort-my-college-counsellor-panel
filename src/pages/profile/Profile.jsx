@@ -8,7 +8,7 @@ import ContactInfo from "../../components/contactInfo";
 import OtherInfo from "../../components/otherInfo";
 import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
-import Document from '../../components/document';
+import Documents from "../../components/document";
 
 import { backend_url } from "../../config";
 import axios from "axios";
@@ -31,13 +31,13 @@ const Profile = () => {
       const endpointUrl = `${backend_url}/${user._id}`; // Replace with your actual endpoint URL
 
       const response = await axios.put(endpointUrl, profile);
-      setProfile(response.data)
-      console.log(profile)
+      setProfile(response.data);
+      console.log(profile);
       setInitialUserProfileBackup(response.data);
       setEditProfileEnable(false);
     } catch (error) {
       // Handle errors if the request fails
-      console.error('Error while saving:', error);
+      console.error("Error while saving:", error);
       // You might want to handle the error state here
     }
   };
@@ -88,12 +88,12 @@ const Profile = () => {
               profile={profile}
               setProfile={setProfile}
               editProfileEnable={editProfileEnable}
-            />
-            <Document
+            /> */}
+            <Documents
               profile={profile}
               setProfile={setProfile}
               editProfileEnable={editProfileEnable}
-            /> */}
+            />
           </div>
           <div className="bottom">
             {editProfileEnable && (

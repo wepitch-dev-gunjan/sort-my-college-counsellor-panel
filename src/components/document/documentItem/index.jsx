@@ -1,9 +1,7 @@
-import React from "react";
-import "./style.scss";
-import { CiEdit } from "react-icons/ci";
+import React, { useRef } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { Tooltip } from "@mui/material";
-import { useRef } from "react";
+import "./style.scss";
 
 const DocumentItem = ({
   index,
@@ -18,12 +16,9 @@ const DocumentItem = ({
     onDocumentChange(index, file);
   };
 
-  // Create a reference to the hidden file input element
   const hiddenFileInput = useRef(null);
 
-  // Programatically click the hidden file input element
-  // when the Button component is clicked
-  const handleClick = (event) => {
+  const handleClick = () => {
     hiddenFileInput.current.click();
   };
 
@@ -32,12 +27,8 @@ const DocumentItem = ({
     onFieldChange(index, selectedField);
   };
 
-  //   const handleChange = (event) => {
-  //     const fileUploaded = event.target.files[0];
-  //     handleFile(fileUploaded); // ADDED
-  //   };
   return (
-    <div className="Documents">
+    <div className="DocumentItem">
       <div className="row">
         <div className="col">
           <div className="dropdown">
@@ -64,19 +55,19 @@ const DocumentItem = ({
               style={{ display: "none" }}
             />
 
-            <div className="up-icons">
-              {editEnable && (
+            {editEnable && (
+              <div className="up-icons">
                 <Tooltip title="Delete" placement="bottom">
                   <div
                     className="delete-icon"
                     onClick={() => onDelete(index)}
-                    disabled={index === 0} // Disable the delete button for the first item
+                    disabled={index === 0}
                   >
                     <MdDeleteOutline size="16" />
                   </div>
                 </Tooltip>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

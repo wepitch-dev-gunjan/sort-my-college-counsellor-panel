@@ -1,13 +1,10 @@
-// src/components/Documents.js
 import React, { useState } from "react";
 import DocumentItem from "./documentItem";
 import "./style.scss";
-import { useRef } from "react";
 import { Tooltip, Typography } from "@mui/material";
 import { MdDeleteOutline } from "react-icons/md";
-import { CiEdit } from "react-icons/ci";
 
-const Documents = ({ index, onDocumentChange, onDelete }) => {
+const Documents = ({ profile, setProfile, editEnable }) => {
   const [documents, setDocuments] = useState([]);
 
   const handleAddDocument = () => {
@@ -20,19 +17,6 @@ const Documents = ({ index, onDocumentChange, onDelete }) => {
     setDocuments(updatedDocuments);
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    onDocumentChange(index, file);
-  };
-
-  // Create a reference to the hidden file input element
-  const hiddenFileInput = useRef(null);
-
-  // Programatically click the hidden file input element
-  // when the Button component is clicked
-  const handleClick = (event) => {
-    hiddenFileInput.current.click();
-  };
   const handleDocumentChange = (index, file) => {
     const updatedDocuments = [...documents];
     updatedDocuments[index].file = file;
@@ -55,8 +39,8 @@ const Documents = ({ index, onDocumentChange, onDelete }) => {
     });
 
     try {
-      //   const response = await axios.post("your-upload-endpoint", formData);
-      //   console.log("Upload success:", response.data);
+      // const response = await axios.post("your-upload-endpoint", formData);
+      // console.log("Upload success:", response.data);
     } catch (error) {
       // Handle the error
       console.error("Upload failed:", error);
@@ -64,16 +48,11 @@ const Documents = ({ index, onDocumentChange, onDelete }) => {
   };
 
   return (
-    <div className="Document-container">
+    <div className="Documents-container">
       <div className="heading">
         <h2>Documents</h2>
       </div>
-      <DocumentItem
-        document={documents[0]}
-        onDocumentChange={handleDocumentChange}
-        onFieldChange={handleFieldChange}
-      />
-      {documents.slice(1).map((document, index) => (
+      {documents.map((document, index) => (
         <DocumentItem
           key={index}
           index={index}
@@ -81,7 +60,7 @@ const Documents = ({ index, onDocumentChange, onDelete }) => {
           onDocumentChange={handleDocumentChange}
           onFieldChange={handleFieldChange}
           onDelete={handleDeleteDocument}
-          editEnable
+          editEnable={editEnable}
         />
       ))}
       <Tooltip
@@ -109,28 +88,9 @@ const Documents = ({ index, onDocumentChange, onDelete }) => {
             <p>Aadhar Card</p>
           </div>
           <div className="upload">
-            <button className="button-upload" onClick={handleClick}>
+            <button className="button-upload" onClick={() => handleUpload()}>
               Upload document
             </button>
-            <input
-              className="upload-btn"
-              type="file"
-              onChange={handleFileChange}
-              accept=".pdf"
-              ref={hiddenFileInput}
-              style={{ display: "none" }}
-            />
-            <div className="up-icons">
-              <Tooltip title="Delete" placement="bottom">
-                <div
-                  className="delete-icon"
-                  onClick={() => onDelete(index)}
-                  disabled={index === 0} // Disable the delete button for the first item
-                >
-                  <MdDeleteOutline size="16" />
-                </div>
-              </Tooltip>
-            </div>
           </div>
         </div>
       </div>
@@ -140,28 +100,9 @@ const Documents = ({ index, onDocumentChange, onDelete }) => {
             <p>Pan Card</p>
           </div>
           <div className="upload">
-            <button className="button-upload" onClick={handleClick}>
+            <button className="button-upload" onClick={() => handleUpload()}>
               Upload document
             </button>
-            <input
-              className="upload-btn"
-              type="file"
-              onChange={handleFileChange}
-              accept=".pdf"
-              ref={hiddenFileInput}
-              style={{ display: "none" }}
-            />
-            <div className="up-icons">
-              <Tooltip title="Delete" placement="bottom">
-                <div
-                  className="delete-icon"
-                  onClick={() => onDelete(index)}
-                  disabled={index === 0} // Disable the delete button for the first item
-                >
-                  <MdDeleteOutline size="16" />
-                </div>
-              </Tooltip>
-            </div>
           </div>
         </div>
       </div>
