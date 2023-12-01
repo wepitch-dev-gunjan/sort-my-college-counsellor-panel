@@ -2,9 +2,12 @@
 import React, { useState } from "react";
 import DocumentItem from "./documentItem";
 import "./style.scss";
+import { useRef } from "react";
 import { Tooltip, Typography } from "@mui/material";
+import { MdDeleteOutline } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
 
-const Documents = () => {
+const Documents = ({ index, onDocumentChange, onDelete }) => {
   const [documents, setDocuments] = useState([]);
 
   const handleAddDocument = () => {
@@ -17,6 +20,19 @@ const Documents = () => {
     setDocuments(updatedDocuments);
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    onDocumentChange(index, file);
+  };
+
+  // Create a reference to the hidden file input element
+  const hiddenFileInput = useRef(null);
+
+  // Programatically click the hidden file input element
+  // when the Button component is clicked
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
   const handleDocumentChange = (index, file) => {
     const updatedDocuments = [...documents];
     updatedDocuments[index].file = file;
@@ -52,7 +68,12 @@ const Documents = () => {
       <div className="heading">
         <h2>Documents</h2>
       </div>
-      {documents.map((document, index) => (
+      <DocumentItem
+        document={documents[0]}
+        onDocumentChange={handleDocumentChange}
+        onFieldChange={handleFieldChange}
+      />
+      {documents.slice(1).map((document, index) => (
         <DocumentItem
           key={index}
           index={index}
@@ -60,11 +81,14 @@ const Documents = () => {
           onDocumentChange={handleDocumentChange}
           onFieldChange={handleFieldChange}
           onDelete={handleDeleteDocument}
+          editEnable
         />
       ))}
       <Tooltip
         title={
-          <Typography style={{ fontSize: "16px" }}>Add document</Typography>
+          <Typography style={{ fontSize: "16px" }}>
+            Add more document
+          </Typography>
         }
         PopperProps={{
           modifiers: [
@@ -79,6 +103,78 @@ const Documents = () => {
       >
         <button onClick={handleAddDocument}>+</button>
       </Tooltip>
+      <div className="row">
+        <div className="col">
+          <div className="info-field">
+            <p>Aadhar Card</p>
+          </div>
+          <div className="upload">
+            <button className="button-upload" onClick={handleClick}>
+              Upload document
+            </button>
+            <input
+              className="upload-btn"
+              type="file"
+              onChange={handleFileChange}
+              accept=".pdf"
+              ref={hiddenFileInput}
+              style={{ display: "none" }}
+            />
+            <div className="up-icons">
+              <Tooltip title="Edit" placement="bottom">
+                <div className="edit-icon">
+                  <CiEdit size="16" />
+                </div>
+              </Tooltip>
+              <Tooltip title="Delete" placement="bottom">
+                <div
+                  className="delete-icon"
+                  onClick={() => onDelete(index)}
+                  disabled={index === 0} // Disable the delete button for the first item
+                >
+                  <MdDeleteOutline size="16" />
+                </div>
+              </Tooltip>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <div className="info-field">
+            <p>Pan Card</p>
+          </div>
+          <div className="upload">
+            <button className="button-upload" onClick={handleClick}>
+              Upload document
+            </button>
+            <input
+              className="upload-btn"
+              type="file"
+              onChange={handleFileChange}
+              accept=".pdf"
+              ref={hiddenFileInput}
+              style={{ display: "none" }}
+            />
+            <div className="up-icons">
+              <Tooltip title="Edit" placement="bottom">
+                <div className="edit-icon">
+                  <CiEdit size="16" />
+                </div>
+              </Tooltip>
+              <Tooltip title="Delete" placement="bottom">
+                <div
+                  className="delete-icon"
+                  onClick={() => onDelete(index)}
+                  disabled={index === 0} // Disable the delete button for the first item
+                >
+                  <MdDeleteOutline size="16" />
+                </div>
+              </Tooltip>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

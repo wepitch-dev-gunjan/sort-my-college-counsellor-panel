@@ -11,6 +11,7 @@ const DocumentItem = ({
   onDocumentChange,
   onFieldChange,
   onDelete,
+  editEnable,
 }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -62,21 +63,24 @@ const DocumentItem = ({
               ref={hiddenFileInput}
               style={{ display: "none" }}
             />
+
             <div className="up-icons">
               <Tooltip title="Edit" placement="bottom">
                 <div className="edit-icon">
                   <CiEdit size="16" />
                 </div>
               </Tooltip>
-              <Tooltip title="Delete" placement="bottom">
-                <div
-                  className="delete-icon"
-                  onClick={() => onDelete(index)}
-                  disabled={index === 0} // Disable the delete button for the first item
-                >
-                  <MdDeleteOutline size="16" />
-                </div>
-              </Tooltip>
+              {editEnable && (
+                <Tooltip title="Delete" placement="bottom">
+                  <div
+                    className="delete-icon"
+                    onClick={() => onDelete(index)}
+                    disabled={index === 0} // Disable the delete button for the first item
+                  >
+                    <MdDeleteOutline size="16" />
+                  </div>
+                </Tooltip>
+              )}
             </div>
           </div>
         </div>
