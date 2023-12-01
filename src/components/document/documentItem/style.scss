@@ -5,25 +5,42 @@
       justify-content: start;
       width: 100%;
       gap: 12px;
+
       .dropdown {
         width: 100%;
-      }
-      .upload {
-        width: 100%;
-        .upload-btn {
-          background-color: var(--background-light);
-          color: aqua;
+
+        select {
+          padding: 12px;
+          font-size: 14px;
+          border-radius: 8px;
+          cursor: pointer;
         }
       }
-    }
-  }
-  select {
-    padding: 12px;
-    font-size: 12px;
-    border-radius: 8px;
-    option {
-      padding: 16px;
-      font: 16px;
+
+      .upload {
+        width: 100%;
+        display: flex;
+        .button-upload {
+          padding: 12px;
+          border-radius: 8px;
+          width: 50%;
+          border: 1px solid black;
+          font-size: 14px;
+        }
+        .button-upload:hover {
+          background-color: var(--background-dark);
+        }
+      }
+
+      .up-icons {
+        // width: 100%;
+        display: flex;
+        position: absolute;
+        right: 20px;
+        flex-direction: row;
+        gap: 4px;
+        cursor: pointer;
+      }
     }
   }
 }

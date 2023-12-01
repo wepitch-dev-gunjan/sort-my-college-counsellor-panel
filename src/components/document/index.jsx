@@ -11,6 +11,12 @@ const Documents = () => {
     setDocuments([...documents, { file: null, selectedField: "" }]);
   };
 
+  const handleDeleteDocument = (index) => {
+    const updatedDocuments = [...documents];
+    updatedDocuments.splice(index, 1);
+    setDocuments(updatedDocuments);
+  };
+
   const handleDocumentChange = (index, file) => {
     const updatedDocuments = [...documents];
     updatedDocuments[index].file = file;
@@ -53,6 +59,7 @@ const Documents = () => {
           document={document}
           onDocumentChange={handleDocumentChange}
           onFieldChange={handleFieldChange}
+          onDelete={handleDeleteDocument}
         />
       ))}
       <Tooltip
