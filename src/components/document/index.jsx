@@ -5,7 +5,11 @@ import { Tooltip, Typography } from "@mui/material";
 import { MdDeleteOutline } from "react-icons/md";
 
 const Documents = ({ profile, setProfile, editEnable }) => {
-  const [documents, setDocuments] = useState([]);
+  const [documents, setDocuments] = useState([
+    {
+      selectedField: ''
+    }
+  ]);
 
   const handleAddDocument = () => {
     setDocuments([...documents, { file: null, selectedField: "" }]);
@@ -52,10 +56,17 @@ const Documents = ({ profile, setProfile, editEnable }) => {
       <div className="heading">
         <h2>Documents</h2>
       </div>
-      {documents.map((document, index) => (
+      <DocumentItem
+        index={0}
+        document={documents[0]}
+        onDocumentChange={handleDocumentChange}
+        onFieldChange={handleFieldChange}
+        onDelete={handleDeleteDocument}
+      />
+      {documents.slice(1).map((document, index) => (
         <DocumentItem
-          key={index}
-          index={index}
+          key={index + 1}
+          index={index + 1}
           document={document}
           onDocumentChange={handleDocumentChange}
           onFieldChange={handleFieldChange}

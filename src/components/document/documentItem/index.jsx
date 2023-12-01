@@ -32,7 +32,7 @@ const DocumentItem = ({
       <div className="row">
         <div className="col">
           <div className="dropdown">
-            <select onChange={handleFieldChange} value={document.selectedField}>
+            <select onChange={handleFieldChange} value={document?.selectedField}>
               <option value="field1">Career Counselling Certificate</option>
               <option value="field2">Experience Certificate</option>
               <option value="field3">Proof of working</option>
