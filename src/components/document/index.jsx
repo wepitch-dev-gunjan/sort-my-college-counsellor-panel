@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import DocumentItem from "./documentItem";
 import "./style.scss";
 import { Tooltip, Typography } from "@mui/material";
 import { MdDeleteOutline } from "react-icons/md";
 
-const Documents = ({ profile, setProfile, editEnable }) => {
+const Documents = ({
+  index,
+  profile,
+  setProfile,
+  editProfileEnable,
+  onDelete,
+  onDocumentChange,
+}) => {
   const [documents, setDocuments] = useState([
     {
-      selectedField: ''
-    }
+      selectedField: "",
+    },
   ]);
 
   const handleAddDocument = () => {
@@ -19,6 +26,17 @@ const Documents = ({ profile, setProfile, editEnable }) => {
     const updatedDocuments = [...documents];
     updatedDocuments.splice(index, 1);
     setDocuments(updatedDocuments);
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    onDocumentChange(index, file);
+  };
+
+  const hiddenFileInput = useRef(null);
+
+  const handleClick = () => {
+    hiddenFileInput.current.click();
   };
 
   const handleDocumentChange = (index, file) => {
@@ -71,50 +89,104 @@ const Documents = ({ profile, setProfile, editEnable }) => {
           onDocumentChange={handleDocumentChange}
           onFieldChange={handleFieldChange}
           onDelete={handleDeleteDocument}
-          editEnable={editEnable}
+          editProfileEnable={editProfileEnable}
         />
       ))}
-      <Tooltip
-        title={
-          <Typography style={{ fontSize: "16px" }}>
-            Add more document
-          </Typography>
-        }
-        PopperProps={{
-          modifiers: [
-            {
-              name: "offset",
-              options: {
-                offset: [0, 10],
+      {editProfileEnable && (
+        <Tooltip
+          title={
+            <Typography style={{ fontSize: "16px" }}>
+              Add more document
+            </Typography>
+          }
+          PopperProps={{
+            modifiers: [
+              {
+                name: "offset",
+                options: {
+                  offset: [0, 10],
+                },
               },
-            },
-          ],
-        }}
-      >
-        <button onClick={handleAddDocument}>+</button>
-      </Tooltip>
+            ],
+          }}
+        >
+          <button onClick={handleAddDocument}>+</button>
+        </Tooltip>
+      )}
       <div className="row">
         <div className="col">
           <div className="info-field">
-            <p>Aadhar Card</p>
+            <p>Aadhar Card*</p>
           </div>
           <div className="upload">
-            <button className="button-upload" onClick={() => handleUpload()}>
-              Upload document
+            <button className="button-upload" onClick={handleClick}>
+              Upload a file
             </button>
+            <input
+              className="upload-btn"
+              type="file"
+              onChange={handleFileChange}
+              accept=".pdf"
+              ref={hiddenFileInput}
+              style={{ display: "none" }}
+            />
+            {editProfileEnable && (
+              <div className="up-icons">
+                <Tooltip title="Delete" placement="bottom">
+                  <div className="delete-icon" onClick={() => onDelete(index)}>
+                    <MdDeleteOutline size="16" />
+                  </div>
+                </Tooltip>
+              </div>
+            )}
           </div>
+          {editProfileEnable && (
+            <div className="up-icons">
+              <Tooltip title="Delete" placement="bottom">
+                <div className="delete-icon" onClick={() => onDelete()}>
+                  <MdDeleteOutline size="16" />
+                </div>
+              </Tooltip>
+            </div>
+          )}
         </div>
       </div>
       <div className="row">
         <div className="col">
           <div className="info-field">
-            <p>Pan Card</p>
+            <p>Pan Card*</p>
           </div>
           <div className="upload">
-            <button className="button-upload" onClick={() => handleUpload()}>
-              Upload document
+            <button className="button-upload" onClick={handleClick}>
+              Upload a file
             </button>
+            <input
+              className="upload-btn"
+              type="file"
+              onChange={handleFileChange}
+              accept=".pdf"
+              ref={hiddenFileInput}
+              style={{ display: "none" }}
+            />
+            {editProfileEnable && (
+              <div className="up-icons">
+                <Tooltip title="Delete" placement="bottom">
+                  <div className="delete-icon" onClick={() => onDelete(index)}>
+                    <MdDeleteOutline size="16" />
+                  </div>
+                </Tooltip>
+              </div>
+            )}
           </div>
+          {editProfileEnable && (
+            <div className="up-icons">
+              <Tooltip title="Delete" placement="bottom">
+                <div className="delete-icon" onClick={() => onDelete()}>
+                  <MdDeleteOutline size="16" />
+                </div>
+              </Tooltip>
+            </div>
+          )}
         </div>
       </div>
     </div>

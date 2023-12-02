@@ -9,7 +9,7 @@ const DocumentItem = ({
   onDocumentChange,
   onFieldChange,
   onDelete,
-  editEnable,
+  editProfileEnable,
 }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -32,7 +32,10 @@ const DocumentItem = ({
       <div className="row">
         <div className="col">
           <div className="dropdown">
-            <select onChange={handleFieldChange} value={document?.selectedField}>
+            <select
+              onChange={handleFieldChange}
+              value={document?.selectedField}
+            >
               <option value="field1">Career Counselling Certificate</option>
               <option value="field2">Experience Certificate</option>
               <option value="field3">Proof of working</option>
@@ -54,8 +57,7 @@ const DocumentItem = ({
               ref={hiddenFileInput}
               style={{ display: "none" }}
             />
-
-            {editEnable && (
+            {editProfileEnable && (
               <div className="up-icons">
                 <Tooltip title="Delete" placement="bottom">
                   <div

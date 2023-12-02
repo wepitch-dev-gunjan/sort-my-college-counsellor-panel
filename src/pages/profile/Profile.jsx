@@ -69,11 +69,11 @@ const Profile = () => {
             <h3>{profile.designation}</h3>
           </div>
           <div className="middle">
-            <BasicInfo
+            {/* <BasicInfo
               profile={profile}
               editProfileEnable={editProfileEnable}
               setProfile={setProfile}
-            />
+            /> */}
             <ContactInfo
               profile={profile}
               editProfileEnable={editProfileEnable}
