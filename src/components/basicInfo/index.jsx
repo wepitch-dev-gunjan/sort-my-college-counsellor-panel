@@ -76,7 +76,6 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
                 <DatePicker
                   selected={profile.date_of_birth}
                   onChange={handleDateChange}
-                  dateFormat="dd/MM/yyyy"
                 />
               ) : (
                 <p>{profile.date_of_birth}</p>
