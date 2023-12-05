@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import "./style.scss";
 import { FaIndianRupeeSign } from "react-icons/fa6";
+import { handleArrayInputChange, handleInput } from "../../utilities";
 
 const OtherInfo = ({
   profile,
@@ -8,13 +8,6 @@ const OtherInfo = ({
   editProfileEnable,
 
 }) => {
-  const handleInput = (field, value) => {
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      [field]: value,
-    }));
-  };
-
   const handleYearsChange = (e) => {
     const value = parseInt(e.target.value);
     if (!isNaN(value)) {
@@ -24,7 +17,7 @@ const OtherInfo = ({
 
   const handleLanguagesChange = (e) => {
     const updatedLanguages = e.target.value.split(",");
-    handleInput('languages', updatedLanguages);
+    handleInput('languages_spoken', updatedLanguages);
   };
   return (
     <div className="OtherInfo-container">
@@ -36,7 +29,7 @@ const OtherInfo = ({
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Experience</p>
+              <p>Industrial Experience</p>
             </div>
 
             <div className="info-value">
@@ -45,9 +38,8 @@ const OtherInfo = ({
                   <input
                     type="text"
                     value={profile.experience_in_years}
-                    onChange={handleYearsChange}
+                    onChange={e => handleInput('experience_in_years', e.target.value, setProfile)}
                   />
-                  <button onClick={e => handleYearsChange(e.target.value)}>+</button>
                 </>
               ) : (
                 <p>{`${profile.experience_in_years}+ years`}</p>
@@ -59,7 +51,7 @@ const OtherInfo = ({
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Languages</p>
+              <p>Languages I know</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
@@ -69,7 +61,7 @@ const OtherInfo = ({
                   onChange={handleLanguagesChange}
                 />
               ) : (
-                profile.languages_spoken.map((language, i) => (
+                profile.languages_spoken?.map((language, i) => (
                   <p key={i}>{`${language}${i < profile.languages_spoken.length - 1 ? "," : ""
                     }`}</p>
                 ))
@@ -87,7 +79,7 @@ const OtherInfo = ({
               {editProfileEnable ? (
                 <select
                   value={profile.nationality}
-                  onChange={(e) => handleInput('nationality', e.target.value)}
+                  onChange={(e) => handleInput('nationality', e.target.value, setProfile)}
                 >
                   <option value="Indian">Indian</option>
                   <option value="Foreign">Foreign</option>
@@ -109,7 +101,7 @@ const OtherInfo = ({
                 <input
                   type="text"
                   value={profile.approach_of_counselling}
-                  onChange={(e) => handleInput("approach_of_counselling", e.target.value)}
+                  onChange={(e) => handleInput("approach_of_counselling", e.target.value, setProfile)}
                 />
               ) : (
                 <p>{profile.approach_of_counselling}</p>
@@ -121,20 +113,84 @@ const OtherInfo = ({
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Group session price</p>
+              <p>Degree focused</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={profile.group_session_price}
-                  onChange={e => handleInput("group_session_price", e.target.value)}
-                />
+                <select
+                  value={profile.degree_focused}
+                  onChange={(e) => handleInput("degree_focused", e.target.value, setProfile)}
+                >
+                  <option value="UG">UG</option>
+                  <option value="PG">PG</option>
+                </select>
               ) : (
-                <p>
-                  <FaIndianRupeeSign /> {profile.group_session_price}
-                </p>
+                <p>{profile.degree_focused}</p>
               )}
+            </div>
+          </div>
+        </div>
+
+
+        <div className="info">
+          <div className="row">
+            <div className="col">
+              <div className="info-field">
+                <p>Locations focused</p>
+              </div>
+              <div className="info-value">
+                {editProfileEnable ? (
+                  <input
+                    type="text"
+                    value={profile.locations_focused.join(",")}
+                    onChange={e => handleArrayInputChange('locations_focused', e.target.value, setProfile)}
+                  />
+                ) : (
+                  profile.locations_focused?.map((locations_focused, i) => (
+                    <p key={i}>{`${locations_focused}${i < profile.locations_focused.length - 1 ? "," : ""
+                      }`}</p>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="info">
+          <div className="row">
+            <div className="col">
+              <div className="info-field">
+                <p>Courses focused</p>
+              </div>
+              <div className="info-value">
+                {editProfileEnable ? (
+                  <input
+                    type="text"
+                    value={profile.courses_focused.join(",")}
+                    onChange={e => handleArrayInputChange('courses_focused', e.target.value, setProfile)}
+                  />
+                ) : (
+                  profile.courses_focused?.map((courses_focused, i) => (
+                    <p key={i}>{`${courses_focused}${i < profile.courses_focused.length - 1 ? "," : ""
+                      }`}</p>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Group session price</p>
+            </div>
+            <div className="info-value">
+              <p>
+                <FaIndianRupeeSign /> {profile.group_session_price}
+              </p>
             </div>
           </div>
         </div>
@@ -145,17 +201,9 @@ const OtherInfo = ({
               <p>Personal session price</p>
             </div>
             <div className="info-value">
-              {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={profile.personal_session_price}
-                  onChange={e => handleInput("group_session_price", e.target.value)}
-                />
-              ) : (
-                <p>
-                  <FaIndianRupeeSign /> {profile.personal_session_price}
-                </p>
-              )}
+              <p>
+                <FaIndianRupeeSign /> {profile.personal_session_price}
+              </p>
             </div>
           </div>
         </div>

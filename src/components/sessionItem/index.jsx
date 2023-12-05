@@ -6,6 +6,8 @@ import "./session.scss";
 import { UserContext } from '../../context/UserContext';
 import { backend_url } from '../../config';
 import useClickOutside from '../../customHooks/useClickOutside';
+import { DatePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 
 const SessionCard = ({ session, setSessions, getResponse }) => {
   const menuRef = useRef(null)
@@ -18,6 +20,10 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
     setShowMenu(false);
   });
 
+  const formatDate = (date) => {
+    return dayjs(date).format('YYYY-MM-DD');
+  };
+
   const handleSave = async () => {
     try {
       const response = await axios.put(`${backend_url}/sessions/${sessionDetails._id}`, sessionDetails, {
@@ -29,6 +35,7 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
       setEditMode(false);
       setSessions(prev => prev.map(item => (item._id === sessionDetails._id ? item : response.data.session)));
       // Perform any state updates or re-fetch the session list as needed
+
     } catch (error) {
       console.error('An error occurred:', error);
     }
@@ -90,15 +97,14 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
                 <input
                   type="date"
                   value={sessionDetails.session_date}
-                  onChange={(e) =>
-                    setSessionDetails({ ...sessionDetails, session_date: e.target.value })
-                  }
+                  onChange={(e) => setSessionDetails({ ...sessionDetails, session_date: formatDate(e.target.value) })}
+                  required
                 />
               </div>
               <div>
                 <p>Time:</p>
                 <input
-                  type="text"
+                  type="time"
                   value={sessionDetails.session_time}
                   onChange={(e) =>
                     setSessionDetails({ ...sessionDetails, session_time: e.target.value })
@@ -178,7 +184,7 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
       ) : (
         <>
           <div className="middle">
-            <p>Date: {session.session_date}</p>
+            <p>Date: {formatDate(session.session_date)}</p>
             <p>Time: {session.session_time}</p>
             <p>Duration: {session.session_duration} minutes</p>
             <p>Type: {session.session_type}</p>

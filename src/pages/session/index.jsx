@@ -13,8 +13,9 @@ const Session = () => {
     const { addMode, setAddMode } = useContext(SessionContext);
 
     const getResponse = async () => {
-        const response = await axios.get(`${backend_url}/${user._id}/sessions`, {})
-        setSessions(response.data);
+        const { data } = await axios.get(`${backend_url}/${user._id}/sessions`, {});
+        const { sessions } = data;
+        setSessions(sessions);
     }
 
     useEffect(() => {
@@ -37,7 +38,7 @@ const Session = () => {
                         {addMode && <AddSession sessions={sessions} setSessions={setSessions} setAddMode={setAddMode} />}
                     </div>
                     <div className="sessionList">
-                        {sessions.map((session) => (
+                        {sessions?.map((session) => (
                             <SessionItem key={session.id} session={session} setSessions={setSessions} getResponse={getResponse} />
                         ))}
                     </div>

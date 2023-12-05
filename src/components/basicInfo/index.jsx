@@ -1,21 +1,20 @@
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.scss";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { handleInput } from "../../utilities";
 
 const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
-  const handleInput = (fieldName, value) => {
-    setProfile(prev => ({
+  const handleDateChange = (date) => {
+    setProfile((prev) => ({
       ...prev,
-      [fieldName]: value,
+      date_of_birth: formatDate(date),
     }));
   };
 
-  const handleDateChange = (date) => {
-    setProfile((prevValues) => ({
-      ...prevValues,
-      date_of_birth: date,
-    }));
+  const formatDate = (date) => {
+    return dayjs(date).format('YYYY-MM-DD');
   };
 
   return (
@@ -35,7 +34,7 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
                 <input
                   type="text"
                   value={profile.email}
-                  onChange={(e) => handleInput("email", e.target.value)}
+                  onChange={(e) => handleInput("email", e.target.value, setProfile)}
                 />
               ) : (
                 <p>{profile.email}</p>
@@ -53,7 +52,7 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
               {editProfileEnable ? (
                 <select
                   value={profile.gender}
-                  onChange={(e) => handleInput("gender", e.target.value)}
+                  onChange={(e) => handleInput("gender", e.target.value, setProfile)}
                 >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -73,18 +72,19 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <DatePicker
-                  selected={profile.date_of_birth}
-                  onChange={handleDateChange}
+
+                <DatePicker label="Date of birth"
+                  defaultValue={dayjs(profile.date_of_birth)}
+                  onChange={(date) => handleDateChange(date)}
                 />
               ) : (
-                <p>{profile.date_of_birth}</p>
+                <p>{formatDate(profile.date_of_birth)}</p>
               )}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

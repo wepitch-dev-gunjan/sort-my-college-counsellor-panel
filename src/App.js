@@ -20,6 +20,7 @@ import { useRef } from "react";
 import useClickOutside from "./customHooks/useClickOutside";
 import VerifyProfilePopup from "./components/verifyProfilePopup";
 import { ProfileContext } from "./context/ProfileContext";
+import { ToastContainer } from "react-toastify";
 
 // Example authentication state, you should replace this with your authentication logic
 
@@ -50,6 +51,7 @@ function App() {
     <div>
       {isLoggedIn && <Header handleLogout={handleLogout} />}
       <div className="main">
+        <ToastContainer />
         {notificationsEnable && <Notifications ref={notificationRef} />}
         {isLoggedIn && <Sidebar />}
         <div className={`${isLoggedIn && "main-content"}`}>

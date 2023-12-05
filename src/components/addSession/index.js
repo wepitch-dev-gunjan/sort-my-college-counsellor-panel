@@ -5,21 +5,30 @@ import "./style.scss";
 import { UserContext } from '../../context/UserContext';
 import { backend_url } from '../../config';
 import useClickOutside from '../../customHooks/useClickOutside';
+import dayjs from 'dayjs';
+import { DatePicker } from '@mui/x-date-pickers';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddSession = ({ session, setSessions, setAddMode }) => {
   const Ref = useRef(null);
   const { user } = useContext(UserContext);
+
+  const formatDate = (date) => {
+    return dayjs(date).format('YYYY-MM-DD');
+  };
+
   const [sessionDetails, setSessionDetails] = useState({
-    session_date: '',
-    session_time: '',
-    session_duration: '',
-    session_type: '',
-    session_fee: '',
-    session_status: '',
-    session_available_slots: '',
+    session_date: formatDate(new Date()),
+    session_time: '05:30',
+    session_duration: '60',
+    session_type: 'Personal',
+    session_fee: '2000',
+    session_status: 'Available',
+    session_available_slots: '5',
   });
 
-  useClickOutside(Ref, () => setAddMode(false));
+  // useClickOutside(Ref, () => setAddMode(false));
 
   const handleCreateSession = async (event) => {
     event.preventDefault();
@@ -36,7 +45,8 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
       setSessions(prev => [...prev, response.data.session]);
       setAddMode(false);
     } catch (error) {
-      console.error('An error occurred:', error);
+      toast(error.response.data.error)
+      console.error('An error occurred:', error.response.data);
     }
   };
 
@@ -59,29 +69,26 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
       <form onSubmit={handleCreateSession} className='edit-mode-form'>
         <div className="edit-mode-fields">
           <div>
-            <label>Type:</label>
-            <input
-              type="test"
-              value={sessionDetails.session_type}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_type: e.target.value })}
-              required
-            />
           </div>
           <div>
             <label>Date:</label>
             <input
               type="date"
               value={sessionDetails.session_date}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_date: e.target.value })}
+              onChange={(e) => setSessionDetails({ ...sessionDetails, session_date: formatDate(e.target.value) })}
               required
             />
           </div>
           <div>
             <label>Time:</label>
             <input
-              type="time"
+              type="number"
               value={sessionDetails.session_time}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_time: e.target.value })}
+              onChange={(e) => {
+                console.log(e.target.value)
+                setSessionDetails({ ...sessionDetails, session_time: e.target.value })
+              }
+              }
               required
             />
           </div>

@@ -12,6 +12,7 @@ import Documents from "../../components/document";
 
 import { backend_url } from "../../config";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
@@ -35,8 +36,10 @@ const Profile = () => {
       console.log(profile);
       setInitialUserProfileBackup(response.data);
       setEditProfileEnable(false);
+      toast('Profile successfully saved');
     } catch (error) {
       // Handle errors if the request fails
+      toast(error.message)
       console.error("Error while saving:", error);
       // You might want to handle the error state here
     }
@@ -69,17 +72,12 @@ const Profile = () => {
             <h3>{profile.designation}</h3>
           </div>
           <div className="middle">
-            {/* <BasicInfo
-              profile={profile}
-              editProfileEnable={editProfileEnable}
-              setProfile={setProfile}
-            /> */}
-            <ContactInfo
+            <BasicInfo
               profile={profile}
               editProfileEnable={editProfileEnable}
               setProfile={setProfile}
             />
-            {/* <OtherInfo
+            <ContactInfo
               profile={profile}
               editProfileEnable={editProfileEnable}
               setProfile={setProfile}
@@ -88,7 +86,12 @@ const Profile = () => {
               profile={profile}
               setProfile={setProfile}
               editProfileEnable={editProfileEnable}
-            /> */}
+            />
+            <OtherInfo
+              profile={profile}
+              editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
+            />
             <Documents
               profile={profile}
               setProfile={setProfile}

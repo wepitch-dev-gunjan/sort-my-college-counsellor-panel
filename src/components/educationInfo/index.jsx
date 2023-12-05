@@ -1,21 +1,15 @@
+import { handleArrayInputChange } from "../../utilities";
 import "./style.scss";
-import React, { useState } from "react";
 
 const EducationInfo = ({
-  qualifications: initialQualifications,
+  profile,
+  setProfile,
   editProfileEnable,
 }) => {
-  const [qualifications, setQualifications] = useState(initialQualifications);
-
-  const handleQualificationsChange = (e) => {
-    const updatedQualifications = e.target.value.split(",");
-    setQualifications(updatedQualifications);
-  };
-
   return (
     <div className="BasicInfo-container">
       <div className="heading">
-        <h2>Education info</h2>
+        <h2>My Educational Info</h2>
       </div>
 
       <div className="info">
@@ -28,14 +22,13 @@ const EducationInfo = ({
               {editProfileEnable ? (
                 <input
                   type="text"
-                  value={qualifications.join(",")}
-                  onChange={handleQualificationsChange}
+                  value={profile.qualifications.join(",")}
+                  onChange={e => handleArrayInputChange('qualifications', e.target.value, setProfile)}
                 />
               ) : (
-                qualifications.map((qualification, i) => (
-                  <p key={i}>{`${qualification}${
-                    i < qualifications.length - 1 ? "," : ""
-                  }`}</p>
+                profile.qualifications?.map((qualification, i) => (
+                  <p key={i}>{`${qualification}${i < profile.qualifications.length - 1 ? "," : ""
+                    }`}</p>
                 ))
               )}
             </div>
