@@ -14,11 +14,6 @@ const OtherInfo = ({
       handleInput('years_of_experience', value);
     }
   };
-
-  const handleLanguagesChange = (e) => {
-    const updatedLanguages = e.target.value.split(",");
-    handleInput('languages_spoken', updatedLanguages);
-  };
   return (
     <div className="OtherInfo-container">
       <div className="heading">
@@ -58,7 +53,7 @@ const OtherInfo = ({
                 <input
                   type="text"
                   value={profile.languages_spoken.join(",")}
-                  onChange={handleLanguagesChange}
+                  onChange={e => handleArrayInputChange('languages_spoken', e.target.value, setProfile)}
                 />
               ) : (
                 profile.languages_spoken?.map((language, i) => (
