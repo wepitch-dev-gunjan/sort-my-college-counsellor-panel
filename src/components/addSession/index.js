@@ -18,9 +18,22 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
     return dayjs(date).format('YYYY-MM-DD');
   };
 
+  function getTomorrowDate() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1); // Get tomorrow's date
+    return tomorrow;
+  }
+
+  function getCurrentTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = Math.round(now.getMinutes() / 30) * 30; // Round to nearest 30 minutes
+    return `${hours}:${minutes.toString().padStart(2, '0')}`;
+  }
+
   const [sessionDetails, setSessionDetails] = useState({
-    session_date: formatDate(new Date()),
-    session_time: '05:30',
+    session_date: formatDate(getTomorrowDate()),
+    session_time: getCurrentTime(),
     session_duration: '60',
     session_type: 'Personal',
     session_fee: '2000',
@@ -82,7 +95,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
           <div>
             <label>Time:</label>
             <input
-              type="number"
+              type="time"
               value={sessionDetails.session_time}
               onChange={(e) => {
                 console.log(e.target.value)
@@ -102,13 +115,17 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
             />
           </div>
           <div>
-            <label>Type:</label>
-            <input
-              type="text"
-              value={sessionDetails.session_type}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_type: e.target.value })}
-              required
-            />
+            <div>
+              <label>Type:</label>
+              <select
+                value={sessionDetails.session_type}
+                onChange={(e) => setSessionDetails({ ...sessionDetails, session_type: e.target.value })}
+                required
+              >
+                <option value="Personal">Personal</option>
+                <option value="Group">Group</option>
+              </select>
+            </div>
           </div>
           <div>
             <label>Fee:</label>
