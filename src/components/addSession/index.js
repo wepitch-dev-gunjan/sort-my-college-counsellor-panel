@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { CiMenuKebab } from 'react-icons/ci';
 import "./style.scss";
@@ -36,10 +36,19 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
     session_time: getCurrentTime(),
     session_duration: '60',
     session_type: 'Personal',
-    session_fee: '2000',
+    session_fee: '0',
     session_status: 'Available',
     session_available_slots: '5',
   });
+
+  useEffect(() => {
+    // Update session_fee based on session_type
+    const updatedSessionDetails = {
+      ...sessionDetails,
+      session_fee: sessionDetails.session_type === 'Personal' ? '500' : '1000',
+    };
+    setSessionDetails(updatedSessionDetails);
+  }, [sessionDetails.session_type]);
 
   // useClickOutside(Ref, () => setAddMode(false));
 
@@ -106,6 +115,8 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
             <input
               type="number"
               step="15"
+              min="45"
+              max="90"
               value={sessionDetails.session_duration}
               onChange={(e) => setSessionDetails({ ...sessionDetails, session_duration: e.target.value })}
               required
@@ -129,6 +140,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
             <input
               type="number"
               step="100"
+              min={sessionDetails.session_type === 'Personal' ? "500" : "1000"} 
               value={sessionDetails.session_fee}
               onChange={(e) => setSessionDetails({ ...sessionDetails, session_fee: e.target.value })}
               required
