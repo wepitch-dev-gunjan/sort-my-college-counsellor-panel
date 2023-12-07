@@ -29,8 +29,9 @@ const DocumentItem = ({
 
   return (
     <div className="DocumentItem">
-      <div className="row">
-        <div className="col">
+      {/* changed by r  */}
+      <div className="row DocumentItemRow">
+        <div className="col DocumentItemCol">
           <div className="dropdown">
             <select
               onChange={handleFieldChange}
@@ -73,6 +74,7 @@ const DocumentItem = ({
           </div>
         </div>
       </div>
+      {/* changed by r  */}
     </div>
   );
 };

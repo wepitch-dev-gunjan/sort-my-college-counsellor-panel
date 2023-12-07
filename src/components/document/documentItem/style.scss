@@ -1,10 +1,18 @@
 .DocumentItem {
+  .DocumentItemRow{
+    width: 100%
+  }
+  // .DocumentItemCol{
+  //   width: 70%;
+  // }
   .row {
     .col {
       display: flex;
       justify-content: start;
       width: 100%;
-      gap: 12px;
+      // changed by r 
+      // gap: 12px;
+      // changed by r 
 
       .dropdown {
         width: 100%;
@@ -14,6 +22,10 @@
           font-size: 14px;
           border-radius: 8px;
           cursor: pointer;
+          // changed by r 
+          text-overflow: ellipsis;
+          width: 96%;
+          // changed by r
         }
       }
 
