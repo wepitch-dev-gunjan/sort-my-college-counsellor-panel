@@ -97,11 +97,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
             <input
               type="time"
               value={sessionDetails.session_time}
-              onChange={(e) => {
-                console.log(e.target.value)
-                setSessionDetails({ ...sessionDetails, session_time: e.target.value })
-              }
-              }
+              onChange={(e) => setSessionDetails({ ...sessionDetails, session_time: e.target.value })}
               required
             />
           </div>
@@ -146,6 +142,10 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
             />
           </div>
           <div>
+              
+              {
+                sessionDetails.session_type === 'Group' && 
+                <>
             <label>Available Slots:</label>
             <input
               type="number"
@@ -153,6 +153,8 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
               onChange={(e) => setSessionDetails({ ...sessionDetails, session_available_slots: e.target.value })}
               required
             />
+            </>}
+            
           </div>
         </div>
         <div className="edit-mode-bottom">
