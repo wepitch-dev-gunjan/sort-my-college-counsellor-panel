@@ -105,6 +105,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
             <label>Duration (in minutes):</label>
             <input
               type="number"
+              step="15"
               value={sessionDetails.session_duration}
               onChange={(e) => setSessionDetails({ ...sessionDetails, session_duration: e.target.value })}
               required
@@ -127,6 +128,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
             <label>Fee:</label>
             <input
               type="number"
+              step="100"
               value={sessionDetails.session_fee}
               onChange={(e) => setSessionDetails({ ...sessionDetails, session_fee: e.target.value })}
               required
