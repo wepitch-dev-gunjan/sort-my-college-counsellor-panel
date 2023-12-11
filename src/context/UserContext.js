@@ -1,14 +1,12 @@
 import React, { createContext, useState, useEffect } from "react";
-// import { useCookies } from "react-cookie";
-import Cookies from "js-cookie";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom"; // Assuming you are using React Router
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
-  // const [cookies, setCookie] = useCookies(["user"]);
-  const cookies = Cookies.get("user");
+  const [cookies, setCookie] = useCookies(["user"]);
   console.log(cookies)
   // Initialize the user state with the token and isLoggedIn properties
   const [user, setUser] = useState({
