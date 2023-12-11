@@ -13,7 +13,7 @@ const Session = () => {
     const { addMode, setAddMode } = useContext(SessionContext);
 
     const getResponse = async () => {
-        const { data } = await axios.get(`${backend_url}/${user._id}/sessions`, {});
+        const { data } = await axios.get(`${backend_url}/counsellor/${user._id}/sessions`, {});
         const { sessions } = data;
         setSessions(sessions);
     }

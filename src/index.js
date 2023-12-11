@@ -10,6 +10,7 @@ import { MediaQueryProvider } from "./context/MediaQueryContext";
 import { NotificationProvider } from "./context/NotificationContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { FeedbackProvider } from "./context/FeedbackContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,7 +21,9 @@ root.render(
           <SessionProvider>
             <ProfileProvider>
               <NotificationProvider>
-                <App />
+                <FeedbackProvider>
+                  <App />
+                </FeedbackProvider>
               </NotificationProvider>
             </ProfileProvider>
           </SessionProvider>

@@ -1,95 +1,26 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { UserContext } from "./UserContext";
+import axios from "axios";
+import { backend_url } from "../config";
 
 export const NotificationContext = createContext();
 
 export const NotificationProvider = ({ children }) => {
   const [notificationsEnable, setNotificationsEnable] = useState(false);
-  const [notifications, setNotifications] = useState([
-    {
-      _id: "12365451",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: true,
-    },
-    {
-      _id: "12365452",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: true,
-    },
-    {
-      _id: "12365453",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365454",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365455",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: true,
-    },
-    {
-      _id: "12365456",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365457",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365458",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365459",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365460",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365461",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365462",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365463",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-    {
-      _id: "12365464",
-      title: "New Follower",
-      message: "Naman followed you",
-      read: false,
-    },
-  ]);
+  const { user } = useContext(UserContext)
+
+  const [notifications, setNotifications] = useState([]);
+  const getNotifications = async () => {
+    const { data } = await axios.get(`${backend_url}/notification`, {
+      params: {
+        user_id: user._id
+      }
+    });
+    setNotifications(data.notifications)
+  }
+  useEffect(() => {
+    getNotifications()
+  }, [])
   return (
     <NotificationContext.Provider
       value={{

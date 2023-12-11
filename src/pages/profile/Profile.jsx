@@ -29,11 +29,10 @@ const Profile = () => {
   // Function to handle saving changes
   const handleSave = async () => {
     try {
-      const endpointUrl = `${backend_url}/${user._id}`; // Replace with your actual endpoint URL
+      const endpointUrl = `${backend_url}/counsellor/${user._id}`; // Replace with your actual endpoint URL
 
       const response = await axios.put(endpointUrl, profile);
       setProfile(response.data);
-      console.log(profile);
       setInitialUserProfileBackup(response.data);
       setEditProfileEnable(false);
       toast('Profile successfully saved');

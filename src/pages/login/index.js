@@ -26,7 +26,7 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     setIsLoadingLoginGoogle(true);
-    window.location.href = `${backend_url}/auth/google`;
+    window.location.href = `${backend_url}/counsellor/auth/google`;
   };
 
   const togglePasswordVisibility = () => {

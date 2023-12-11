@@ -26,7 +26,7 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.put(`${backend_url}/sessions/${sessionDetails._id}`, sessionDetails, {
+      const response = await axios.put(`${backend_url}/counsellor/sessions/${sessionDetails._id}`, sessionDetails, {
         headers: {
           Authorization: user.token
         }
@@ -55,7 +55,7 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
   const handleDelete = async () => {
     try {
       // Send an axios request to the server to delete the session
-      const response = await axios.delete(`${backend_url}/sessions/${session._id}`, {
+      const response = await axios.delete(`${backend_url}/counsellor/sessions/${session._id}`, {
         headers: {
           Authorization: user.token
         }

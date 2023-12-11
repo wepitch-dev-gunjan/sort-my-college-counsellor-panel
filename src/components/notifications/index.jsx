@@ -1,4 +1,4 @@
-import React, { useContext, useRef, forwardRef } from "react";
+import React, { useContext, useRef, forwardRef, useEffect } from "react";
 import "./style.scss";
 import Notification from "./notification";
 import { NotificationContext } from "../../context/NotificationContext";
@@ -11,18 +11,18 @@ const Notifications = forwardRef((_, ref) => {
   const { user } = useContext(UserContext);
 
   const handleNotificationClick = async (notificationId, i, read) => {
+    console.log(notificationId)
     if (!read) {
       try {
-        // Update the database via an API call using Axios
-        // await axios.put(
-        //   `${backend_url}/counsellor/notification/${notificationId}`,
-        //   { read: true },
-        //   {
-        //     headers: {
-        //       Authorization: user.token, // Fixed typo in Authorization
-        //     },
-        //   }
-        // );
+        await axios.put(
+          `${backend_url}/notification/${notificationId}`,
+          null,
+          {
+            params: {
+              user_id: user._id
+            }
+          }
+        );
 
         // Update local state and UI
         const updatedNotifications = [...notifications];

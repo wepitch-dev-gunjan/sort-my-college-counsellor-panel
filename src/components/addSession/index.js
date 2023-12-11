@@ -55,7 +55,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
   const handleCreateSession = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${backend_url}/sessions`, {
+      const response = await axios.post(`${backend_url}/counsellor/sessions`, {
         ...sessionDetails,
         counsellor_id: user.id,
       }, {
@@ -140,7 +140,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
             <input
               type="number"
               step="100"
-              min={sessionDetails.session_type === 'Personal' ? "500" : "1000"} 
+              min={sessionDetails.session_type === 'Personal' ? "500" : "1000"}
               value={sessionDetails.session_fee}
               onChange={(e) => setSessionDetails({ ...sessionDetails, session_fee: e.target.value })}
               required
@@ -156,19 +156,19 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
             />
           </div>
           <div>
-              
-              {
-                sessionDetails.session_type === 'Group' && 
-                <>
-            <label>Available Slots:</label>
-            <input
-              type="number"
-              value={sessionDetails.session_available_slots}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_available_slots: e.target.value })}
-              required
-            />
-            </>}
-            
+
+            {
+              sessionDetails.session_type === 'Group' &&
+              <>
+                <label>Available Slots:</label>
+                <input
+                  type="number"
+                  value={sessionDetails.session_available_slots}
+                  onChange={(e) => setSessionDetails({ ...sessionDetails, session_available_slots: e.target.value })}
+                  required
+                />
+              </>}
+
           </div>
         </div>
         <div className="edit-mode-bottom">

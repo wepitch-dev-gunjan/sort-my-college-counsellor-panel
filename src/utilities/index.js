@@ -18,4 +18,4 @@ export const handleInputInsideInputChange = (value, input1, input2, setProfile) 
       [input2]: value,
     },
   }));
-};
+}
