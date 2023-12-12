@@ -1,10 +1,18 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom"; // Assuming you are using React Router
+import { useLocation, useNavigate } from "react-router-dom"; // Assuming you are using React Router
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const location = useLocation()
+
+  const getTokenFromURL = () => {
+    const searchParams = new URLSearchParams(location.search);
+    return searchParams.get('token');
+  };
+
+  console.log(getTokenFromURL())
   const navigate = useNavigate();
   const [cookies, setCookie] = useCookies(["user"]);
   console.log(cookies)
