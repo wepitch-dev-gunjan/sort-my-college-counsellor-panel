@@ -1,33 +1,46 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useCookies } from "react-cookie";
 import { useLocation, useNavigate } from "react-router-dom"; // Assuming you are using React Router
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const location = useLocation()
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  // Function to extract token from URL query parameters
   const getTokenFromURL = () => {
     const searchParams = new URLSearchParams(location.search);
     return searchParams.get('token');
   };
 
-  console.log(getTokenFromURL())
-  const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(["user"]);
-  console.log(cookies)
-  // Initialize the user state with the token and isLoggedIn properties
-  const [user, setUser] = useState({
-    _id: cookies.user?._id || "",
-    name: cookies.user?.name || "Avatar",
-    email: cookies.user?.email || "demo.email@domain.com",
-    profile_pic:
-      cookies.user?.profile_pic ||
-      "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
-    token: cookies.token || "",
-    isLoggedIn: !!cookies.token,
-    // isLoggedIn: true,
-  });
+  // Get the token from the URL
+  const tokenFromURL = getTokenFromURL();
+
+  // Save the token to localStorage
+  useEffect(() => {
+    if (tokenFromURL) {
+      localStorage.setItem('token', tokenFromURL);
+      navigate("/"); // Redirect to the homepage or desired route after saving the token
+    }
+  }, [tokenFromURL, navigate]);
+
+  // Retrieve user information from localStorage
+  const storedUser = localStorage.getItem('user');
+  const [user, setUser] = useState(
+    storedUser ? JSON.parse(storedUser) : {
+      _id: "",
+      name: "Avatar",
+      email: "demo.email@domain.com",
+      profile_pic: "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
+      token: "",
+      isLoggedIn: false,
+    }
+  );
+
+  // Store user information in localStorage
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
 
   // Redirect to login page if there is no token
   useEffect(() => {
@@ -42,3 +55,4 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+
