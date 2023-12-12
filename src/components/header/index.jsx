@@ -15,7 +15,7 @@ const Header = ({ handleLogout }) => {
   useClickOutside(notificationRef, () => {
     setNotificationsEnable(false);
   })
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
   const { profile } = useContext(ProfileContext)
   const { setNotificationsEnable } = useContext(NotificationContext);
 
@@ -32,8 +32,8 @@ const Header = ({ handleLogout }) => {
           onClick={() => setNotificationsEnable((prev) => !prev)}
         />
         <ProfileDropDownMenu
-          name={user.name}
-          image={user.profile_pic}
+          name={profile.name}
+          image={profile.profile_pic}
           onClick={handleLogout}
         />
       </div>

@@ -18,15 +18,15 @@ root.render(
     <BrowserRouter>
       <MediaQueryProvider>
         <UserProvider>
-          <SessionProvider>
-            <ProfileProvider>
+          <ProfileProvider>
+            <SessionProvider>
               <NotificationProvider>
                 <FeedbackProvider>
                   <App />
                 </FeedbackProvider>
               </NotificationProvider>
-            </ProfileProvider>
-          </SessionProvider>
+            </SessionProvider>
+          </ProfileProvider>
         </UserProvider>
       </MediaQueryProvider>
     </BrowserRouter>

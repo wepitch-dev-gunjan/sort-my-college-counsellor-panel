@@ -7,45 +7,37 @@ export const UserProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Function to extract token from URL query parameters
-  const getTokenFromURL = () => {
-    const searchParams = new URLSearchParams(location.search);
-    return searchParams.get('token');
-  };
+  const getTokenFromURL = () => new URLSearchParams(location.search).get('token');
+  const getUserFromURL = () => new URLSearchParams(location.search).get('user');
 
-  // Get the token from the URL
   const tokenFromURL = getTokenFromURL();
+  const userFromURL = getUserFromURL();
 
-  // Save the token to localStorage
+  console.log(userFromURL)
   useEffect(() => {
-    if (tokenFromURL) {
+    if (tokenFromURL && userFromURL) {
       localStorage.setItem('token', tokenFromURL);
-      navigate("/"); // Redirect to the homepage or desired route after saving the token
+      localStorage.setItem('user', JSON.stringify(userFromURL)); // Storing a JSON object for user
+      console.log(userFromURL)
+      navigate("/dashboard");
     }
-  }, [tokenFromURL, navigate]);
+  }, [tokenFromURL, userFromURL, navigate]);
 
-  // Retrieve user information from localStorage
-  const storedUser = localStorage.getItem('user');
-  const [user, setUser] = useState(
-    storedUser ? JSON.parse(storedUser) : {
-      _id: "",
-      name: "Avatar",
-      email: "demo.email@domain.com",
-      profile_pic: "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
-      token: "",
-      isLoggedIn: false,
-    }
-  );
+  const storedToken = localStorage.getItem('token');
+  const storedUser = JSON.parse(localStorage.getItem('user')) || {}; // Parsing stored user data
 
-  // Store user information in localStorage
-  useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user));
-  }, [user]);
+  const [user, setUser] = useState({
+    _id: storedUser._id || "",
+    name: storedUser.name || "Avatar",
+    email: storedUser.email || "demo.email@domain.com",
+    profile_pic: storedUser.profile_pic || "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
+    token: storedToken || "",
+    isLoggedIn: !!storedToken,
+  });
 
-  // Redirect to login page if there is no token
   useEffect(() => {
     if (!user.isLoggedIn) {
-      navigate("/login"); // Adjust the path based on your route setup
+      navigate("/login");
     }
   }, [user.isLoggedIn, navigate]);
 
@@ -55,4 +47,5 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+
 

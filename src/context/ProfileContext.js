@@ -22,13 +22,10 @@ export const ProfileProvider = ({ children }) => {
       };
 
       fetchProfile();
-      console.log("profile", profile)
+      console.log(profile)
     }
   }, [user]);
 
-  useEffect(() => {
-    console.log("profile", profile);
-  }, [profile]);
   const [editProfileEnable, setEditProfileEnable] = useState(false)
   const [profilePicEditMode, setProfilePicEditMode] = useState(false);
   const [coverImageEditMode, setCoverImageEditMode] = useState(false);
