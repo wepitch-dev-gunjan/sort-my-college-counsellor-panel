@@ -9,7 +9,6 @@ import Profile from "./pages/profile/Profile";
 import Login from "./pages/login";
 import Header from "./components/header";
 import Sidebar from "./components/sidebar";
-import { useCookies } from "react-cookie";
 import Dashboard from "./pages/dashboard";
 import Users from "./pages/user";
 import Feedbacks from "./pages/feedbacks";
@@ -18,11 +17,8 @@ import Notifications from "./components/notifications";
 import { NotificationContext } from "./context/NotificationContext";
 import { useRef } from "react";
 import useClickOutside from "./customHooks/useClickOutside";
-import VerifyProfilePopup from "./components/verifyProfilePopup";
 import { ProfileContext } from "./context/ProfileContext";
 import { ToastContainer } from "react-toastify";
-
-// Example authentication state, you should replace this with your authentication logic
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -30,15 +26,12 @@ function App() {
   const { notificationsEnable, setNotificationsEnable } =
     useContext(NotificationContext);
   const { isLoggedIn } = user;
-  const [tokenCookie, setTokenCookie, removeTokenCookie] = useCookies([
-    "token",
-  ]);
-  const [userCookie, setUserCookie, removeUserCookie] = useCookies(["user"]);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    removeTokenCookie("token");
-    removeUserCookie("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setUser({ ...user, isLoggedIn: false });
     navigate("/login");
   };
