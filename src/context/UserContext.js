@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
   const userFromURL = getUserFromURL();
 
   const storedToken = localStorage.getItem('token') || '';
-  const storedUser = JSON.parse(localStorage.getItem('user')) || {}; // Parsing stored user data
+  const storedUser = JSON.parse(JSON.parse(localStorage.getItem('user'))) || {}; // Parsing stored user data
 
   const [user, setUser] = useState({
     _id: storedUser?._id || "",
