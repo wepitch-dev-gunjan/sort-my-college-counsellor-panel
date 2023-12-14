@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,8 +17,16 @@ export const UserProvider = ({ children }) => {
   const storedToken = localStorage.getItem('token') || '';
   const storedUser = JSON.parse(JSON.parse(localStorage.getItem('user'))) || {}; // Parsing stored user data
 
-  console.log(storedUser)
-  const [user, setUser] = useState({});
+  if (storedUser && storedToken) {
+    setUser({
+      _id: storedUser?._id,
+      name: storedUser?.name,
+      email: storedUser?.email,
+      profile_pic: storedUser?.profile_pic,
+      token: storedToken,
+      isLoggedIn: !!storedToken,
+    })
+  }
 
   useEffect(() => {
     if (tokenFromURL && userFromURL) {
