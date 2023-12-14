@@ -14,7 +14,7 @@ export const ProfileProvider = ({ children }) => {
       const fetchProfile = async () => {
         try {
           const response = await axios.get(`${backend_url}/counsellor/${user._id}`);
-          console.log(response.data[0])
+          console.log(profile, response.data[0])
           setProfile(response.data[0])
         } catch (err) {
           console.error('Error fetching profile:', err);

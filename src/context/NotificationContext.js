@@ -16,11 +16,12 @@ export const NotificationProvider = ({ children }) => {
         user_id: user._id
       }
     });
-    setNotifications(data.notifications)
+    setNotifications(data.notifications);
+    console.log(notifications)
   }
   useEffect(() => {
-    getNotifications()
-  }, [])
+    getNotifications();
+  }, [user])
   return (
     <NotificationContext.Provider
       value={{
