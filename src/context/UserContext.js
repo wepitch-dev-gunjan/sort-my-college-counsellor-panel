@@ -36,8 +36,6 @@ export const UserProvider = ({ children }) => {
           token: tokenFromURL,
           isLoggedIn: true,
         };
-        setIsAuthenticated(true);
-        setUser(updatedUser);
         resolve(updatedUser);
       } else {
         reject("Authentication failed");
@@ -48,9 +46,12 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     authenticateUser()
       .then((user) => {
+        setUser(updatedUser);
+        setIsAuthenticated(true);
         navigate("/dashboard");
       })
       .catch((error) => {
+        console.log(error)
         navigate("/login");
       });
   }, [navigate]);
