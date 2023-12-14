@@ -14,10 +14,10 @@ export const ProfileProvider = ({ children }) => {
       const fetchProfile = async () => {
         try {
           const response = await axios.get(`${backend_url}/counsellor/${user._id}`);
-          setProfile(response.data[0]);
+          console.log(response.data[0])
+          setProfile(response.data[0])
         } catch (err) {
           console.error('Error fetching profile:', err);
-          // Handle error by displaying a message or taking specific action
         }
       };
 
