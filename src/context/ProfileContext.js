@@ -10,7 +10,7 @@ export const ProfileProvider = ({ children }) => {
   const [profile, setProfile] = useState({});
 
   useEffect(() => {
-    if (user.isLoggedIn) {
+    if (user && user.isLoggedIn) {
       const fetchProfile = async () => {
         try {
           const response = await axios.get(`${backend_url}/counsellor/${user._id}`);
