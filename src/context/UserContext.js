@@ -46,7 +46,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     authenticateUser()
       .then((user) => {
-        setUser(updatedUser);
+        setUser(user);
         setIsAuthenticated(true);
         navigate("/dashboard");
       })
