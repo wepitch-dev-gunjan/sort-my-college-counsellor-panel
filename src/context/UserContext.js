@@ -17,18 +17,19 @@ export const UserProvider = ({ children }) => {
   const storedToken = localStorage.getItem('token') || '';
   const storedUser = JSON.parse(JSON.parse(localStorage.getItem('user'))) || {}; // Parsing stored user data
 
-  if (storedUser && storedToken) {
-    setUser({
-      _id: storedUser?._id,
-      name: storedUser?.name,
-      email: storedUser?.email,
-      profile_pic: storedUser?.profile_pic,
-      token: storedToken,
-      isLoggedIn: !!storedToken,
-    })
-  }
+
 
   useEffect(() => {
+    if (storedUser && storedToken) {
+      setUser({
+        _id: storedUser?._id,
+        name: storedUser?.name,
+        email: storedUser?.email,
+        profile_pic: storedUser?.profile_pic,
+        token: storedToken,
+        isLoggedIn: !!storedToken,
+      })
+    }
     if (tokenFromURL && userFromURL) {
       localStorage.setItem('token', tokenFromURL);
       localStorage.setItem('user', JSON.stringify(userFromURL));
