@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,7 +17,6 @@ export const UserProvider = ({ children }) => {
   const storedToken = localStorage.getItem('token') || '';
   const storedUser = JSON.parse(JSON.parse(localStorage.getItem('user'))) || {}; // Parsing stored user data
 
-  console.log(storedUser)
   const [user, setUser] = useState({
     _id: storedUser?._id || "",
     name: storedUser?.name || "Avatar",
@@ -39,6 +39,8 @@ export const UserProvider = ({ children }) => {
         isLoggedIn: true,
       });
       navigate("/dashboard");
+
+      setIsLoading(false)
     }
   }, [tokenFromURL, userFromURL, navigate]);
 
@@ -50,7 +52,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      {children}
+      {!isLoading && children}
     </UserContext.Provider>
   );
 };
