@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
   const storedToken = localStorage.getItem('token') || '';
   const storedUser = JSON.parse(JSON.parse(localStorage.getItem('user'))) || {}; // Parsing stored user data
 
+  console.log(storedUser)
   const [user, setUser] = useState({
     _id: storedUser?._id || "",
     name: storedUser?.name || "Avatar",

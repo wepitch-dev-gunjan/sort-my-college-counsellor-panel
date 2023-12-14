@@ -11,7 +11,6 @@ export const ProfileProvider = ({ children }) => {
 
   useEffect(() => {
     if (user.isLoggedIn) {
-      console.log(user._id + ' is logged in')
       const fetchProfile = async () => {
         try {
           const response = await axios.get(`${backend_url}/counsellor/${user._id}`);
@@ -23,7 +22,6 @@ export const ProfileProvider = ({ children }) => {
       };
 
       fetchProfile();
-      console.log(profile)
     }
   }, [user]);
 
