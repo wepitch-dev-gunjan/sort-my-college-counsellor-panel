@@ -11,17 +11,15 @@ export const FeedbackProvider = ({ children }) => {
 
   const getFeedbacks = async () => {
     try {
-      const { data } = await axios.get(`${backend_url}/counsellor/feedback/getall`,
-        null,
-        {
-          params: {
-            counsellor_id: user._id,
-            page: 1,
-            limit: 10
-          }
-        });
-      console.log(data)
-      setFeedbacks(data.data);
+      const { data } = await axios.get(`${backend_url}/counsellor/feedback/getall`, {
+        params: {
+          counsellor_id: user._id,
+          page: 1,
+          limit: 10
+        }
+      });
+      console.log('feedbacks:', data);
+      setFeedbacks(data);
     } catch (error) {
       // Handle errors here
       console.error("Error fetching feedbacks:", error);
@@ -34,7 +32,7 @@ export const FeedbackProvider = ({ children }) => {
 
   // Pass the feedbacks state as the value to the Provider
   return (
-    <FeedbackContext.Provider value={{ feedbacks }}>
+    <FeedbackContext.Provider value={{ feedbacks, getFeedbacks }}>
       {children}
     </FeedbackContext.Provider>
   );
