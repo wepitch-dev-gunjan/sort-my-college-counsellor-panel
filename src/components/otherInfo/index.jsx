@@ -14,6 +14,14 @@ const OtherInfo = ({
       handleInput('years_of_experience', value);
     }
   };
+
+  const handleCheckboxChange = (value) => {
+    const updatedDegrees = profile.degree_focused.includes(value)
+      ? profile.degree_focused.filter((degree) => degree !== value)
+      : [...profile.degree_focused, value];
+
+    handleArrayInputChange("degree_focused", updatedDegrees, setProfile);
+  };
   return (
     <div className="OtherInfo-container">
       <div className="heading">
@@ -112,15 +120,30 @@ const OtherInfo = ({
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <select
-                  value={profile.degree_focused}
-                  onChange={(e) => handleInput("degree_focused", e.target.value, setProfile)}
-                >
-                  <option value="UG">UG</option>
-                  <option value="PG">PG</option>
-                </select>
+                <>
+                <div className="ug">
+                  <label className="ug-text">
+                    <input
+                      type="checkbox"
+                      value="UG"
+                      checked={profile.degree_focused.includes("UG")}
+                      onChange={() => handleCheckboxChange("UG")}
+                    />
+                    UG
+                  </label>
+                  <label className="ug-text">
+                    <input
+                      type="checkbox"
+                      value="PG"
+                      checked={profile.degree_focused.includes("PG")}
+                      onChange={() => handleCheckboxChange("PG")}
+                    />
+                    PG
+                  </label>
+                  </div>
+                </>
               ) : (
-                <p>{profile.degree_focused}</p>
+                <p>{profile.degree_focused.join(", ")}</p>
               )}
             </div>
           </div>
