@@ -130,25 +130,7 @@ const Documents = ({
               ref={hiddenFileInput}
               style={{ display: "none" }}
             />
-            {editProfileEnable && (
-              <div className="up-icons">
-                <Tooltip title="Delete" placement="bottom">
-                  <div className="delete-icon" onClick={() => onDelete(index)}>
-                    <MdDeleteOutline size="16" />
-                  </div>
-                </Tooltip>
-              </div>
-            )}
           </div>
-          {editProfileEnable && (
-            <div className="up-icons">
-              <Tooltip title="Delete" placement="bottom">
-                <div className="delete-icon" onClick={() => onDelete()}>
-                  <MdDeleteOutline size="16" />
-                </div>
-              </Tooltip>
-            </div>
-          )}
         </div>
       </div>
       <div className="row">
@@ -168,25 +150,8 @@ const Documents = ({
               ref={hiddenFileInput}
               style={{ display: "none" }}
             />
-            {editProfileEnable && (
-              <div className="up-icons">
-                <Tooltip title="Delete" placement="bottom">
-                  <div className="delete-icon" onClick={() => onDelete(index)}>
-                    <MdDeleteOutline size="16" />
-                  </div>
-                </Tooltip>
-              </div>
-            )}
           </div>
-          {editProfileEnable && (
-            <div className="up-icons">
-              <Tooltip title="Delete" placement="bottom">
-                <div className="delete-icon" onClick={() => onDelete()}>
-                  <MdDeleteOutline size="16" />
-                </div>
-              </Tooltip>
-            </div>
-          )}
+          
         </div>
       </div>
     </div>

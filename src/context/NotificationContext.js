@@ -7,21 +7,21 @@ export const NotificationContext = createContext();
 
 export const NotificationProvider = ({ children }) => {
   const [notificationsEnable, setNotificationsEnable] = useState(false);
-  const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext);
 
   const [notifications, setNotifications] = useState([]);
   const getNotifications = async () => {
     const { data } = await axios.get(`${backend_url}/notification`, {
       params: {
-        user_id: user._id
-      }
+        user_id: user._id,
+      },
     });
     setNotifications(data.notifications);
-    console.log(notifications)
-  }
+    console.log(notifications);
+  };
   useEffect(() => {
-    getNotifications();
-  }, [user])
+    // getNotifications();
+  }, [user]);
   return (
     <NotificationContext.Provider
       value={{
