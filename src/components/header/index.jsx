@@ -15,7 +15,6 @@ const Header = ({ handleLogout }) => {
   useClickOutside(notificationRef, () => {
     setNotificationsEnable(false);
   })
-  // const { user } = useContext(UserContext);
   const { profile } = useContext(ProfileContext)
   const { setNotificationsEnable } = useContext(NotificationContext);
 

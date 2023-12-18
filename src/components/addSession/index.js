@@ -9,10 +9,14 @@ import dayjs from 'dayjs';
 import { DatePicker } from '@mui/x-date-pickers';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SessionContext } from '../../context/SessionContext';
+import { ImSpinner8 } from "react-icons/im";
+
 
 const AddSession = ({ session, setSessions, setAddMode }) => {
   const Ref = useRef(null);
   const { user } = useContext(UserContext);
+  const { sessionLoading, setSessionLoading } = useContext(SessionContext)
 
   const formatDate = (date) => {
     return dayjs(date).format('YYYY-MM-DD');
@@ -55,6 +59,8 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
   const handleCreateSession = async (event) => {
     event.preventDefault();
     try {
+      setSessionLoading(true);
+      console.log("session")
       const response = await axios.post(`${backend_url}/counsellor/sessions`, {
         ...sessionDetails,
         counsellor_id: user.id,
@@ -65,10 +71,12 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
       });
       console.log('Session created successfully', response.data);
       setSessions(prev => [...prev, response.data.session]);
-      setAddMode(false);
+      setSessionLoading(false);
+      setAddMode(false)
     } catch (error) {
       toast(error.response.data.error)
       console.error('An error occurred:', error.response.data);
+      // console.error('An error occurred:', error);
     }
   };
 
@@ -88,94 +96,107 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
 
   return (
     <div ref={Ref} className="session-item">
-      <form onSubmit={handleCreateSession} className='edit-mode-form'>
-        <div className="edit-mode-fields">
-          <div>
+      {
+        sessionLoading &&
+        <div className='spinner-container'>
+          <div className='spinner'>
+            <ImSpinner8 size='40' />
           </div>
-          <div>
-            <label>Date:</label>
-            <input
-              type="date"
-              value={sessionDetails.session_date}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_date: formatDate(e.target.value) })}
-              required
-            />
-          </div>
-          <div>
-            <label>Time:</label>
-            <input
-              type="time"
-              value={sessionDetails.session_time}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_time: e.target.value })}
-              required
-            />
-          </div>
-          <div>
-            <label>Duration (in minutes):</label>
-            <input
-              type="number"
-              step="15"
-              min="45"
-              max="90"
-              value={sessionDetails.session_duration}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_duration: e.target.value })}
-              required
-            />
-          </div>
-          <div>
+          <span>Adding Session..</span>
+        </div>
+
+      }
+      {
+        !sessionLoading &&
+        <form onSubmit={handleCreateSession} className='edit-mode-form'>
+          <div className="edit-mode-fields">
             <div>
-              <label>Type:</label>
-              <select
-                value={sessionDetails.session_type}
-                onChange={(e) => setSessionDetails({ ...sessionDetails, session_type: e.target.value })}
+            </div>
+            <div>
+              <label>Date:</label>
+              <input
+                type="date"
+                value={sessionDetails.session_date}
+                onChange={(e) => setSessionDetails({ ...sessionDetails, session_date: formatDate(e.target.value) })}
                 required
-              >
-                <option value="Personal">Personal</option>
-                <option value="Group">Group</option>
-              </select>
+              />
+            </div>
+            <div>
+              <label>Time:</label>
+              <input
+                type="time"
+                value={sessionDetails.session_time}
+                onChange={(e) => setSessionDetails({ ...sessionDetails, session_time: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <label>Duration (in minutes):</label>
+              <input
+                type="number"
+                step="15"
+                min="45"
+                max="90"
+                value={sessionDetails.session_duration}
+                onChange={(e) => setSessionDetails({ ...sessionDetails, session_duration: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <div>
+                <label>Type:</label>
+                <select
+                  value={sessionDetails.session_type}
+                  onChange={(e) => setSessionDetails({ ...sessionDetails, session_type: e.target.value })}
+                  required
+                >
+                  <option value="Personal">Personal</option>
+                  <option value="Group">Group</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label>Fee:</label>
+              <input
+                type="number"
+                step="100"
+                min={sessionDetails.session_type === 'Personal' ? "500" : "1000"}
+                value={sessionDetails.session_fee}
+                onChange={(e) => setSessionDetails({ ...sessionDetails, session_fee: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <label>Status:</label>
+              <input
+                type="text"
+                value={sessionDetails.session_status}
+                onChange={(e) => setSessionDetails({ ...sessionDetails, session_status: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+
+              {
+                sessionDetails.session_type === 'Group' &&
+                <>
+                  <label>Available Slots:</label>
+                  <input
+                    type="number"
+                    value={sessionDetails.session_available_slots}
+                    onChange={(e) => setSessionDetails({ ...sessionDetails, session_available_slots: e.target.value })}
+                    required
+                  />
+                </>}
+
             </div>
           </div>
-          <div>
-            <label>Fee:</label>
-            <input
-              type="number"
-              step="100"
-              min={sessionDetails.session_type === 'Personal' ? "500" : "1000"}
-              value={sessionDetails.session_fee}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_fee: e.target.value })}
-              required
-            />
+          <div className="edit-mode-bottom">
+            <button type="submit">Create Session</button>
+            <button type="button" onClick={handleCancel}>Cancel</button>
           </div>
-          <div>
-            <label>Status:</label>
-            <input
-              type="text"
-              value={sessionDetails.session_status}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_status: e.target.value })}
-              required
-            />
-          </div>
-          <div>
-
-            {
-              sessionDetails.session_type === 'Group' &&
-              <>
-                <label>Available Slots:</label>
-                <input
-                  type="number"
-                  value={sessionDetails.session_available_slots}
-                  onChange={(e) => setSessionDetails({ ...sessionDetails, session_available_slots: e.target.value })}
-                  required
-                />
-              </>}
-
-          </div>
-        </div>
-        <div className="edit-mode-bottom">
-          <button type="submit">Create Session</button>
-          <button type="button" onClick={handleCancel}>Cancel</button>
-        </div>
-      </form>
+        </form>
+      }
     </div>
   );
 };
