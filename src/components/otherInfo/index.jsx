@@ -15,12 +15,11 @@ const OtherInfo = ({
     }
   };
 
-  const handleCheckboxChange = (value) => {
+  const handleCheckboxChange = (fieldName, value) => {
     const updatedDegrees = profile.degree_focused.includes(value)
       ? profile.degree_focused.filter((degree) => degree !== value)
       : [...profile.degree_focused, value];
-
-    handleArrayInputChange("degree_focused", updatedDegrees, setProfile);
+    handleInput(fieldName, updatedDegrees, setProfile);
   };
   return (
     <div className="OtherInfo-container">
@@ -121,25 +120,25 @@ const OtherInfo = ({
             <div className="info-value">
               {editProfileEnable ? (
                 <>
-                <div className="ug">
-                  <label className="ug-text">
-                    <input
-                      type="checkbox"
-                      value="UG"
-                      checked={profile.degree_focused.includes("UG")}
-                      onChange={() => handleCheckboxChange("UG")}
-                    />
-                    UG
-                  </label>
-                  <label className="ug-text">
-                    <input
-                      type="checkbox"
-                      value="PG"
-                      checked={profile.degree_focused.includes("PG")}
-                      onChange={() => handleCheckboxChange("PG")}
-                    />
-                    PG
-                  </label>
+                  <div className="ug">
+                    <label className="ug-text">
+                      <input
+                        type="checkbox"
+                        value="UG"
+                        checked={profile.degree_focused.includes("UG")}
+                        onChange={(e) => handleCheckboxChange('degree_focused', e.target.value)}
+                      />
+                      UG
+                    </label>
+                    <label className="ug-text">
+                      <input
+                        type="checkbox"
+                        value="PG"
+                        checked={profile.degree_focused.includes("PG")}
+                        onChange={(e) => handleCheckboxChange('degree_focused', e.target.value)}
+                      />
+                      PG
+                    </label>
                   </div>
                 </>
               ) : (
