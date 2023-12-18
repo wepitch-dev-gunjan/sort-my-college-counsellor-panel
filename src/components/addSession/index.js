@@ -104,7 +104,6 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
           </div>
           <span>Adding Session..</span>
         </div>
-
       }
       {
         !sessionLoading &&
