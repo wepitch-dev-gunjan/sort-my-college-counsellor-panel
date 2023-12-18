@@ -50,14 +50,40 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <select
-                  value={profile.gender}
-                  onChange={(e) => handleInput("gender", e.target.value, setProfile)}
-                >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
+                <div className="gender-radio">
+                  <label className="gender-text">
+                    <input
+                      type="radio"
+                      value="male"
+                      checked={profile.gender === "male"}
+                      onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                    />
+                    Male
+                  </label>
+                  <label>
+                    <div className="gender-text">
+                    <input
+                      type="radio"
+                      value="female"
+                      checked={profile.gender === "female"}
+                      onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                    />
+                    Female
+                    </div>
+                  </label>
+                  <label>
+                    <div className="gender-text">
+                    <span><input
+                      type="radio"
+                      value="other"
+                      checked={profile.gender === "other"}
+                      onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                    />
+                    </span>
+                    Other
+                    </div>
+                  </label>
+                </div>
               ) : (
                 <p>{profile.gender}</p>
               )}

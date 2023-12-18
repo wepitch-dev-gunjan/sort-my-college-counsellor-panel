@@ -44,26 +44,25 @@ const OtherInfo = ({
         </div>
 
         <div className="row">
-          <div className="col">
-            <div className="info-field">
-              <p>Languages I know</p>
-            </div>
-            <div className="info-value">
-              {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={profile.languages_spoken.join(",")}
-                  onChange={e => handleArrayInputChange('languages_spoken', e.target.value, setProfile)}
-                />
-              ) : (
-                profile.languages_spoken?.map((language, i) => (
-                  <p key={i}>{`${language}${i < profile.languages_spoken.length - 1 ? "," : ""
-                    }`}</p>
-                ))
-              )}
-            </div>
+        <div className="col">
+          <div className="info-field">
+            <p>Languages I know</p>
+          </div>
+          <div className="info-value">
+            {editProfileEnable ? (
+              <input
+                type="text"
+                value={profile.languages_spoken ? profile.languages_spoken.join(",") : ""}
+                onChange={(e) => handleArrayInputChange('languages_spoken', e.target.value, setProfile)}
+              />
+            ) : (
+              profile.languages_spoken?.map((language, i) => (
+                <p key={i}>{`${language}${i < profile.languages_spoken.length - 1 ? "," : ""}`}</p>
+              ))
+            )}
           </div>
         </div>
+      </div>
 
         <div className="row">
           <div className="col">
@@ -111,68 +110,79 @@ const OtherInfo = ({
               <p>Degree focused</p>
             </div>
             <div className="info-value">
-              {editProfileEnable ? (
-                <select
-                  value={profile.degree_focused}
-                  onChange={(e) => handleInput("degree_focused", e.target.value, setProfile)}
-                >
-                  <option value="UG">UG</option>
-                  <option value="PG">PG</option>
-                </select>
-              ) : (
-                <p>{profile.degree_focused}</p>
-              )}
-            </div>
+            {editProfileEnable ? (
+              <div className="ug">
+                <label className="ug-text">
+                  <input
+                    type="checkbox"
+                    value="UG"
+                    // checked={profile.degree_focused.includes("UG")}
+                    onChange={(e) => handleArrayInputChange("degree_focused", e.target.checked ? ["UG", ...profile.degree_focused] : profile.degree_focused.filter(deg => deg !== "UG"), setProfile)}
+                  />
+                  UG
+                </label>
+                <label className="ug-text">
+                  <input
+                    type="checkbox"
+                    value="PG"
+                    // checked={profile.degree_focused.includes("PG")}
+                    onChange={(e) => handleArrayInputChange("degree_focused", e.target.checked ? ["PG", ...profile.degree_focused] : profile.degree_focused.filter(deg => deg !== "PG"), setProfile)}
+                  />
+                  PG
+                </label>
+              </div>
+            ) : (
+              <p>{profile.degree_focused.join(", ")}</p>
+            )}
           </div>
         </div>
+      </div>
 
 
-        <div className="info">
-          <div className="row">
-            <div className="col">
-              <div className="info-field">
-                <p>Locations focused</p>
-              </div>
-              <div className="info-value">
-                {editProfileEnable ? (
-                  <input
-                    type="text"
-                    value={profile.locations_focused.join(",")}
-                    onChange={e => handleArrayInputChange('locations_focused', e.target.value, setProfile)}
-                  />
-                ) : (
-                  profile.locations_focused?.map((locations_focused, i) => (
-                    <p key={i}>{`${locations_focused}${i < profile.locations_focused.length - 1 ? "," : ""
-                      }`}</p>
-                  ))
-                )}
-              </div>
-            </div>
+        
+      <div className="row">
+        <div className="col">
+          <div className="info-field">
+            <p>Locations focused</p>
+          </div>
+          <div className="info-value">
+            {editProfileEnable ? (
+              <input
+                type="text"
+                value={profile.locations_focused ? profile.locations_focused.join(",") : ""}
+                onChange={(e) => handleArrayInputChange('locations_focused', e.target.value, setProfile)}
+              />
+            ) : (
+              profile.locations_focused?.map((location, i) => (
+                <p key={i}>{`${location}${i < profile.locations_focused.length - 1 ? "," : ""}`}</p>
+              ))
+            )}
           </div>
         </div>
+      </div>
 
         <div className="info">
-          <div className="row">
-            <div className="col">
-              <div className="info-field">
-                <p>Courses focused</p>
-              </div>
-              <div className="info-value">
-                {editProfileEnable ? (
-                  <input
-                    type="text"
-                    value={profile.courses_focused.join(",")}
-                    onChange={e => handleArrayInputChange('courses_focused', e.target.value, setProfile)}
-                  />
-                ) : (
-                  profile.courses_focused?.map((courses_focused, i) => (
-                    <p key={i}>{`${courses_focused}${i < profile.courses_focused.length - 1 ? "," : ""
-                      }`}</p>
-                  ))
-                )}
-              </div>
-            </div>
+          
+      <div className="row">
+        <div className="col">
+          <div className="info-field">
+            <p>Courses focused</p>
           </div>
+          <div className="info-value">
+            {editProfileEnable ? (
+              <input
+                type="text"
+                value={profile.courses_focused ? profile.courses_focused.join(",") : ""}
+                onChange={(e) => handleArrayInputChange('courses_focused', e.target.value, setProfile)}
+              />
+            ) : (
+              profile.courses_focused?.map((course, i) => (
+                <p key={i}>{`${course}${i < profile.courses_focused.length - 1 ? "," : ""}`}</p>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
         </div>
 
 

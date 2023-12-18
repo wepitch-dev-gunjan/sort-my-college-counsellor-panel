@@ -27,6 +27,14 @@
         }
         .info-value {
           width: 100%;
+          .gender-radio{
+            .gender-text{
+              display: flex;
+              gap:8px ;
+            }
+            display: flex;
+            gap: 24px;
+          }
           input {
             z-index: 999;
             width: 100%;
