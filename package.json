@@ -20,6 +20,7 @@
     "pintura": "^0.3.10",
     "react": "^18.2.0",
     "react-avatar-editor": "^13.0.0",
+    "react-awesome-tags-input": "^1.0.5",
     "react-cookie": "^6.1.1",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
@@ -27,6 +28,9 @@
     "react-image-crop": "^10.1.8",
     "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
+    "react-tag-autocomplete": "^7.1.0",
+    "react-tag-input": "^6.8.1",
+    "react-tags-js": "^1.0.2",
     "react-toastify": "^9.1.3",
     "sass": "^1.69.1",
     "web-vitals": "^2.1.4"

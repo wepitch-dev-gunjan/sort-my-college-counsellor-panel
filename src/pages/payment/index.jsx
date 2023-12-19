@@ -1,5 +1,6 @@
 import "./style.scss"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Pagination from '../../components/pagination';
 
 
 const Payment = () => {
@@ -97,6 +98,18 @@ const Payment = () => {
     }
   ]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageLimit = 5; 
+  const indexOfLastPayment = currentPage * pageLimit;
+  const indexOfFirstPayment = indexOfLastPayment - pageLimit;
+  const currentPayments = payments.slice(indexOfFirstPayment, indexOfLastPayment);
+
+  // Handle page change
+  const handlePageChange = ({ currentPage, totalPages }) => {
+    if (currentPage >= 1 && currentPage <= totalPages) {
+      setCurrentPage(currentPage);
+    }
+  };
   return (
     <div className="Payments-container">
       <div className="heading sticky">
@@ -126,6 +139,12 @@ const Payment = () => {
             </div>
           ))}
         </div>
+        <Pagination
+          totalRecords={payments.length}
+          pageLimit={pageLimit}
+          pageNeighbours={2}
+          onPageChanged={handlePageChange}
+        />
       </div>
     </div>
   )

@@ -1,6 +1,8 @@
 import "./style.scss";
+
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import { handleArrayInputChange, handleInput } from "../../utilities";
+
 
 const OtherInfo = ({
   profile,
@@ -15,12 +17,24 @@ const OtherInfo = ({
     }
   };
 
+ 
+
+  const handleLocationCheckboxChange = (fieldName, value) => {
+    const updatedLocations = profile.locations_focused.includes(value)
+      ? profile.locations_focused.filter((location) => location !== value)
+      : [...profile.locations_focused, value];
+    handleInput(fieldName, updatedLocations, setProfile);
+  };
+
+
   const handleCheckboxChange = (fieldName, value) => {
     const updatedDegrees = profile.degree_focused.includes(value)
       ? profile.degree_focused.filter((degree) => degree !== value)
       : [...profile.degree_focused, value];
     handleInput(fieldName, updatedDegrees, setProfile);
   };
+
+
   return (
     <div className="OtherInfo-container">
       <div className="heading">
@@ -73,25 +87,40 @@ const OtherInfo = ({
         </div>
 
         <div className="row">
-          <div className="col">
-            <div className="info-field">
-              <p>Nationality</p>
-            </div>
-            <div className="info-value">
-              {editProfileEnable ? (
-                <select
-                  value={profile.nationality}
-                  onChange={(e) => handleInput('nationality', e.target.value, setProfile)}
-                >
-                  <option value="Indian">Indian</option>
-                  <option value="Foreign">Foreign</option>
-                </select>
-              ) : (
-                <p>{profile.nationality}</p>
-              )}
-            </div>
-          </div>
+        <div className="col">
+        <div className="info-field">
+            <p>Nationality</p>
         </div>
+       <div className="info-value">
+        {editProfileEnable ? (
+        <>
+        <div className="ug">
+          <label className="ug-text">
+            <input
+              type="radio"
+              value="Indian"
+              checked={profile.nationality === "Indian"}
+              onChange={(e) => handleCheckboxChange('nationality', e.target.value)}
+            />
+            Indian
+          </label>
+          <label className="ug-text">
+            <input
+              type="radio"
+              value="Foreign"
+              checked={profile.nationality === "Foreign"}
+              onChange={(e) => handleCheckboxChange('nationality', e.target.value)}
+            />
+            Foreign
+          </label>
+          </div>
+        </>
+      ) : (
+        <p>{profile.nationality}</p>
+      )}
+    </div>
+  </div>
+</div>
 
         <div className="row">
           <div className="col">
@@ -149,26 +178,38 @@ const OtherInfo = ({
         </div>
 
 
-        <div className="info">
-          <div className="row">
-            <div className="col">
-              <div className="info-field">
-                <p>Locations focused</p>
-              </div>
-              <div className="info-value">
-                {editProfileEnable ? (
-                  <input
-                    type="text"
-                    value={profile.locations_focused.join(",")}
-                    onChange={e => handleArrayInputChange('locations_focused', e.target.value, setProfile)}
-                  />
-                ) : (
-                  profile.locations_focused?.map((locations_focused, i) => (
-                    <p key={i}>{`${locations_focused}${i < profile.locations_focused.length - 1 ? "," : ""
-                      }`}</p>
-                  ))
-                )}
-              </div>
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Locations focused</p>
+            </div>
+            <div className="info-value">
+              {editProfileEnable ? (
+                <div className="ug">
+                  <label className="ug-text">
+                    <input
+                      type="checkbox"
+                      value="India"
+                      checked={profile.locations_focused.includes("India")}
+                      onChange={(e) => handleLocationCheckboxChange('locations_focused', e.target.value)}
+                    />
+                    India
+                  </label>
+                  <label className="ug-text">
+                    <input
+                      type="checkbox"
+                      value="Abroad"
+                      checked={profile.locations_focused.includes("Abroad")}
+                      onChange={(e) => handleLocationCheckboxChange('locations_focused', e.target.value)}
+                    />
+                    Abroad
+                  </label>
+                </div>
+              ) : (
+                profile.locations_focused?.map((location, i) => (
+                  <p key={i}>{`${location}${i < profile.locations_focused.length - 1 ? "," : ""}`}</p>
+                ))
+              )}
             </div>
           </div>
         </div>

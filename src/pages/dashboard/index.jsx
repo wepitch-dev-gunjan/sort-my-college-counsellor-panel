@@ -16,7 +16,6 @@ const Dashboard = () => {
             <Widget heading="USERS" value="1000" />
             <Widget heading="INCOME" value="$10000" />
             <Widget heading="SESSIONS" value="1000" />
-            <Widget heading="REWARD POINTS" value="100" />
           </div>
         </div>
 
