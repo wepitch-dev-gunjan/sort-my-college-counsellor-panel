@@ -11,18 +11,18 @@ export const NotificationProvider = ({ children }) => {
 
   const [notifications, setNotifications] = useState([]);
   const getNotifications = async () => {
-    console.log(user)
-    const { data } = await axios.get(`${backend_url}/notification`, {
-      params: {
-        user_id: user._id,
-      },
-    });
+    const { data } = await axios.get(`${backend_url}/notification`,
+      {
+        params: {
+          user_id: user._id,
+        },
+      });
     setNotifications(data.notifications);
   };
 
   useEffect(() => {
     getNotifications()
-  }, []);
+  }, [user]);
   return (
     <NotificationContext.Provider
       value={{
