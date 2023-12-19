@@ -142,7 +142,7 @@ const OtherInfo = ({
                   </div>
                 </>
               ) : (
-                <p>{profile.degree_focused.join(", ")}</p>
+                <p>{Array.isArray(profile.degree_focused) ? profile.degree_focused.join(", ") : ''}</p>
               )}
             </div>
           </div>
