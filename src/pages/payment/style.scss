@@ -37,8 +37,9 @@
   padding: 20px;
   width: 100%;
 
-  Pagination{
+  .pagination{
     display: flex;
+    justify-content: center;
   }
   .top {
     display: flex;

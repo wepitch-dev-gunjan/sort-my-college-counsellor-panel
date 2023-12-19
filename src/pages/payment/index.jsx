@@ -1,6 +1,6 @@
+import { Pagination } from "@mui/material";
 import "./style.scss"
-import { useState, useEffect } from 'react';
-import Pagination from '../../components/pagination';
+import { useState } from 'react';
 
 
 const Payment = () => {
@@ -97,19 +97,19 @@ const Payment = () => {
       status: 'Delivered'
     }
   ]);
-
+  
+  const entriesPerPage = 5; // Set the number of entries per page
   const [currentPage, setCurrentPage] = useState(1);
-  const pageLimit = 5; 
-  const indexOfLastPayment = currentPage * pageLimit;
-  const indexOfFirstPayment = indexOfLastPayment - pageLimit;
+
+  const indexOfLastPayment = currentPage * entriesPerPage;
+  const indexOfFirstPayment = indexOfLastPayment - entriesPerPage;
+
   const currentPayments = payments.slice(indexOfFirstPayment, indexOfLastPayment);
 
-  // Handle page change
-  const handlePageChange = ({ currentPage, totalPages }) => {
-    if (currentPage >= 1 && currentPage <= totalPages) {
-      setCurrentPage(currentPage);
-    }
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);
   };
+ 
   return (
     <div className="Payments-container">
       <div className="heading sticky">
@@ -123,9 +123,7 @@ const Payment = () => {
         </div>
       </div>
       <div className='RecentPayments-container'>
-
         <div className="table">
-
           {payments.map((payment, i) => (
             <div className='row' key={i}>
               <div className='col'>{payment.id}</div>
@@ -139,12 +137,14 @@ const Payment = () => {
             </div>
           ))}
         </div>
+        <div className="pagination">
         <Pagination
-          totalRecords={payments.length}
-          pageLimit={pageLimit}
-          pageNeighbours={2}
-          onPageChanged={handlePageChange}
-        />
+            count={Math.ceil(payments.length / entriesPerPage)}
+            page={currentPage}
+            onChange={handlePageChange}
+            size="large"
+          />
+        </div>
       </div>
     </div>
   )

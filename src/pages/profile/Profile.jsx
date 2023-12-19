@@ -65,6 +65,7 @@ const Profile = () => {
             Edit profile
           </div>
         </div>
+        <br />
         <div className="profile-info">
           <div className="top">
             <h1>{profile.name}</h1>

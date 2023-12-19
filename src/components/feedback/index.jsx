@@ -1,23 +1,14 @@
 import React, { useState } from 'react';
 import { Rating } from '@mui/material';
 import './style.scss';
-import Pagination from '../pagination';
 
 const Feedback = ({ feedbackData }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageLimit = 5; // Set the number of feedback items per page
-
-  // Calculate the start and end indices for the current page
-  const startIndex = (currentPage - 1) * pageLimit;
-  const endIndex = startIndex + pageLimit;
-
+ 
+ 
   // Get the feedback items for the current page
-  const currentFeedback = feedbackData.slice(startIndex, endIndex);
+  const currentFeedback = feedbackData.slice();
 
-  const handlePageChange = (data) => {
-    setCurrentPage(data.currentPage);
-  };
-
+  
   return (
     <div className='Feedback-container'>
       {currentFeedback.map((feedback) => (
@@ -39,12 +30,6 @@ const Feedback = ({ feedbackData }) => {
         </div>
       ))}
 
-      <Pagination
-        totalRecords={feedbackData.length}
-        pageLimit={pageLimit}
-        pageNeighbours={1}
-        onPageChanged={handlePageChange}
-      />
     </div>
   );
 };
