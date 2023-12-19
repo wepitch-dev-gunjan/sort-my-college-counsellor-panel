@@ -8,6 +8,7 @@ import { backend_url } from '../../config';
 import useClickOutside from '../../customHooks/useClickOutside';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
+import { toast } from 'react-toastify';
 
 const SessionCard = ({ session, setSessions, getResponse }) => {
   const menuRef = useRef(null)
@@ -55,19 +56,20 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
   const handleDelete = async () => {
     try {
       // Send an axios request to the server to delete the session
-      const response = await axios.delete(`${backend_url}/counsellor/sessions/${session._id}`, {
+      const { data } = await axios.delete(`${backend_url}/counsellor/sessions/${session._id}`, {
         headers: {
           Authorization: user.token
         }
       });
-      console.log('Session deleted successfully', response.data);
-      // You can add further actions here upon successful response
+      toast(data.message);
       getResponse();
     } catch (error) {
+      toast(error.message);
       console.error('An error occurred:', error);
     }
   };
 
+  console.log(session)
   return (
     <div className="session-item">
       <div className="top">

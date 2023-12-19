@@ -73,7 +73,9 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
       setSessions(prev => [...prev, response.data.session]);
       setSessionLoading(false);
       setAddMode(false)
+      toast('Session created successfully')
     } catch (error) {
+      setSessionLoading(false);
       toast(error.response.data.error)
       console.error('An error occurred:', error.response.data);
       // console.error('An error occurred:', error);

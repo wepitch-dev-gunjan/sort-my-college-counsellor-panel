@@ -39,7 +39,7 @@ const Session = () => {
                     </div>
                     <div className="sessionList">
                         {sessions?.map((session) => (
-                            <SessionItem key={session.id} session={session} setSessions={setSessions} getResponse={getResponse} />
+                            <SessionItem key={session._id} session={session} setSessions={setSessions} getResponse={getResponse} />
                         ))}
                     </div>
                 </div>
