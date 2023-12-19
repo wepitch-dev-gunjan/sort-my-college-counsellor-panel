@@ -19,9 +19,13 @@ import { useRef } from "react";
 import useClickOutside from "./customHooks/useClickOutside";
 import { ProfileContext } from "./context/ProfileContext";
 import { ToastContainer } from "react-toastify";
+import { SessionContext } from "./context/SessionContext";
+import AddSession from "./components/addSession";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
+  const { addMode, setAddMode, sessions, setSessions } =
+    useContext(SessionContext);
   const notificationRef = useRef(null);
   const { notificationsEnable, setNotificationsEnable } =
     useContext(NotificationContext);
@@ -42,10 +46,21 @@ function App() {
 
   return (
     <div>
+      {addMode && (
+        <div className="add-session-container">
+          <AddSession
+            sessions={sessions}
+            setSessions={setSessions}
+            setAddMode={setAddMode}
+          />
+        </div>
+      )}
       {isLoggedIn && <Header handleLogout={handleLogout} />}
       <div className="main">
         <ToastContainer />
+
         {notificationsEnable && <Notifications ref={notificationRef} />}
+
         {isLoggedIn && <Sidebar />}
         <div className={`${isLoggedIn && "main-content"}`}>
           <Routes>

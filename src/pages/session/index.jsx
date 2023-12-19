@@ -34,9 +34,9 @@ const Session = () => {
                     </div>
                 </div>
                 <div className="sessionContainer">
-                    <div className="add-session">
+                    {/* <div className="add-session">
                         {addMode && <AddSession sessions={sessions} setSessions={setSessions} setAddMode={setAddMode} />}
-                    </div>
+                    </div> */}
                     <div className="sessionList">
                         {sessions?.map((session) => (
                             <SessionItem key={session._id} session={session} setSessions={setSessions} getResponse={getResponse} />
