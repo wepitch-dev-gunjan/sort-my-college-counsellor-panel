@@ -54,7 +54,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
     setSessionDetails(updatedSessionDetails);
   }, [sessionDetails.session_type]);
 
-  // useClickOutside(Ref, () => setAddMode(false));
+  useClickOutside(Ref, () => setAddMode(false));
 
   const handleCreateSession = async (event) => {
     event.preventDefault();
@@ -76,6 +76,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
       toast('Session created successfully')
     } catch (error) {
       setSessionLoading(false);
+      setAddMode(false)
       toast(error.response.data.error)
       console.error('An error occurred:', error.response.data);
       // console.error('An error occurred:', error);

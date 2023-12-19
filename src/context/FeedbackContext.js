@@ -18,17 +18,15 @@ export const FeedbackProvider = ({ children }) => {
           limit: 10
         }
       });
-      console.log('feedbacks:', data);
       setFeedbacks(data);
     } catch (error) {
-      // Handle errors here
       console.error("Error fetching feedbacks:", error);
     }
   };
 
   useEffect(() => {
     getFeedbacks();
-  }, []);
+  }, [user]);
 
   // Pass the feedbacks state as the value to the Provider
   return (
