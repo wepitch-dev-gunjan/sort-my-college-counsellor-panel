@@ -1,6 +1,8 @@
+const NODE_ENV = 'production'
+
 module.exports = {
-  frontend_url: "https://counsellor.sortmycollege.com",
-  // backend_url: 'https://localhost:9000/counsellor',
-  backend_url: "http://localhost:9000",
-  // backend_url: 'https://server.sortmycollege.com'
+  frontend_url: NODE_ENV === "production" ? "https://counsellor.sortmycollege.com" :
+    'https://localhost:9000/counsellor',
+  backend_url: NODE_ENV === "production" ? 'https://server.sortmycollege.com' :
+    "http://localhost:9000",
 };
