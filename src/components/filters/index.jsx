@@ -8,11 +8,11 @@ const Filters = () => {
   const [selectedStatus, setSelectedStatus] = useState('');
   const [sessionFee, setSessionFee] = useState([200, 5000]);
 
-const handleFeeChange = (e) => {
+  const handleFeeChange = (e) => {
     setSessionFee(e.target.value);
-    if(sessionFee[0] < sessionFee[1])
-        setSessionFee([sessionFee[0] - 100, sessionFee[1] ])
-}
+    if (sessionFee[0] >= sessionFee[1])
+      setSessionFee([sessionFee[0] - 100, sessionFee[1]])
+  }
 
   const handleTypeChange = (event) => {
     setSelectedType(event.target.value);
@@ -102,7 +102,10 @@ const handleFeeChange = (e) => {
           />
           <div className="values">
             {sessionFee.map((element, i) => (
-                <span key={i}><FaIndianRupeeSign />{element}</span>
+              <span key={i}>
+                <FaIndianRupeeSign size={12} />
+                {element}
+              </span>
             ))}
           </div>
         </Box>

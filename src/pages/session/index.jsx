@@ -24,7 +24,7 @@ const Session = () => {
         setSessions(sessions);
     }
 
-    
+
 
     useEffect(() => {
         getResponse();
@@ -36,8 +36,8 @@ const Session = () => {
                 <div className="session-header">
                     <div className="left">
                         <h1>Filtres</h1>
-                       <Filters />
-                      
+                        <Filters />
+
                     </div>
                 </div>
                 <div className="sessionContainer">
