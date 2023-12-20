@@ -13,7 +13,12 @@ export const ProfileProvider = ({ children }) => {
     if (user && user.isLoggedIn) {
       const fetchProfile = async () => {
         try {
-          const response = await axios.get(`${backend_url}/counsellor/${user._id}`);
+          const response = await axios.get(`${backend_url}/counsellor/${user._id}`,
+            {
+              headers: {
+                Authorization: user.token
+              }
+            });
           setProfile(response.data[0])
         } catch (err) {
           console.error('Error fetching profile:', err);
