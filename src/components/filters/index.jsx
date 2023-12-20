@@ -10,8 +10,8 @@ const Filters = () => {
 
 const handleFeeChange = (e) => {
     setSessionFee(e.target.value);
-    if(sessionFee[0] >= sessionFee[1])
-        setSessionFee([sessionFee[0] - 100, sessionFee[1]])
+    if(sessionFee[0] < sessionFee[1])
+        setSessionFee([sessionFee[0] - 100, sessionFee[1] ])
 }
 
   const handleTypeChange = (event) => {

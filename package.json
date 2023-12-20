@@ -23,6 +23,7 @@
     "react-avatar-editor": "^13.0.0",
     "react-awesome-tags-input": "^1.0.5",
     "react-cookie": "^6.1.1",
+    "react-date-range": "^1.4.0",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
