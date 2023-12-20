@@ -5,9 +5,15 @@ import { UserContext } from "../../context/UserContext"
 import { useContext, useState } from "react"
 import { backend_url } from "../../config"
 import { useEffect } from "react"
-import AddSession from "../../components/addSession"
+import AddSession from "../../components/addSession";
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { SessionContext } from "../../context/SessionContext"
+import dayjs from "dayjs"
+import Filters from "../../components/filters"
 const Session = () => {
+    const [sessionFilters, setSessionFilters] = useState({
+        date_range: "12-11-2023"
+    });
     const [sessions, setSessions] = useState([]);
     const { user } = useContext(UserContext);
     const { addMode, setAddMode } = useContext(SessionContext);
@@ -17,6 +23,8 @@ const Session = () => {
         const { sessions } = data;
         setSessions(sessions);
     }
+
+    
 
     useEffect(() => {
         getResponse();
@@ -28,9 +36,8 @@ const Session = () => {
                 <div className="session-header">
                     <div className="left">
                         <h1>Filtres</h1>
-                    </div>
-                    <div className="right">
-
+                       <Filters />
+                      
                     </div>
                 </div>
                 <div className="sessionContainer">
