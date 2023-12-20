@@ -2,22 +2,15 @@ import React, { useState } from 'react';
 import './style.scss';
 import { Box, Slider } from '@mui/material';
 import { FaIndianRupeeSign } from "react-icons/fa6";
-import { DateRange } from 'react-date-range';
 
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import { DateRangePicker } from 'rsuite';
 
 const Filters = () => {
   const [selectedType, setSelectedType] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
   const [sessionFee, setSessionFee] = useState([200, 5000]);
-  const [dateRange, setDateRange] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
 
   const handleFeeChange = (e, newValue) => {
     setSessionFee(newValue);
@@ -33,37 +26,6 @@ const Filters = () => {
   const handleStatusChange = (event) => {
     setSelectedStatus(event.target.value);
   };
-
-  const handleDateRangeChange = (ranges) => {
-    setDateRange([ranges.selection]);
-  };
-
-  const feeMarks = [
-    {
-      value: 0,
-      label: '0',
-    },
-    {
-      value: 500,
-      label: '500',
-    },
-    {
-      value: 1000,
-      label: '1000',
-    },
-    {
-      value: 1500,
-      label: '1500',
-    },
-    {
-      value: 2000,
-      label: '2000',
-    },
-  ];
-
-  function valuetxt(value) {
-    return `${value}`;
-  }
 
   const marks = [
     {
@@ -125,10 +87,7 @@ const Filters = () => {
       </div>
       <div className="date-range">
         <p>Select Date Range</p>
-        <DateRange
-          ranges={dateRange}
-          onChange={handleDateRangeChange}
-        />
+
       </div>
       <div className="duration">
         <p>Session duration</p>

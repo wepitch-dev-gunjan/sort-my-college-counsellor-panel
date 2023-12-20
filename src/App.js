@@ -17,7 +17,6 @@ import Notifications from "./components/notifications";
 import { NotificationContext } from "./context/NotificationContext";
 import { useRef } from "react";
 import useClickOutside from "./customHooks/useClickOutside";
-import { ProfileContext } from "./context/ProfileContext";
 import { ToastContainer } from "react-toastify";
 import { SessionContext } from "./context/SessionContext";
 import AddSession from "./components/addSession";
