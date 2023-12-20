@@ -2,17 +2,29 @@ import React, { useState } from 'react';
 import './style.scss';
 import { Box, Slider } from '@mui/material';
 import { FaIndianRupeeSign } from "react-icons/fa6";
+import { DateRange } from 'react-date-range';
+
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const Filters = () => {
   const [selectedType, setSelectedType] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
   const [sessionFee, setSessionFee] = useState([200, 5000]);
+  const [dateRange, setDateRange] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection',
+    },
+  ]);
 
-  const handleFeeChange = (e) => {
-    setSessionFee(e.target.value);
-    if (sessionFee[0] >= sessionFee[1])
-      setSessionFee([sessionFee[0] - 100, sessionFee[1]])
-  }
+  const handleFeeChange = (e, newValue) => {
+    setSessionFee(newValue);
+    if (newValue[0] >= newValue[1]) {
+      setSessionFee([newValue[0] - 100, newValue[1]]);
+    }
+  };
 
   const handleTypeChange = (event) => {
     setSelectedType(event.target.value);
@@ -20,6 +32,10 @@ const Filters = () => {
 
   const handleStatusChange = (event) => {
     setSelectedStatus(event.target.value);
+  };
+
+  const handleDateRangeChange = (ranges) => {
+    setDateRange([ranges.selection]);
   };
 
   const feeMarks = [
@@ -102,23 +118,24 @@ const Filters = () => {
           />
           <div className="values">
             {sessionFee.map((element, i) => (
-              <span key={i}>
-                <FaIndianRupeeSign size={12} />
-                {element}
-              </span>
+              <span key={i}><FaIndianRupeeSign />{element}</span>
             ))}
           </div>
         </Box>
       </div>
       <div className="date-range">
-
+        <p>Select Date Range</p>
+        <DateRange
+          ranges={dateRange}
+          onChange={handleDateRangeChange}
+        />
       </div>
       <div className="duration">
         <p>Session duration</p>
         <Box sx={{ width: 250 }}>
           <Slider
             aria-label="Duration"
-            defaultValue={45} // Set the starting point to 45 minutes
+            defaultValue={45}
             getAriaValueText={valuetext}
             step={null}
             marks={marks}
