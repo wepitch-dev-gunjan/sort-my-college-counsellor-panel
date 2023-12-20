@@ -6,7 +6,13 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 const Filters = () => {
   const [selectedType, setSelectedType] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
-  const [sessionFee, setSessionFee] = useState([0, 0]);
+  const [sessionFee, setSessionFee] = useState([200, 5000]);
+
+const handleFeeChange = (e) => {
+    setSessionFee(e.target.value);
+    if(sessionFee[0] >= sessionFee[1])
+        setSessionFee([sessionFee[0] - 100, sessionFee[1]])
+}
 
   const handleTypeChange = (event) => {
     setSelectedType(event.target.value);
@@ -89,7 +95,7 @@ const Filters = () => {
         <Box sx={{ width: 200 }}>
           <Slider
             value={sessionFee}
-            onChange={(e) => setSessionFee(e.target.value)}
+            onChange={handleFeeChange}
             min={200}
             max={5000}
             step={100}
