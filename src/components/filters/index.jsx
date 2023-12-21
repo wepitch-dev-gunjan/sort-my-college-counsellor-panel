@@ -10,7 +10,7 @@ import DateRangePicker from './dateRangePicker';
 const Filters = () => {
   const [selectedType, setSelectedType] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
-  const [sessionFee, setSessionFee] = useState([200, 5000]);
+  const [sessionFee, setSessionFee] = useState([0, 5000]);
 
   const handleFeeChange = (e, newValue) => {
     setSessionFee(newValue);
@@ -74,7 +74,7 @@ const Filters = () => {
           <Slider
             value={sessionFee}
             onChange={handleFeeChange}
-            min={200}
+            min={0}
             max={5000}
             step={100}
           />
@@ -106,9 +106,11 @@ const Filters = () => {
       <div className="status">
         <p>Session Status</p>
         <select value={selectedStatus} onChange={handleStatusChange}>
-          <option value="">Select status</option>
-          <option value="personal">Available</option>
-          <option value="group">Booked</option>
+          {/* <option value="">Select status</option> */}
+          <option value="available">Available</option>
+          <option value="booked">Booked</option>
+          <option value="rescheduled">Rescheduled</option>
+          <option value="cancelled">Cancelled</option>
         </select>
       </div>
     </div>

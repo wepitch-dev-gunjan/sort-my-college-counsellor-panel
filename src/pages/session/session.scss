@@ -10,6 +10,7 @@
   }
   .sessionContainer {
     flex: 6;
+    overflow-y: auto;
   }
   .sessionList {
     display: flex;

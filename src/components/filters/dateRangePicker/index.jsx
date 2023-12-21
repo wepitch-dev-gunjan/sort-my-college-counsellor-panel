@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.scss';
-import { DatePicker } from '@mui/x-date-pickers';
+import { DatePicker, MobileDatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en'; // Import the locale if not already done
 
@@ -21,7 +21,7 @@ const DateRangePicker = () => {
   return (
     <div className="DateRangePicker-container">
       <div className="start-date">
-        <DatePicker
+        <MobileDatePicker
           label="Start Date"
           value={dayjs(dates.startDate)}
           onChange={(value) => handleStartDateChange(value)}
@@ -29,7 +29,7 @@ const DateRangePicker = () => {
       </div>
       -
       <div className="end-date">
-        <DatePicker
+        <MobileDatePicker
           label="End Date"
           value={dayjs(dates.endDate)}
           onChange={(value) => handleEndDateChange(value)}
