@@ -7,20 +7,20 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import DateRangePicker from './dateRangePicker';
 
-const Filters = () => {
-  const [selectedType, setSelectedType] = useState('');
+const Filters = ({ sessionFilters, setSessionFilters }) => {
   const [selectedStatus, setSelectedStatus] = useState('');
   const [sessionFee, setSessionFee] = useState([0, 5000]);
 
+  console.log(sessionFilters)
   const handleFeeChange = (e, newValue) => {
-    setSessionFee(newValue);
+    setSessionFilters(prev => ({ ...prev, session_fee: newValue }));
     if (newValue[0] >= newValue[1]) {
-      setSessionFee([newValue[0] - 100, newValue[1]]);
+      setSessionFilters(prev => ({ ...prev, session_fee: [newValue[0] - 100, newValue[1]] }));
     }
   };
 
   const handleTypeChange = (event) => {
-    setSelectedType(event.target.value);
+    setSessionFilters((prev) => ({ ...prev, session_type: event.target.value }));
   };
 
   const handleStatusChange = (event) => {
@@ -62,17 +62,17 @@ const Filters = () => {
     <div className="filter-container">
       <div className="type">
         <p>Session Type</p>
-        <select value={selectedType} onChange={handleTypeChange}>
-          <option value="personal">Personal</option>
-          <option value="group">Group</option>
-          <option value="">All</option>
+        <select value={sessionFilters.session_type} onChange={handleTypeChange}>
+          <option value="Personal">Personal</option>
+          <option value="Group">Group</option>
+          <option value="All">All</option>
         </select>
       </div>
       <div className="fees">
         <p>Session Fee</p>
         <Box sx={{ width: 200 }}>
           <Slider
-            value={sessionFee}
+            value={sessionFilters.session_fee}
             onChange={handleFeeChange}
             min={0}
             max={5000}
