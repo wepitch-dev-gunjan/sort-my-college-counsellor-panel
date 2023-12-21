@@ -9,6 +9,7 @@ import AddSession from "../../components/addSession";
 import { SessionContext } from "../../context/SessionContext"
 import dayjs from "dayjs"
 import Filters from "../../components/filters"
+import { FaAngleDown } from "react-icons/fa";
 const Session = () => {
     const [sessionFilters, setSessionFilters] = useState({
         date_range: "12-11-2023"
@@ -35,8 +36,8 @@ const Session = () => {
                 <div className="session-header">
                     <div className="left">
                         <h1>Filtres</h1>
+                       
                         <Filters />
-
                     </div>
                 </div>
                 <div className="sessionContainer">

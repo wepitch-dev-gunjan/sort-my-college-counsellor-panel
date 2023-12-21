@@ -109,6 +109,8 @@ const Filters = () => {
           {/* <option value="">Select status</option> */}
           <option value="available">Available</option>
           <option value="booked">Booked</option>
+          <option value="attended">Attended</option>
+          <option value="not-attended">Not-Attended</option>
           <option value="rescheduled">Rescheduled</option>
           <option value="cancelled">Cancelled</option>
         </select>

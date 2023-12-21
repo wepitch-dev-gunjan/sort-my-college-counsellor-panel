@@ -2,6 +2,9 @@ import "./style.scss";
 
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import { handleArrayInputChange, handleInput } from "../../utilities";
+import TagsInput from "react-tagsinput";
+import React, { useState } from 'react';
+import 'react-tagsinput/react-tagsinput.css';
 
 
 const OtherInfo = ({
@@ -10,6 +13,7 @@ const OtherInfo = ({
   editProfileEnable,
 
 }) => {
+  const [tags, setTags] = useState(['hjhjh', 'hghghg'])
   const handleYearsChange = (e) => {
     const value = parseInt(e.target.value);
     if (!isNaN(value)) {
@@ -214,29 +218,25 @@ const OtherInfo = ({
           </div>
         </div>
 
-        <div className="info">
-          <div className="row">
-            <div className="col">
-              <div className="info-field">
-                <p>Courses focused</p>
-              </div>
-              <div className="info-value">
-                {editProfileEnable ? (
-                  <input
-                    type="text"
-                    value={profile.courses_focused.join(",")}
-                    onChange={e => handleArrayInputChange('courses_focused', e.target.value, setProfile)}
-                  />
-                ) : (
-                  profile.courses_focused?.map((courses_focused, i) => (
-                    <p key={i}>{`${courses_focused}${i < profile.courses_focused.length - 1 ? "," : ""
-                      }`}</p>
-                  ))
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
+        <div className="row">
+  <div className="col">
+    <div className="info-field">
+      <p>Courses focused</p>
+    </div>
+    <div className="info-value">
+      {editProfileEnable ? (
+        <TagsInput
+          value={profile.courses_focused}
+          onChange={(newTags) => setProfile({ ...profile, courses_focused: newTags})}
+        />
+      ) : (
+        profile.courses_focused?.map((courses_focused, i) => (
+          <p key={i}>{`${courses_focused}${i < profile.courses_focused.length - 1 ? "," : ""}`}</p>
+        ))
+      )}
+    </div>
+  </div>
+</div>
 
 
 

@@ -4,6 +4,7 @@ import Comment from "./Comment";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaRegComment } from "react-icons/fa";
 import { BsSend } from "react-icons/bs";
+import { Tooltip } from "@mui/material";
 
 const Feed = ({ id, feed_link, feed_likes, feed_visibility, feed_caption }) => {
   const [comments, setComments] = useState([
@@ -28,15 +29,21 @@ const Feed = ({ id, feed_link, feed_likes, feed_visibility, feed_caption }) => {
     <div className="Feed-container">
       <img src={feed_link} alt="" />
       <div className="middle">
+      <Tooltip title="Likes" placement="bottom">
         <div className="like">
           <FaRegHeart size="20" />
         </div>
+        </Tooltip>
+        <Tooltip title="Comment" placement="bottom">
         <div className="comment">
           <FaRegComment size="20" />
         </div>
+        </Tooltip>
+        <Tooltip title="Share" placement="bottom">
         <div className="share">
           <BsSend size="20" />
         </div>
+        </Tooltip>
       </div>
       <div className="comments">
         {comments.map((comment, i) => (
