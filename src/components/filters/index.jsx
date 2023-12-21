@@ -5,7 +5,7 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import { DateRangePicker } from 'rsuite';
+import DateRangePicker from './dateRangePicker';
 
 const Filters = () => {
   const [selectedType, setSelectedType] = useState('');
@@ -87,7 +87,7 @@ const Filters = () => {
       </div>
       <div className="date-range">
         <p>Select Date Range</p>
-
+        <DateRangePicker />
       </div>
       <div className="duration">
         <p>Session duration</p>
