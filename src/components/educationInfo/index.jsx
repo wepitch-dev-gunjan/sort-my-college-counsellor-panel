@@ -1,11 +1,16 @@
+import TagsInput from "react-tagsinput";
 import { handleArrayInputChange } from "../../utilities";
 import "./style.scss";
+import React, { useState } from 'react';
+import 'react-tagsinput/react-tagsinput.css';
 
 const EducationInfo = ({
   profile,
   setProfile,
   editProfileEnable,
 }) => {
+  const [tags, setTags] = useState(['hjhjh', 'hghghg'])
+
   return (
     <div className="BasicInfo-container">
       <div className="heading">
@@ -20,11 +25,10 @@ const EducationInfo = ({
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={profile.qualifications.join(",")}
-                  onChange={e => handleArrayInputChange('qualifications', e.target.value, setProfile)}
-                />
+                <TagsInput
+                value={profile.qualifications}
+                onChange={(newTags) => setProfile({ ...profile, qualifications: newTags})}
+              />
               ) : (
                 profile.qualifications?.map((qualification, i) => (
                   <p key={i}>{`${qualification}${i < profile.qualifications.length - 1 ? "," : ""

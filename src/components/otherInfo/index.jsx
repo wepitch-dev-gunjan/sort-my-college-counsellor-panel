@@ -75,11 +75,10 @@ const OtherInfo = ({
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={profile.languages_spoken.join(",")}
-                  onChange={e => handleArrayInputChange('languages_spoken', e.target.value, setProfile)}
-                />
+                <TagsInput
+                value={profile.languages_spoken}
+                onChange={(newTags) => setProfile({ ...profile, languages_spoken: newTags})}
+              />
               ) : (
                 profile.languages_spoken?.map((language, i) => (
                   <p key={i}>{`${language}${i < profile.languages_spoken.length - 1 ? "," : ""
