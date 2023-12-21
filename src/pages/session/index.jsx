@@ -6,7 +6,6 @@ import { useContext, useState } from "react"
 import { backend_url } from "../../config"
 import { useEffect } from "react"
 import AddSession from "../../components/addSession";
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 import { SessionContext } from "../../context/SessionContext"
 import dayjs from "dayjs"
 import Filters from "../../components/filters"
