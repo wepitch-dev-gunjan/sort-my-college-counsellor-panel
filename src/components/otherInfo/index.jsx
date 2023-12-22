@@ -1,9 +1,9 @@
 import "./style.scss";
 
 import { FaIndianRupeeSign } from "react-icons/fa6";
-import { handleArrayInputChange, handleInput } from "../../utilities";
+import { handleInput } from "../../utilities";
 import TagsInput from "react-tagsinput";
-import React, { useState } from 'react';
+import React from 'react';
 import 'react-tagsinput/react-tagsinput.css';
 
 
@@ -13,12 +13,18 @@ const OtherInfo = ({
   editProfileEnable,
 
 }) => {
-  const [tags, setTags] = useState(['hjhjh', 'hghghg'])
   const handleYearsChange = (e) => {
     const value = parseInt(e.target.value);
     if (!isNaN(value)) {
       handleInput('years_of_experience', value);
     }
+  };
+
+  const handleRadioChange = (e) => {
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      nationality: e.target.value,
+    }));
   };
 
  
@@ -90,40 +96,40 @@ const OtherInfo = ({
         </div>
 
         <div className="row">
-        <div className="col">
+      <div className="col">
         <div className="info-field">
-            <p>Nationality</p>
+          <p>Nationality</p>
         </div>
-       <div className="info-value">
-        {editProfileEnable ? (
-        <>
-        <div className="ug">
-          <label className="ug-text">
-            <input
-              type="radio"
-              value="Indian"
-              checked={profile.nationality === "Indian"}
-              onChange={(e) => handleCheckboxChange('nationality', e.target.value)}
-            />
-            Indian
-          </label>
-          <label className="ug-text">
-            <input
-              type="radio"
-              value="Foreign"
-              checked={profile.nationality === "Foreign"}
-              onChange={(e) => handleCheckboxChange('nationality', e.target.value)}
-            />
-            Foreign
-          </label>
-          </div>
-        </>
-      ) : (
-        <p>{profile.nationality}</p>
-      )}
+        <div className="info-value">
+          {editProfileEnable ? (
+            <>
+              <div className="ug">
+                <label className="ug-text">
+                  <input
+                    type="radio"
+                    value="Indian"
+                    checked={profile.nationality === 'Indian'}
+                    onChange={handleRadioChange}
+                  />
+                  Indian
+                </label>
+                <label className="ug-text">
+                  <input
+                    type="radio"
+                    value="Foreign"
+                    checked={profile.nationality === 'Foreign'}
+                    onChange={handleRadioChange}
+                  />
+                  Foreign
+                </label>
+              </div>
+            </>
+          ) : (
+            <p>{profile.nationality}</p>
+          )}
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
         <div className="row">
           <div className="col">
