@@ -25,8 +25,10 @@ const Header = ({ handleLogout }) => {
       </div>
       <div className="rightSide">
         {!profile.verified && 
-        <>
-        <VerifyProfilePopup />          
+        
+        <VerifyProfilePopup />   }
+        {profile.verified && 
+        <>       
         <AddSessionButton />
         <NotificationButton
           ref={notificationRef}
