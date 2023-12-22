@@ -24,8 +24,8 @@ const Sidebar = () => {
       </div>
       <div className="sidebar-container">
         {
-          profile.verified &&
-          // !profile.verified && 
+          // profile.verified &&
+          !profile.verified && 
           (<>
             <SidebarMenuButton
               href="/"

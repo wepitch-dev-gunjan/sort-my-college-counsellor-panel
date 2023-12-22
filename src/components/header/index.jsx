@@ -24,12 +24,17 @@ const Header = ({ handleLogout }) => {
         <img src={logo} alt="" />
       </div>
       <div className="rightSide">
-        {!profile.verified && <VerifyProfilePopup />}
+        {!profile.verified && 
+        <>
+        <VerifyProfilePopup />          
         <AddSessionButton />
         <NotificationButton
           ref={notificationRef}
           onClick={() => setNotificationsEnable((prev) => !prev)}
-        />
+          />
+          </>
+        
+        }
         <ProfileDropDownMenu
           name={profile.name}
           image={profile.profile_pic}
