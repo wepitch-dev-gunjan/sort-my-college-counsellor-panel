@@ -22,6 +22,7 @@ import { SessionContext } from "./context/SessionContext";
 import AddSession from "./components/addSession";
 import { ProfileContext } from "./context/ProfileContext";
 import AddProfilePic from "./components/profilePic/addProfilePic";
+import AddCoverImage from "./components/coverImage/addCoverImage";
 
 function App() {
   const addProfilePicRef = useRef(null);
@@ -30,7 +31,12 @@ function App() {
     useContext(SessionContext);
   const { profilePicEditMode, setProfilePicEditMode } =
     useContext(ProfileContext);
+  const { coverImageEditMode, setCoverImageEditMode } =
+    useContext(ProfileContext);
+
   const notificationRef = useRef(null);
+  const addCoverImageRef = useRef(null);
+
   const { notificationsEnable, setNotificationsEnable } =
     useContext(NotificationContext);
   const { isLoggedIn } = user;
@@ -48,6 +54,10 @@ function App() {
     setProfilePicEditMode((prev) => !prev);
   });
 
+  useClickOutside(addCoverImageRef, () => {
+    setCoverImageEditMode((prev) => !prev);
+  });
+
   useClickOutside(notificationRef, () => {
     setNotificationsEnable(false);
   });
@@ -63,15 +73,20 @@ function App() {
           />
         </div>
       )}
+      {profilePicEditMode && (
+        <div className="add-profile-pic-panel">
+          <AddProfilePic ref={addProfilePicRef} />
+        </div>
+      )}
+      {coverImageEditMode && (
+        <div className="add-cover-image-panel">
+          <AddCoverImage ref={addCoverImageRef} />
+        </div>
+      )}
       {isLoggedIn && <Header handleLogout={handleLogout} />}
       <div className="main">
         <ToastContainer />
 
-        {profilePicEditMode && (
-          <div className="add-profile-pic-panel">
-            <AddProfilePic ref={addProfilePicRef} />
-          </div>
-        )}
         {notificationsEnable && <Notifications ref={notificationRef} />}
 
         {isLoggedIn && <Sidebar />}
