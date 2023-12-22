@@ -30,6 +30,10 @@
           flex-direction: column;
           gap: 12px;
           width: 100%;
+          .phone-input{
+            display: flex;
+            gap: 4px;
+          }
           input {
             z-index: 999;
             width: 100%;

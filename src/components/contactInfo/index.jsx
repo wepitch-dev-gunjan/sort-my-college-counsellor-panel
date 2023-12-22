@@ -3,6 +3,12 @@ import './style.scss';
 import { handleInput, handleInputInsideInputChange } from '../../utilities';
 
 const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
+  const handlePhoneNumberChange = (e) => {
+    // Limit input to 10 digits
+    const phoneNumber = e.target.value.replace(/\D/g, '').slice(0, 10);
+    handleInput('phone_no', phoneNumber, setProfile);
+  };
+
   return (
     <div className="ContactInfo-container">
       <div className="heading">
@@ -17,9 +23,24 @@ const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input type="text" value={profile.phone_no} onChange={e => handleInput("phone_no", e.target.value, setProfile)} />
+                <div className="phone-input">
+                  {/* Country code dropdown */}
+                  <select
+                    value={profile.phone_code}
+                    onChange={(e) => handleInput('phone_code', e.target.value, setProfile)}
+                  >
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+91">+91 (India)</option>
+                  </select>
+                  <input
+                    type="tel"
+                    value={profile.phone_no}
+                    onChange={handlePhoneNumberChange}
+                    placeholder="Enter phone number"
+                  />
+                </div>
               ) : (
-                <p>{profile.phone_no}</p>
+                <p>{`${profile.phone_code} ${profile.phone_no}`}</p>
               )}
             </div>
           </div>

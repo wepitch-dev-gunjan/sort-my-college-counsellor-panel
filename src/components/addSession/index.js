@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { CiMenuKebab } from "react-icons/ci";
 import "./style.scss";
 import { UserContext } from "../../context/UserContext";
 import { backend_url } from "../../config";
 import useClickOutside from "../../customHooks/useClickOutside";
 import dayjs from "dayjs";
-import { DatePicker } from "@mui/x-date-pickers";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SessionContext } from "../../context/SessionContext";

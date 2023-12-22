@@ -21,6 +21,18 @@ const Session = () => {
         session_status: 'All',
         session_fee: [0, 5000]
     });
+    
+    const defaultSessionFilters = {
+        session_type: 'All',
+        session_dates: [startDate, endDate],
+        session_duration: 60,
+        session_status: 'All',
+        session_fee: [0, 5000]
+    };
+
+    const resetFilters = () => {
+        setSessionFilters(defaultSessionFilters);
+    };
 
     const [sessions, setSessions] = useState([]);
     const { user } = useContext(UserContext);
@@ -44,7 +56,10 @@ const Session = () => {
             <div className="session">
                 <div className="session-header">
                     <div className="left">
+                        <div className="reset-changes">
                         <h1>Filtres</h1>
+                        <button onClick={resetFilters}>Reset filters</button>
+                        </div>
                         <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
                     </div>
                 </div>

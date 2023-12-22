@@ -19,7 +19,8 @@ const Documents = ({
   ]);
 
   const [uploadedFiles, setUploadedFiles] = useState([]);
-  
+  const [addDocumentClickCount, setAddDocumentClickCount] = useState(0);
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
   
@@ -46,6 +47,7 @@ const Documents = ({
   
 
   const handleAddDocument = () => {
+    setAddDocumentClickCount(addDocumentClickCount + 1);
     setDocuments([...documents, { file: null, selectedField: "" }]);
   };
 
@@ -115,7 +117,7 @@ const Documents = ({
           editProfileEnable={editProfileEnable}
         />
       ))}
-      {editProfileEnable && (
+      {editProfileEnable && addDocumentClickCount < 4 && (
         <Tooltip
           title={
             <Typography style={{ fontSize: "16px" }}>
