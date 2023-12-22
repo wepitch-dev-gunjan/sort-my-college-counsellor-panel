@@ -20,11 +20,16 @@ import useClickOutside from "./customHooks/useClickOutside";
 import { ToastContainer } from "react-toastify";
 import { SessionContext } from "./context/SessionContext";
 import AddSession from "./components/addSession";
+import { ProfileContext } from "./context/ProfileContext";
+import AddProfilePic from "./components/profilePic/addProfilePic";
 
 function App() {
+  const addProfilePicRef = useRef(null);
   const { user, setUser } = useContext(UserContext);
   const { addMode, setAddMode, sessions, setSessions } =
     useContext(SessionContext);
+  const { profilePicEditMode, setProfilePicEditMode } =
+    useContext(ProfileContext);
   const notificationRef = useRef(null);
   const { notificationsEnable, setNotificationsEnable } =
     useContext(NotificationContext);
@@ -38,6 +43,10 @@ function App() {
     setUser({ ...user, isLoggedIn: false });
     navigate("/login");
   };
+
+  useClickOutside(addProfilePicRef, () => {
+    setProfilePicEditMode((prev) => !prev);
+  });
 
   useClickOutside(notificationRef, () => {
     setNotificationsEnable(false);
@@ -58,6 +67,11 @@ function App() {
       <div className="main">
         <ToastContainer />
 
+        {profilePicEditMode && (
+          <div className="add-profile-pic-panel">
+            <AddProfilePic ref={addProfilePicRef} />
+          </div>
+        )}
         {notificationsEnable && <Notifications ref={notificationRef} />}
 
         {isLoggedIn && <Sidebar />}
