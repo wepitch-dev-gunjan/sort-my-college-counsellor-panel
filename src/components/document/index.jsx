@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import DocumentItem from "./documentItem";
 import "./style.scss";
 import { Tooltip, Typography } from "@mui/material";
-import { MdDeleteOutline } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const Documents = ({
   index,
@@ -18,6 +18,33 @@ const Documents = ({
     },
   ]);
 
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+  
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+  
+    // Validate file type
+    const allowedTypes = ["application/pdf", "image/jpeg", "image/jpg", "image/png"];
+    if (file && !allowedTypes.includes(file.type)) {
+      console.log("Invalid file type. Please upload a PDF, JPEG, JPG, or PNG file.");
+      return;
+    }
+  
+    // Validate file size
+    const maxSizeInBytes = 1 * 1024 * 1024; 
+    if (file && file.size > maxSizeInBytes) {
+      toast("File size exceeds the limit. Please upload a smaller file than 1Mb.");
+      return;
+    }
+  
+    onDocumentChange(index, file);
+
+      // Update the uploaded files state
+      setUploadedFiles([...uploadedFiles, file]);
+  };
+
+  
+
   const handleAddDocument = () => {
     setDocuments([...documents, { file: null, selectedField: "" }]);
   };
@@ -28,10 +55,6 @@ const Documents = ({
     setDocuments(updatedDocuments);
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    onDocumentChange(index, file);
-  };
 
   const hiddenFileInput = useRef(null);
 
@@ -119,17 +142,28 @@ const Documents = ({
             <p>Aadhar Card*</p>
           </div>
           <div className="upload">
-            <button className="button-upload" onClick={handleClick}>
-              Upload a file
-            </button>
-            <input
-              className="upload-btn"
-              type="file"
-              onChange={handleFileChange}
-              accept=".pdf"
-              ref={hiddenFileInput}
-              style={{ display: "none" }}
-            />
+            {uploadedFiles[index] ? (
+              <div>
+                <p>{uploadedFiles[index].name}</p>
+                <button onClick={() => handleDeleteDocument(index)}>
+                  Remove
+                </button>
+              </div>
+            ) : (
+              <React.Fragment>
+                <button className="button-upload" onClick={handleClick}>
+                  Upload a file
+                </button>
+                <input
+                  className="upload-btn"
+                  type="file"
+                  onChange={handleFileChange}
+                  accept=".pdf, .jpg, .jpeg, .png"
+                  ref={hiddenFileInput}
+                  style={{ display: "none" }}
+                />
+              </React.Fragment>
+            )}
           </div>
         </div>
       </div>

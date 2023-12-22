@@ -1,13 +1,11 @@
 import { Tooltip, Typography } from "@mui/material";
 import "./style.scss";
-import { UserContext } from "../../context/UserContext";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext} from "react";
 import { FaCamera } from "react-icons/fa";
 import { ProfileContext } from "../../context/ProfileContext";
 
 const CoverImage = ({ src }) => {
-  const { user, setUser } = useContext(UserContext);
-  const { coverImageEditMode, setCoverImageEditMode } =
+  const { setCoverImageEditMode } =
     useContext(ProfileContext);
 
   const openUploader = () => {

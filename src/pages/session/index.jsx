@@ -5,10 +5,6 @@ import { UserContext } from "../../context/UserContext"
 import { useContext, useState } from "react"
 import { backend_url } from "../../config"
 import { useEffect } from "react"
-import AddSession from "../../components/addSession";
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
-import { SessionContext } from "../../context/SessionContext"
-import dayjs from "dayjs"
 import Filters from "../../components/filters"
 const Session = () => {
 
@@ -32,7 +28,6 @@ const Session = () => {
 
     const [sessions, setSessions] = useState([]);
     const { user } = useContext(UserContext);
-    const { addMode, setAddMode } = useContext(SessionContext);
 
     const getResponse = async () => {
         console.log(sessionFilters)

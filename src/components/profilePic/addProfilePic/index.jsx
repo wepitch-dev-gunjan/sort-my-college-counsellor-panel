@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, forwardRef, useImperativeHandle } from 'react';
+import React, { useState, useRef, useContext, forwardRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import './style.scss';
 import { ProfileContext } from '../../../context/ProfileContext';
@@ -9,7 +9,7 @@ const AddProfilePic = forwardRef((props, ref) => {
   const [scale, setScale] = useState(1);
   const editorRef = useRef(null);
   const fileRef = useRef(null);
-  const { profilePicEditMode, setProfilePicEditMode } = useContext(ProfileContext)
+  const { setProfilePicEditMode } = useContext(ProfileContext)
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
