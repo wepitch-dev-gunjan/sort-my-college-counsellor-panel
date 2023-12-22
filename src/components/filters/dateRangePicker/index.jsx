@@ -4,18 +4,21 @@ import { DatePicker, MobileDatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en'; // Import the locale if not already done
 
-const DateRangePicker = () => {
-  const [dates, setDates] = useState({
-    startDate: '2023-04-17',
-    endDate: '2023-04-17',
-  });
-
+const DateRangePicker = ({ sessionFilters, setSessionFilters }) => {
   const handleStartDateChange = (date) => {
-    setDates({ ...dates, startDate: date.format('YYYY-MM-DD') });
+    setSessionFilters({
+      ...sessionFilters,
+      session_dates:
+        [date.format('YYYY-MM-DD'), sessionFilters.session_dates[1]]
+    });
   };
 
   const handleEndDateChange = (date) => {
-    setDates({ ...dates, endDate: date.format('YYYY-MM-DD') });
+    setSessionFilters({
+      ...sessionFilters,
+      session_dates:
+        [sessionFilters.session_dates[0], date.format('YYYY-MM-DD')]
+    });
   };
 
   return (
@@ -23,7 +26,7 @@ const DateRangePicker = () => {
       <div className="start-date">
         <MobileDatePicker
           label="Start Date"
-          value={dayjs(dates.startDate)}
+          value={dayjs(sessionFilters.session_dates[0])}
           onChange={(value) => handleStartDateChange(value)}
         />
       </div>
@@ -31,7 +34,7 @@ const DateRangePicker = () => {
       <div className="end-date">
         <MobileDatePicker
           label="End Date"
-          value={dayjs(dates.endDate)}
+          value={dayjs(sessionFilters.session_dates[1])}
           onChange={(value) => handleEndDateChange(value)}
         />
       </div>

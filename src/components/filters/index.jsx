@@ -11,7 +11,6 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
   const [selectedStatus, setSelectedStatus] = useState('');
   const [sessionFee, setSessionFee] = useState([0, 5000]);
 
-  console.log(sessionFilters)
   const handleFeeChange = (e, newValue) => {
     setSessionFilters(prev => ({ ...prev, session_fee: newValue }));
     if (newValue[0] >= newValue[1]) {
@@ -24,9 +23,12 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
   };
 
   const handleStatusChange = (event) => {
-    setSelectedStatus(event.target.value);
+    setSessionFilters(prev => ({ ...prev, session_status: event.target.value }));
   };
 
+  const handleDurationChange = (event) => {
+    setSessionFilters(prev => ({ ...prev, session_duration: event.target.value }))
+  }
   const marks = [
     {
       value: 45,
@@ -58,6 +60,7 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
     return `${value}m`;
   }
 
+  console.log(sessionFilters)
   return (
     <div className="filter-container">
       <div className="type">
@@ -79,7 +82,7 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
             step={100}
           />
           <div className="values">
-            {sessionFee.map((element, i) => (
+            {sessionFilters.session_fee.map((element, i) => (
               <span key={i}><FaIndianRupeeSign />{element}</span>
             ))}
           </div>
@@ -87,32 +90,33 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
       </div>
       <div className="date-range">
         <p>Select Date Range</p>
-        <DateRangePicker />
+        <DateRangePicker sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
       </div>
       <div className="duration">
         <p>Session duration</p>
         <Box sx={{ width: 250 }}>
           <Slider
             aria-label="Duration"
-            defaultValue={45}
+            defaultValue={sessionFilters.session_duration}
             getAriaValueText={valuetext}
             step={null}
             marks={marks}
             min={45}
             max={120}
+            onChange={handleDurationChange}
           />
         </Box>
       </div>
       <div className="status">
         <p>Session Status</p>
-        <select value={selectedStatus} onChange={handleStatusChange}>
-          {/* <option value="">Select status</option> */}
-          <option value="available">Available</option>
-          <option value="booked">Booked</option>
-          <option value="attended">Attended</option>
-          <option value="not-attended">Not-Attended</option>
-          <option value="rescheduled">Rescheduled</option>
-          <option value="cancelled">Cancelled</option>
+        <select value={sessionFilters.session_status} onChange={handleStatusChange}>
+          <option value="All">All</option>
+          <option value="Available">Available</option>
+          <option value="Booked">Booked</option>
+          <option value="Attended">Attended</option>
+          <option value="NotAttended">Not-Attended</option>
+          <option value="Rescheduled">Rescheduled</option>
+          <option value="Cancelled">Cancelled</option>
         </select>
       </div>
     </div>

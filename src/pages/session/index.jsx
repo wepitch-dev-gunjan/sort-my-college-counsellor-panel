@@ -12,25 +12,20 @@ const Session = () => {
     const startDate = new Date();
     const endDate = new Date();
 
-    const toDateFormat = (date) => {
-        return new Date(date)
-    }
-
     startDate.setDate(today.getDate() - 10);
     endDate.setDate(today.getDate() + 0);
     const [sessionFilters, setSessionFilters] = useState({
         session_type: 'All',
         session_dates: [startDate, endDate],
-        // session_duration: 60,
-        // session_status: 'Booked',
-        // session_fee: [1000, 5000]
+        session_duration: 60,
+        session_status: 'All',
+        session_fee: [0, 5000]
     });
 
     const [sessions, setSessions] = useState([]);
     const { user } = useContext(UserContext);
 
     const getResponse = async () => {
-        console.log(sessionFilters)
         const { data } = await axios.get(`${backend_url}/counsellor/${user._id}/sessionsforcounsellor`, {
             params: sessionFilters,
             headers: {
@@ -40,7 +35,6 @@ const Session = () => {
         setSessions(data);
     }
 
-    console.log(sessionFilters)
     useEffect(() => {
         getResponse();
     }, [sessionFilters]);
