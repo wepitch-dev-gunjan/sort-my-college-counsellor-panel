@@ -1,15 +1,17 @@
 .session-item {
   margin: 0;
   display: flex;
-  gap: 16px;
+  gap: 24px;
   flex-direction: column;
   position: relative;
   padding: 20px;
   border-radius: 20px;
   box-shadow: 2px 2px 32px rgba(17, 0, 255, 0.055);
-  width: 320px;
+  width: 420px;
+  height: 450px;
   background-color: var(--background-light);
 
+}
   button {
     cursor: pointer;
     border-radius: 20px;
@@ -45,7 +47,7 @@
     .edit-mode-fields {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 20px;
       div {
         display: flex;
         gap: 8px;
@@ -56,7 +58,10 @@
   .edit-mode-form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
+    p{
+      font-size: 20px;
+    }
   }
 
   .middle {
@@ -126,8 +131,10 @@
     justify-content: space-evenly;
     gap: 16px;
     max-width: 100%;
+    height: 100%;
     button {
       width: 100%;
     }
+    
   }
-}
+
