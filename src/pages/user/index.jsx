@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./style.scss";
-import { Pagination } from "@mui/material";
 
 const Users = () => {
   const [followers, setFollowers] = useState([
@@ -87,11 +86,7 @@ const Users = () => {
           ))}
         </div>
       </div>
-      <div className="pagination">
-        <Pagination
-            size="large"
-          />
-        </div>
+     
     </div>
   );
 };

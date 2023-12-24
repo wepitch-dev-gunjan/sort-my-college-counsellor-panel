@@ -44,7 +44,7 @@ const OtherInfo = ({
     handleInput(fieldName, updatedDegrees, setProfile);
   };
 
-
+  
   return (
     <div className="OtherInfo-container">
       <div className="heading">

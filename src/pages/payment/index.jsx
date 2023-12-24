@@ -1,4 +1,3 @@
-import { Pagination } from "@mui/material";
 import "./style.scss"
 import { useState } from 'react';
 
@@ -98,17 +97,6 @@ const Payment = () => {
     }
   ]);
   
-  const entriesPerPage = 5; // Set the number of entries per page
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const indexOfLastPayment = currentPage * entriesPerPage;
-  const indexOfFirstPayment = indexOfLastPayment - entriesPerPage;
-
-  const currentPayments = payments.slice(indexOfFirstPayment, indexOfLastPayment);
-
-  const handlePageChange = (event, page) => {
-    setCurrentPage(page);
-  };
  
   return (
     <div className="Payments-container">
@@ -136,14 +124,6 @@ const Payment = () => {
                 }`}>{payment.status}</div>
             </div>
           ))}
-        </div>
-        <div className="pagination">
-        <Pagination
-            count={Math.ceil(payments.length / entriesPerPage)}
-            page={currentPage}
-            onChange={handlePageChange}
-            size="large"
-          />
         </div>
       </div>
     </div>

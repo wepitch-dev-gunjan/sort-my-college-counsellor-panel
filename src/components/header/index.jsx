@@ -1,6 +1,5 @@
 import React, { useContext, useRef } from "react";
 import "./style.scss";
-import { UserContext } from "../../context/UserContext";
 import ProfileDropDownMenu from "../dropdownMenu/profileDropDownMenu";
 import logo from "../../assets/logo.svg";
 import AddSessionButton from "../buttons/addSessionButton";
@@ -24,12 +23,19 @@ const Header = ({ handleLogout }) => {
         <img src={logo} alt="" />
       </div>
       <div className="rightSide">
-        {!profile.verified && <VerifyProfilePopup />}
+        {!profile.verified && 
+        
+        <VerifyProfilePopup />   }
+        {profile.verified && 
+        <>       
         <AddSessionButton />
         <NotificationButton
           ref={notificationRef}
           onClick={() => setNotificationsEnable((prev) => !prev)}
-        />
+          />
+          </>
+        
+        }
         <ProfileDropDownMenu
           name={profile.name}
           image={profile.profile_pic}

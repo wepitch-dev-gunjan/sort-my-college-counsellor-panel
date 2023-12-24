@@ -6,7 +6,6 @@ import "./session.scss";
 import { UserContext } from '../../context/UserContext';
 import { backend_url } from '../../config';
 import useClickOutside from '../../customHooks/useClickOutside';
-import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
 
