@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "./UserContext";
 import axios from "axios";
 import { backend_url } from "../config";
@@ -6,23 +6,51 @@ import { backend_url } from "../config";
 export const NotificationContext = createContext();
 
 export const NotificationProvider = ({ children }) => {
+  const notificationsRef = useRef(null);
+  const [page, setPage] = useState(1);
   const [notificationsEnable, setNotificationsEnable] = useState(false);
-  const { user } = useContext(UserContext);
-
   const [notifications, setNotifications] = useState([]);
-  const getNotifications = async () => {
-    const { data } = await axios.get(`${backend_url}/notification`,
-      {
+  const [allNotificationsFetched, setAllNotificationsFetched] = useState(false);
+  const { user } = useContext(UserContext);
+  const [notificationsLoading, setNotificationsLoading] = useState(false);
+  const [fetchedNotificationIds, setFetchedNotificationIds] = useState(new Set()); // Track IDs of fetched notifications
+
+  const getNotifications = async (page) => {
+    try {
+      setNotificationsLoading(true);
+      const { data } = await axios.get(`${backend_url}/notification`, {
         params: {
           user_id: user._id,
+          page,
+          limit: 10,
         },
       });
-    setNotifications(data.notifications);
+
+      console.log(data.notifications.length)
+      if (data.notifications.length === 0) {
+        setAllNotificationsFetched(true);
+      } else {
+        setAllNotificationsFetched(false);
+        const uniqueNotifications = data.notifications.filter(
+          notification => !fetchedNotificationIds.has(notification._id)
+        );
+
+        setNotifications(prevNotifications => [...prevNotifications, ...uniqueNotifications]);
+        const newNotificationIds = new Set(data.notifications.map(notification => notification._id));
+        setFetchedNotificationIds(new Set([...fetchedNotificationIds, ...newNotificationIds]));
+      }
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    } finally {
+      setNotificationsLoading(false)
+    }
   };
 
   useEffect(() => {
-    getNotifications()
-  }, [user]);
+    if (!allNotificationsFetched) {
+      getNotifications(page);
+    }
+  }, [user, allNotificationsFetched]);
   return (
     <NotificationContext.Provider
       value={{
@@ -30,10 +58,17 @@ export const NotificationProvider = ({ children }) => {
         setNotifications,
         notificationsEnable,
         setNotificationsEnable,
-        getNotifications
+        notificationsRef,
+        page,
+        getNotifications,
+        setPage,
+        allNotificationsFetched,
+        notificationsLoading,
+        setNotificationsLoading
       }}
     >
       {children}
     </NotificationContext.Provider>
   );
 };
+

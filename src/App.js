@@ -34,10 +34,9 @@ function App() {
   const { coverImageEditMode, setCoverImageEditMode } =
     useContext(ProfileContext);
 
-  const notificationRef = useRef(null);
   const addCoverImageRef = useRef(null);
 
-  const { notificationsEnable, setNotificationsEnable } =
+  const { notificationsEnable, setNotificationsEnable, notificationsRef } =
     useContext(NotificationContext);
   const { isLoggedIn } = user;
 
@@ -58,7 +57,7 @@ function App() {
     setCoverImageEditMode((prev) => !prev);
   });
 
-  useClickOutside(notificationRef, () => {
+  useClickOutside(notificationsRef, () => {
     setNotificationsEnable(false);
   });
 
@@ -87,7 +86,7 @@ function App() {
       <div className="main">
         <ToastContainer />
 
-        {notificationsEnable && <Notifications ref={notificationRef} />}
+        {notificationsEnable && <Notifications />}
 
         {isLoggedIn && <Sidebar />}
         <div className={`${isLoggedIn && "main-content"}`}>
