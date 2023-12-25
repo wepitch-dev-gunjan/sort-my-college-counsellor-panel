@@ -9,24 +9,23 @@ export const ProfileProvider = ({ children }) => {
   const { user } = useContext(UserContext);
   const [profile, setProfile] = useState({});
 
-  useEffect(() => {
-    if (user && user.isLoggedIn) {
-      const fetchProfile = async () => {
-        try {
-          const response = await axios.get(`${backend_url}/counsellor/${user._id}`,
-            {
-              headers: {
-                Authorization: user.token
-              }
-            });
-          setProfile(response.data[0])
-        } catch (err) {
-          console.error('Error fetching profile:', err);
-        }
-      };
-
-      fetchProfile();
+  const fetchProfile = async () => {
+    try {
+      const response = await axios.get(`${backend_url}/counsellor/${user._id}`,
+        {
+          headers: {
+            Authorization: user.token
+          }
+        });
+      setProfile(response.data[0])
+    } catch (err) {
+      console.error('Error fetching profile:', err);
     }
+  };
+
+  useEffect(() => {
+    if (user && user.isLoggedIn)
+      fetchProfile();
   }, [user]);
 
   const [editProfileEnable, setEditProfileEnable] = useState(false)
@@ -43,6 +42,7 @@ export const ProfileProvider = ({ children }) => {
         setProfilePicEditMode,
         setEditProfileEnable,
         editProfileEnable,
+        fetchProfile
       }}
     >
       {children}

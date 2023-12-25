@@ -68,7 +68,6 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
     }
   };
 
-  console.log(session)
   return (
     <div className="session-item">
       <div className="top">

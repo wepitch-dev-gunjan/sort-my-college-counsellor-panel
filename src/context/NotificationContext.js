@@ -26,7 +26,6 @@ export const NotificationProvider = ({ children }) => {
         },
       });
 
-      console.log(data.notifications.length)
       if (data.notifications.length === 0) {
         setAllNotificationsFetched(true);
       } else {

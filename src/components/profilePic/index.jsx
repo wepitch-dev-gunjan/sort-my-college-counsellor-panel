@@ -10,15 +10,11 @@ const ProfilePic = ({ src }) => {
     useContext(ProfileContext);
 
   const openUploader = () => {
-    // inputRef.current.click();
     setProfilePicEditMode((prev) => !prev);
   };
 
-  
-
   return (
     <>
-      
       <div className="ProfilePic-container">
         <img src={src} alt="Profile" />
         <Tooltip
