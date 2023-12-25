@@ -28,7 +28,7 @@ const Feed = ({ id, feed_link, feed_likes, feed_visibility, feed_caption }) => {
   return (
     <div className="Feed-container">
       <img src={feed_link} alt="" />
-      <div className="middle">
+      <div className="middle-icons">
       <Tooltip title="Likes" placement="bottom">
         <div className="like">
           <FaRegHeart size="20" />

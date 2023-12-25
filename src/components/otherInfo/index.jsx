@@ -13,12 +13,12 @@ const OtherInfo = ({
   editProfileEnable,
 
 }) => {
-  const handleYearsChange = (e) => {
-    const value = parseInt(e.target.value);
-    if (!isNaN(value)) {
-      handleInput('years_of_experience', value);
-    }
-  };
+  // const handleYearsChange = (e) => {
+  //   const value = parseInt(e.target.value);
+  //   if (!isNaN(value)) {
+  //     handleInput('years_of_experience', value);
+  //   }
+  // };
 
   const handleRadioChange = (e) => {
     setProfile((prevProfile) => ({
@@ -224,24 +224,24 @@ const OtherInfo = ({
         </div>
 
         <div className="row">
-  <div className="col">
-    <div className="info-field">
-      <p>Courses focused</p>
-    </div>
-    <div className="info-value">
-      {editProfileEnable ? (
-        <TagsInput
-          value={profile.courses_focused}
-          onChange={(newTags) => setProfile({ ...profile, courses_focused: newTags})}
-        />
-      ) : (
-        profile.courses_focused?.map((courses_focused, i) => (
-          <p key={i}>{`${courses_focused}${i < profile.courses_focused.length - 1 ? "," : ""}`}</p>
-        ))
-      )}
-    </div>
-  </div>
-</div>
+          <div className="col">
+             <div className="info-field">
+                <p>Courses focused</p>
+             </div>
+        <div className="info-value">
+           {editProfileEnable ? (
+              <TagsInput
+                  value={profile.courses_focused}
+                  onChange={(newTags) => setProfile({ ...profile, courses_focused: newTags})}
+              />
+              ) : (
+                  profile.courses_focused?.map((courses_focused, i) => (
+                  <p key={i}>{`${courses_focused}${i < profile.courses_focused.length - 1 ? "," : ""}`}</p>
+                  ))
+            )}
+         </div>
+       </div>
+     </div>
 
 
 
