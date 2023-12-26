@@ -17,8 +17,6 @@ export const UserProvider = ({ children }) => {
   const storedToken = localStorage.getItem('token') || '';
   const storedUser = JSON.parse(JSON.parse(localStorage.getItem('user'))) || {}; // Parsing stored user data
 
-
-
   useEffect(() => {
     if (storedUser && storedToken) {
       setUser({
@@ -37,7 +35,7 @@ export const UserProvider = ({ children }) => {
         _id: userFromURL?._id || "",
         name: userFromURL?.name || "Avatar",
         email: userFromURL?.email || "demo.email@domain.com",
-        profile_pic: userFromURL?.profile_pic || "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
+        // profile_pic: userFromURL?.profile_pic || "https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp",
         token: tokenFromURL,
         isLoggedIn: true,
       });

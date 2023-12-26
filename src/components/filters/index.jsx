@@ -8,9 +8,6 @@ import 'react-date-range/dist/theme/default.css';
 import DateRangePicker from './dateRangePicker';
 
 const Filters = ({ sessionFilters, setSessionFilters }) => {
-  const [selectedStatus, setSelectedStatus] = useState('');
-  const [sessionFee, setSessionFee] = useState([0, 5000]);
-
   const handleFeeChange = (e, newValue) => {
     setSessionFilters(prev => ({ ...prev, session_fee: newValue }));
     if (newValue[0] >= newValue[1]) {
@@ -29,6 +26,7 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
   const handleDurationChange = (event) => {
     setSessionFilters(prev => ({ ...prev, session_duration: event.target.value }))
   }
+
   const marks = [
     {
       value: 45,
@@ -60,7 +58,6 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
     return `${value}m`;
   }
 
-  console.log(sessionFilters)
   return (
     <div className="filter-container">
       <div className="type">

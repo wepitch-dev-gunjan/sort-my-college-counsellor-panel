@@ -54,33 +54,33 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
                   <label className="gender-text">
                     <input
                       type="radio"
-                      value="male"
-                      checked={profile.gender === "male"}
+                      value="Male"
+                      checked={profile.gender === "Male"}
                       onChange={(e) => handleInput("gender", e.target.value, setProfile)}
                     />
                     Male
                   </label>
                   <label>
                     <div className="gender-text">
-                    <input
-                      type="radio"
-                      value="female"
-                      checked={profile.gender === "female"}
-                      onChange={(e) => handleInput("gender", e.target.value, setProfile)}
-                    />
-                    Female
+                      <input
+                        type="radio"
+                        value="Female"
+                        checked={profile.gender === "Female"}
+                        onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                      />
+                      Female
                     </div>
                   </label>
                   <label>
                     <div className="gender-text">
-                    <span><input
-                      type="radio"
-                      value="other"
-                      checked={profile.gender === "other"}
-                      onChange={(e) => handleInput("gender", e.target.value, setProfile)}
-                    />
-                    </span>
-                    Other
+                      <span><input
+                        type="radio"
+                        value="Other"
+                        checked={profile.gender === "Other"}
+                        onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                      />
+                      </span>
+                      Other
                     </div>
                   </label>
                 </div>
