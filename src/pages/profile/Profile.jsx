@@ -22,7 +22,7 @@ const Profile = () => {
   const { editProfileEnable, setEditProfileEnable } =
     useContext(ProfileContext);
 
-  const [coverImage ] = useState(
+  const [coverImage] = useState(
     "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
   );
 
@@ -57,7 +57,7 @@ const Profile = () => {
   return (
     <div className="Profile-container">
       <div className="profile-body">
-        <CoverImage src={coverImage} />
+        <CoverImage src={profile.cover_image} />
         <div className="profile-pic">
           <ProfilePic src={profile.profile_pic} />
         </div>
