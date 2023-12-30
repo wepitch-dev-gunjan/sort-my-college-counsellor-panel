@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { SessionContext } from "../../context/SessionContext";
 import { ImSpinner8 } from "react-icons/im";
 
-const AddSession = ({ session, setSessions, setAddMode }) => {
+const AddSession = ({ setSessions, setAddMode }) => {
   const Ref = useRef(null);
   const { user } = useContext(UserContext);
   const { sessionLoading, setSessionLoading } = useContext(SessionContext);
@@ -28,22 +28,22 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
   function getCurrentTime() {
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, "0");
-    const minutes = Math.round(now.getMinutes() / 30) * 30; // Round to nearest 30 minutes
-    return `${hours}:${minutes.toString().padStart(2, "0")}`;
+    const minutes = Math.ceil(now.getMinutes() / 30) * 30; // Round to nearest 30 minutes
+    const currentTime = `${hours}:${minutes.toString().padStart(2, "0")}`;
+    return currentTime;
   }
 
   const [sessionDetails, setSessionDetails] = useState({
     session_date: formatDate(getTomorrowDate()),
     session_time: getCurrentTime(),
     session_duration: "60",
-    session_type: "Personal",
+    session_type: "Group",
     session_fee: "0",
     session_status: "Available",
     session_available_slots: "5",
   });
 
   useEffect(() => {
-    // Update session_fee based on session_type
     const updatedSessionDetails = {
       ...sessionDetails,
       session_fee: sessionDetails.session_type === "Personal" ? "500" : "1000",
@@ -80,20 +80,18 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
       setAddMode(false);
       toast(error.response.data.error);
       console.error("An error occurred:", error.response.data);
-      // console.error('An error occurred:', error);
     }
   };
 
   const handleCancel = () => {
     setSessionDetails({
-      session_type: "",
-      session_date: "",
-      session_time: "",
-      session_duration: "",
-      session_type: "",
-      session_fee: "",
-      session_status: "",
-      session_available_slots: "",
+      session_date: formatDate(getTomorrowDate()),
+      session_time: getCurrentTime(),
+      session_duration: "60",
+      session_type: "Group",
+      session_fee: "0",
+      session_status: "Available",
+      session_available_slots: "5",
     });
     setAddMode(false);
   };
@@ -180,9 +178,7 @@ const AddSession = ({ session, setSessions, setAddMode }) => {
               <input
                 type="number"
                 step="100"
-                min={
-                  sessionDetails.session_type === "Personal" ? "500" : "1000"
-                }
+                min='0'
                 value={sessionDetails.session_fee}
                 onChange={(e) =>
                   setSessionDetails({

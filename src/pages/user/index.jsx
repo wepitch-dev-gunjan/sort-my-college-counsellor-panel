@@ -1,57 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./style.scss";
+import { FollowerContext } from "../../context/FollowerContext";
 
 const Users = () => {
-  const [followers, setFollowers] = useState([
-    {
-      image: "https://www.w3schools.com/howto/img_avatar2.png",
-      name: "Aman Sharma",
-      email: "abc@gmail.com",
-      follow_date: "24 May 2024",
-    },
-    {
-      image: "https://www.w3schools.com/howto/img_avatar2.png",
-      name: "Aman Sharma",
-      email: "abc@gmail.com",
-      follow_date: "24 May 2024",
-    },
-    {
-      image: "https://www.w3schools.com/howto/img_avatar2.png",
-      name: "Aman Sharma",
-      email: "abc@gmail.com",
-      follow_date: "24 May 2024",
-    },
-    {
-      image: "https://www.w3schools.com/howto/img_avatar2.png",
-      name: "Aman Sharma",
-      email: "abc@gmail.com",
-      follow_date: "24 May 2024",
-    },
-    {
-      image: "https://www.w3schools.com/howto/img_avatar2.png",
-      name: "Aman Sharma",
-      email: "abc@gmail.com",
-      follow_date: "24 May 2024",
-    },
-    {
-      image: "https://www.w3schools.com/howto/img_avatar2.png",
-      name: "Aman Sharma",
-      email: "abc@gmail.com",
-      follow_date: "24 May 2024",
-    },
-    {
-      image: "https://www.w3schools.com/howto/img_avatar2.png",
-      name: "Aman Sharma",
-      email: "abc@gmail.com",
-      follow_date: "24 May 2024",
-    },
-    {
-      image: "https://www.w3schools.com/howto/img_avatar2.png",
-      name: "Aman Sharma",
-      email: "abc@gmail.com",
-      follow_date: "24 May 2024",
-    },
-  ]);
+  const { followers } = useContext(FollowerContext);
   return (
     <div className="users-container">
       <div className="heading sticky">
@@ -76,17 +28,17 @@ const Users = () => {
           {followers.map((follower, i) => (
             <div className="row" key={i}>
               <div className="col">
-                <img src={follower.image} alt="follower avatar" />
+                <img src={follower.follower_profile_pic} alt="follower avatar" />
               </div>
 
-              <div className="col">{follower.name}</div>
-              <div className="col">{follower.email}</div>
-              <div className="col">{follower.follow_date}</div>
+              <div className="col">{follower.follower_name}</div>
+              <div className="col">{follower.follower_email}</div>
+              <div className="col">{follower.updatedAt}</div>
             </div>
           ))}
         </div>
       </div>
-     
+
     </div>
   );
 };

@@ -11,6 +11,8 @@ import { NotificationProvider } from "./context/NotificationContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { FeedbackProvider } from "./context/FeedbackContext";
+import { DashboardProvider } from "./context/DashboardContext";
+import { FollowerProvider } from "./context/FollowerContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,15 +20,19 @@ root.render(
     <BrowserRouter>
       <MediaQueryProvider>
         <UserProvider>
-          <ProfileProvider>
-            <SessionProvider>
-              <NotificationProvider>
-                <FeedbackProvider>
-                  <App />
-                </FeedbackProvider>
-              </NotificationProvider>
-            </SessionProvider>
-          </ProfileProvider>
+          <DashboardProvider>
+            <ProfileProvider>
+              <FollowerProvider>
+                <SessionProvider>
+                  <NotificationProvider>
+                    <FeedbackProvider>
+                      <App />
+                    </FeedbackProvider>
+                  </NotificationProvider>
+                </SessionProvider>
+              </FollowerProvider>
+            </ProfileProvider>
+          </DashboardProvider>
         </UserProvider>
       </MediaQueryProvider>
     </BrowserRouter>
