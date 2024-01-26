@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import './style.scss'
-import ChatInput from './chatInput'
-import ChatBox from './chatBox'
-import { HelpContext } from '../../context/HelpContext'
-import { useSocket } from '../../context/SocketContext'
+import React, { useContext, useEffect, useState } from 'react';
+import './style.scss';
+import ChatInput from './chatInput';
+import ChatBox from './chatBox';
+import { HelpContext } from '../../context/HelpContext';
+import { useSocket } from '../../context/SocketContext';
 
 const ChatContainer = () => {
   const { chats, setChats } = useContext(HelpContext);
@@ -12,15 +12,15 @@ const ChatContainer = () => {
   useEffect(() => {
     if (socket) {
       // Example: Listen for events
-      socket.on("chat message", (message) => {
+      console.log('socket is connected');
+      socket.emit('join', '1234');
+      socket.on("chat-message", (message) => {
         // Handle incoming message
-        console.log("Received message:", message);
+        setChats(prev => [...prev, message]);
       });
-
-      // Example: Emit an event
-      socket.emit("chat massage", "Hello Server!");
     }
   }, [socket]);
+
   return (
     <div className='ChatContainer-container'>
       <div className="main-container">
@@ -29,10 +29,16 @@ const ChatContainer = () => {
         ))}
       </div>
       <div className="input-container">
-        <ChatInput onSend={(input) => console.log(input)} />
+        <ChatInput onSend={(input) => socket.emit("send-message", {
+          room_id: "1234",
+          message: {
+            text: input,
+            user: true
+          }
+        })} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChatContainer
+export default ChatContainer;

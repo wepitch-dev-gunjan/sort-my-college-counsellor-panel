@@ -1,4 +1,4 @@
-const NODE_ENV = "development";
+const NODE_ENV = "production";
 
 module.exports = {
   frontend_url:
@@ -7,6 +7,7 @@ module.exports = {
       : "https://localhost:9000/counsellor",
   backend_url:
     NODE_ENV === "production"
-      ? "https://server.sortmycollege.com"
+      ?
+      "https://server.sortmycollege.com"
       : "http://localhost:9000",
 };
