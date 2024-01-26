@@ -101,6 +101,7 @@ function App() {
                 <Route path="/users" element={<Users />} />
                 <Route path="/feeds" element={<MyFeeds />} />
                 <Route path="/feedbacks" element={<Feedbacks />} />
+                <Route path="/login" element={<Navigate replace to="/" />} />
                 <Route path="/help" element={<Help />} />
               </>
             ) : (
