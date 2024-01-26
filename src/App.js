@@ -23,6 +23,7 @@ import AddSession from "./components/addSession";
 import { ProfileContext } from "./context/ProfileContext";
 import AddProfilePic from "./components/profilePic/addProfilePic";
 import AddCoverImage from "./components/coverImage/addCoverImage";
+import Help from "./pages/help";
 
 function App() {
   const addProfilePicRef = useRef(null);
@@ -100,6 +101,7 @@ function App() {
                 <Route path="/users" element={<Users />} />
                 <Route path="/feeds" element={<MyFeeds />} />
                 <Route path="/feedbacks" element={<Feedbacks />} />
+                <Route path="/help" element={<Help />} />
               </>
             ) : (
               <>

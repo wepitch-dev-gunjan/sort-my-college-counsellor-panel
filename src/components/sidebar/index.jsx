@@ -8,6 +8,8 @@ import RightLeftArrow from "../buttons/rightLeftArrow";
 import GroupIcon from "@mui/icons-material/Group";
 import ReviewsIcon from "@mui/icons-material/Reviews";
 import FeedIcon from "@mui/icons-material/Feed";
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+
 import PersonIcon from "@mui/icons-material/Person";
 import { ProfileContext } from "../../context/ProfileContext";
 
@@ -63,14 +65,22 @@ const Sidebar = () => {
               text="My Feeds"
               expand={expand}
             />
+           
           </>)
 
         }
+         <hr />
 
         <SidebarMenuButton
           href="/profile"
           icon={PersonIcon}
           text="Profile"
+          expand={expand}
+        />
+            <SidebarMenuButton
+          href="/help"
+          icon={HelpOutlineIcon}
+          text="Help"
           expand={expand}
         />
       </div>
