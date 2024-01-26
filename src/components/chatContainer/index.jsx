@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './style.scss'
 import ChatInput from './chatInput'
-import ChatBox from '../chatBox'
+import ChatBox from './chatBox'
 
 const ChatContainer = () => {
   const [chats, setChats] = useState([
@@ -30,7 +30,7 @@ const ChatContainer = () => {
     <div className='ChatContainer-container'>
       <div className="main-container">
         {chats.map((chat, i) => (
-          <ChatBox key={i} text={chat.text} />
+          <ChatBox key={i} chat={chat} />
         ))}
       </div>
       <div className="input-container">
