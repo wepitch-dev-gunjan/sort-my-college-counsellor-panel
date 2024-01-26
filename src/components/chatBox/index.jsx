@@ -1,14 +1,13 @@
 import React from 'react'
 import './style.scss'
 
-const ChatBox = (text) => {
-    
+const ChatBox = ({ text }) => {
+
   return (
     <div className='ChatBox-container'>
       <p>
-        {/* {text} */}
-        chatting...
-        </p>
+        {text}
+      </p>
     </div>
   )
 }
