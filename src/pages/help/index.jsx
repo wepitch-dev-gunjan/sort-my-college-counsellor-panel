@@ -27,21 +27,21 @@ const Help = () => {
           <MdOutlineFeaturedPlayList size={60}/>
           <div className="feature-text">
           <h4>Key Features</h4>
-          <p>keyffsdf sfsd fs fsd f sf s fsd fs fs d</p>
+          <p>Explore the fundamental of SMC.</p>
           </div>
         </div>
         <div className="faq">
           <FaQuestionCircle size={60} />
           <div className="feature-text">
           <h4>FAQ & Troubleshooting</h4>
-          <p>keyffsdf sfsd fs fsd f sf s fsd fs fs d</p>
+          <p>Have a question? Find the answer here.</p>
         </div>
         </div>
         <div className="guide">
           <FaRegCompass size={60} />
           <div className="feature-text">
           <h4>Guide Center</h4>
-          <p>keyffsdf sfsd fs fsd f sf s fsd fs fs d</p>
+          <p>Ideas and guide for SMC.</p>
         </div>
         </div>
       </div>
