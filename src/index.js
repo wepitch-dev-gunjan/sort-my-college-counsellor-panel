@@ -13,6 +13,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { FeedbackProvider } from "./context/FeedbackContext";
 import { DashboardProvider } from "./context/DashboardContext";
 import { FollowerProvider } from "./context/FollowerContext";
+import { HelpProvider } from "./context/HelpContext";
+import { SocketProvider } from "./context/SocketContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,15 +24,19 @@ root.render(
         <UserProvider>
           <DashboardProvider>
             <ProfileProvider>
-              <FollowerProvider>
-                <SessionProvider>
-                  <NotificationProvider>
-                    <FeedbackProvider>
-                      <App />
-                    </FeedbackProvider>
-                  </NotificationProvider>
-                </SessionProvider>
-              </FollowerProvider>
+              <SocketProvider>
+                <HelpProvider>
+                  <FollowerProvider>
+                    <SessionProvider>
+                      <NotificationProvider>
+                        <FeedbackProvider>
+                          <App />
+                        </FeedbackProvider>
+                      </NotificationProvider>
+                    </SessionProvider>
+                  </FollowerProvider>
+                </HelpProvider>
+              </SocketProvider>
             </ProfileProvider>
           </DashboardProvider>
         </UserProvider>
