@@ -13,11 +13,12 @@
   padding: 12px;
   .main-container {
     display: flex;
+    padding: 12px 24px;
     background-color: #f5f5ff;
     flex-direction: column;
     box-shadow: inset 0px 5px 8px #473aa834;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
   }
   .input-container {
     width: 100%;
