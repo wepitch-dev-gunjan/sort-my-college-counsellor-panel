@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss';
 import { Box, Slider } from '@mui/material';
 import { FaIndianRupeeSign } from "react-icons/fa6";
@@ -6,8 +6,30 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import DateRangePicker from './dateRangePicker';
+import dayjs from 'dayjs';
+
 
 const Filters = ({ sessionFilters, setSessionFilters }) => {
+
+  // edits r
+  const [startDate, setStartDate] = useState(dayjs().subtract(5, 'day').format('MM-DD-YYYY'));
+  const [endDate, setEndDate] = useState(dayjs().add(5, 'day').format('MM-DD-YYYY'));
+
+  useEffect(()=>{
+    setSessionFilters(prev => ({
+      ...prev,
+      session_dates: [startDate, endDate]
+    }));
+  }, [startDate, endDate, setSessionFilters]);
+
+  const handleStartDateChange = (date) => {
+    setStartDate(date);
+  };
+  const handleEndDateChange = (date) => {
+    setEndDate(date);
+  };
+  // edits r
+
   const handleFeeChange = (e, newValue) => {
     setSessionFilters(prev => ({ ...prev, session_fee: newValue }));
     if (newValue[0] >= newValue[1]) {
@@ -87,7 +109,16 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
       </div>
       <div className="date-range">
         <p>Select Date Range</p>
-        <DateRangePicker sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
+        <DateRangePicker 
+        sessionFilters={sessionFilters} 
+        setSessionFilters={setSessionFilters}
+        // edits r 
+        startDate={startDate}
+        endDate={endDate}
+        handleStartDateChange={handleStartDateChange}
+        handleEndDateChange={handleEndDateChange}
+        // edits r 
+        />
       </div>
       <div className="duration">
         <p>Session duration</p>
