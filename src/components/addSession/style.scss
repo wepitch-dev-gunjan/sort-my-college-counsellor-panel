@@ -24,7 +24,7 @@
     justify-content: space-evenly;
     gap: 16px;
     max-width: 100%;
-    height: 100%;
+    // height: 100%;
     button {
       width: 100%;
     }
@@ -73,12 +73,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%; /* Set the desired width */
-      height: 40px; /* Set the desired height */
-      margin: 0 auto; /* Adjust margin as needed */
-      animation: rotate 1s linear infinite; /* Apply the animation */
+      width: 100%; 
+      height: 40px; 
+      margin: 0 auto;
+      animation: rotate 1s linear infinite; 
     }
-    
   }
 
   .edit-mode-form{
