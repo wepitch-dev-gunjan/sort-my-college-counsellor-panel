@@ -7,7 +7,6 @@ import ChatContainer from '../../components/chatContainer';
 import { MdOutlineFeaturedPlayList } from "react-icons/md";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { FaRegCompass } from "react-icons/fa";
-import { Link } from 'react-router-dom';
 
 const Help = () => {
 

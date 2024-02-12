@@ -19,6 +19,17 @@
   width: 400px;
   height: 400px;
   background-color: var(--background-light);
+  .edit-mode-bottom {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 16px;
+    max-width: 100%;
+    height: 100%;
+    button {
+      width: 100%;
+    }
+    
+  }
   button {
     cursor: pointer;
     border-radius: 20px;
