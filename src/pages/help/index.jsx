@@ -33,13 +33,13 @@ const Help = () => {
         </div>
                 
         <div className="faq">
-        <Link to={`/counsellors/help/faq`}>
+        {/* <Link to={`/counsellors/help/faq`}> */}
           <FaRegQuestionCircle size={52} />
           <div className="feature-text">
           <h4>FAQ & Troubleshooting</h4>
           <p>Have a question? Find the answer here.</p>
         </div>
-        </Link>
+        {/* </Link> */}
         </div>
         <div className="guide">
           <FaRegCompass size={52} />

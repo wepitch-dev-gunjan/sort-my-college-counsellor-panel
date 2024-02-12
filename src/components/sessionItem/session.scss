@@ -7,8 +7,8 @@
   padding: 20px;
   border-radius: 20px;
   box-shadow: 2px 2px 32px rgba(17, 0, 255, 0.055);
-  width: 400px;
-  height: 313px;
+  width: 350px;
+  height: 310px;
   background-color: var(--background-light);
 }
   button {
@@ -54,7 +54,7 @@
     }
   }
 
-  .edit-mode-form {
+  .edit-mode {
     display: flex;
     flex-direction: column;
     height: 100%;
