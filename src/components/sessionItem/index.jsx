@@ -8,6 +8,7 @@ import { backend_url } from '../../config';
 import useClickOutside from '../../customHooks/useClickOutside';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
+import './session.scss';
 
 const SessionCard = ({ session, setSessions, getResponse }) => {
   const menuRef = useRef(null)
@@ -69,7 +70,7 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
   };
 
   return (
-    <div className="session-item">
+    <div className="sessions-i">
       <div className="top">
         <h2>{session.session_type + ' Session'}</h2>
         <div className="drop-down-button" onClick={() => setShowMenu(true)} >

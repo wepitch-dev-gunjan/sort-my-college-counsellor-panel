@@ -1,4 +1,4 @@
-.session-item {
+.sessions-i {
   margin: 0;
   display: flex;
   gap: 24px;
@@ -8,7 +8,7 @@
   border-radius: 20px;
   box-shadow: 2px 2px 32px rgba(17, 0, 255, 0.055);
   width: 400px;
-  height: 400px;
+  height: 313px;
   background-color: var(--background-light);
 }
   button {
@@ -43,7 +43,7 @@
   }
 
   form {
-    .edit-mode-fields {
+    .edit-mode {
       display: flex;
       flex-direction: column;
       gap: 20px;
