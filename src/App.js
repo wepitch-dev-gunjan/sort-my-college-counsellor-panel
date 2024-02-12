@@ -24,6 +24,8 @@ import { ProfileContext } from "./context/ProfileContext";
 import AddProfilePic from "./components/profilePic/addProfilePic";
 import AddCoverImage from "./components/coverImage/addCoverImage";
 import Help from "./pages/help";
+import Troubleshooting from "./pages/troubleshooting";
+
 
 function App() {
   const addProfilePicRef = useRef(null);
@@ -103,7 +105,8 @@ function App() {
                 <Route path="/feedbacks" element={<Feedbacks />} />
                 <Route path="/login" element={<Navigate replace to="/" />} />
                 <Route path="/help" element={<Help />} />
-              </>
+                <Route path="/help/troubleshooting" element={<Troubleshooting/>} />
+                </> 
             ) : (
               <>
                 <Route path="*" element={<Navigate replace to="/login" />} />

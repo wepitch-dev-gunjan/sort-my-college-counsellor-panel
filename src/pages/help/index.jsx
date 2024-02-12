@@ -7,6 +7,7 @@ import ChatContainer from '../../components/chatContainer';
 import { MdOutlineFeaturedPlayList } from "react-icons/md";
 import { FaQuestionCircle } from "react-icons/fa";
 import { FaRegCompass } from "react-icons/fa";
+import {Link} from 'react-router-dom'
 
 const Help = () => {
 
@@ -33,7 +34,7 @@ const Help = () => {
         <div className="faq">
           <FaQuestionCircle size={60} />
           <div className="feature-text">
-          <h4>FAQ & Troubleshooting</h4>
+          <h4>FAQ & <Link to="/help/troubleshooting">Troubleshooting</Link></h4>
           <p>Have a question? Find the answer here.</p>
         </div>
         </div>
