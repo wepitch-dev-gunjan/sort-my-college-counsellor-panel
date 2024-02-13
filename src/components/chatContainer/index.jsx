@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './style.scss';
 import ChatInput from './chatInput';
 import ChatBox from './chatBox';

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { IoMdSearch } from "react-icons/io";
 import ChatContainer from '../../components/chatContainer';
 import { MdOutlineFeaturedPlayList } from "react-icons/md";
-import { FaQuestionCircle } from "react-icons/fa";
+import { FaRegQuestionCircle } from "react-icons/fa";
 import { FaRegCompass } from "react-icons/fa";
 import {Link} from 'react-router-dom'
 
@@ -25,21 +25,24 @@ const Help = () => {
       </div>
       <div className="help-section">
         <div className="key-feature">
-          <MdOutlineFeaturedPlayList size={60}/>
+          <MdOutlineFeaturedPlayList size={52}/>
           <div className="feature-text">
           <h4>Key Features</h4>
           <p>Explore the fundamental of SMC.</p>
           </div>
         </div>
+                
         <div className="faq">
-          <FaQuestionCircle size={60} />
+        {/* <Link to={`/counsellors/help/faq`}> */}
+          <FaRegQuestionCircle size={52} />
           <div className="feature-text">
           <h4>FAQ & <Link to="/help/faq-and-troubleshooting">Troubleshooting</Link></h4>
           <p>Have a question? Find the answer here.</p>
         </div>
+        {/* </Link> */}
         </div>
         <div className="guide">
-          <FaRegCompass size={60} />
+          <FaRegCompass size={52} />
           <div className="feature-text">
           <h4>Guide Center</h4>
           <p>Ideas and guide for SMC.</p>
