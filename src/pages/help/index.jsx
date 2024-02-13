@@ -34,7 +34,7 @@ const Help = () => {
         <div className="faq">
           <FaQuestionCircle size={60} />
           <div className="feature-text">
-          <h4>FAQ & <Link to="/help/troubleshooting">Troubleshooting</Link></h4>
+          <h4>FAQ & <Link to="/help/faq-and-troubleshooting">Troubleshooting</Link></h4>
           <p>Have a question? Find the answer here.</p>
         </div>
         </div>
