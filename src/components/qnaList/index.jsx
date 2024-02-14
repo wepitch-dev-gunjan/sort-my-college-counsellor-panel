@@ -9,10 +9,11 @@ const QnaList = () => (
             <Stack justifyContent="space-between">
                 <span>Top Questions</span>
                 <ButtonGroup>
-                <Button active>Interesting</Button>
+                <Button active>All</Button>
                 <Button>Hot</Button>
                 <Button>Week</Button>
                 <Button>Month</Button>
+                <Button>My Questions</Button>
                 </ButtonGroup>
             </Stack>
             }

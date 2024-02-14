@@ -25,6 +25,7 @@ import AddProfilePic from "./components/profilePic/addProfilePic";
 import AddCoverImage from "./components/coverImage/addCoverImage";
 import Help from "./pages/help";
 import FaqAndTroubleshooting from "./pages/faqAndTroubleshooting";
+import AskQuestion from "./pages/askQuestion";
 
 
 function App() {
@@ -106,6 +107,7 @@ function App() {
                 <Route path="/login" element={<Navigate replace to="/" />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/help/faq-and-troubleshooting" element={<FaqAndTroubleshooting/>} />
+                <Route path="/help/faq-and-troubleshooting/ask-a-question" element={<AskQuestion/>} />
                 </> 
             ) : (
               <>

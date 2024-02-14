@@ -2,6 +2,7 @@ import './style.scss'
 import 'rsuite/dist/rsuite.min.css';
 import { IoMdSearch } from "react-icons/io";
 import QnaList from '../../components/qnaList';
+import { Link } from 'react-router-dom'
 
 const FaqAndTroubleshooting = () => {
     return(
@@ -12,7 +13,7 @@ const FaqAndTroubleshooting = () => {
                     <IoMdSearch size={28}/>
                 </div>
                 <div className='ask-question-btn'>
-                    <a>Ask a Question</a>
+                <Link to='/help/faq-and-troubleshooting/ask-a-question'> Ask a Question</Link>
                 </div>
             </div>
             <QnaList />
