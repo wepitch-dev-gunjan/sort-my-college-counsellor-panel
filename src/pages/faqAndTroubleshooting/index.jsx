@@ -3,8 +3,14 @@ import 'rsuite/dist/rsuite.min.css';
 import { IoMdSearch } from "react-icons/io";
 import QnaList from '../../components/qnaList';
 import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react';
+import { HelpContext } from '../../context/HelpContext';
 
 const FaqAndTroubleshooting = () => {
+    const {askQuestionEnable, setAskQuestionEnable} = useContext(HelpContext)
+    function askQuestion() {
+        setAskQuestionEnable(true)
+    }
     return(
         <div className="fat-main">
             <div className='secondary-header'>
@@ -13,7 +19,7 @@ const FaqAndTroubleshooting = () => {
                     <IoMdSearch size={28}/>
                 </div>
                 <div className='ask-question-btn'>
-                <Link to='/help/faq-and-troubleshooting/ask-a-question'> Ask a Question</Link>
+                <button onClick={askQuestion}> Ask a Question</button>
                 </div>
             </div>
             <QnaList />

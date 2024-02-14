@@ -26,7 +26,8 @@ import AddCoverImage from "./components/coverImage/addCoverImage";
 import Help from "./pages/help";
 import FaqAndTroubleshooting from "./pages/faqAndTroubleshooting";
 import AskQuestion from "./pages/askQuestion";
-
+import "rsuite/dist/rsuite-no-reset.min.css";
+import { HelpContext } from "./context/HelpContext";
 
 function App() {
   const addProfilePicRef = useRef(null);
@@ -37,6 +38,8 @@ function App() {
     useContext(ProfileContext);
   const { coverImageEditMode, setCoverImageEditMode } =
     useContext(ProfileContext);
+
+  const { askQuestionEnable, setAskQuestionEnable } = useContext(HelpContext);
 
   const addCoverImageRef = useRef(null);
 
@@ -86,6 +89,13 @@ function App() {
           <AddCoverImage ref={addCoverImageRef} />
         </div>
       )}
+
+      {askQuestionEnable && (
+        <div className="ask-a-question">
+          <AskQuestion />
+        </div>
+      )}
+
       {isLoggedIn && <Header handleLogout={handleLogout} />}
       <div className="main">
         <ToastContainer />
@@ -106,9 +116,15 @@ function App() {
                 <Route path="/feedbacks" element={<Feedbacks />} />
                 <Route path="/login" element={<Navigate replace to="/" />} />
                 <Route path="/help" element={<Help />} />
-                <Route path="/help/faq-and-troubleshooting" element={<FaqAndTroubleshooting/>} />
-                <Route path="/help/faq-and-troubleshooting/ask-a-question" element={<AskQuestion/>} />
-                </> 
+                <Route
+                  path="/help/faq-and-troubleshooting"
+                  element={<FaqAndTroubleshooting />}
+                />
+                {/* <Route
+                  path="/help/faq-and-troubleshooting/ask-a-question"
+                  element={<AskQuestion />}
+                /> */}
+              </>
             ) : (
               <>
                 <Route path="*" element={<Navigate replace to="/login" />} />

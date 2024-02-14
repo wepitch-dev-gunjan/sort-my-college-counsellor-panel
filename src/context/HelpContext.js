@@ -7,30 +7,40 @@ export const HelpProvider = ({ children }) => {
   const [chats, setChats] = useState([
     {
       text: "Hello welcome to sort my college",
-      user: false
+      user: false,
     },
     {
       text: "Wo sab thk h mera, mera login nhi ho rha hai",
-      user: true
+      user: true,
     },
     {
       text: "Sorry for your inconvinience. feel free to share your problem with us.",
-      user: false
+      user: false,
     },
     {
       text: "Problem 1 baar me smjh nhi aayi? hindi nhi aati?",
-      user: true
+      user: true,
     },
     {
       text: "Sorry for your inconvinience. We will get back to you soon.",
-      user: false
+      user: false,
     },
   ]);
+  const [askQuestionEnable, setAskQuestionEnable] = useState(false);
   return (
-    <SocketProvider> {/* Wrap your existing provider with SocketProvider */}
-      <HelpContext.Provider value={{ chats, setChats }}>
+    <SocketProvider>
+      {" "}
+      {/* Wrap your existing provider with SocketProvider */}
+      <HelpContext.Provider
+        value={{
+          chats,
+          setChats,
+          askQuestionEnable,
+          setAskQuestionEnable,
+        }}
+      >
         {children}
       </HelpContext.Provider>
     </SocketProvider>
   );
-}
+};
