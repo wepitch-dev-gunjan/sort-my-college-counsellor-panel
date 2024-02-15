@@ -1,9 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import { SocketProvider } from "./SocketContext";
 
 export const HelpContext = createContext();
 
 export const HelpProvider = ({ children }) => {
+  const askQuestionRef = useRef(null);
+  const [askQuestionEnable, setAskQuestionEnable] = useState(false);
+
   const [chats, setChats] = useState([
     {
       text: "Hello welcome to sort my college",
@@ -26,7 +29,6 @@ export const HelpProvider = ({ children }) => {
       user: false,
     },
   ]);
-  const [askQuestionEnable, setAskQuestionEnable] = useState(false);
   return (
     <SocketProvider>
       {" "}
@@ -35,6 +37,7 @@ export const HelpProvider = ({ children }) => {
         value={{
           chats,
           setChats,
+          askQuestionRef,
           askQuestionEnable,
           setAskQuestionEnable,
         }}

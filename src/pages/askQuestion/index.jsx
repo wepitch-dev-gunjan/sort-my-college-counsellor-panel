@@ -1,8 +1,12 @@
+import { useContext } from 'react'
 import './style.scss'
+import { HelpContext } from '../../context/HelpContext'
 
 const AskQuestion = () => {
+    const {askQuestionRef} = useContext(HelpContext)
+
     return(
-        <div className='ask-question-main'>
+        <div ref={askQuestionRef} className='ask-question-main'>
             <div className='ask-question-container'>
                 <h3>Ask a Question</h3>
                     <div className='ask-question-dropdown'> 
