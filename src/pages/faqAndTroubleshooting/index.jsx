@@ -18,8 +18,8 @@ const FaqAndTroubleshooting = () => {
                     <input type="text" placeholder='Search'/>
                     <IoMdSearch size={28}/>
                 </div>
-                <div className='ask-question-btn'>
-                <button onClick={askQuestion}> Ask a Question</button>
+                <div className='ask-question-btn' onClick={askQuestion}>
+                Ask a Question
                 </div>
             </div>
             <QnaList />

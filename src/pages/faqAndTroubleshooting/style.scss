@@ -26,13 +26,6 @@
         .ask-question-btn{
             display: flex;
             align-items: center;
-            a{
-                // color: #fff;
-                // padding: 15px;
-                // cursor: pointer;
-                // background: rgb(2,0,36);
-                // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(5,5,107,1) 35%, rgba(7,7,90,1) 64%, rgba(2,4,119,1) 100%);
-                
                 display: inline-block;
                 outline: 0;
                 cursor: pointer;
@@ -47,12 +40,11 @@
                 // font-size: 16px;
                 box-shadow: 0 4px 14px 0 rgba(144, 129, 194, 0.81);
                 transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
-            }
-            a:hover{
-                background: rgba(145, 125, 209, 0.81);
-                box-shadow: 0 6px 20px rgb(145 125 209 / 23%);
-                text-decoration: none;
+                &:hover{
+                    background: rgba(145, 125, 209, 0.81);
+                    box-shadow: 0 6px 20px rgb(145 125 209 / 23%);
+                    text-decoration: none;
+                }
             }
         }
     }
-}
