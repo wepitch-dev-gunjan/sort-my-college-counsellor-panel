@@ -1,6 +1,3 @@
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import CommentIcon from "@mui/icons-material/Comment";
-import SendIcon from "@mui/icons-material/Send";
 import "./style.scss";
 import { useState } from "react";
 import Feed from "../../components/feed";

@@ -36,6 +36,11 @@
   gap: 40px;
   padding: 20px;
   width: 100%;
+
+  .pagination{
+    display: flex;
+    justify-content: center;
+  }
   .top {
     display: flex;
     flex-direction: column;

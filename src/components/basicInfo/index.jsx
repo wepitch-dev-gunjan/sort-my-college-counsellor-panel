@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
-import './style.scss'
+import React, { useState } from "react";
+import "react-datepicker/dist/react-datepicker.css";
+import "./style.scss";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { handleInput } from "../../utilities";
 
-const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
-  const [editedValues, setEditedValues] = useState({ email, age, gender });
-
-  const handleInput = (fieldName, value) => {
-    setEditedValues((prevValues) => ({
-      ...prevValues,
-      [fieldName]: value,
+const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
+  const handleDateChange = (date) => {
+    setProfile((prev) => ({
+      ...prev,
+      date_of_birth: formatDate(date),
     }));
   };
 
+  const formatDate = (date) => {
+    return dayjs(date).format('YYYY-MM-DD');
+  };
+
   return (
-    <div className='BasicInfo-container'>
+    <div className="BasicInfo-container">
       <div className="heading">
         <h2>Basic info</h2>
       </div>
@@ -27,11 +33,11 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
               {editProfileEnable ? (
                 <input
                   type="text"
-                  value={editedValues.email}
-                  onChange={(e) => handleInput('email', e.target.value)}
+                  value={profile.email}
+                  onChange={(e) => handleInput("email", e.target.value, setProfile)}
                 />
               ) : (
-                <p>{editedValues.email}</p>
+                <p>{profile.email}</p>
               )}
             </div>
           </div>
@@ -44,13 +50,42 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={editedValues.gender}
-                  onChange={(e) => handleInput('gender', e.target.value)}
-                />
+                <div className="gender-radio">
+                  <label className="gender-text">
+                    <input
+                      type="radio"
+                      value="Male"
+                      checked={profile.gender === "Male"}
+                      onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                    />
+                    Male
+                  </label>
+                  <label>
+                    <div className="gender-text">
+                      <input
+                        type="radio"
+                        value="Female"
+                        checked={profile.gender === "Female"}
+                        onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                      />
+                      Female
+                    </div>
+                  </label>
+                  <label>
+                    <div className="gender-text">
+                      <span><input
+                        type="radio"
+                        value="Other"
+                        checked={profile.gender === "Other"}
+                        onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                      />
+                      </span>
+                      Other
+                    </div>
+                  </label>
+                </div>
               ) : (
-                <p>{editedValues.gender}</p>
+                <p>{profile.gender}</p>
               )}
             </div>
           </div>
@@ -59,23 +94,23 @@ const BasicInfo = ({ email, age, gender, editProfileEnable }) => {
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Age</p>
+              <p>Date of birth</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={editedValues.age}
-                  onChange={(e) => handleInput('age', e.target.value)}
+
+                <DatePicker label="Date of birth"
+                  defaultValue={dayjs(profile.date_of_birth)}
+                  onChange={(date) => handleDateChange(date)}
                 />
               ) : (
-                <p>{editedValues.age}</p>
+                <p>{formatDate(profile.date_of_birth)}</p>
               )}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

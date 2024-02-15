@@ -96,7 +96,8 @@ const Payment = () => {
       status: 'Delivered'
     }
   ]);
-
+  
+ 
   return (
     <div className="Payments-container">
       <div className="heading sticky">
@@ -110,9 +111,7 @@ const Payment = () => {
         </div>
       </div>
       <div className='RecentPayments-container'>
-
         <div className="table">
-
           {payments.map((payment, i) => (
             <div className='row' key={i}>
               <div className='col'>{payment.id}</div>

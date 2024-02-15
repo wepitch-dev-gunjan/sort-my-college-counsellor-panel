@@ -1,0 +1,58 @@
+.DocumentItem {
+  .DocumentItemRow{
+    width: 100%
+  }
+  // .DocumentItemCol{
+  //   width: 70%;
+  // }
+  .row {
+    .col {
+      display: flex;
+      justify-content: start;
+      width: 100%;
+      // changed by r 
+      // gap: 12px;
+      // changed by r 
+
+      .dropdown {
+        width: 100%;
+
+        select {
+          padding: 12px;
+          font-size: 14px;
+          border-radius: 8px;
+          cursor: pointer;
+          // changed by r 
+          text-overflow: ellipsis;
+          width: 96%;
+          // changed by r
+        }
+      }
+
+      .upload {
+        width: 100%;
+        display: flex;
+        .button-upload {
+          padding: 12px;
+          border-radius: 8px;
+          width: 50%;
+          border: 1px solid black;
+          font-size: 14px;
+        }
+        .button-upload:hover {
+          background-color: var(--background-dark);
+        }
+      }
+
+      .up-icons {
+        // width: 100%;
+        display: flex;
+        position: absolute;
+        right: 20px;
+        flex-direction: row;
+        gap: 4px;
+        cursor: pointer;
+      }
+    }
+  }
+}

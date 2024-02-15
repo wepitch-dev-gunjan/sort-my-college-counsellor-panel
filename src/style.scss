@@ -1,3 +1,4 @@
+
 :root {
   /* Primary Colors */
   --primary-color: #1f0a68;
@@ -172,3 +173,29 @@ a {
     scrollbar-color: #a0a0a0 transparent;
   }
 }
+
+.add-session-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: #0000009d;
+  // backdrop-filter: blur(1px); /* You can adjust the blur amount as needed */
+  z-index: 9999999;
+}
+
+.ask-a-question{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: #0000009d;
+
+  backdrop-filter: blur(1px); /* You can adjust the blur amount as needed */
+  z-index: 9999999;
+}
+

@@ -1,21 +1,20 @@
+import TagsInput from "react-tagsinput";
+import { handleArrayInputChange } from "../../utilities";
 import "./style.scss";
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import 'react-tagsinput/react-tagsinput.css';
 
 const EducationInfo = ({
-  qualifications: initialQualifications,
+  profile,
+  setProfile,
   editProfileEnable,
 }) => {
-  const [qualifications, setQualifications] = useState(initialQualifications);
-
-  const handleQualificationsChange = (e) => {
-    const updatedQualifications = e.target.value.split(",");
-    setQualifications(updatedQualifications);
-  };
+  const [tags, setTags] = useState(['hjhjh', 'hghghg'])
 
   return (
     <div className="BasicInfo-container">
       <div className="heading">
-        <h2>Education info</h2>
+        <h2>My Educational Info</h2>
       </div>
 
       <div className="info">
@@ -26,16 +25,14 @@ const EducationInfo = ({
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={qualifications.join(",")}
-                  onChange={handleQualificationsChange}
-                />
+                <TagsInput
+                value={profile.qualifications}
+                onChange={(newTags) => setProfile({ ...profile, qualifications: newTags})}
+              />
               ) : (
-                qualifications.map((qualification, i) => (
-                  <p key={i}>{`${qualification}${
-                    i < qualifications.length - 1 ? "," : ""
-                  }`}</p>
+                profile.qualifications?.map((qualification, i) => (
+                  <p key={i}>{`${qualification}${i < profile.qualifications.length - 1 ? "," : ""
+                    }`}</p>
                 ))
               )}
             </div>
