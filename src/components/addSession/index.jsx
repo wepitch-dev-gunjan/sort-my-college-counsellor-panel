@@ -27,8 +27,14 @@ const AddSession = ({ setSessions, setAddMode }) => {
 
   function getCurrentTime() {
     const now = new Date();
-    const hours = now.getHours().toString().padStart(2, "0");
-    const minutes = Math.ceil(now.getMinutes() / 30) * 30; // Round to nearest 30 minutes
+    let hours = now.getHours().toString().padStart(2, "0");
+    let minutes = now.getMinutes();
+    if (minutes < 30) {
+      minutes = 30; // Set to 30 if earlier than 30
+    } else {
+      minutes = 0; // Reset to 0 and add an hour if 30 or later
+      hours = (parseInt(hours) + 1).toString().padStart(2, "0");
+    }
     const currentTime = `${hours}:${minutes.toString().padStart(2, "0")}`;
     return currentTime;
   }
@@ -129,12 +135,13 @@ const AddSession = ({ setSessions, setAddMode }) => {
               <input
                 type="time"
                 value={sessionDetails.session_time}
-                onChange={(e) =>
+                onChange={(e) => {
+                  // console.log(e.target.value);
                   setSessionDetails({
                     ...sessionDetails,
                     session_time: e.target.value,
-                  })
-                }
+                  });
+                }}
                 required
               />
             </div>
@@ -178,7 +185,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
               <input
                 type="number"
                 step="100"
-                min='0'
+                min="0"
                 value={sessionDetails.session_fee}
                 onChange={(e) =>
                   setSessionDetails({

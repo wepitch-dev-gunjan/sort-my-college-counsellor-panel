@@ -10,17 +10,19 @@ import { backend_url } from "../../config";
 import { DashboardContext } from "../../context/DashboardContext";
 
 const Dashboard = () => {
-  const { followersCount } = useContext(DashboardContext)
+  const { dashboardData } = useContext(DashboardContext)
   const { smallScreen } = useContext(MediaQueryContext);
+
+  console.log(dashboardData)
   return (
     <div className="all-dashboard">
       <div className="Dashboard-container">
         <div className="business-dashbaord">
           <h1>Business Dashboard</h1>
           <div className="widgets-container">
-            <Widget heading="USERS" value={followersCount} />
+            <Widget heading="FOLLOWERS" value={dashboardData.totalFollowers} />
             <Widget heading="INCOME" value="$10000" />
-            <Widget heading="SESSIONS" value="1000" />
+            <Widget heading="SESSIONS" value={dashboardData.totalSessions} />
           </div>
         </div>
 
