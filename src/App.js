@@ -42,6 +42,7 @@ function App() {
   const { askQuestionEnable, setAskQuestionEnable } = useContext(HelpContext);
 
   const addCoverImageRef = useRef(null);
+  const askQuestionRef = useRef(null);
 
   const { notificationsEnable, setNotificationsEnable, notificationsRef } =
     useContext(NotificationContext);
@@ -58,6 +59,10 @@ function App() {
 
   useClickOutside(addProfilePicRef, () => {
     setProfilePicEditMode((prev) => !prev);
+  });
+
+  useClickOutside(askQuestionRef, () => {
+    setAskQuestionEnable(false);
   });
 
   useClickOutside(addCoverImageRef, () => {
@@ -92,7 +97,7 @@ function App() {
 
       {askQuestionEnable && (
         <div className="ask-a-question">
-          <AskQuestion />
+          <AskQuestion ref={askQuestionRef} />
         </div>
       )}
 
