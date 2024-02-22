@@ -8,10 +8,31 @@ import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import { backend_url } from "../../config";
 import { DashboardContext } from "../../context/DashboardContext";
+import { ProfileContext } from "../../context/ProfileContext";
 
 const Dashboard = () => {
   const { dashboardData } = useContext(DashboardContext)
   const { smallScreen } = useContext(MediaQueryContext);
+  const { profile, setProfile } = useContext(ProfileContext)
+  const { user } = useContext(UserContext)
+
+  useEffect(() => {
+    const incrementActivityPoint = async () => {
+      const lastCheckinDate = new Date(profile.last_checkin_date).toISOString().slice(0, 10);
+      const currentDate = new Date().toISOString().slice(0, 10); // Corrected to get current date properly
+      console.log(currentDate)
+
+      if (lastCheckinDate !== currentDate) {
+        const { data } = await axios.put(`${backend_url}/counsellor/activity/increment-activity-points`, null, {
+          headers: {
+            Authorization: user.token
+          }
+        })
+        console.log(data)
+      }
+    }
+    incrementActivityPoint()
+  }, [])
 
   console.log(dashboardData)
   return (
