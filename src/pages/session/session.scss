@@ -3,13 +3,31 @@
   flex-direction: column;
   width: 100%;
   .session-header {
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // // justify-content: space-between;
     padding: 20px;
     width: 100%;
+    .left{
+      .reset-changes{
+        display: flex;
+        justify-content: space-between;
+        button{
+          border: none;
+          background-color: var(--primary-dark);
+          color: var(--background-light);
+          padding: 8px 16px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          border-radius: 20px;
+        }
+        
+      }
+    }
   }
   .sessionContainer {
     flex: 6;
+    overflow-y: auto;
   }
   .sessionList {
     display: flex;

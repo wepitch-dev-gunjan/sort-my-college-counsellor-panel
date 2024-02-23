@@ -1,15 +1,21 @@
-import React, { useState, useRef, useContext, forwardRef, useImperativeHandle } from 'react';
+import React, { useState, useRef, useContext, forwardRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import './style.scss';
 import { ProfileContext } from '../../../context/ProfileContext';
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { backend_url } from '../../../config';
+import { UserContext } from '../../../context/UserContext';
+import { dataURLtoFile } from '../../../utilities'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AddProfilePic = forwardRef((props, ref) => {
   const [image, setImage] = useState(null);
   const [scale, setScale] = useState(1);
   const editorRef = useRef(null);
   const fileRef = useRef(null);
-  const { profilePicEditMode, setProfilePicEditMode } = useContext(ProfileContext)
+  const { setProfilePicEditMode, fetchProfile } = useContext(ProfileContext)
+  const { user } = useContext(UserContext)
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -23,14 +29,33 @@ const AddProfilePic = forwardRef((props, ref) => {
     setScale(parseFloat(event.target.value));
   };
 
-  const onSave = () => {
+  const onSave = async () => {
     if (editorRef.current) {
       const canvasScaled = editorRef.current.getImageScaledToCanvas();
-      const imageData = canvasScaled.toDataURL();
-      console.log(imageData); // You can send this data to the server or use as needed
+      const file = dataURLtoFile(canvasScaled.toDataURL()); // Convert data URL to File object
+
+      try {
+        const formData = new FormData();
+        formData.append('image', file); // Append the File object to FormData
+
+        await axios.post(`${backend_url}/counsellor/profile-pic`, formData, {
+          headers: {
+            Authorization: user.token,
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        fetchProfile()
+
+        // Handle success, show message, or perform other actions upon successful upload
+        setProfilePicEditMode(false)
+        toast('Image updated successfully');
+      } catch (error) {
+        // Handle error, show error message, or perform error-related actions
+        setProfilePicEditMode(false)
+        toast('Error uploading image:', error);
+      }
     }
   };
-
   const handleCancel = () => {
     setProfilePicEditMode(false)
   };

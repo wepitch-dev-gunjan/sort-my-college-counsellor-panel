@@ -1,8 +1,9 @@
 .AddProfilePic-container {
-  z-index: 99999;
+  z-index: 99999999;
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
+  left: 0;
   justify-content: center;
   align-items: center;
   width: 100%;
