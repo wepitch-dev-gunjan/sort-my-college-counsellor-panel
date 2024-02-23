@@ -9,6 +9,9 @@
   .inner-container {
     display: flex;
     gap: 8px;
+.Text_Content{
+ font-size: var(--fs-sm);
+}
   }
   a {
     text-decoration: none;

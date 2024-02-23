@@ -11,12 +11,15 @@
       .reset-changes{
         display: flex;
         justify-content: space-between;
+        h1{
+         font-size: var(--fs-m);
+        }
         button{
           border: none;
           background-color: var(--primary-dark);
           color: var(--background-light);
           padding: 8px 16px;
-          font-size: 16px;
+          font-size: var(--fs-sm);
           font-weight: 600;
           cursor: pointer;
           border-radius: 20px;

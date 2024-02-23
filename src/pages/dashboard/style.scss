@@ -4,6 +4,9 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  .sidebar-container span{
+   font-size: 1px;
+  }
   .Dashboard-container {
     display: flex;
     flex-direction: column;
@@ -17,6 +20,18 @@
       flex-direction: column;
       gap: 40px;
       padding: 20px;
+      h1{
+       font-size: var(--fs-l);
+      }
+      h3{
+       font-size: var(--fs-sm);
+      }
+      h4{
+       font-size: var(--fs-sm);
+      }
+      p{
+       font-size: var(--fs-sm);
+      }
       .widgets-container {
         display: flex;
         justify-content: space-between;

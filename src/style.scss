@@ -32,6 +32,14 @@
 
   --browse-file: #e7e7e7;
   --browse-bg: #31245c;
+
+  // font sizes 
+  --fs-xs :0.5em;
+  --fs-sm: 1em;
+  --fs-m: 2em;
+  --fs-l: 3em;
+  --fs-xl: 4em;
+  --fs-xxl:5em;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
@@ -54,7 +62,7 @@ h1 {
 input {
   padding: 0;
   margin: 0;
-  font-size: 16px;
+  font-size: 1600px;
   color: var(--text-dark) !important;
   border: none;
   outline: none;
