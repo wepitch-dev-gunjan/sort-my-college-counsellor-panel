@@ -38,5 +38,13 @@
         gap: 32px;
       }
     }
+    .payments-top, .payments-table{
+      h1{
+        font-size: var(--fs-l);
+      }
+      h4{
+        font-size: var(--fs-m);
+      }
+    }
   }
 }
