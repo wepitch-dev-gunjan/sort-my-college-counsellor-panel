@@ -17,9 +17,11 @@ const Dashboard = () => {
   const { user } = useContext(UserContext)
 
   useEffect(() => {
-    const incrementActivityPoint = async () => {
-      const lastCheckinDate = new Date(profile.last_checkin_date).toISOString().slice(0, 10);
-      const currentDate = new Date().toISOString().slice(0, 10); // Corrected to get current date properly
+   const incrementActivityPoint = async () => {
+     // console.log("last_checkin_date:", profile.last_checkin_date);
+      const lastCheckinDate = new Date(profile.last_checkin_date).toString().slice(0, 10);
+     // changed toISOString to toString line22 line24
+      const currentDate = new Date().toString().slice(0, 10); // Corrected to get current date properly
       console.log(currentDate)
 
       if (lastCheckinDate !== currentDate) {

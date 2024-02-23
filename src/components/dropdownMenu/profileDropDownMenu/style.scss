@@ -34,6 +34,12 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    h4{
+     font-size: var(--fs-m);
+    }
+    p{
+     font-size: var(--fs-sm) ;
+    }
   }
   .right {
     display: flex;

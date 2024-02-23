@@ -9,11 +9,15 @@
     cursor: pointer;
     display: flex;
     justify-content: end;
+    font-size: var(--fs-sm) ;
   }
   .payments-top {
     display: flex;
     justify-content: space-between;
     align-items: end;
+  }
+  .payments-table p{
+   font-size: var(--fs-sm);
   }
   .table {
     .row {

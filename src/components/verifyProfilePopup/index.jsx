@@ -14,7 +14,7 @@ const VerifyProfilePopup = () => {
     <div className='VerifyProfilePopup-container'
       onClick={handleClick}
     >
-      Complete your profile to get verified!
+      <h4>Complete your profile to get verified!</h4>
     </div>
   );
 };
