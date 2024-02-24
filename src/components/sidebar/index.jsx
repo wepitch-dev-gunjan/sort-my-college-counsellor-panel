@@ -2,7 +2,7 @@ import "./style.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PaymentIcon from "@mui/icons-material/Payment";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import SidebarMenuButton from "../buttons/sidebarMenuButton";
 import RightLeftArrow from "../buttons/rightLeftArrow";
 import GroupIcon from "@mui/icons-material/Group";
@@ -12,15 +12,36 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 import PersonIcon from "@mui/icons-material/Person";
 import { ProfileContext } from "../../context/ProfileContext";
-
-
-
 const Sidebar = () => {
   const [expand, setExpand] = useState(true);
   const { profile } = useContext(ProfileContext)
+  
+// edited
+const [isSmallScreen, setIsSmallScreen] = useState(false);
+useEffect(() => {
+ const handleResize = () => {
+   setIsSmallScreen(window.innerWidth <= 768); // Adjust the breakpoint as needed
+ };
 
+ handleResize(); // Call once to set initial state
+
+ window.addEventListener("resize", handleResize);
+
+ return () => {
+   window.removeEventListener("resize", handleResize);
+ };
+}, []);
+useEffect(() => {
+ // Automatically minimize the sidebar on small screens
+ if (isSmallScreen) {
+   setExpand(false);
+ } else {
+   setExpand(true);
+ }
+}, [isSmallScreen]);
+// edited
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${expand ? "expanded" : "collapsed"}`}>
       <div className="right-left-arrow" onClick={() => setExpand(!expand)}>
         <RightLeftArrow expand={expand} />
       </div>

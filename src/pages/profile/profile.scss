@@ -48,6 +48,9 @@
         flex-direction: column;
         align-items: center;
         gap: 12px;
+   h1{
+    font-size: var(--fs-m);
+   }
       }
       .middle {
         display: flex;
