@@ -15,6 +15,19 @@ const Dashboard = () => {
   const { smallScreen } = useContext(MediaQueryContext);
   const { profile, setProfile } = useContext(ProfileContext)
   const { user } = useContext(UserContext)
+  const [ isSmallScreen, setIsSmallScreen ] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
 
   useEffect(() => {
    const incrementActivityPoint = async () => {
@@ -50,7 +63,8 @@ const Dashboard = () => {
         </div>
 
         {/* recent payments */}
-        <RecentPayments />
+        {isSmallScreen ? null : <RecentPayments />}
+        {/* <RecentPayments /> */}
       </div>
       <div className="summary">{!smallScreen && <Summary />}</div>
     </div>

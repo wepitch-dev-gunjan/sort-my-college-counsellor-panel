@@ -2,7 +2,7 @@ import "./style.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PaymentIcon from "@mui/icons-material/Payment";
-import React, { useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import SidebarMenuButton from "../buttons/sidebarMenuButton";
 import RightLeftArrow from "../buttons/rightLeftArrow";
 import GroupIcon from "@mui/icons-material/Group";
@@ -40,6 +40,7 @@ useEffect(() => {
  }
 }, [isSmallScreen]);
 // edited
+
   return (
     <div className={`sidebar ${expand ? "expanded" : "collapsed"}`}>
       <div className="right-left-arrow" onClick={() => setExpand(!expand)}>

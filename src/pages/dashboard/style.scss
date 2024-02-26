@@ -34,8 +34,10 @@
       }
       .widgets-container {
         display: flex;
+        // flex-wrap: wrap;
         justify-content: space-between;
-        gap: 32px;
+        gap: 2%;
+
       }
     }
     .payments-top, .payments-table{
@@ -48,4 +50,16 @@
     }
   }
   
+}
+
+@media only screen
+and (max-width : 650px) {
+  .widgets-container {
+    flex-direction: column;
+    height: 35vh;
+    gap: unset;
+  }
+  .Widget-container {
+    width: 100%;
+  }
 }

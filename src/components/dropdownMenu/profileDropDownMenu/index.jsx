@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import "./style.scss";
 import useClickOutside from "../../../customHooks/useClickOutside";
@@ -14,6 +14,18 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const { smallScreen } = useContext(MediaQueryContext);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useClickOutside(dropdownRef, () => {
     setIsDropdownOpen(false);
@@ -54,6 +66,11 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
             icon={AiOutlineLogout}
             text="Log out"
           />
+          {isSmallScreen && <DropDownMenuButton
+            onClick={() => navigate("/profile")}
+            icon={AiOutlineLogout}
+            text="Add Session"
+          /> }
         </div>
       )}
     </div>
