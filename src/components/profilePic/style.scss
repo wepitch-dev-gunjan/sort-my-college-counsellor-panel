@@ -44,3 +44,16 @@
     display: none;
   }
 }
+
+
+// Media query for smaller screens
+@media (max-width: 768px) {
+ .ProfilePic-container {
+   height: 150px; // Adjusted height for smaller screens
+   width: 150px; // Adjusted width for smaller screens
+
+   .pic-upload-container {
+     top: 108px; // Adjusted position for smaller height
+   }
+ }
+}
