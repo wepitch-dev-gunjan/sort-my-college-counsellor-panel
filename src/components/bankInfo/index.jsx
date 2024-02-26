@@ -65,6 +65,25 @@ const BankInfo = ({ profile, editProfileEnable, setProfile }) => {
         <div className="row">
           <div className="col">
             <div className="info-field">
+              <p>Branch</p>
+            </div>
+            <div className="info-value">
+              {editProfileEnable ? (
+                <input
+                  type="text"
+                  value={profile.branch}
+                  onChange={(e) => handleInput("branch", e.target.value, setProfile)}
+                />
+              ) : (
+                <p>{profile.branch}</p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
               <p>Account Type</p>
             </div>
             <div className="info-value">
