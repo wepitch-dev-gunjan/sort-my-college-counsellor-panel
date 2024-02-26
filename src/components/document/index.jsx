@@ -1,8 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import DocumentItem from "./documentItem";
 import "./style.scss";
 import { Tooltip, Typography } from "@mui/material";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { backend_url } from "../../config";
+import { UserContext } from "../../context/UserContext";
 
 const Documents = ({
   index,
@@ -10,7 +13,7 @@ const Documents = ({
   setProfile,
   editProfileEnable,
   onDelete,
-  onDocumentChange,
+  // onDocumentChange,
 }) => {
   const [documents, setDocuments] = useState([
     {
@@ -20,8 +23,11 @@ const Documents = ({
 
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [addDocumentClickCount, setAddDocumentClickCount] = useState(0);
+  const {user}=useContext(UserContext)
 
-  const handleFileChange = (e) => {
+
+  
+  const handleFileChange = async (e) => {
     const file = e.target.files[0];
   
     // Validate file type
@@ -38,10 +44,26 @@ const Documents = ({
       return;
     }
   
-    onDocumentChange(index, file);
+    // onDocumentChange(index, file);
 
       // Update the uploaded files state
-      setUploadedFiles([...uploadedFiles, file]);
+      setUploadedFiles([...uploadedFiles, file]); 
+
+      try {
+        const payload={file}
+        console.log(payload);
+        const {data}= await axios.post(`${backend_url}/counsellor/document/upload-document`,payload, {
+          headers:{
+            Authorization: user.token
+          }
+        })
+        
+      } catch (error) {
+        console.log(error);
+        
+      }
+      
+
   };
 
   
@@ -51,10 +73,12 @@ const Documents = ({
     setDocuments([...documents, { file: null, selectedField: "" }]);
   };
 
-  const handleDeleteDocument = (index) => {
+  const handleDeleteDocument = async (index) => {
     const updatedDocuments = [...documents];
     updatedDocuments.splice(index, 1);
     setDocuments(updatedDocuments);
+   
+
   };
 
 
