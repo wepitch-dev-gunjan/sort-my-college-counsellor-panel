@@ -34,12 +34,12 @@
   --browse-bg: #31245c;
 
   // font sizes 
-  --fs-xs :0.5em;
-  --fs-sm: 1em;
-  --fs-m: 2em;
-  --fs-l: 3em;
-  --fs-xl: 4em;
-  --fs-xxl:5em;
+  --fs-xs : calc(1vh + 0.1vw);
+  --fs-sm: calc(1vh + 0.25vw);
+  --fs-m: calc(2.5vh + 0.5vw);
+  --fs-l: calc(3vh + 1.5vw);
+  --fs-xl: calc(6vh + 1.5vw);
+  --fs-xxl: calc(8vh + 2vw) ;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
@@ -53,6 +53,8 @@
 
 body {
   background-color: var(--primary-light);
+  height: 100vh;
+  width: 100vw;
 }
 
 h1 {

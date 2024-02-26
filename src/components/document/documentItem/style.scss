@@ -19,7 +19,7 @@
 
         select {
           padding: 12px;
-          font-size: 14px;
+          font-size: var(--fs-sm);
           border-radius: 8px;
           cursor: pointer;
           // changed by r 

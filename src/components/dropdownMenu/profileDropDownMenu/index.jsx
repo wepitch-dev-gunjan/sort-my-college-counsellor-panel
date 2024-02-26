@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import "./style.scss";
 import useClickOutside from "../../../customHooks/useClickOutside";
@@ -8,12 +8,26 @@ import DropDownMenuButton from "../dropDownMenuButton";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineSummarize } from "react-icons/md";
 import { MediaQueryContext } from "../../../context/MediaQueryContext";
+import { GrAdd } from "react-icons/gr";
+
 
 const ProfileDropDownMenu = ({ name, image, onClick }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const { smallScreen } = useContext(MediaQueryContext);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isSmallScreen, setIsSmallScreen]);
 
   useClickOutside(dropdownRef, () => {
     setIsDropdownOpen(false);
@@ -54,6 +68,11 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
             icon={AiOutlineLogout}
             text="Log out"
           />
+          {isSmallScreen && <DropDownMenuButton
+            onClick={() => navigate("/session")}
+            icon={GrAdd}
+            text="Add Session"
+          /> }
         </div>
       )}
     </div>

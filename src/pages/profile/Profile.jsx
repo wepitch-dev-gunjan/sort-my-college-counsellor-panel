@@ -13,6 +13,7 @@ import Documents from "../../components/document";
 import { backend_url } from "../../config";
 import axios from "axios";
 import { toast } from "react-toastify";
+import BankInfo from "../../components/bankInfo";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -92,6 +93,11 @@ const Profile = () => {
               editProfileEnable={editProfileEnable}
             />
             <OtherInfo
+              profile={profile}
+              editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
+            />
+            <BankInfo
               profile={profile}
               editProfileEnable={editProfileEnable}
               setProfile={setProfile}

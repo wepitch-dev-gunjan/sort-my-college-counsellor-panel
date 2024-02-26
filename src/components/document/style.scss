@@ -24,7 +24,7 @@
           border-radius: 8px;
           width: 50%;
           border: 1px solid black;
-          font-size: 14px;
+          font-size: var(--fs-sm);
         }
         .button-upload:hover {
           background-color: var(--background-dark);
@@ -35,6 +35,9 @@
   .heading {
     border-bottom: 1px solid #1111111a;
     padding-bottom: 12px;
+    h2{
+     font-size: var(--fs-m);
+    }
   }
   button {
     border: 2px dashed;
