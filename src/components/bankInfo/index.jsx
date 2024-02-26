@@ -24,20 +24,20 @@ const BankInfo = ({ profile, editProfileEnable, setProfile }) => {
       </div>
 
       <div className="info">
-        <div className="row">
+      <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Account Number</p>
+              <p>Recepient Name</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
                 <input
                   type="text"
-                  value={profile.account_nummber}
-                  onChange={(e) => handleInput("account_number", e.target.value, setProfile)}
+                  value={profile.recepient_name}
+                  onChange={(e) => handleInput("recepient_name", e.target.value, setProfile)}
                 />
               ) : (
-                <p>{profile.account_nummber}</p>
+                <p>{profile.recepient_name}</p>
               )}
             </div>
           </div>
@@ -61,6 +61,63 @@ const BankInfo = ({ profile, editProfileEnable, setProfile }) => {
             </div>
           </div>
         </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Account Type</p>
+            </div>
+            <div className="info-value">
+              {editProfileEnable ? (
+                <div className="account-type-radio">
+                  <label className="account-type-text">
+                    <input
+                      type="radio"
+                      value="Savings"
+                      checked={profile.account_type === "Savings"}
+                      onChange={(e) => handleInput("account_type", e.target.value, setProfile)}
+                    />
+                    Savings
+                  </label>
+                  <label>
+                    <div className="account-type-text">
+                      <input
+                        type="radio"
+                        value="Current"
+                        checked={profile.account_type === "Current"}
+                        onChange={(e) => handleInput("account_type", e.target.value, setProfile)}
+                      />
+                      Current
+                    </div>
+                  </label>
+                </div>
+              ) : (
+                <p>{profile.account_type}</p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Account Number</p>
+            </div>
+            <div className="info-value">
+              {editProfileEnable ? (
+                <input
+                  type="text"
+                  value={profile.account_nummber}
+                  onChange={(e) => handleInput("account_number", e.target.value, setProfile)}
+                />
+              ) : (
+                <p>{profile.account_nummber}</p>
+              )}
+            </div>
+          </div>
+        </div>
+
+       
 
         <div className="row">
           <div className="col">
