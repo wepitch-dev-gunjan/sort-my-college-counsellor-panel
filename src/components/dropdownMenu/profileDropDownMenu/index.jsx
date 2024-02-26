@@ -8,6 +8,8 @@ import DropDownMenuButton from "../dropDownMenuButton";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineSummarize } from "react-icons/md";
 import { MediaQueryContext } from "../../../context/MediaQueryContext";
+import { GrAdd } from "react-icons/gr";
+
 
 const ProfileDropDownMenu = ({ name, image, onClick }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -25,7 +27,7 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isSmallScreen, setIsSmallScreen]);
 
   useClickOutside(dropdownRef, () => {
     setIsDropdownOpen(false);
@@ -67,8 +69,8 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
             text="Log out"
           />
           {isSmallScreen && <DropDownMenuButton
-            onClick={() => navigate("/profile")}
-            icon={AiOutlineLogout}
+            onClick={() => navigate("/session")}
+            icon={GrAdd}
             text="Add Session"
           /> }
         </div>
