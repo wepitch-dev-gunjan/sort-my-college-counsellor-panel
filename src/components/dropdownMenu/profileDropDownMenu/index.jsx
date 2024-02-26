@@ -9,25 +9,18 @@ import { useNavigate } from "react-router-dom";
 import { MdOutlineSummarize } from "react-icons/md";
 import { MediaQueryContext } from "../../../context/MediaQueryContext";
 import { GrAdd } from "react-icons/gr";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { NotificationContext } from "../../../context/NotificationContext";
 
 
 const ProfileDropDownMenu = ({ name, image, onClick }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-  const { smallScreen } = useContext(MediaQueryContext);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const { setNotificationsEnable } = useContext(NotificationContext);
+  const { smallScreen, xSmallScreen } = useContext(MediaQueryContext);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [isSmallScreen, setIsSmallScreen]);
+
 
   useClickOutside(dropdownRef, () => {
     setIsDropdownOpen(false);
@@ -42,10 +35,11 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
       <div className="left">
         <img src={image} alt="" />
       </div>
-      <div className="mid">
+
+      { !xSmallScreen && <div className="mid">
         <p className="top">Hello</p>
         <h4>{name}</h4>
-      </div>
+      </div>}
       <div className="right">
         <BiChevronDown />
       </div>
@@ -68,11 +62,20 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
             icon={AiOutlineLogout}
             text="Log out"
           />
-          {isSmallScreen && <DropDownMenuButton
-            onClick={() => navigate("/session")}
-            icon={GrAdd}
-            text="Add Session"
-          /> }
+          {xSmallScreen && (
+          <>
+            <DropDownMenuButton
+              onClick={() => navigate("/session")}
+              icon={GrAdd}
+              text="Add Session"
+            /> 
+            <DropDownMenuButton
+              onClick={() => setNotificationsEnable((prev) => !prev)}
+              icon={IoMdNotificationsOutline}
+              text="Notifications"
+            /> 
+          </>
+          )}
         </div>
       )}
     </div>

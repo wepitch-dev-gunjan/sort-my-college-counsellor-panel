@@ -8,6 +8,7 @@ import { NotificationContext } from "../../context/NotificationContext";
 import useClickOutside from "../../customHooks/useClickOutside";
 import VerifyProfilePopup from "../verifyProfilePopup";
 import { ProfileContext } from "../../context/ProfileContext";
+import { MediaQueryContext } from "../../context/MediaQueryContext"; 
 
 const Header = ({ handleLogout }) => {
   const notificationRef = useRef(null);
@@ -16,6 +17,7 @@ const Header = ({ handleLogout }) => {
   })
   const { profile } = useContext(ProfileContext)
   const { setNotificationsEnable } = useContext(NotificationContext);
+  const { xSmallScreen } = useContext(MediaQueryContext);
 
   return (
     <div className="header">
@@ -23,18 +25,15 @@ const Header = ({ handleLogout }) => {
         <img src={logo} alt="" />
       </div>
       <div className="rightSide">
-        {!profile.verified &&
-
-          <VerifyProfilePopup />}
-        {profile.verified &&
+        {!profile.verified && <VerifyProfilePopup />}
+        {profile.verified && !xSmallScreen && 
           <>
-            <AddSessionButton />
+          <AddSessionButton />
             <NotificationButton
               ref={notificationRef}
               onClick={() => setNotificationsEnable((prev) => !prev)}
             />
           </>
-
         }
         <ProfileDropDownMenu
           name={profile.name}

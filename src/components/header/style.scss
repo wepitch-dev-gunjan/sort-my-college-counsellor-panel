@@ -9,8 +9,10 @@
   //edited
   flex-wrap: wrap;
   .leftSide {
+    max-width: 30%;
     img {
-      height: 52px;
+      width: 100%;
+      height: auto;
       // edited
       flex: 1;
     }

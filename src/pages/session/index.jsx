@@ -4,12 +4,18 @@ import axios from "axios"
 import { UserContext } from "../../context/UserContext"
 import { useContext, useState } from "react"
 import { backend_url } from "../../config"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import Filters from "../../components/filters"
+import { RiArrowDropDownLine } from "react-icons/ri";
+
+
+
 
 const Session = () => {
   const [sessions, setSessions] = useState([]);
   const { user } = useContext(UserContext);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const today = new Date();
   const startDate = new Date();
@@ -41,6 +47,24 @@ const Session = () => {
   }
 
   useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  useEffect(() => {
     getResponse();
   }, [sessionFilters]);
 
@@ -50,8 +74,24 @@ const Session = () => {
         <div className="session-header">
           <div className="left">
             <div className="reset-changes">
-              <h1>Filtres</h1>
+              <h1>Filtres{" "}
+                <span className="fd-toggle-btn" onClick={toggleDropdown}><RiArrowDropDownLine /></span>
+              </h1>
               <button onClick={resetFilters}>Reset filters</button>
+              {isDropdownOpen && (
+                <div ref={dropdownRef} className="dropdown-menu">
+                  <div className="filter-dropdown-main" >
+                    <div className='filter-dropdown-sub' >
+                      <div className='fd-item fd-reset-btn' > 
+                            <button>Reset Filters</button>
+                      </div>
+                      <div className='fd-item' > 
+                        <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
+                      </div>
+                    </div>
+                </div>
+                </div>
+              )}
             </div>
             <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
           </div>
