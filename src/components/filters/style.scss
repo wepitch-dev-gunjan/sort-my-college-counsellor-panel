@@ -1,7 +1,7 @@
 .filter-container {
-  display: grid;
-  flex-wrap: wrap;
-  gap: 6; 
+  display: flex;
+  // flex-wrap: wrap;
+  // gap: 6; 
 
   @media (max-width: 768px) {
     flex-direction: column;  
@@ -82,5 +82,8 @@
 and (max-width : 1000px) {
   .filter-container {
   flex-direction: column;
+  gap: 2em;
+  padding: 1em;
+  transition: all 1s ease;
   }
 }
