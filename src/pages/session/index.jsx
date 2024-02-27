@@ -7,7 +7,7 @@ import { backend_url } from "../../config"
 import { useEffect, useRef } from "react"
 import Filters from "../../components/filters"
 import { RiArrowDropDownLine } from "react-icons/ri";
-
+import { MediaQueryContext } from "../../context/MediaQueryContext" 
 
 
 
@@ -31,7 +31,7 @@ const Session = () => {
     session_fee: [0, 5000]
   };
   const [sessionFilters, setSessionFilters] = useState(defaultSessionFilters);
-
+  const { xSmallScreen } = useContext(MediaQueryContext)
   const resetFilters = () => {
     setSessionFilters(defaultSessionFilters);
   };
@@ -74,16 +74,16 @@ const Session = () => {
         <div className="session-header">
           <div className="left">
             <div className="reset-changes">
-              <h1>Filtres{" "}
-                <span className="fd-toggle-btn" onClick={toggleDropdown}><RiArrowDropDownLine /></span>
+              <h1>
+                <span  onClick={toggleDropdown}  className="fd-toggle-btn" >Filtres{" "} <RiArrowDropDownLine /></span>
               </h1>
-              <button onClick={resetFilters}>Reset filters</button>
+              { !xSmallScreen && <button onClick={resetFilters}>Reset filters</button> }
               {isDropdownOpen && (
                 <div ref={dropdownRef} className="dropdown-menu">
                   <div className="filter-dropdown-main" >
                     <div className='filter-dropdown-sub' >
                       <div className='fd-item fd-reset-btn' > 
-                            <button>Reset Filters</button>
+                            <button onClick={resetFilters} >Reset Filters</button>
                       </div>
                       <div className='fd-item' > 
                         <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
@@ -93,7 +93,7 @@ const Session = () => {
                 </div>
               )}
             </div>
-            <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
+            { !xSmallScreen && <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} /> }
           </div>
         </div>
         <div className="sessionContainer">
