@@ -1,6 +1,8 @@
 .Payments-container {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
   .heading {
     background-color: var(--primary-light);
     padding: 20px 20px 0 20px;
@@ -39,12 +41,17 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 20px;
+  padding: 30px;
   width: 100%;
   height: 100%;
   overflow: scroll;
   box-shadow: rgba(200, 208, 231, 0.514) 3.2px 3.2px 8px 0px inset, rgba(255, 255, 255, 0.603) -3.2px -3.2px 8px 0px inset;
   border-radius: 20px;
+  
+  .table-headings{
+    background-color: #ffffff;
+    padding: 0;
+  }
   .pagination{
     display: flex;
     justify-content: center;
@@ -55,11 +62,11 @@
     width: 100%;
   }
   .table {
-    
+    overflow: scroll;
     .row {
       display: flex;
       border-bottom: 1px solid rgba(24, 45, 107, 0.253);
-      padding: 20px;
+      padding: 0px;
       margin: 29px;
       text-align: start;
       justify-content: space-between;

@@ -94,7 +94,28 @@ const Payment = () => {
       date: '24 May 2024',
       payment: '$1,000',
       status: 'Delivered'
-    }
+    },
+    {
+      id: '12354',
+      service: 'Group session',
+      date: '24 May 2024',
+      payment: '$1,000',
+      status: 'Delivered'
+    },
+    {
+      id: '12354',
+      service: 'Group session',
+      date: '24 May 2024',
+      payment: '$1,000',
+      status: 'Delivered'
+    },
+    {
+      id: '12354',
+      service: 'Group session',
+      date: '24 May 2024',
+      payment: '$1,000',
+      status: 'Delivered'
+    },
   ]);
   
  
@@ -112,13 +133,14 @@ const Payment = () => {
       </div>
       <div className='RecentPayments-container'>
         <div className="table">
-        <div className="row">
+        <div className="row sticky table-headings">
           <div className="col pc-h4"><h4>ID</h4></div>
           <div className="col pc-h4"><h4>SERVICE</h4></div>
           <div className="col pc-h4"><h4>DATE</h4></div>
           <div className="col pc-h4"><h4>PAYMENT</h4></div>
           <div className="col pc-h4"><h4>STATUS</h4></div>
         </div>
+        <div className="payments-table-content">
           {payments.map((payment, i) => (
             <div className='row' key={i}>
               <div className='col'>{payment.id}</div>
@@ -131,6 +153,7 @@ const Payment = () => {
                 }`}>{payment.status}</div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </div>
