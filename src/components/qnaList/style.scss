@@ -28,12 +28,15 @@
                padding: 20px;
                border-radius: 20px;
                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+             
                
              }
              h6:hover{
-                 color: rgba(56, 59, 59, 0.473);
+                 // color: rgba(56, 59, 59, 0.473);
                  transition: all 0.3s ease;
                  text-shadow: 0 3px 20px rgba(255, 255, 255, 0.589);
+                 //edited
+                 border: 2px solid rgba(44, 43, 43, 0.624);
              }
          }
      }
