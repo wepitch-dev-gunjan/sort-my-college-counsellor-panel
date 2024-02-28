@@ -71,15 +71,15 @@ return (
                          <h6>
                              {showFullText[index] || question.text.length <= 20
                                  ? question.text
-                                 : `${question.text.slice(0, 20)}...`}
-                             {question.text.length > 50 && (
+                                 : `${question.text.slice(0, 100)}...`}
+                             {question.text.length > 100 && (
                                  showFullText[index] ? (
                                      <>
-                                         <Button onClick={() => toggleShowFullText(index)}>Read Less</Button>
+                                         <a className="tq-read-btn" onClick={() => toggleShowFullText(index)}> Read Less</a>
                                      </>
                                  ) : (
                                      <>
-                                         <Button onClick={() => toggleShowFullText(index)}>Read More</Button>
+                                         <a className="tq-read-btn" onClick={() => toggleShowFullText(index)}> Read More</a>
                                      </>
                                  )
                              )}
