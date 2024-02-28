@@ -1,7 +1,10 @@
-import { Panel, Stack, ButtonGroup, Button, AvatarGroup, Avatar } from 'rsuite';
+import { Panel, Stack,Dropdown, ButtonGroup, Button, AvatarGroup, Avatar } from 'rsuite';
+import React, {useContext} from 'react';
 import './style.scss'
-
-const QnaList = () => (
+import { MediaQueryContext } from '../../context/MediaQueryContext';
+const QnaList = () => {
+const { xSmallScreen } = useContext(MediaQueryContext)
+return(
   <div className='qna-container-super'>
         <Panel className='qna-container-main'
             bordered
@@ -11,9 +14,18 @@ const QnaList = () => (
                 <ButtonGroup>
                 <Button active>All</Button>
                 <Button>Hot</Button>
+                { !xSmallScreen &&  <>
                 <Button>Week</Button>
                 <Button>Month</Button>
-                <Button>My Questions</Button>
+                </> }
+
+                {/* <Button>My Questions</Button> */}
+                <Dropdown title="More">
+               { xSmallScreen && <> <Button>Week</Button>
+                <Button>Month</Button>
+            </>}
+            <Button>My Question</Button>
+                </Dropdown>
                 </ButtonGroup>
             </Stack>
             }
@@ -96,5 +108,6 @@ const QnaList = () => (
         </Panel>
     </div>  
 );
+           }
 
 export default QnaList;
