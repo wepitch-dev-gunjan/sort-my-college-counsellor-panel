@@ -102,16 +102,23 @@ const Payment = () => {
     <div className="Payments-container">
       <div className="heading sticky">
         <h1>All Payments</h1>
-        <div className="row">
-          <div className="col"><h4>ID</h4></div>
-          <div className="col"><h4>SERVICE</h4></div>
-          <div className="col"><h4>DATE</h4></div>
-          <div className="col"><h4>PAYMENT</h4></div>
-          <div className="col"><h4>STATUS</h4></div>
-        </div>
+        {/* <div className="row">
+          <div className="col pc-h4"><h4>ID</h4></div>
+          <div className="col pc-h4"><h4>SERVICE</h4></div>
+          <div className="col pc-h4"><h4>DATE</h4></div>
+          <div className="col pc-h4"><h4>PAYMENT</h4></div>
+          <div className="col pc-h4"><h4>STATUS</h4></div>
+        </div> */}
       </div>
       <div className='RecentPayments-container'>
         <div className="table">
+        <div className="row">
+          <div className="col pc-h4"><h4>ID</h4></div>
+          <div className="col pc-h4"><h4>SERVICE</h4></div>
+          <div className="col pc-h4"><h4>DATE</h4></div>
+          <div className="col pc-h4"><h4>PAYMENT</h4></div>
+          <div className="col pc-h4"><h4>STATUS</h4></div>
+        </div>
           {payments.map((payment, i) => (
             <div className='row' key={i}>
               <div className='col'>{payment.id}</div>

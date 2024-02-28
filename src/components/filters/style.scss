@@ -76,14 +76,49 @@
       font-size: var(--fs-sm);
     }
   }
+
+  // write new css for filters here 
+  /* Assuming the input tag has the provided class names */
+.MuiInputBase-input.MuiOutlinedInput-input.Mui-readOnly.MuiInputBase-readOnly.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  width: 100%; /* Responsive width */
+  font-size: 0.9em; /* Responsive font size */
+  padding: 0.5em; /* Responsive padding */
+}
+
 }
 
 @media only screen
-and (max-width : 1000px) {
+and (max-width : 760px) {
   .filter-container {
   flex-direction: column;
   gap: 2em;
   padding: 1em;
   transition: all 1s ease;
+  border-bottom: none;
+    .MuiInputBase-input.MuiOutlinedInput-input.Mui-readOnly.MuiInputBase-readOnly.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    font-size: 0.7em;
+    }
+    .css-1domaf0{
+      width: 96%;
+    }
+    .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-shrink.MuiInputLabel-sizeMedium.MuiInputLabel-outlined.MuiFormLabel-colorPrimary.MuiFormLabel-filled.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated.MuiInputLabel-shrink.MuiInputLabel-sizeMedium.MuiInputLabel-outlined.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+      font-size: 1em; /* Responsive font size */
+    }
+    .css-1hskriy{
+      width: 96%;
+      
+    }
+    .css-1eoe787-MuiSlider-markLabel, .css-yafthl-MuiSlider-markLabel{
+      font-size: 0.55em;
+    }
+  }
+}
+
+@media only screen
+and (max-width : 380px) {
+  .filter-container {
+      .MuiInputBase-input.MuiOutlinedInput-input.Mui-readOnly.MuiInputBase-readOnly.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+      font-size: 0.6em;
+      }
   }
 }

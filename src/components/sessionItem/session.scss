@@ -140,3 +140,9 @@
     }
   }
 
+  @media only screen
+  and (max-width : 500px) {
+    .sessions-i {
+      width: 100%;
+    }
+  }

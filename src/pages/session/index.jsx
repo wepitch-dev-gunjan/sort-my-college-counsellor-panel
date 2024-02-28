@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react"
 import Filters from "../../components/filters"
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { MediaQueryContext } from "../../context/MediaQueryContext" 
+import { MdKeyboardArrowLeft } from "react-icons/md";
 
 
 
@@ -48,7 +49,7 @@ const Session = () => {
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target) && event.target.classList.contains('fd-toggle-btn')) {
         setIsDropdownOpen(false);
       }
     };
@@ -61,7 +62,7 @@ const Session = () => {
   }, []);
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    setIsDropdownOpen(prevState => !prevState);
   };
 
   useEffect(() => {
@@ -74,11 +75,12 @@ const Session = () => {
         <div className="session-header">
           <div className="left">
             <div className="reset-changes">
-              <h1>
-                <span  onClick={toggleDropdown}  className="fd-toggle-btn" >Filtres{" "} <RiArrowDropDownLine /></span>
-              </h1>
+              {xSmallScreen ? 
+              <h1 onClick={toggleDropdown}>
+                <span  className={`fd-toggle-btn ${isDropdownOpen ? 'active' : ''}`} >Filters{" "} {isDropdownOpen ? <RiArrowDropDownLine /> : <MdKeyboardArrowLeft />}</span>
+              </h1> : <h1>Filters</h1> }
               { !xSmallScreen && <button onClick={resetFilters}>Reset filters</button> }
-              {isDropdownOpen && (
+              {isDropdownOpen && xSmallScreen && (
                 <div ref={dropdownRef} className="dropdown-menu">
                   <div className="filter-dropdown-main" >
                     <div className='filter-dropdown-sub' >

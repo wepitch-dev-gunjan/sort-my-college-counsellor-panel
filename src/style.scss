@@ -40,6 +40,7 @@
   --fs-l: calc(3vh + 1.5vw);
   --fs-xl: calc(6vh + 1.5vw);
   --fs-xxl: calc(8vh + 2vw) ;
+  --fs-table-heading: calc(0.3vh + 1.5vw);
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
@@ -50,11 +51,16 @@
   box-sizing: border-box;
   font-family: "Inter", sans-serif !important;
 }
+html{
+  height: 100%;
+  width: 100%;
 
+  overflow: hidden;
+}
 body {
   background-color: var(--primary-light);
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 h1 {
