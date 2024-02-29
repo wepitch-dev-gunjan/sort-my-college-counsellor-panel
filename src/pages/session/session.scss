@@ -34,6 +34,7 @@
   }
   .sessionList {
     display: flex;
+    justify-content: space-around;
     gap: 2em;
     padding: 3em;
     flex-wrap: wrap;
@@ -74,6 +75,11 @@
 
   span.fd-toggle-btn {
     background-color: unset;
+  }
+  .fd-toggle-btn.active {
+    border: 1px solid #11111131;
+    padding: 0.3em;
+    border-radius: 5px;
   }
   .filter-dropdown-main{
     width: 80%;

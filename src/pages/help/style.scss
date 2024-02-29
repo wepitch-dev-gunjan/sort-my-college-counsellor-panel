@@ -1,6 +1,7 @@
 .Help-container {
  width: 100%;
-
+ // edited
+overflow-y: auto;
  .help-search {
      display: flex;
      flex-direction: column;
@@ -51,7 +52,6 @@
          border-radius: 12px;
          background-color: white;
          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-
          .feature-text {
              display: flex;
              justify-content: center;
@@ -75,7 +75,7 @@
      right: 20px;
      bottom: 20px;
  }
-
+// edited
  /* Media query for smaller screens */
  @media screen and (max-width: 768px) {
      .help-search {
@@ -91,7 +91,8 @@
          .guide {
              width: 100%; /* Set width to full for single column layout */
              padding: 3% 0; /* Adjusted padding for smaller screens */
-         }
+            }
+
      }
  }
 }
