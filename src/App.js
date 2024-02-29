@@ -28,6 +28,7 @@ import FaqAndTroubleshooting from "./pages/faqAndTroubleshooting";
 import AskQuestion from "./pages/askQuestion";
 import "rsuite/dist/rsuite-no-reset.min.css";
 import { HelpContext } from "./context/HelpContext";
+import DocumentDelete from "./components/documentDelete";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
     useContext(ProfileContext);
   const { coverImageEditMode, setCoverImageEditMode } =
     useContext(ProfileContext);
+    const {documentDelete,setDocumentDelete}=useContext(ProfileContext)
 
   const { askQuestionEnable, setAskQuestionEnable } = useContext(HelpContext);
 
@@ -100,6 +102,11 @@ function App() {
       {askQuestionEnable && (
         <div className="ask-a-question">
           <AskQuestion ref={askQuestionRef} />
+        </div>
+      )}
+       {documentDelete && (
+        <div className="ask-a-question">
+          <DocumentDelete documentDelete={documentDelete} setDocumentDelete={setDocumentDelete} />
         </div>
       )}
 

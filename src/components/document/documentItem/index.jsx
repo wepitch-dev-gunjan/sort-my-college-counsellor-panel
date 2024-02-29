@@ -5,6 +5,8 @@ import { backend_url } from "../../../config";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { UserContext } from "../../../context/UserContext";
+import Spinner from "../../spinner/Index";
+import { ProfileContext } from "../../../context/ProfileContext";
 
 const DocumentItem = ({
   document,
@@ -21,6 +23,8 @@ const DocumentItem = ({
   const hiddenFileInput = useRef(null);
   const { user } = useContext(UserContext);
   const [currentField, setCurrentField] = useState(documentTypes[0]?.name);
+  const [loading,setLoading]=useState(true)
+  const{documentDelete , setDocumentDelete}=useContext(ProfileContext)
 
   const handleSelect = (e) => {
     setCurrentField(e.target.value);
@@ -32,6 +36,7 @@ const DocumentItem = ({
 
   const handleFileChange = async (e) => {
     try {
+      setLoading(false)
       const file = e.target.files[0];
       const formData = new FormData();
       formData.append("file", file);
@@ -48,13 +53,17 @@ const DocumentItem = ({
           }
         }
       );
+      
 
       // Update state or do something with the response data if needed
       setDocuments(prev => [...prev.slice(0, prev.length - 1), data])
       // setDocumentTypes(prev => prev.filter(documentType => documentType.name != currentField))
       getDocumentTypes()
       toast.success("Document uploaded successfully"); // Assuming toast is defined and comes from a library like react-toastify
+      setLoading(true)
 
+
+    
     } catch (error) {
       // Improve error handling
       console.error("Error uploading document:", error.response ? error.response.data : error.message);
@@ -62,20 +71,21 @@ const DocumentItem = ({
     }
   };
 
-  const handleDeleteDocument = async () => {
-    try {
-      const { data } = await axios.delete(`${backend_url}/counsellor/document/${document._id}`,
-        null,
-        {
-          headers: {
-            Authorization: user.token
-          }
-        })
-      await getDocuments()
-      await getDocumentTypes()
-    } catch (error) {
-      console.log(error)
-    }
+  const handleDeleteDocument =  () => {
+    setDocumentDelete(!documentDelete)
+  //   try {
+  //     const { data } = await axios.delete(`${backend_url}/counsellor/document/${document._id}`,
+  //       null,
+  //       {
+  //         headers: {
+  //           Authorization: user.token
+  //         }
+  //       })
+  //     await getDocuments()
+  //     await getDocumentTypes()
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
   }
 
   return (
@@ -104,7 +114,9 @@ const DocumentItem = ({
           {editProfileEnable ? (
             <>
               <button className="button-upload" onClick={handleClick}>
-                Upload a file
+                {loading ?
+                "Upload a file" : <Spinner/>
+                }
               </button>
               <input
                 className="upload-btn"
