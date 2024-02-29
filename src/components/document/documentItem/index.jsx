@@ -1,6 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
-import { MdDeleteOutline } from "react-icons/md";
-import { Tooltip } from "@mui/material";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import "./style.scss";
 import { backend_url } from "../../../config";
@@ -10,7 +8,10 @@ import { UserContext } from "../../../context/UserContext";
 
 const DocumentItem = ({
   document,
+  setDocuments,
   documentTypes,
+  getDocumentTypes,
+  getDocuments,
   documentType,
   file,
   editProfileEnable,
@@ -19,13 +20,9 @@ const DocumentItem = ({
 }) => {
   const hiddenFileInput = useRef(null);
   const { user } = useContext(UserContext);
-  const [currentField, setCurrentField] = useState(documentType);
-
-  console.log("document types in document item", documentTypes)
-
+  const [currentField, setCurrentField] = useState(documentTypes[0]?.name);
 
   const handleSelect = (e) => {
-    console.log(document)
     setCurrentField(e.target.value);
   }
 
@@ -53,7 +50,9 @@ const DocumentItem = ({
       );
 
       // Update state or do something with the response data if needed
-      console.log("Upload successful:", data);
+      setDocuments(prev => [...prev.slice(0, prev.length - 1), data])
+      // setDocumentTypes(prev => prev.filter(documentType => documentType.name != currentField))
+      getDocumentTypes()
       toast.success("Document uploaded successfully"); // Assuming toast is defined and comes from a library like react-toastify
 
     } catch (error) {
@@ -72,7 +71,8 @@ const DocumentItem = ({
             Authorization: user.token
           }
         })
-
+      await getDocuments()
+      await getDocumentTypes()
     } catch (error) {
       console.log(error)
     }
@@ -123,26 +123,8 @@ const DocumentItem = ({
               <a href={file} target="_blank" >link</a>
             </div>
           )}
-
-          {/* <div className="upload">
-            
-            {/* {editProfileEnable && (
-              <div className="up-icons">
-                <Tooltip title="Delete" placement="bottom">
-                  <div
-                    className="delete-icon"
-                    onClick={() => onDelete(index)}
-                    disabled={index === 0}
-                  >
-                    <MdDeleteOutline size="16" />
-                  </div>
-                </Tooltip>
-              </div>
-            )}
-          </div> */}
         </div>
       </div>
-      {/* changed by r  */}
     </div>
   );
 };
