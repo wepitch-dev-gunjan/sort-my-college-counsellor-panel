@@ -63,8 +63,12 @@ const Dashboard = () => {
         </div>
 
         {/* recent payments */}
-        {isSmallScreen ? null : <RecentPayments />}
+        {/* {isSmallScreen ? null : <RecentPayments />} */}
         {/* <RecentPayments /> */}
+        <div className='dashboard-recent-payments-main'>
+          <RecentPayments />
+        </div>
+
       </div>
       <div className="summary">{!smallScreen && <Summary />}</div>
     </div>
