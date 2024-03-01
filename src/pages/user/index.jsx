@@ -8,7 +8,26 @@ const Users = () => {
     <div className="users-container">
       <div className="heading sticky">
         <h1>My Followers</h1>
-        <div className="row">
+        {/* <div className="row">
+          <div className="col">
+            <h4>IMAGE</h4>
+          </div>
+          <div className="col">
+            <h4>NAME</h4>
+          </div>
+          <div className="col">
+            <h4>EMAIL</h4>
+          </div>
+          <div className="col">
+            <h4>FOLLOW DATE</h4>
+          </div>
+        </div> */}
+      </div>
+      <div className="AllUsers-container">
+        <div className="table">
+         {/* edited */}
+<div className="All-row">
+<div className="row">
           <div className="col">
             <h4>IMAGE</h4>
           </div>
@@ -22,9 +41,7 @@ const Users = () => {
             <h4>FOLLOW DATE</h4>
           </div>
         </div>
-      </div>
-      <div className="AllUsers-container">
-        <div className="table">
+</div>
           {followers.map((follower, i) => (
             <div className="row" key={i}>
               <div className="col">
@@ -42,5 +59,4 @@ const Users = () => {
     </div>
   );
 };
-
 export default Users;

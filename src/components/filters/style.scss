@@ -15,18 +15,26 @@
 
   .fees, .date-range, .duration, .type, .status {
     flex: 1;  
-
+   
     @media (max-width: 768px) {
       width: 100%;  
       margin-bottom: 16px;  
     }
   }
+  // edited
+  .css-1aznpnh-MuiSlider-root{
+   width: 90%;
+  }
+  // edited
+  .css-187mznn-MuiSlider-root{
+   width: 90%;
+  }
 
   .fees {
     p {
       font-weight: 600;
-      padding-bottom: 4px;
-      font-size:var(--fs-sm);
+      padding-bottom: 6px;
+      font-size:12px;
     }
 
     .values {
@@ -41,39 +49,41 @@
   .date-range, .duration, .type, .status {
     p {
       font-weight: 600;
-      padding-bottom: 4px;
-      font-size:var(--fs-sm);    }
+      padding-bottom: 6px;
+      font-size:12px;    }
   }
   .duration {
     p {
       font-weight: 600;
-      padding-bottom: 4px;
-      font-size:var(--fs-sm);    }
+      padding-bottom: 6px;
+      font-size:12px;   }
   }
   .type {
     p {
       font-weight: 600;
-      padding-bottom: 4px;
-      font-size:var(--fs-sm);    }
+      padding-bottom: 6px;
+      font-size:12px;    }
     select{
       border: none;
-      padding: 4px;
-      width: 120px;
+       // edited
+      padding: 7px;
+      width: 70%;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      font-size: var(--fs-sm);
+      font-size: 12px;
     }
   }
   .status {
     p {
       font-weight: 600;
-      padding-bottom: 4px;
-      font-size:var(--fs-sm);    }
+      padding-bottom: 6px;
+     font-size: 12px;    }
     select{
       border: none;
-      padding: 4px;
-      width: 120px;
+       // edited
+      padding: 7px;
+      width: 80%;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      font-size: var(--fs-sm);
+      font-size: 12px
     }
   }
 
@@ -121,4 +131,5 @@ and (max-width : 380px) {
       font-size: 0.6em;
       }
   }
+
 }
