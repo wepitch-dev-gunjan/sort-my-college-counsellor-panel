@@ -16,9 +16,11 @@ import { ProfileContext } from "../../context/ProfileContext";
 import { backend_url } from "../../config";
 import axios from "axios";
 import { Button } from "rsuite";
+import { UserContext } from "../../context/UserContext";
 const Sidebar = () => {
   const [expand, setExpand] = useState(true);
   const { profile } = useContext(ProfileContext)
+  const { user } = useContext(UserContext)
   const [Razorpay] = useRazorpay();
 
   // edited
@@ -48,8 +50,16 @@ const Sidebar = () => {
 
   const createOrder = async () => {
     try {
-      const { data } = await axios.post(`${backend_url}/admin/payments/generate-order`, {
-        amount: 10
+      const { data } = await axios.post(`${backend_url}/admin/payments/create-order`, {
+        amount: 10,
+        email: "gunjan@wepitch.uk",
+        name: "Gunjan Soral",
+        description: "Group session booking",
+        phone_no: "917611821710"
+      }, {
+        headers: {
+          Authorization: user.token
+        }
       })
       return data.data
     } catch (error) {
@@ -59,7 +69,6 @@ const Sidebar = () => {
 
   const handlePayment = useCallback(async () => {
     const order = await createOrder();
-
     const options = {
       key: order.key,
       amount: order.amount,
@@ -69,6 +78,7 @@ const Sidebar = () => {
       image: "https://counsellor.sortmycollege.com/static/media/logo.f4bd489af960789456c45340be8c6d4f.svg",
       order_id: order.id,
       handler: async (res) => {
+
         try {
           // Check if payment is successful
           if (res.razorpay_payment_id) {
@@ -87,6 +97,8 @@ const Sidebar = () => {
               phone_no: order.phone_no,
               description: order.description,
               status: order.status
+            }, {
+              headers: { Authorization: user.token }
             });
             // Handle response from your backend if needed
             console.log("Order details stored:", data);
