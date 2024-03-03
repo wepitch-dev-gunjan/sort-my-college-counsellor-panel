@@ -10,13 +10,14 @@ import ReviewsIcon from "@mui/icons-material/Reviews";
 import FeedIcon from "@mui/icons-material/Feed";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import useRazorpay from "react-razorpay";
-
+import { GiUpgrade } from "react-icons/gi";
 import PersonIcon from "@mui/icons-material/Person";
 import { ProfileContext } from "../../context/ProfileContext";
 import { backend_url } from "../../config";
 import axios from "axios";
 import { Button } from "rsuite";
 import { UserContext } from "../../context/UserContext";
+import { rgbToHex } from "@mui/material";
 const Sidebar = () => {
   const [expand, setExpand] = useState(true);
   const { profile } = useContext(ProfileContext)
@@ -191,10 +192,13 @@ const Sidebar = () => {
           text="Help"
           expand={expand}
         />
-        <div className="upgrade-button">
-          <Button onClick={handlePayment} appearance="primary" active >
+       
+        <div className="upgrade-button" onClick={handlePayment}>
+          { !expand ? <div className="upgrade-button-icon"> <GiUpgrade className="upgrad-icon" title="Upgrade"  id="upgrad-icon"/>  </div>  : 
+          <Button  appearance="primary" active >
             Upgrade to Pro
           </Button>
+          }
         </div>
       </div>
     </div>
