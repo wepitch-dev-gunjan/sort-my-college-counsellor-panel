@@ -6,6 +6,9 @@ export const HelpContext = createContext();
 export const HelpProvider = ({ children }) => {
   const askQuestionRef = useRef(null);
   const [askQuestionEnable, setAskQuestionEnable] = useState(false);
+  const [askQuestionDisable, setAskQuestionDisable] = useState(true);
+
+  
 
   const [chats, setChats] = useState([
     {
@@ -40,6 +43,9 @@ export const HelpProvider = ({ children }) => {
           askQuestionRef,
           askQuestionEnable,
           setAskQuestionEnable,
+          askQuestionDisable,
+          setAskQuestionDisable
+
         }}
       >
         {children}

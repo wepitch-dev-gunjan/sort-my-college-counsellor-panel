@@ -18,7 +18,8 @@ const DocumentItem = ({
   file,
   editProfileEnable,
   getIdByName,
-  getDocumentTypeFromId
+  getDocumentTypeFromId,
+  documents
 }) => {
   const hiddenFileInput = useRef(null);
   const { user } = useContext(UserContext);

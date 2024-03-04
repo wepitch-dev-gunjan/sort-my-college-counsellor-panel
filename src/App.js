@@ -43,6 +43,8 @@ function App() {
     const {documentDelete,setDocumentDelete}=useContext(ProfileContext)
 
   const { askQuestionEnable, setAskQuestionEnable } = useContext(HelpContext);
+  const {askQuestionDisable, setAskQuestionDisable} = useContext(HelpContext);
+
 
   const addCoverImageRef = useRef(null);
   const askQuestionRef = useRef(null);
@@ -99,9 +101,14 @@ function App() {
         </div>
       )}
 
-      {askQuestionEnable && (
+      { askQuestionDisable && askQuestionEnable && (
         <div className="ask-a-question">
-          <AskQuestion ref={askQuestionRef} />
+          <AskQuestion ref={askQuestionRef} 
+          setAskQuestionDisable={setAskQuestionDisable}
+          askQuestionDisable={askQuestionDisable}
+          
+          />
+
         </div>
       )}
        {documentDelete && (
@@ -132,7 +139,7 @@ function App() {
                 <Route path="/help" element={<Help />} />
                 <Route
                   path="/help/faq-and-troubleshooting"
-                  element={<FaqAndTroubleshooting />}
+                  element={<FaqAndTroubleshooting setAskQuestionDisable={setAskQuestionDisable} />}
                 />
                 {/* <Route
                   path="/help/faq-and-troubleshooting/ask-a-question"
