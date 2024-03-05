@@ -72,21 +72,16 @@ const DocumentItem = ({
     }
   };
 
-  const handleDeleteDocument =  () => {
-    setDocumentDelete(!documentDelete)
-  //   try {
-  //     const { data } = await axios.delete(`${backend_url}/counsellor/document/${document._id}`,
-  //       null,
-  //       {
-  //         headers: {
-  //           Authorization: user.token
-  //         }
-  //       })
-  //     await getDocuments()
-  //     await getDocumentTypes()
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
+  const handleDeleteDocument =  async () => {
+    setDocumentDelete(prev => !prev)
+    try {
+      await getDocuments()
+      await getDocumentTypes()
+      const newUrl = `${window.location.pathname}/${document._id}`;
+      window.history.replaceState(null, null, newUrl);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

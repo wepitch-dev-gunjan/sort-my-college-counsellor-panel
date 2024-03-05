@@ -137,6 +137,8 @@ function App() {
                 <Route path="/feedbacks" element={<Feedbacks />} />
                 <Route path="/login" element={<Navigate replace to="/" />} />
                 <Route path="/help" element={<Help />} />
+                <Route path="/profile/:documentId" element={<DocumentDelete/>} />
+
                 <Route
                   path="/help/faq-and-troubleshooting"
                   element={<FaqAndTroubleshooting setAskQuestionDisable={setAskQuestionDisable} />}

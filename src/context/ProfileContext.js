@@ -8,6 +8,7 @@ export const ProfileContext = createContext();
 export const ProfileProvider = ({ children }) => {
   const { user } = useContext(UserContext);
   const [profile, setProfile] = useState({});
+  const [documentsUpdated, setDocumentsUpdated] = useState(1);
 
   const fetchProfile = async () => {
     try {
@@ -17,11 +18,17 @@ export const ProfileProvider = ({ children }) => {
             Authorization: user.token
           }
         });
+        console.log(response.data[0])
       setProfile(response.data[0])
     } catch (err) {
       console.error('Error fetching profile:', err);
     }
   };
+
+  const randomize = () => {
+    setDocumentsUpdated(Math.random(100)*1000 + 1);
+    console.log(documentsUpdated)
+  }
 
   useEffect(() => {
     if (user && user.isLoggedIn)
@@ -46,7 +53,9 @@ export const ProfileProvider = ({ children }) => {
         editProfileEnable,
         fetchProfile,
         documentDelete,
-        setDocumentDelete
+        setDocumentDelete,
+        randomize,
+        documentsUpdated
       }}
     >
       {children}

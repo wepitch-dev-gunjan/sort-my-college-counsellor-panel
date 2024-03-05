@@ -23,7 +23,9 @@
       justify-content: start;
       .col {
         width: 100%;
-        display: flex;
+        display: block;
+        justify-content: start;
+
         .info-field {
           width: 100%;
           font-weight: 700;

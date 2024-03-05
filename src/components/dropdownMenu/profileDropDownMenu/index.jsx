@@ -50,13 +50,13 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
             icon={PersonIcon}
             text="Profile"
           />
-          {smallScreen && (
+          {/* {smallScreen && (
             <DropDownMenuButton
               onClick={() => ""}
               icon={MdOutlineSummarize}
               text="Summary"
             />
-          )}
+          )} */}
           <DropDownMenuButton
             onClick={onClick}
             icon={AiOutlineLogout}

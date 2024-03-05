@@ -80,8 +80,12 @@ const AddSession = ({ setSessions, setAddMode }) => {
       setSessions((prev) => [...prev, response.data.session]);
       setSessionLoading(false);
       setAddMode(false);
+      window.location.reload()
       toast("Session created successfully");
-    } catch (error) {
+
+    
+    } 
+    catch (error) {
       setSessionLoading(false);
       setAddMode(false);
       toast(error.response.data.error);

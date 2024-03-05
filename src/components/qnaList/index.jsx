@@ -1,11 +1,14 @@
 import { Panel, Stack,Dropdown, ButtonGroup, Button, AvatarGroup, Avatar } from 'rsuite';
-import React, {useContext , useState} from 'react';
+import React, {useContext , useEffect, useState} from 'react';
 import './style.scss'
 import { MediaQueryContext } from '../../context/MediaQueryContext';
+import axios from 'axios';
+import { backend_url } from '../../config';
 
 const QnaList = () => {
  const { xSmallScreen } = useContext(MediaQueryContext);
  const [showFullText, setShowFullText] = useState([]);
+ const [askQuestions,setAskQuestions]=useState({})
 
  const toggleShowFullText = (index) => {
      setShowFullText((prevShowFullText) => {
@@ -14,6 +17,19 @@ const QnaList = () => {
          return updatedShowFullText;
      });
  };
+ useEffect(()=>{
+    axios.get(`${backend_url}/admin/help/issue`)
+    .then((res)=>{
+        console.log(res);
+        setAskQuestions(res)
+
+    })
+    .catch(()=>{
+
+    })
+   
+
+ },[])
  const questions = [
   {
       text:

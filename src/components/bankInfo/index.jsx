@@ -130,7 +130,7 @@ const BankInfo = ({ profile, editProfileEnable, setProfile }) => {
                   onChange={(e) => handleInput("account_number", e.target.value, setProfile)}
                 />
               ) : (
-                <p>{profile.account_nummber}</p>
+                <p>{profile.account_number}</p>
               )}
             </div>
           </div>
@@ -163,3 +163,82 @@ const BankInfo = ({ profile, editProfileEnable, setProfile }) => {
 };
 
 export default BankInfo;
+// function isValidIFSC(ifscCode) {
+//   const regex = /^[A-Z]{4}0\d{6}$/;
+//   return regex.test(ifscCode);
+// }
+
+// const BankInfo = ({ profile, editProfileEnable, setProfile }) => {
+//   // Function to handle IFSC code input
+//   const handleIFSCInput = (value) => {
+//     if (isValidIFSC(value)) {
+//       handleInput("ifsc_code", value, setProfile);
+//     } else {
+//       // Optionally, you can handle invalid IFSC code input here (e.g., show an error message)
+//       console.log('Invalid IFSC code');
+//     }
+//   };
+
+//   const handleDateChange = (date) => {
+//     setProfile((prev) => ({
+//       ...prev,
+//       date_of_birth: formatDate(date),
+//     }));
+//   };
+
+//   const formatDate = (date) => {
+//     return dayjs(date).format('YYYY-MM-DD');
+//   };
+
+//   return (
+//     <div className="BankInfo-container">
+//       <div className="heading">
+//         <h2>Bank Details</h2>
+//       </div>
+
+//       <div className="info">
+//         <div className="row">
+//           <div className="col">
+//             <div className="info-field">
+//               <p>Recepient Name</p>
+//             </div>
+//             <div className="info-value">
+//               {editProfileEnable ? (
+//                 <input
+//                   type="text"
+//                   value={profile.recepient_name}
+//                   onChange={(e) => handleInput("recepient_name", e.target.value, setProfile)}
+//                 />
+//               ) : (
+//                 <p>{profile.recepient_name}</p>
+//               )}
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* ... (other fields remain unchanged) */}
+
+//         <div className="row">
+//           <div className="col">
+//             <div className="info-field">
+//               <p>IFSC Code</p>
+//             </div>
+//             <div className="info-value">
+//               {editProfileEnable ? (
+//                 <input
+//                   type="text"
+//                   value={profile.ifsc_code}
+//                   onChange={(e) => handleIFSCInput(e.target.value)}
+//                 />
+//               ) : (
+//                 <p>{profile.ifsc_code}</p>
+//               )}
+//             </div>
+//           </div>
+//         </div>
+
+//       </div>
+//     </div>
+//   );
+// };
+
