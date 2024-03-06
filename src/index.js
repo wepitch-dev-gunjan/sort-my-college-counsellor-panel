@@ -4,7 +4,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { UserProvider } from "./context/UserContext";
 import { BrowserRouter } from "react-router-dom";
-import { SessionProvider } from "./context/SessionContext";
 import { ProfileProvider } from "./context/ProfileContext";
 import { MediaQueryProvider } from "./context/MediaQueryContext";
 import { NotificationProvider } from "./context/NotificationContext";
@@ -27,13 +26,11 @@ root.render(
               <SocketProvider>
                 <HelpProvider>
                   <FollowerProvider>
-                    <SessionProvider>
                       <NotificationProvider>
                         <FeedbackProvider>
                           <App />
                         </FeedbackProvider>
                       </NotificationProvider>
-                    </SessionProvider>
                   </FollowerProvider>
                 </HelpProvider>
               </SocketProvider>

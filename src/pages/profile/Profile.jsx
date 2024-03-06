@@ -6,14 +6,10 @@ import { UserContext } from "../../context/UserContext";
 import BasicInfo from "../../components/basicInfo";
 import ContactInfo from "../../components/contactInfo";
 import OtherInfo from "../../components/otherInfo";
-import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
-import Documents from "../../components/document";
-
 import { backend_url } from "../../config";
 import axios from "axios";
 import { toast } from "react-toastify";
-import BankInfo from "../../components/bankInfo";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -73,7 +69,8 @@ const Profile = () => {
         <br />
         <div className="profile-info">
           <div className="top">
-            <h1>{profile.name}</h1>
+            {/* <h1>{profile.name}</h1> */}
+            <h1>Siliguri Institute of Technology</h1>
             <h3>{profile.designation}</h3>
           </div>
           <div className="middle">
@@ -87,26 +84,12 @@ const Profile = () => {
               editProfileEnable={editProfileEnable}
               setProfile={setProfile}
             />
-            <EducationInfo
-              profile={profile}
-              setProfile={setProfile}
-              editProfileEnable={editProfileEnable}
-            />
             <OtherInfo
               profile={profile}
               editProfileEnable={editProfileEnable}
               setProfile={setProfile}
             />
-            <BankInfo
-              profile={profile}
-              editProfileEnable={editProfileEnable}
-              setProfile={setProfile}
-            />
-            <Documents
-              profile={profile}
-              setProfile={setProfile}
-              editProfileEnable={editProfileEnable}
-            />
+
           </div>
           <div className="bottom">
             {editProfileEnable && (

@@ -7,6 +7,9 @@
   border: 1px solid #1111111a;
   border-radius: 20px;
   gap: 24px;
+  .other-info-li li{
+    list-style: none;
+  }
   .heading {
     border-bottom: 1px solid #1111111a;
     padding-bottom: 12px;

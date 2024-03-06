@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import RecentPayments from "../../components/dashboardComponents/RecentPayments";
-import Summary from "../../components/dashboardComponents/summary";
+import RecentPayments from "../../components/dashboardComponents/RecentQueries";
 import Widget from "../../components/dashboardComponents/widget";
 import "./style.scss";
 import { MediaQueryContext } from "../../context/MediaQueryContext";
@@ -13,7 +12,7 @@ import { ProfileContext } from "../../context/ProfileContext";
 const Dashboard = () => {
   const { dashboardData } = useContext(DashboardContext)
   const { smallScreen } = useContext(MediaQueryContext);
-  const { profile, setProfile } = useContext(ProfileContext)
+  const { profile } = useContext(ProfileContext)
   const { user } = useContext(UserContext)
   const [ isSmallScreen, setIsSmallScreen ] = useState(false);
 
@@ -54,11 +53,11 @@ const Dashboard = () => {
     <div className="all-dashboard">
       <div className="Dashboard-container">
         <div className="business-dashbaord">
-          <h1>Business Dashboard</h1>
+          <h1>Institute Dashboard</h1>
           <div className="widgets-container">
-            <Widget heading="FOLLOWERS" value={dashboardData.totalFollowers} />
-            <Widget heading="INCOME" value="$10000" />
-            <Widget heading="SESSIONS" value={dashboardData.totalSessions} />
+            <Widget heading="Enrolled Students" value="3021" />
+            <Widget heading="Interactions" value="543632" />
+            <Widget heading="Total Queries" value="456711" />
           </div>
         </div>
 
@@ -70,7 +69,7 @@ const Dashboard = () => {
         </div>
 
       </div>
-      <div className="summary">{!smallScreen && <Summary />}</div>
+      {/* <div className="summary">{!smallScreen && <Summary />}</div> */}
     </div>
   );
 };

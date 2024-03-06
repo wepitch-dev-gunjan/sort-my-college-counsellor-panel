@@ -3,8 +3,6 @@ import "./style.scss";
 import { useContext } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
-import Session from "./pages/session";
-import Payment from "./pages/payment";
 import Profile from "./pages/profile/Profile";
 import Login from "./pages/login";
 import Header from "./components/header";
@@ -18,8 +16,6 @@ import { NotificationContext } from "./context/NotificationContext";
 import { useRef } from "react";
 import useClickOutside from "./customHooks/useClickOutside";
 import { ToastContainer } from "react-toastify";
-import { SessionContext } from "./context/SessionContext";
-import AddSession from "./components/addSession";
 import { ProfileContext } from "./context/ProfileContext";
 import AddProfilePic from "./components/profilePic/addProfilePic";
 import AddCoverImage from "./components/coverImage/addCoverImage";
@@ -29,13 +25,13 @@ import AskQuestion from "./pages/askQuestion";
 import "rsuite/dist/rsuite-no-reset.min.css";
 import { HelpContext } from "./context/HelpContext";
 import DocumentDelete from "./components/documentDelete";
-
+import Queries from "./pages/queries";
+import Courses from "./pages/courses"
 
 function App() {
   const addProfilePicRef = useRef(null);
   const { user, setUser } = useContext(UserContext);
-  const { addMode, setAddMode, sessions, setSessions } =
-    useContext(SessionContext);
+
   const { profilePicEditMode, setProfilePicEditMode } =
     useContext(ProfileContext);
   const { coverImageEditMode, setCoverImageEditMode } =
@@ -79,15 +75,7 @@ function App() {
 
   return (
     <div>
-      {addMode && (
-        <div className="add-session-container">
-          <AddSession
-            sessions={sessions}
-            setSessions={setSessions}
-            setAddMode={setAddMode}
-          />
-        </div>
-      )}
+
       {profilePicEditMode && (
         <div className="add-profile-pic-panel">
           <AddProfilePic ref={addProfilePicRef} />
@@ -122,18 +110,18 @@ function App() {
             {isLoggedIn ? (
               <>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/session" element={<Session />} />
-                <Route path="/payment" element={<Payment />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/users" element={<Users />} />
                 <Route path="/feeds" element={<MyFeeds />} />
                 <Route path="/feedbacks" element={<Feedbacks />} />
                 <Route path="/login" element={<Navigate replace to="/" />} />
                 <Route path="/help" element={<Help />} />
+                <Route path="/queries" element={<Queries />} />
                 <Route
                   path="/help/faq-and-troubleshooting"
                   element={<FaqAndTroubleshooting />}
                 />
+                <Route path="/courses" element={<Courses />} />
                 {/* <Route
                   path="/help/faq-and-troubleshooting/ask-a-question"
                   element={<AskQuestion />}

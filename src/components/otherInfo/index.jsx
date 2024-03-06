@@ -55,7 +55,7 @@ const OtherInfo = ({
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Industrial Experience</p>
+              <p>Courses/Programs Offered</p>
             </div>
 
             <div className="info-value">
@@ -68,209 +68,125 @@ const OtherInfo = ({
                   />
                 </>
               ) : (
-                <p>{`${profile.experience_in_years}+ years`}</p>
+                <p>
+                  Bachelor of Science in Computer Science,
+                  Master of Business Administration (MBA) with a focus on Finance,
+                  Diploma in Digital Marketing,
+                  Certificate in Data Analytics,
+                  Associate Degree in Graphic Design
+                </p>
               )}
             </div>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col">
-            <div className="info-field">
-              <p>Languages I know</p>
-            </div>
-            <div className="info-value">
-              {editProfileEnable ? (
-                <TagsInput
-                value={profile.languages_spoken}
-                onChange={(newTags) => setProfile({ ...profile, languages_spoken: newTags})}
-              />
-              ) : (
-                profile.languages_spoken?.map((language, i) => (
-                  <p key={i}>{`${language}${i < profile.languages_spoken.length - 1 ? "," : ""
-                    }`}</p>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
 
-        <div className="row">
-      <div className="col">
-        <div className="info-field">
-          <p>Nationality</p>
-        </div>
-        <div className="info-value">
-          {editProfileEnable ? (
-            <>
-              <div className="ug">
-                <label className="ug-text">
-                  <input
-                    type="radio"
-                    value="Indian"
-                    checked={profile.nationality === 'Indian'}
-                    onChange={handleRadioChange}
-                  />
-                  Indian
-                </label>
-                <label className="ug-text">
-                  <input
-                    type="radio"
-                    value="Foreign"
-                    checked={profile.nationality === 'Foreign'}
-                    onChange={handleRadioChange}
-                  />
-                  Foreign
-                </label>
-              </div>
-            </>
-          ) : (
-            <p>{profile.nationality}</p>
-          )}
-        </div>
+
+ 
+
+
       </div>
-    </div>
 
+      <div className="info">
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Approach of counselling</p>
+              <p>Facilities/Resources</p>
             </div>
-            <div className="info-value">
-              {editProfileEnable ? (
-                <input
-                  type="text"
-                  value={profile.approach_of_counselling}
-                  onChange={(e) => handleInput("approach_of_counselling", e.target.value, setProfile)}
-                />
-              ) : (
-                <p>{profile.approach_of_counselling}</p>
-              )}
-            </div>
-          </div>
-        </div>
 
-        <div className="row">
-          <div className="col">
-            <div className="info-field">
-              <p>Degree focused</p>
-            </div>
             <div className="info-value">
               {editProfileEnable ? (
                 <>
-                  <div className="ug">
-                    <label className="ug-text">
-                      <input
-                        type="checkbox"
-                        value="UG"
-                        checked={profile.degree_focused.includes("UG")}
-                        onChange={(e) => handleCheckboxChange('degree_focused', e.target.value)}
-                      />
-                      UG
-                    </label>
-                    <label className="ug-text">
-                      <input
-                        type="checkbox"
-                        value="PG"
-                        checked={profile.degree_focused.includes("PG")}
-                        onChange={(e) => handleCheckboxChange('degree_focused', e.target.value)}
-                      />
-                      PG
-                    </label>
-                  </div>
+                  <input
+                    type="text"
+                    value={profile.experience_in_years}
+                    onChange={e => handleInput('experience_in_years', e.target.value, setProfile)}
+                  />
                 </>
               ) : (
-                <p>{Array.isArray(profile.degree_focused) ? profile.degree_focused.join(", ") : ''}</p>
+                <p>
+                  <ul className='other-info-li'>
+                    <li>State-of-the-art computer labs equipped with the latest software and hardware.</li>
+                    <li>Dedicated career counseling and placement services.</li>
+                    <li>On-campus cafeteria serving nutritious meals and snacks.</li>
+                    <li>Student lounge for relaxation and informal gatherings.</li>
+                  </ul>
+                </p>
               )}
             </div>
           </div>
         </div>
 
 
+
+ 
+
+
+      </div>
+
+      <div className="info">
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Locations focused</p>
+              <p>Affiliations</p>
             </div>
+
             <div className="info-value">
               {editProfileEnable ? (
-                <div className="ug">
-                  <label className="ug-text">
-                    <input
-                      type="checkbox"
-                      value="India"
-                      checked={profile.locations_focused.includes("India")}
-                      onChange={(e) => handleLocationCheckboxChange('locations_focused', e.target.value)}
-                    />
-                    India
-                  </label>
-                  <label className="ug-text">
-                    <input
-                      type="checkbox"
-                      value="Abroad"
-                      checked={profile.locations_focused.includes("Abroad")}
-                      onChange={(e) => handleLocationCheckboxChange('locations_focused', e.target.value)}
-                    />
-                    Abroad
-                  </label>
-                </div>
+                <>
+                  <input
+                    type="text"
+                    value={profile.experience_in_years}
+                    onChange={e => handleInput('experience_in_years', e.target.value, setProfile)}
+                  />
+                </>
               ) : (
-                profile.locations_focused?.map((location, i) => (
-                  <p key={i}>{`${location}${i < profile.locations_focused.length - 1 ? "," : ""}`}</p>
-                ))
+                <p>
+                  <ul className='other-info-li'>
+                    <li>Accredited by the Accreditation Board for Engineering and Technology (ABET).</li>
+                    <li>Collaborative partnership with industry leaders such as Microsoft, Google, and IBM for technology-related programs.</li>
+                    <li>Member of the American Marketing Association (AMA) for marketing education and resources.</li>
+                    <li>Affiliated with the National Association of Schools of Art and Design (NASAD) for design programs.</li>
+                  </ul>
+                </p>
               )}
             </div>
           </div>
         </div>
 
+
+
+ 
+
+
+      </div>
+
+      <div className="info">
         <div className="row">
           <div className="col">
-             <div className="info-field">
-                <p>Courses focused</p>
-             </div>
-        <div className="info-value">
-           {editProfileEnable ? (
-              <TagsInput
-                  value={profile.courses_focused}
-                  onChange={(newTags) => setProfile({ ...profile, courses_focused: newTags})}
-              />
+            <div className="info-field">
+              <p>Social Media Links</p>
+            </div>
+
+            <div className="info-value">
+              {editProfileEnable ? (
+                <>
+                  <input
+                    type="text"
+                    value={profile.experience_in_years}
+                    onChange={e => handleInput('experience_in_years', e.target.value, setProfile)}
+                  />
+                </>
               ) : (
-                  profile.courses_focused?.map((courses_focused, i) => (
-                  <p key={i}>{`${courses_focused}${i < profile.courses_focused.length - 1 ? "," : ""}`}</p>
-                  ))
-            )}
-         </div>
-       </div>
-     </div>
-
-
-
-        <div className="row">
-          <div className="col">
-            <div className="info-field">
-              <p>Group session price</p>
-            </div>
-            <div className="info-value">
-              <p>
-                <FaIndianRupeeSign /> {profile.group_session_price}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col">
-            <div className="info-field">
-              <p>Personal session price</p>
-            </div>
-            <div className="info-value">
-              <p>
-                <FaIndianRupeeSign /> {profile.personal_session_price}
-              </p>
+                <p>https://www.sittechno.org/contact-us-5e4f8f9bd01ee.html</p>
+              )}
             </div>
           </div>
         </div>
       </div>
+
+
+
     </div>
   );
 };

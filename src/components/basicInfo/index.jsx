@@ -27,7 +27,7 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Email</p>
+              <p>Address</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
@@ -37,7 +37,12 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
                   onChange={(e) => handleInput("email", e.target.value, setProfile)}
                 />
               ) : (
-                <p>{profile.email}</p>
+                <p>S.I.T Campus, Salbari,Hill Cart Road,
+                Post Office - Sukna, Siliguri,
+                District - Darjeeling,
+                Pin Code - 734009,
+                West Bengal (WB),
+                India (IN).</p>
               )}
             </div>
           </div>
@@ -46,7 +51,7 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Gender</p>
+              <p>Website URL</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
@@ -85,7 +90,7 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
                   </label>
                 </div>
               ) : (
-                <p>{profile.gender}</p>
+                <p>https://www.sittechno.org/</p>
               )}
             </div>
           </div>
@@ -94,7 +99,7 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Date of birth</p>
+              <p>Institute Type</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
@@ -104,11 +109,60 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
                   onChange={(date) => handleDateChange(date)}
                 />
               ) : (
-                <p>{formatDate(profile.date_of_birth)}</p>
+                <p>Research University</p>
               )}
             </div>
           </div>
         </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Year Estd.</p>
+            </div>
+            <div className="info-value">
+              {editProfileEnable ? (
+
+                <DatePicker label="Date of birth"
+                  defaultValue={dayjs(profile.date_of_birth)}
+                  onChange={(date) => handleDateChange(date)}
+                />
+              ) : (
+                <p>1978</p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Specializations</p>
+            </div>
+            <div className="info-value">
+              {editProfileEnable ? (
+
+                <DatePicker label="Date of birth"
+                  defaultValue={dayjs(profile.date_of_birth)}
+                  onChange={(date) => handleDateChange(date)}
+                />
+              ) : (
+                <p>
+                  <ul className="specializations">
+                    <li>Computer Science and Engineering</li>
+                    <li>Artificial Intelligence and Machine Learning</li>
+                    <li>Cybersecurity</li>
+                    <li>Data Science and Big Data Analytics</li>
+                    <li>Software Engineering</li>
+                  </ul>
+
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div >
   );

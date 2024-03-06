@@ -19,7 +19,7 @@ const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Phone</p>
+              <p>Point of Contact</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
@@ -40,7 +40,7 @@ const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
                   />
                 </div>
               ) : (
-                <p>{`${profile.phone_code} ${profile.phone_no}`}</p>
+                <p>Admin's Name</p>
               )}
             </div>
           </div>
@@ -49,7 +49,7 @@ const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
         <div className="row">
           <div className="col">
             <div className="info-field">
-              <p>Location</p>
+              <p>Email Information</p>
             </div>
             <div className="info-value">
               {editProfileEnable ? (
@@ -61,15 +61,35 @@ const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
                 </>
               ) : (
                 <>
-                  <p>{`${profile.location?.country},`}</p>
-                  <p>{`${profile.location?.state},`}</p>
-                  <p>{`${profile.location?.city},`}</p>
-                  <p>{profile.location?.pin_code}</p>
+                  <p>admin@siit.com</p>
                 </>
               )}
             </div>
           </div>
         </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Phone Information</p>
+            </div>
+            <div className="info-value">
+              {editProfileEnable ? (
+                <>
+                  {<input type="text" placeholder='Country' value={profile.location.country} onChange={(e) => handleInputInsideInputChange(e.target.value, 'location', 'country', setProfile)} />}
+                  {<input type="text" placeholder='State' value={profile.location.state} onChange={(e) => handleInputInsideInputChange(e.target.value, 'location', 'state', setProfile)} />}
+                  {<input type="text" placeholder='City' value={profile.location.city} onChange={(e) => handleInputInsideInputChange(e.target.value, 'location', 'city', setProfile)} />}
+                  {<input type="text" placeholder='Pin-code' value={profile.location.pin_code} onChange={(e) => handleInputInsideInputChange(e.target.value, 'location', 'pin_code', setProfile)} />}
+                </>
+              ) : (
+                <>
+                  <p>1700 234 567</p>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
