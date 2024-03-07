@@ -3,6 +3,9 @@ import './style.scss';
 import { handleInput, handleInputInsideInputChange } from '../../utilities';
 
 const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
+  if (!profile.phone_code) {
+    handleInput('phone_code', '+91', setProfile);
+  }
   const handlePhoneNumberChange = (e) => {
     // Limit input to 10 digits
     const phoneNumber = e.target.value.replace(/\D/g, '').slice(0, 10);

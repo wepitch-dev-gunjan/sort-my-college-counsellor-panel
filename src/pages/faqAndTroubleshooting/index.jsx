@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom'
 import { useContext, useState } from 'react';
 import { HelpContext } from '../../context/HelpContext';
 
-const FaqAndTroubleshooting = () => {
+const FaqAndTroubleshooting = ({setAskQuestionDisable}) => {
     const {askQuestionEnable, setAskQuestionEnable} = useContext(HelpContext)
     function askQuestion() {
         setAskQuestionEnable(true)
+        setAskQuestionDisable(true)
     }
     return(
         <div className="fat-main">

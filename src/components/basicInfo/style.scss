@@ -24,6 +24,8 @@
       .col {
         width: 100%;
         display: flex;
+        justify-content: start;
+
         .info-field {
           width: 100%;
           font-weight: 700;
@@ -36,7 +38,7 @@
           font-size: var(--fs-sm);
           .gender-radio{
             display: flex;
-            gap: 24px;
+            gap: 20px;
             .gender-text{
               display: flex;
               gap: 8px;

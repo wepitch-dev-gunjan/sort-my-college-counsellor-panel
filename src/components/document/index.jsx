@@ -107,6 +107,7 @@ const Documents = ({
           editProfileEnable={editProfileEnable}
           getIdByName={getIdByName}
           getDocumentTypeFromId={getDocumentTypeFromId}
+          documents={documents}
         />
       ))}
 

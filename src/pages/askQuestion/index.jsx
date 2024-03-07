@@ -1,13 +1,17 @@
 import { useContext } from 'react'
 import './style.scss'
 import { HelpContext } from '../../context/HelpContext'
+import useClickOutside from '../../customHooks/useClickOutside'
 
-const AskQuestion = () => {
+const AskQuestion = ({setAskQuestionDisable}) => {
     const {askQuestionRef} = useContext(HelpContext)
 
+    useClickOutside(askQuestionRef, () => setAskQuestionDisable(false));
+   
+
     return(
-        <div ref={askQuestionRef} className='ask-question-main'>
-            <div className='ask-question-container'>
+        <div  className='ask-question-main'>
+            <div ref={askQuestionRef} className='ask-question-container'>
                 <h3>Ask a Question</h3>
                     <div className='ask-question-dropdown'> 
                     <select >
