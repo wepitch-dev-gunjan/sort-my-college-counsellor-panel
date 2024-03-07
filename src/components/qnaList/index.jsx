@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './style.scss'
 import { MediaQueryContext } from '../../context/MediaQueryContext';
 import axios from 'axios';
-import config from '@/config.json';
+import config from '@/config';
 const { backend_url } = config;
 
 const QnaList = () => {

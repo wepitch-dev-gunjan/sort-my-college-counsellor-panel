@@ -10,7 +10,7 @@ import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
 import Documents from "../../components/document";
 
-import config from '@/config.json';
+import config from '@/config';
 import axios from "axios";
 import { toast } from "react-toastify";
 import BankInfo from "../../components/bankInfo";

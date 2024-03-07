@@ -3,7 +3,7 @@ import SessionItem from "../../components/sessionItem"
 import axios from "axios"
 import { UserContext } from "../../context/UserContext"
 import { useContext, useState } from "react"
-import config from '@/config.json';
+import config from '@/config';
 import { useEffect, useRef } from "react";
 import Filters from "../../components/filters"
 import { RiArrowDropDownLine } from "react-icons/ri";

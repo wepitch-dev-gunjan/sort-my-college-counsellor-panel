@@ -4,7 +4,7 @@ import Notification from "./notification";
 import { NotificationContext } from "../../context/NotificationContext";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
-import config from '@/config.json';
+import config from '@/config';
 import { ImSpinner3 } from "react-icons/im";
 const { backend_url } = config;
 

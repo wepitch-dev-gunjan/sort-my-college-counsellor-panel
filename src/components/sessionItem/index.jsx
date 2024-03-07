@@ -4,7 +4,7 @@ import { CiMenuKebab } from 'react-icons/ci';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import "./session.scss";
 import { UserContext } from '../../context/UserContext';
-import config from '@/config.json';
+import config from '@/config';
 import useClickOutside from '../../customHooks/useClickOutside';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';

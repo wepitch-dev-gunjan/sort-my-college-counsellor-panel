@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import "./style.scss";
-import config from '@/config.json';
+import config from '@/config';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { UserContext } from "../../../context/UserContext";

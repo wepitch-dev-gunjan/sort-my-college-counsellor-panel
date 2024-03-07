@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./style.scss";
 import { UserContext } from "../../context/UserContext";
-import config from '@/config.json';
+import config from '@/config';
 import useClickOutside from "../../customHooks/useClickOutside";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";

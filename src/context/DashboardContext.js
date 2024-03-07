@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import config from '@/config.json';
+import config from '@/config';
 import { UserContext } from "./UserContext";
 const { backend_url } = config;
 

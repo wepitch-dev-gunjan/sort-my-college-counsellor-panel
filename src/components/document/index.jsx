@@ -3,7 +3,7 @@ import DocumentItem from "./documentItem";
 import "./style.scss";
 import { toast } from "react-toastify";
 import axios from "axios";
-import config from '@/config.json';
+import config from '@/config';
 import { UserContext } from "../../context/UserContext";
 const { backend_url } = config;
 

@@ -6,7 +6,7 @@ import "./style.scss";
 import { MediaQueryContext } from "../../context/MediaQueryContext";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
-import config from '@/config.json';
+import config from '@/config';
 import { DashboardContext } from "../../context/DashboardContext";
 import { ProfileContext } from "../../context/ProfileContext";
 const { backend_url } = config;

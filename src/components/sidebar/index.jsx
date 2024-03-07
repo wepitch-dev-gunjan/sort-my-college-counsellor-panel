@@ -13,7 +13,7 @@ import useRazorpay from "react-razorpay";
 import { GiUpgrade } from "react-icons/gi";
 import PersonIcon from "@mui/icons-material/Person";
 import { ProfileContext } from "../../context/ProfileContext";
-import config from '@/config.json';
+import config from '@/config';
 import axios from "axios";
 import { Button } from "rsuite";
 import { UserContext } from "../../context/UserContext";

@@ -3,7 +3,7 @@ import AvatarEditor from 'react-avatar-editor';
 import './style.scss';
 import { ProfileContext } from '../../../context/ProfileContext';
 import { IoCloudUploadOutline } from "react-icons/io5";
-import config from '@/config.json';
+import config from '@/config';
 import { UserContext } from '../../../context/UserContext';
 import { dataURLtoFile } from '../../../utilities'
 import axios from 'axios';

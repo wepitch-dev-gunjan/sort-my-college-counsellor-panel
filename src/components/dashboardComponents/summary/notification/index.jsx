@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import axios from "axios";
 import "./style.scss";
-import config from '@/config.json';
+import config from '@/config';
 import { NotificationContext } from "../../../../context/NotificationContext";
 import { UserContext } from "../../../../context/UserContext";
 const { backend_url } = config;

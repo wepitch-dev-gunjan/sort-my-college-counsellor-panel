@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import io from "socket.io-client";
-import config from '@/config.json';
+import config from '@/config';
 const { backend_url } = config;
 
 const SocketContext = createContext();

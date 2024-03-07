@@ -4,7 +4,7 @@ import "./style.scss";
 import Logo from "../../assets/logo.svg";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
-import config from '@/config.json';
+import config from '@/config';
 import { DatePicker } from "@mui/x-date-pickers";
 import axios from "axios";
 

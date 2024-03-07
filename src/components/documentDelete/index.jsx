@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import './style.scss'
 import { HelpContext } from '../../context/HelpContext'
 import axios from 'axios'
-import config from '@/config.json';
+import config from '@/config';
 import { UserContext } from '../../context/UserContext'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'

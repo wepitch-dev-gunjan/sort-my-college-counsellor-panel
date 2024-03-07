@@ -12,7 +12,7 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { UserContext } from "../../../context/UserContext";
 import axios from "axios";
 import { dataURLtoFile } from "../../../utilities";
-import config from '@/config.json';
+import config from '@/config';
 import { toast } from "react-toastify";
 const { backend_url } = config;
 
