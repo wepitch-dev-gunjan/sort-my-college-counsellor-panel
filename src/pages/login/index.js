@@ -4,10 +4,11 @@ import "./style.scss";
 import Logo from "../../assets/logo.svg";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
-import { backend_url } from "../../config";
+import config from '@/config.json';
 import { DatePicker } from "@mui/x-date-pickers";
 import axios from "axios";
 
+const { backend_url } = config;
 const Login = () => {
   const [isLoadingLogin, setIsLoadingLogin] = useState(false);
   const [isLoadingLoginGoogle, setIsLoadingLoginGoogle] = useState(false);

@@ -10,14 +10,15 @@ import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
 import Documents from "../../components/document";
 
-import { backend_url } from "../../config";
+import config from '@/config.json';
 import axios from "axios";
 import { toast } from "react-toastify";
 import BankInfo from "../../components/bankInfo";
 
+const { backend_url } = config;
 const Profile = () => {
   const { user } = useContext(UserContext);
-  const { profile, setProfile, documentsUpdated, editProfileEnable, setEditProfileEnable} = useContext(ProfileContext);
+  const { profile, setProfile, documentsUpdated, editProfileEnable, setEditProfileEnable } = useContext(ProfileContext);
   const [initialUserProfileBackup, setInitialUserProfileBackup] =
     useState(profile);
 
@@ -101,13 +102,13 @@ const Profile = () => {
               setProfile={setProfile}
             />
             {
-            // documentsUpdated && 
-            <Documents
-              key={documentsUpdated}
-              profile={profile}
-              setProfile={setProfile}
-              editProfileEnable={editProfileEnable}
-            />
+              // documentsUpdated && 
+              <Documents
+                key={documentsUpdated}
+                profile={profile}
+                setProfile={setProfile}
+                editProfileEnable={editProfileEnable}
+              />
             }
           </div>
           <div className="bottom">

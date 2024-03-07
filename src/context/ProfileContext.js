@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { UserContext } from './UserContext';
 import axios from 'axios';
-import { backend_url } from '../config';
+import config from '@/config.json';
+const { backend_url } = config;
 
 export const ProfileContext = createContext();
 
@@ -18,7 +19,7 @@ export const ProfileProvider = ({ children }) => {
             Authorization: user.token
           }
         });
-        console.log(response.data[0])
+      console.log(response.data[0])
       setProfile(response.data[0])
     } catch (err) {
       console.error('Error fetching profile:', err);
@@ -26,7 +27,7 @@ export const ProfileProvider = ({ children }) => {
   };
 
   const randomize = () => {
-    setDocumentsUpdated(Math.random(100)*1000 + 1);
+    setDocumentsUpdated(Math.random(100) * 1000 + 1);
     console.log(documentsUpdated)
   }
 

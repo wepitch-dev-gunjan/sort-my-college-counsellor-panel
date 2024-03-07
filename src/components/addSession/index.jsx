@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./style.scss";
 import { UserContext } from "../../context/UserContext";
-import { backend_url } from "../../config";
+import config from '@/config.json';
 import useClickOutside from "../../customHooks/useClickOutside";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SessionContext } from "../../context/SessionContext";
 import { ImSpinner8 } from "react-icons/im";
+const { backend_url } = config;
 
 const AddSession = ({ setSessions, setAddMode }) => {
   const Ref = useRef(null);
@@ -83,8 +84,8 @@ const AddSession = ({ setSessions, setAddMode }) => {
       window.location.reload()
       toast("Session created successfully");
 
-    
-    } 
+
+    }
     catch (error) {
       setSessionLoading(false);
       setAddMode(false);

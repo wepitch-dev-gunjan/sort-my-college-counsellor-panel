@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import "./style.scss";
-import { backend_url } from "../../../config";
+import config from '@/config.json';
 import axios from "axios";
 import { toast } from "react-toastify";
 import { UserContext } from "../../../context/UserContext";
 import Spinner from "../../spinner/Index";
 import { ProfileContext } from "../../../context/ProfileContext";
+const { backend_url } = config;
 
 const DocumentItem = ({
   document,
@@ -24,8 +25,8 @@ const DocumentItem = ({
   const hiddenFileInput = useRef(null);
   const { user } = useContext(UserContext);
   const [currentField, setCurrentField] = useState(documentTypes[0]?.name);
-  const [loading,setLoading]=useState(true)
-  const{documentDelete , setDocumentDelete}=useContext(ProfileContext)
+  const [loading, setLoading] = useState(true)
+  const { documentDelete, setDocumentDelete } = useContext(ProfileContext)
 
   const handleSelect = (e) => {
     setCurrentField(e.target.value);
@@ -54,7 +55,7 @@ const DocumentItem = ({
           }
         }
       );
-      
+
 
       // Update state or do something with the response data if needed
       setDocuments(prev => [...prev.slice(0, prev.length - 1), data])
@@ -64,7 +65,7 @@ const DocumentItem = ({
       setLoading(true)
 
 
-    
+
     } catch (error) {
       // Improve error handling
       console.error("Error uploading document:", error.response ? error.response.data : error.message);
@@ -72,7 +73,7 @@ const DocumentItem = ({
     }
   };
 
-  const handleDeleteDocument =  async () => {
+  const handleDeleteDocument = async () => {
     setDocumentDelete(prev => !prev)
     try {
       await getDocuments()
@@ -111,7 +112,7 @@ const DocumentItem = ({
             <>
               <button className="button-upload" onClick={handleClick}>
                 {loading ?
-                "Upload a file" : <Spinner/>
+                  "Upload a file" : <Spinner />
                 }
               </button>
               <input

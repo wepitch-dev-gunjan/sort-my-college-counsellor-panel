@@ -3,13 +3,14 @@ import SessionItem from "../../components/sessionItem"
 import axios from "axios"
 import { UserContext } from "../../context/UserContext"
 import { useContext, useState } from "react"
-import { backend_url } from "../../config"
-import { useEffect, useRef } from "react"
+import config from '@/config.json';
+import { useEffect, useRef } from "react";
 import Filters from "../../components/filters"
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { MediaQueryContext } from "../../context/MediaQueryContext" 
+import { MediaQueryContext } from "../../context/MediaQueryContext"
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
+const { backend_url } = config;
 
 
 const Session = () => {
@@ -75,27 +76,27 @@ const Session = () => {
         <div className="session-header">
           <div className="left">
             <div className="reset-changes">
-              {xSmallScreen ? 
-              <h1 onClick={toggleDropdown}>
-                <span  className={`fd-toggle-btn ${isDropdownOpen ? 'active' : ''}`} >Filters{" "} {isDropdownOpen ? <RiArrowDropDownLine /> : <MdKeyboardArrowLeft />}</span>
-              </h1> : <h1>Filters</h1> }
-              { !xSmallScreen && <button onClick={resetFilters}>Reset filters</button> }
+              {xSmallScreen ?
+                <h1 onClick={toggleDropdown}>
+                  <span className={`fd-toggle-btn ${isDropdownOpen ? 'active' : ''}`} >Filters{" "} {isDropdownOpen ? <RiArrowDropDownLine /> : <MdKeyboardArrowLeft />}</span>
+                </h1> : <h1>Filters</h1>}
+              {!xSmallScreen && <button onClick={resetFilters}>Reset filters</button>}
               {isDropdownOpen && xSmallScreen && (
                 <div ref={dropdownRef} className="dropdown-menu">
                   <div className="filter-dropdown-main" >
                     <div className='filter-dropdown-sub' >
-                      <div className='fd-item fd-reset-btn' > 
-                            <button onClick={resetFilters} >Reset Filters</button>
+                      <div className='fd-item fd-reset-btn' >
+                        <button onClick={resetFilters} >Reset Filters</button>
                       </div>
-                      <div className='fd-item' > 
+                      <div className='fd-item' >
                         <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
                       </div>
                     </div>
-                </div>
+                  </div>
                 </div>
               )}
             </div>
-            { !xSmallScreen && <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} /> }
+            {!xSmallScreen && <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />}
           </div>
         </div>
         <div className="sessionContainer">

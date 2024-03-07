@@ -1,7 +1,8 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import { backend_url } from "../config";
+import config from '@/config.json';
 import { UserContext } from "./UserContext";
+const { backend_url } = config;
 
 export const DashboardContext = createContext();
 

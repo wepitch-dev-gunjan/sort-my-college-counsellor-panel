@@ -4,11 +4,12 @@ import { CiMenuKebab } from 'react-icons/ci';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import "./session.scss";
 import { UserContext } from '../../context/UserContext';
-import { backend_url } from '../../config';
+import config from '@/config.json';
 import useClickOutside from '../../customHooks/useClickOutside';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
 import './session.scss';
+const { backend_url } = config;
 
 const SessionCard = ({ session, setSessions, getResponse }) => {
   const menuRef = useRef(null)
@@ -89,131 +90,131 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
         </div>
       </div>}
 
-  {editMode ? (
-  <form className='edit-mode-form' onSubmit={handleSave}>
-    <table className='edit-mode-table'>
-      <tbody>
-        <tr>
-          <td>Date:</td>
-          <td>
-            <input
-              type="date"
-              value={sessionDetails.session_date}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_date: formatDate(e.target.value) })}
-              required
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Time:</td>
-          <td>
-            <input
-              type="time"
-              value={sessionDetails.session_time}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_time: e.target.value })}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Duration:</td>
-          <td>
-            <input
-              type="number"
-              value={sessionDetails.session_duration}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_duration: e.target.value })}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Type:</td>
-          <td>
-            <input
-              type="text"
-              value={sessionDetails.session_type}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_type: e.target.value })}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Fees:</td>
-          <td>
-            <input
-              type="number"
-              value={sessionDetails.session_fee}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_fee: e.target.value })}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Status:</td>
-          <td>
-            <input
-              type="text"
-              value={sessionDetails.session_status}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_status: e.target.value })}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>Available Slots:</td>
-          <td>
-            <input
-              type="number"
-              value={sessionDetails.session_available_slots}
-              onChange={(e) => setSessionDetails({ ...sessionDetails, session_available_slots: e.target.value })}
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div className="edit-mode-bottom">
-      <button onClick={handleSave} type="submit">
-        Save
-      </button>
-      <button type="button" onClick={handleCancel}>
-        Cancel
-      </button>
-    </div>
-  </form>
-) : (
-  <>
-    <table className="display-mode-table">
-      <tbody>
-        <tr>
-          <td>Date:</td>
-          <td>{formatDate(session.session_date)}</td>
-        </tr>
-        <tr>
-          <td>Time:</td>
-          <td>{session.session_time}</td>
-        </tr>
-        <tr>
-          <td>Duration:</td>
-          <td>{session.session_duration} minutes</td>
-        </tr>
-        <tr>
-          <td>Type:</td>
-          <td>{session.session_type}</td>
-        </tr>
-        <tr>
-          <td>Fee:</td>
-          <td>{session.session_fee}</td>
-        </tr>
-        <tr>
-          <td>Status:</td>
-          <td>{session.session_status}</td>
-        </tr>
-        <tr>
-          <td>Available Slots:</td>
-          <td>{session.session_available_slots}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div className="bottom">
-      <button onClick={handleJoinNow}>Join Now</button>
-    </div>
-  </>
-)}
+      {editMode ? (
+        <form className='edit-mode-form' onSubmit={handleSave}>
+          <table className='edit-mode-table'>
+            <tbody>
+              <tr>
+                <td>Date:</td>
+                <td>
+                  <input
+                    type="date"
+                    value={sessionDetails.session_date}
+                    onChange={(e) => setSessionDetails({ ...sessionDetails, session_date: formatDate(e.target.value) })}
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Time:</td>
+                <td>
+                  <input
+                    type="time"
+                    value={sessionDetails.session_time}
+                    onChange={(e) => setSessionDetails({ ...sessionDetails, session_time: e.target.value })}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Duration:</td>
+                <td>
+                  <input
+                    type="number"
+                    value={sessionDetails.session_duration}
+                    onChange={(e) => setSessionDetails({ ...sessionDetails, session_duration: e.target.value })}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Type:</td>
+                <td>
+                  <input
+                    type="text"
+                    value={sessionDetails.session_type}
+                    onChange={(e) => setSessionDetails({ ...sessionDetails, session_type: e.target.value })}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Fees:</td>
+                <td>
+                  <input
+                    type="number"
+                    value={sessionDetails.session_fee}
+                    onChange={(e) => setSessionDetails({ ...sessionDetails, session_fee: e.target.value })}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Status:</td>
+                <td>
+                  <input
+                    type="text"
+                    value={sessionDetails.session_status}
+                    onChange={(e) => setSessionDetails({ ...sessionDetails, session_status: e.target.value })}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Available Slots:</td>
+                <td>
+                  <input
+                    type="number"
+                    value={sessionDetails.session_available_slots}
+                    onChange={(e) => setSessionDetails({ ...sessionDetails, session_available_slots: e.target.value })}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="edit-mode-bottom">
+            <button onClick={handleSave} type="submit">
+              Save
+            </button>
+            <button type="button" onClick={handleCancel}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      ) : (
+        <>
+          <table className="display-mode-table">
+            <tbody>
+              <tr>
+                <td>Date:</td>
+                <td>{formatDate(session.session_date)}</td>
+              </tr>
+              <tr>
+                <td>Time:</td>
+                <td>{session.session_time}</td>
+              </tr>
+              <tr>
+                <td>Duration:</td>
+                <td>{session.session_duration} minutes</td>
+              </tr>
+              <tr>
+                <td>Type:</td>
+                <td>{session.session_type}</td>
+              </tr>
+              <tr>
+                <td>Fee:</td>
+                <td>{session.session_fee}</td>
+              </tr>
+              <tr>
+                <td>Status:</td>
+                <td>{session.session_status}</td>
+              </tr>
+              <tr>
+                <td>Available Slots:</td>
+                <td>{session.session_available_slots}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="bottom">
+            <button onClick={handleJoinNow}>Join Now</button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
