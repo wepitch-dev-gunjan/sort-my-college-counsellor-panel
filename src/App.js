@@ -34,7 +34,7 @@ import DocumentDelete from "./components/documentDelete";
 function App() {
   const addProfilePicRef = useRef(null);
   const { user, setUser } = useContext(UserContext);
-  const { addMode, setAddMode, sessions, setSessions } =
+  const { addMode, setAddMode, sessions, setSessions,rerender,setRerender } =
     useContext(SessionContext);
   const { profilePicEditMode, setProfilePicEditMode } =
     useContext(ProfileContext);
@@ -129,7 +129,7 @@ function App() {
             {isLoggedIn ? (
               <>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/session" element={<Session />} />
+                <Route path="/session" element={<Session rerender={rerender} />} />
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/users" element={<Users />} />

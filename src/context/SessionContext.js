@@ -6,6 +6,7 @@ export const SessionProvider = ({ children }) => {
   const [addMode, setAddMode] = useState(false);
   const [sessionLoading, setSessionLoading] = useState(false);
   const [sessions, setSessions] = useState([]);
+  const [rerender,setRerender]=useState(false)
   return (
     <SessionContext.Provider
       value={{
@@ -15,6 +16,8 @@ export const SessionProvider = ({ children }) => {
         setSessionLoading,
         sessions,
         setSessions,
+        rerender,
+        setRerender
       }}
     >
       {children}
