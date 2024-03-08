@@ -9,14 +9,21 @@ import AvatarEditor from "react-avatar-editor";
 import "./style.scss";
 import { ProfileContext } from "../../../context/ProfileContext";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { UserContext } from "../../../context/UserContext";
+import axios from "axios";
+import { dataURLtoFile } from "../../../utilities";
+import config from '@/config';
+import { toast } from "react-toastify";
+const { backend_url } = config;
 
 const AddCoverImage = forwardRef((props, ref) => {
   const [image, setImage] = useState(null);
   const [scale, setScale] = useState(1);
   const editorRef = useRef(null);
   const fileRef = useRef(null);
-  const { coverImageEditMode, setCoverImageEditMode } =
+  const { setCoverImageEditMode, fetchProfile } =
     useContext(ProfileContext);
+  const { user } = useContext(UserContext);
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -30,11 +37,31 @@ const AddCoverImage = forwardRef((props, ref) => {
     setScale(parseFloat(event.target.value));
   };
 
-  const onSave = () => {
+  const onSave = async () => {
     if (editorRef.current) {
       const canvasScaled = editorRef.current.getImageScaledToCanvas();
-      const imageData = canvasScaled.toDataURL();
-      console.log(imageData); // You can send this data to the server or use as needed
+      const file = dataURLtoFile(canvasScaled.toDataURL()); // Convert data URL to File object
+
+      try {
+        const formData = new FormData();
+        formData.append('image', file); // Append the File object to FormData
+
+        await axios.post(`${backend_url}/counsellor/cover-image`, formData, {
+          headers: {
+            Authorization: user.token,
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        fetchProfile()
+
+        // Handle success, show message, or perform other actions upon successful upload
+        setCoverImageEditMode(false)
+        toast('Image updated successfully');
+      } catch (error) {
+        // Handle error, show error message, or perform error-related actions
+        setCoverImageEditMode(false)
+        toast('Error uploading image:', error);
+      }
     }
   };
 
@@ -91,8 +118,8 @@ const AddCoverImage = forwardRef((props, ref) => {
               <AvatarEditor
                 ref={editorRef}
                 image={image}
-                width={500}
-                height={500}
+                width={800}
+                height={400}
                 border={50}
                 color={[255, 255, 255, 0.6]} // RGBA
                 scale={scale}

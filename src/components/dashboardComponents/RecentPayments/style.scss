@@ -1,19 +1,23 @@
 .RecentPayments-container {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding: 20px;
+
+
   .see-all-button {
     font-weight: 800;
     color: var(--primary-dark);
     cursor: pointer;
     display: flex;
     justify-content: end;
+    font-size: var(--fs-sm) ;
   }
   .payments-top {
     display: flex;
     justify-content: space-between;
     align-items: end;
+  }
+  .payments-table p{
+   font-size: var(--fs-sm);
   }
   .table {
     .row {
@@ -26,7 +30,7 @@
       .col {
         display: flex;
         width: 100%;
-        font-size: 20px;
+        font-size: var(--fs-sm);
         color: var(--text-dark);
       }
     }

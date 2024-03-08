@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.scss';
+import { handleInput, handleInputInsideInputChange } from '../../utilities';
 
-const ContactInfo = ({ phone: initialPhone, location: initialLocation, editProfileEnable }) => {
-  const [phone, setPhone] = useState(initialPhone);
-  const [location, setLocation] = useState(initialLocation);
-
-  const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
-  };
-
-  const handleLocationChange = (e, field) => {
-    setLocation((prevLocation) => ({
-      ...prevLocation,
-      [field]: e.target.value,
-    }));
+const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
+  if (!profile.phone_code) {
+    handleInput('phone_code', '+91', setProfile);
+  }
+  const handlePhoneNumberChange = (e) => {
+    // Limit input to 10 digits
+    const phoneNumber = e.target.value.replace(/\D/g, '').slice(0, 10);
+    handleInput('phone_no', phoneNumber, setProfile);
   };
 
   return (
@@ -30,9 +26,24 @@ const ContactInfo = ({ phone: initialPhone, location: initialLocation, editProfi
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <input type="text" value={phone} onChange={handlePhoneChange} />
+                <div className="phone-input">
+                  {/* Country code dropdown */}
+                  <select
+                    value={profile.phone_code}
+                    onChange={(e) => handleInput('phone_code', e.target.value, setProfile)}
+                  >
+                    <option value="+1">+1(USA)</option>
+                    <option value="+91">+91(India)</option>
+                  </select>
+                  <input
+                    type="tel"
+                    value={profile.phone_no}
+                    onChange={handlePhoneNumberChange}
+                    placeholder="Enter phone number"
+                  />
+                </div>
               ) : (
-                <p>{phone}</p>
+                <p>{`${profile.phone_code} ${profile.phone_no}`}</p>
               )}
             </div>
           </div>
@@ -46,17 +57,17 @@ const ContactInfo = ({ phone: initialPhone, location: initialLocation, editProfi
             <div className="info-value">
               {editProfileEnable ? (
                 <>
-                  <input type="text" value={location.country} onChange={(e) => handleLocationChange(e, 'country')} />
-                  <input type="text" value={location.state} onChange={(e) => handleLocationChange(e, 'state')} />
-                  <input type="text" value={location.city} onChange={(e) => handleLocationChange(e, 'city')} />
-                  <input type="text" value={location.pin_code} onChange={(e) => handleLocationChange(e, 'pin_code')} />
+                  {<input type="text" placeholder='Country' value={profile.location.country} onChange={(e) => handleInputInsideInputChange(e.target.value, 'location', 'country', setProfile)} />}
+                  {<input type="text" placeholder='State' value={profile.location.state} onChange={(e) => handleInputInsideInputChange(e.target.value, 'location', 'state', setProfile)} />}
+                  {<input type="text" placeholder='City' value={profile.location.city} onChange={(e) => handleInputInsideInputChange(e.target.value, 'location', 'city', setProfile)} />}
+                  {<input type="text" placeholder='Pin-code' value={profile.location.pin_code} onChange={(e) => handleInputInsideInputChange(e.target.value, 'location', 'pin_code', setProfile)} />}
                 </>
               ) : (
                 <>
-                  <p>{`${location.country},`}</p>
-                  <p>{`${location.state},`}</p>
-                  <p>{`${location.city},`}</p>
-                  <p>{location.pin_code}</p>
+                  <p>{`${profile.location?.country},`}</p>
+                  <p>{`${profile.location?.state},`}</p>
+                  <p>{`${profile.location?.city},`}</p>
+                  <p>{profile.location?.pin_code}</p>
                 </>
               )}
             </div>

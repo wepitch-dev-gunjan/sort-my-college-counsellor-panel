@@ -1,6 +1,5 @@
 import React, { useContext, useRef } from "react";
 import "./style.scss";
-import { UserContext } from "../../context/UserContext";
 import ProfileDropDownMenu from "../dropdownMenu/profileDropDownMenu";
 import logo from "../../assets/logo.svg";
 import AddSessionButton from "../buttons/addSessionButton";
@@ -9,15 +8,16 @@ import { NotificationContext } from "../../context/NotificationContext";
 import useClickOutside from "../../customHooks/useClickOutside";
 import VerifyProfilePopup from "../verifyProfilePopup";
 import { ProfileContext } from "../../context/ProfileContext";
+import { MediaQueryContext } from "../../context/MediaQueryContext"; 
 
 const Header = ({ handleLogout }) => {
   const notificationRef = useRef(null);
   useClickOutside(notificationRef, () => {
     setNotificationsEnable(false);
   })
-  const { user } = useContext(UserContext);
   const { profile } = useContext(ProfileContext)
   const { setNotificationsEnable } = useContext(NotificationContext);
+  const { xSmallScreen } = useContext(MediaQueryContext);
 
   return (
     <div className="header">
@@ -26,14 +26,18 @@ const Header = ({ handleLogout }) => {
       </div>
       <div className="rightSide">
         {!profile.verified && <VerifyProfilePopup />}
-        <AddSessionButton />
-        <NotificationButton
-          ref={notificationRef}
-          onClick={() => setNotificationsEnable((prev) => !prev)}
-        />
+        {profile.verified && !xSmallScreen && 
+          <>
+          <AddSessionButton />
+            <NotificationButton
+              ref={notificationRef}
+              onClick={() => setNotificationsEnable((prev) => !prev)}
+            />
+          </>
+        }
         <ProfileDropDownMenu
-          name={user.name}
-          image={user.profile_pic}
+          name={profile.name}
+          image={profile.profile_pic}
           onClick={handleLogout}
         />
       </div>

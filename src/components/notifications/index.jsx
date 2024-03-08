@@ -1,28 +1,41 @@
-import React, { useContext, useRef, forwardRef } from "react";
+import React, { useContext } from "react";
 import "./style.scss";
 import Notification from "./notification";
 import { NotificationContext } from "../../context/NotificationContext";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
-import { backend_url } from "../../config";
+import config from '@/config';
+import { ImSpinner3 } from "react-icons/im";
+const { backend_url } = config;
 
-const Notifications = forwardRef((_, ref) => {
-  const { notifications, setNotifications } = useContext(NotificationContext);
+const Notifications = () => {
+  const { notifications, setNotifications, notificationsRef, getNotifications, page, setPage, notificationsLoading, allNotificationsFetched } = useContext(NotificationContext);
   const { user } = useContext(UserContext);
+
+  const handleScroll = (e) => {
+    const element = e.target;
+    if (element) {
+      const { scrollTop, clientHeight, scrollHeight } = element;
+
+      if (scrollTop + clientHeight === scrollHeight && !allNotificationsFetched) {
+        setPage(prev => prev + 1)
+        getNotifications(page);
+      }
+    }
+  };
 
   const handleNotificationClick = async (notificationId, i, read) => {
     if (!read) {
       try {
-        // Update the database via an API call using Axios
-        // await axios.put(
-        //   `${backend_url}/counsellor/notification/${notificationId}`,
-        //   { read: true },
-        //   {
-        //     headers: {
-        //       Authorization: user.token, // Fixed typo in Authorization
-        //     },
-        //   }
-        // );
+        await axios.put(
+          `${backend_url}/notification/${notificationId}`,
+          null,
+          {
+            params: {
+              user_id: user._id
+            }
+          }
+        );
 
         // Update local state and UI
         const updatedNotifications = [...notifications];
@@ -33,13 +46,12 @@ const Notifications = forwardRef((_, ref) => {
         setNotifications(updatedNotifications);
       } catch (error) {
         console.error("Error updating notification status:", error);
-        // Handle error scenarios here
       }
     }
   };
 
   return (
-    <div ref={ref} className="Notifications-container">
+    <div ref={notificationsRef} className="Notifications-container" onScroll={handleScroll}>
       {notifications.map((notification, i) => (
         <div key={i}>
           <Notification
@@ -52,8 +64,13 @@ const Notifications = forwardRef((_, ref) => {
           />
         </div>
       ))}
+      {notificationsLoading && <div className="notifications-loading">
+        <div className="notifications-spinner">
+          <ImSpinner3 size={40} />
+        </div>
+      </div>}
     </div>
   );
-});
+};
 
 export default Notifications;

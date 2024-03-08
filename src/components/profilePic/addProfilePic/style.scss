@@ -1,20 +1,23 @@
 .AddProfilePic-container {
-  z-index: 99999;
+  z-index: 99999999;
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
+  left: 0;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   backdrop-filter: blur(10px); /* Adjust the value based on your preference */
   background-color: #11111140;
   .drop-area-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 524px;
-    height: 524px;
+    width: 90%;
+    max-width: 524px;
+    height: 90%;
+    max-height: 524px;
     background-color: var(--browse-bg);
     .drop-area {
       color: var(--browse-file);
@@ -41,18 +44,18 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 100px;
+    gap: 10%;
     align-items: center;
   }
   .bottom {
     display: flex;
-    padding: 20px;
+    padding: 2vh;
     gap: 12px;
     button {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 12px 20px;
+      padding: 2vh 3vw;
       width: 100%;
       border: none;
       border-radius: 20px;
@@ -71,9 +74,9 @@
     writing-mode: bt-lr; /* for IE/Edge */
     writing-mode: lr-bt;
     -webkit-appearance: slider-vertical;
-    height: 500px; /* Set the height as needed */
-    width: 10px; /* Set the width as needed */
-    margin: 0 10px; /* Adjust the margin as needed */
+    height: 80vh; /* Set the height as needed */
+    width: 1vw; /* Set the width as needed */
+    margin: 0 2vw; /* Adjust the margin as needed */
   }
 
   input[type="file"] {

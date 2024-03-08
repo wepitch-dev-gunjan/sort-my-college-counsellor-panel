@@ -9,6 +9,15 @@
   .inner-container {
     display: flex;
     gap: 8px;
+    svg{
+      color: #1F0A68;
+      width: 0.7em;
+      height: auto;
+    }
+    .Text_Content{
+    font-size: var(--fs-sm);
+    color: #1F0A68;
+    }
   }
   a {
     text-decoration: none;
@@ -20,6 +29,7 @@
 }
 
 .active {
-  border-left: 4px solid var(--accent-dark);
+  border-left: 4px solid #FB5C74;
   background-color: var(--background-dark);
 }
+

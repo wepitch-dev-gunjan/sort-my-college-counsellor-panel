@@ -8,21 +8,44 @@ import ContactInfo from "../../components/contactInfo";
 import OtherInfo from "../../components/otherInfo";
 import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
+import Documents from "../../components/document";
 
+import config from '@/config';
+import axios from "axios";
+import { toast } from "react-toastify";
+import BankInfo from "../../components/bankInfo";
+
+const { backend_url } = config;
 const Profile = () => {
-  const { user, setUser } = useContext(UserContext);
-  const { profile, setProfile } = useContext(ProfileContext);
-  const [initialUserProfileBackup, setInitialUserProfileBackup] = useState(profile);
-  const { editProfileEnable, setEditProfileEnable } = useContext(ProfileContext)
+  const { user } = useContext(UserContext);
+  const { profile, setProfile, documentsUpdated, editProfileEnable, setEditProfileEnable } = useContext(ProfileContext);
+  const [initialUserProfileBackup, setInitialUserProfileBackup] =
+    useState(profile);
 
-  const [coverImage, setCoverImage] = useState(
+  const [coverImage] = useState(
     "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
   );
 
   // Function to handle saving changes
-  const handleSave = () => {
-    setInitialUserProfileBackup(profile);
-    setEditProfileEnable(false);
+  const handleSave = async () => {
+    try {
+      const endpointUrl = `${backend_url}/counsellor/${user._id}`; // Replace with your actual endpoint URL
+      console.log(profile)
+      const response = await axios.put(endpointUrl, profile, {
+        headers: {
+          Authorization: user.token
+        }
+      });
+      setProfile(response.data);
+      setInitialUserProfileBackup(response.data);
+      setEditProfileEnable(false);
+      toast('Profile successfully saved');
+    } catch (error) {
+      // Handle errors if the request fails
+      toast(error.message)
+      console.error("Error while saving:", error);
+      // You might want to handle the error state here
+    }
   };
 
   // Function to handle cancelling changes
@@ -31,13 +54,12 @@ const Profile = () => {
     setEditProfileEnable(false);
   };
 
-
   return (
     <div className="Profile-container">
       <div className="profile-body">
-        <CoverImage src={coverImage} />
+        <CoverImage src={profile.cover_image} />
         <div className="profile-pic">
-          <ProfilePic src={user.profile_pic} />
+          <ProfilePic src={profile.profile_pic} />
         </div>
         <div className="edit-profile">
           <div
@@ -47,36 +69,47 @@ const Profile = () => {
             Edit profile
           </div>
         </div>
+        <br />
         <div className="profile-info">
           <div className="top">
-            <h1>{user.name}</h1>
+            <h1>{profile.name}</h1>
             <h3>{profile.designation}</h3>
           </div>
           <div className="middle">
             <BasicInfo
-              email={profile.email}
-              age={profile.age}
-              gender={profile.gender}
+              profile={profile}
               editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
             />
             <ContactInfo
-              phone={profile.phone}
-              location={profile.location}
+              profile={profile}
+              editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
+            />
+            <EducationInfo
+              profile={profile}
+              setProfile={setProfile}
               editProfileEnable={editProfileEnable}
             />
             <OtherInfo
-              years={profile.experience_in_years}
-              languages={profile.languages_spoken}
-              group_session_price={profile.group_session_price}
-              personal_session_price={profile.personal_session_price}
-              counsellingApproach={profile.counselling_approach}
-              nationality={profile.nationality}
+              profile={profile}
               editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
             />
-            <EducationInfo
-              qualifications={profile.qualifications}
+            <BankInfo
+              profile={profile}
               editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
             />
+            {
+              // documentsUpdated && 
+              <Documents
+                key={documentsUpdated}
+                profile={profile}
+                setProfile={setProfile}
+                editProfileEnable={editProfileEnable}
+              />
+            }
           </div>
           <div className="bottom">
             {editProfileEnable && (
@@ -91,7 +124,6 @@ const Profile = () => {
             )}
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -4,15 +4,18 @@ import "./style.scss";
 import Logo from "../../assets/logo.svg";
 import { TextField, InputAdornment, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
-import { backend_url } from "../../config";
+import config from '@/config';
 import { DatePicker } from "@mui/x-date-pickers";
+import axios from "axios";
 
+const { backend_url } = config;
 const Login = () => {
   const [isLoadingLogin, setIsLoadingLogin] = useState(false);
   const [isLoadingLoginGoogle, setIsLoadingLoginGoogle] = useState(false);
   const [isLoadingSignup, setIsLoadingSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [signUpEnable, setSignUpEnable] = useState(false);
+  const [forgotPasswordEnable, setForgotPasswordEnable] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +27,7 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     setIsLoadingLoginGoogle(true);
-    window.location.href = `${backend_url}/auth/google`;
+    window.location.href = `${backend_url}/counsellor/auth/google`;
   };
 
   const togglePasswordVisibility = () => {
@@ -107,6 +110,72 @@ const Login = () => {
           <img src={Logo} alt="sortmycollege" />
         </div>
         <div className="login-inputs">
+          {/* {forgotPasswordEnable && (
+            <>
+              <TextField
+                id="standard-password-input"
+                label="New Password"
+                type={showPassword ? "text" : "password"}
+                autoComplete="current-password"
+                variant="outlined"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setPasswordError(null);
+                }}
+                onBlur={() =>
+                  !password && setPasswordError("New password is required.")
+                }
+                error={!!passwordError}
+                helperText={passwordError}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={togglePasswordVisibility}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </>
+          )}
+          {forgotPasswordEnable && (
+            <>
+              <TextField
+                id="standard-password-input"
+                label="Confirm New Password"
+                type={showPassword ? "text" : "password"}
+                autoComplete="current-password"
+                variant="outlined"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setPasswordError(null);
+                }}
+                onBlur={() =>
+                  !password && setPasswordError("Confirm password is required.")
+                }
+                error={!!passwordError}
+                helperText={passwordError}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={togglePasswordVisibility}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </>
+          )}
           {signUpEnable && (
             <>
               <TextField
@@ -124,48 +193,52 @@ const Login = () => {
               />
             </>
           )}
-          <TextField
-            id="outlined-basic"
-            label="Email"
-            variant="outlined"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setEmailError(null);
-            }}
-            onBlur={handleEmailBlur}
-            error={!!emailError}
-            helperText={emailError}
-          />
-          <TextField
-            id="standard-password-input"
-            label="Password"
-            type={showPassword ? "text" : "password"}
-            autoComplete="current-password"
-            variant="outlined"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              setPasswordError(null);
-            }}
-            onBlur={() =>
-              !password && setPasswordError("Password is required.")
-            }
-            error={!!passwordError}
-            helperText={passwordError}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={togglePasswordVisibility}
-                  >
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
+          {!forgotPasswordEnable && (
+            <TextField
+              id="outlined-basic"
+              label="Email"
+              variant="outlined"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setEmailError(null);
+              }}
+              onBlur={handleEmailBlur}
+              error={!!emailError}
+              helperText={emailError}
+            />
+          )}
+          {!forgotPasswordEnable && (
+            <TextField
+              id="standard-password-input"
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              autoComplete="current-password"
+              variant="outlined"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setPasswordError(null);
+              }}
+              onBlur={() =>
+                !password && setPasswordError("Password is required.")
+              }
+              error={!!passwordError}
+              helperText={passwordError}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={togglePasswordVisibility}
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          )}
           {signUpEnable && (
             <DatePicker
               label="Date of Birth"
@@ -175,6 +248,17 @@ const Login = () => {
               error={!!dobError}
               helperText={dobError}
             />
+          )}
+          {forgotPasswordEnable && (
+            <div className="buttons">
+              <button
+                className="Google-login-button"
+                onClick={handleSignUp}
+                disabled={isLoadingSignup}
+              >
+                {isLoadingSignup ? "Saving Password" : "Change Password"}
+              </button>
+            </div>
           )}
           {signUpEnable && (
             <div className="buttons">
@@ -187,23 +271,29 @@ const Login = () => {
               </button>
             </div>
           )}
-          {signUpEnable && (
+          {(signUpEnable || forgotPasswordEnable) && (
             <div className="buttons">
               <button
                 className="Google-login-button"
-                onClick={() => setSignUpEnable(false)}
+                onClick={() => {
+                  setSignUpEnable(false);
+                  setForgotPasswordEnable(false);
+                }}
                 disabled={isLoadingSignup}
               >
                 Cancel
               </button>
             </div>
           )}
-          {!signUpEnable && (
+          {!signUpEnable && !forgotPasswordEnable && (
             <p className="forgot">
-              <Link to="/password-reset"> Forgot your password?</Link>
+              <div onClick={() => setForgotPasswordEnable(true)}>
+                {" "}
+                Forgot your password?
+              </div>
             </p>
           )}
-          {!signUpEnable && (
+          {!signUpEnable && !forgotPasswordEnable && (
             <div className="buttons">
               <button
                 className="Google-login-button"
@@ -213,9 +303,9 @@ const Login = () => {
                 {isLoadingLogin ? "Logging in..." : "Login"}
               </button>
             </div>
-          )}
+          )} */}
 
-          {!signUpEnable && (
+          {!signUpEnable && !forgotPasswordEnable && (
             <button
               className="Google-login-button"
               onClick={handleGoogleLogin}
@@ -225,10 +315,10 @@ const Login = () => {
               {isLoadingLoginGoogle ? "Logging in..." : "Login with Google"}
             </button>
           )}
-          {!signUpEnable && <p className="or">Or</p>}
-          {!signUpEnable && <hr />}
+          {/* {!signUpEnable && !forgotPasswordEnable && <p className="or">Or</p>}
+          {!signUpEnable && !forgotPasswordEnable && <hr />} */}
         </div>
-        {!signUpEnable && (
+        {/* {!signUpEnable && !forgotPasswordEnable && (
           <>
             <p>
               {`Don't have an account? `}
@@ -237,7 +327,7 @@ const Login = () => {
               </span>
             </p>
           </>
-        )}
+        )} */}
       </div>
     </div>
   );

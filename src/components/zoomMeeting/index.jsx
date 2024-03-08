@@ -5,6 +5,7 @@ function ZoomMeeting() {
   const client = ZoomMtgEmbedded.createClient();
 
   var authEndpoint = 'http://localhost:9000/counsellor/sessions'
+  // var authEndpoint = 'http://192.168.0.36:9000/counsellor/sessions'
   var sdkKey = 'PHgjcw9zSGGJ3ca81z0IQw'
   var meetingNumber = '123456789'
   var passWord = ''

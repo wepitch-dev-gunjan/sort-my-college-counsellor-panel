@@ -14,7 +14,7 @@ const AddSessionButton = () => {
 
   return (
     <div className='AddSessionButton-container'>
-      <div className='primary-button add-session-button' onClick={handleClick}>Add Session
+      <div className='primary-button add-session-button' onClick={handleClick}><h5>Add Session</h5>
       </div>
     </div>
   );
