@@ -110,7 +110,7 @@ const Login = () => {
           <img src={Logo} alt="sortmycollege" />
         </div>
         <div className="login-inputs">
-          {forgotPasswordEnable && (
+          {/* {forgotPasswordEnable && (
             <>
               <TextField
                 id="standard-password-input"
@@ -303,7 +303,7 @@ const Login = () => {
                 {isLoadingLogin ? "Logging in..." : "Login"}
               </button>
             </div>
-          )}
+          )} */}
 
           {!signUpEnable && !forgotPasswordEnable && (
             <button
@@ -315,10 +315,10 @@ const Login = () => {
               {isLoadingLoginGoogle ? "Logging in..." : "Login with Google"}
             </button>
           )}
-          {!signUpEnable && !forgotPasswordEnable && <p className="or">Or</p>}
-          {!signUpEnable && !forgotPasswordEnable && <hr />}
+          {/* {!signUpEnable && !forgotPasswordEnable && <p className="or">Or</p>}
+          {!signUpEnable && !forgotPasswordEnable && <hr />} */}
         </div>
-        {!signUpEnable && !forgotPasswordEnable && (
+        {/* {!signUpEnable && !forgotPasswordEnable && (
           <>
             <p>
               {`Don't have an account? `}
@@ -327,7 +327,7 @@ const Login = () => {
               </span>
             </p>
           </>
-        )}
+        )} */}
       </div>
     </div>
   );
