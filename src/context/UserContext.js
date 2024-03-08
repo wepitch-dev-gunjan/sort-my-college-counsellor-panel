@@ -45,6 +45,9 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     if (!user.isLoggedIn) {
+      // Clear local storage when user is not logged in
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
       navigate("/login");
     }
   }, [user.isLoggedIn, navigate]);
