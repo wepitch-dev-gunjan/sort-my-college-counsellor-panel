@@ -29,7 +29,7 @@ import AskQuestion from "./pages/askQuestion";
 import "rsuite/dist/rsuite-no-reset.min.css";
 import { HelpContext } from "./context/HelpContext";
 import DocumentDelete from "./components/documentDelete";
-import LoginNew from "./pages/loginNew";
+
 
 function App() {
   const addProfilePicRef = useRef(null);
@@ -138,7 +138,7 @@ function App() {
                 <Route path="/login" element={<Navigate replace to="/" />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/profile/:documentId" element={<DocumentDelete/>} />
-                <Route path="/login-new" element={<LoginNew />} />
+
 
 
                 <Route

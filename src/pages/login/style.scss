@@ -86,11 +86,38 @@
 }
 
 @media only screen
-and (max-width : 320px) {
-    .ln-row{
-        display: flex;
-        flex-direction: column !important;
-    }
+and (max-width : 500px) {
+    .login-new-main{
+        .ln-left-logo{
+            img{
+                width: 30%;
+            }
+        }
+        .login-new-sub{
+            width: 86%;
+            height: fit-content;
+            .ln-row{
+                display: flex;
+                flex-direction: column !important;
+        
+            .ln-left{
+                width: 100%;
+            }
+            .ln-right{
+                .google-btn{
+                    padding-top: 2em;
+                    font-size: 0.8em;
+
+                    img{
+                        width: 0.8em;
+                    }
+                }
+            }
+            }
+        } 
+            
+    } 
+
 }
 
 
