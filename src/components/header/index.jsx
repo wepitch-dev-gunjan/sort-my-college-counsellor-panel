@@ -29,9 +29,7 @@ const Header = ({ handleLogout }) => {
         {!profile.verified && <VerifyProfilePopup />}
         {profile.verified && !xSmallScreen && 
           <>
-          <div>
-            <Link to='/login-new'>Login New</Link>
-          </div>
+
           <AddSessionButton />
             <NotificationButton
               ref={notificationRef}
