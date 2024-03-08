@@ -9,6 +9,7 @@ import useClickOutside from "../../customHooks/useClickOutside";
 import VerifyProfilePopup from "../verifyProfilePopup";
 import { ProfileContext } from "../../context/ProfileContext";
 import { MediaQueryContext } from "../../context/MediaQueryContext"; 
+import { Link } from 'react-router-dom';
 
 const Header = ({ handleLogout }) => {
   const notificationRef = useRef(null);
@@ -28,6 +29,9 @@ const Header = ({ handleLogout }) => {
         {!profile.verified && <VerifyProfilePopup />}
         {profile.verified && !xSmallScreen && 
           <>
+          <div>
+            <Link to='/login-new'>Login New</Link>
+          </div>
           <AddSessionButton />
             <NotificationButton
               ref={notificationRef}
