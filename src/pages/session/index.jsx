@@ -13,11 +13,12 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 const { backend_url } = config;
 
 
-const Session = () => {
+const Session = ({rerender}) => {
   const [sessions, setSessions] = useState([]);
   const { user } = useContext(UserContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  
 
   const today = new Date();
   const startDate = new Date();
@@ -68,7 +69,7 @@ const Session = () => {
 
   useEffect(() => {
     getResponse();
-  }, [sessionFilters]);
+  }, [sessionFilters,rerender]);
 
   return (
     <>

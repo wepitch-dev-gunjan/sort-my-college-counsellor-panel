@@ -9,12 +9,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SessionContext } from "../../context/SessionContext";
 import { ImSpinner8 } from "react-icons/im";
+import { useNavigate } from "react-router";
 const { backend_url } = config;
 
 const AddSession = ({ setSessions, setAddMode }) => {
   const Ref = useRef(null);
   const { user } = useContext(UserContext);
   const { sessionLoading, setSessionLoading } = useContext(SessionContext);
+  const {rerender,setRerender} =useContext(SessionContext)
 
   const formatDate = (date) => {
     return dayjs(date).format("YYYY-MM-DD");
@@ -81,10 +83,10 @@ const AddSession = ({ setSessions, setAddMode }) => {
       setSessions((prev) => [...prev, response.data.session]);
       setSessionLoading(false);
       setAddMode(false);
-      window.location.reload()
       toast("Session created successfully");
+        setRerender(!rerender)
 
-
+      
     }
     catch (error) {
       setSessionLoading(false);
