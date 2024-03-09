@@ -37,7 +37,7 @@
                 background-color: #B1A0EB;
                 color: white;
                 font-weight: 400;
-                // font-size: 16px;
+                font-size: 0.8em;
                 box-shadow: 0 4px 14px 0 rgba(144, 129, 194, 0.81);
                 transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
                 &:hover{
@@ -49,9 +49,13 @@
         }
     }
     // edited
-    // @media (max-width:768px){
-    //  .ask-question-btn{
-    //   height: 90%;
-    //   width: 50%;
-    //  }
-    // }
+    @media (max-width:768px){
+
+     .fat-main{
+         .secondary-header{
+             .ask-question-btn{
+                padding: 5px;
+             }
+            } 
+        }
+    }

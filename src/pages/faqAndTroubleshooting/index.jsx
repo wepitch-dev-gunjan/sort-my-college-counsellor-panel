@@ -6,23 +6,11 @@ import { Link } from 'react-router-dom'
 import { useContext, useState } from 'react';
 import { HelpContext } from '../../context/HelpContext';
 
-const FaqAndTroubleshooting = ({setAskQuestionDisable}) => {
-    const {askQuestionEnable, setAskQuestionEnable} = useContext(HelpContext)
-    function askQuestion() {
-        setAskQuestionEnable(true)
-        setAskQuestionDisable(true)
-    }
+const FaqAndTroubleshooting = () => {
+
     return(
         <div className="fat-main">
-            <div className='secondary-header'>
-                <div className="search-fat">
-                    <input type="text" placeholder='Search'/>
-                    <IoMdSearch size={28}/>
-                </div>
-                <div className='ask-question-btn' onClick={askQuestion}>
-                Ask a Question
-                </div>
-            </div>
+
             <QnaList />
         </div>
     )
