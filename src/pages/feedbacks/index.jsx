@@ -16,7 +16,10 @@ const Feedbacks = () => {
       <div className="feedbacks">
         {!feedbacks ? (
           <p>Loading feedbacks...</p>
-        ) : (
+        ) : 
+        feedbacks.length === 0 ?(
+<p> No Feedbacks Yet</p>
+        ):(
           feedbacks.map((feedback, i) => (
             <Feedback
               key={i}

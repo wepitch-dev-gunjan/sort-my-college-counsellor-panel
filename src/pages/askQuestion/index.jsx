@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import './style.scss'
 import { HelpContext } from '../../context/HelpContext'
 import useClickOutside from '../../customHooks/useClickOutside'
-
+import Image from '../../assets/Ask_Ques.jpg'
 const AskQuestion = ({setAskQuestionDisable}) => {
     const {askQuestionRef} = useContext(HelpContext)
 
@@ -11,8 +11,14 @@ const AskQuestion = ({setAskQuestionDisable}) => {
 
     return(
         <div  className='ask-question-main'>
-            <div ref={askQuestionRef} className='ask-question-container'>
-                <h3>Ask a Question</h3>
+
+            <div ref={askQuestionRef} className='ask-question-containers'>
+             {/* edited */}
+             <div className="Ask_Ques_img">
+              <img src={Image} alt="ask Question Image" />
+             </div>
+             <div className="ask_question_text">
+                <h4>Having Any questions ? Ask Here</h4>
                     <div className='ask-question-dropdown'> 
                     <select >
                         <option value="">Choose a category</option>
@@ -38,10 +44,12 @@ const AskQuestion = ({setAskQuestionDisable}) => {
                 <div className='ask-question-textarea' >
                     <textarea placeholder='Type your question here...'></textarea>
                 </div>
+                {/* edited */}
                 <div className='ask-question-btn' >
-                    <button>Submit</button>
+                    <button>SEND</button>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

@@ -45,8 +45,8 @@ const DocumentDelete = ({ documentDelete, setDocumentDelete }) => {
   }
 
   return (
-    <div ref={askQuestionRef} className='ask-question-main'>
-      <div className='ask-question-container'>
+    <div ref={askQuestionRef} className='delete-main'>
+      <div className='delete_conatiner'>
         <h3 className='h3'>Are You Sure You Want To Delete Selected Document</h3>
 
 
