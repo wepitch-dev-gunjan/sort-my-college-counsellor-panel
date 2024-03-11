@@ -2,6 +2,8 @@ import "./navbar.scss"
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import HelpIcon from '@mui/icons-material/Help';
 import profile from './profile.png'
+
+
 const Navbar = () => {
   return (
     <div className="navbar">

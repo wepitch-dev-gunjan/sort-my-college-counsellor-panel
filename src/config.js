@@ -1,12 +1,11 @@
-const NODE_ENV = "development";
+let configPromise;
 
-module.exports = {
-  frontend_url:
-    NODE_ENV === "production"
-      ? "https://counsellor.sortmycollege.com"
-      : "https://localhost:3000",
-  backend_url:
-    NODE_ENV === "production"
-      ? "https://server.sortmycollege.com"
-      : "http://localhost:9000",
-};
+if (process.env.NODE_ENV === 'production') {
+  configPromise = import('./config.prod.json').then(module => module.default);
+} else {
+  configPromise = import('./config.dev.json').then(module => module.default);
+}
+
+const config = await configPromise; // This will wait for the promise to resolve
+
+export default config;

@@ -9,10 +9,11 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: var(--fs-sm);
     outline: none;
   }
   .send-icon {
     cursor: pointer;
+    padding: 6px;
   }
 }

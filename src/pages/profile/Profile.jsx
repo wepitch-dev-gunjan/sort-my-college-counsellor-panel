@@ -10,17 +10,17 @@ import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
 import Documents from "../../components/document";
 
-import { backend_url } from "../../config";
+import config from '@/config';
 import axios from "axios";
 import { toast } from "react-toastify";
+import BankInfo from "../../components/bankInfo";
 
+const { backend_url } = config;
 const Profile = () => {
   const { user } = useContext(UserContext);
-  const { profile, setProfile } = useContext(ProfileContext);
+  const { profile, setProfile, documentsUpdated, editProfileEnable, setEditProfileEnable } = useContext(ProfileContext);
   const [initialUserProfileBackup, setInitialUserProfileBackup] =
     useState(profile);
-  const { editProfileEnable, setEditProfileEnable } =
-    useContext(ProfileContext);
 
   const [coverImage] = useState(
     "https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w="
@@ -30,7 +30,7 @@ const Profile = () => {
   const handleSave = async () => {
     try {
       const endpointUrl = `${backend_url}/counsellor/${user._id}`; // Replace with your actual endpoint URL
-
+      console.log(profile)
       const response = await axios.put(endpointUrl, profile, {
         headers: {
           Authorization: user.token
@@ -96,11 +96,20 @@ const Profile = () => {
               editProfileEnable={editProfileEnable}
               setProfile={setProfile}
             />
-            <Documents
+            <BankInfo
               profile={profile}
-              setProfile={setProfile}
               editProfileEnable={editProfileEnable}
+              setProfile={setProfile}
             />
+            {
+              // documentsUpdated && 
+              <Documents
+                key={documentsUpdated}
+                profile={profile}
+                setProfile={setProfile}
+                editProfileEnable={editProfileEnable}
+              />
+            }
           </div>
           <div className="bottom">
             {editProfileEnable && (

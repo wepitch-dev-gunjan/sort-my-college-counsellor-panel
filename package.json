@@ -20,6 +20,7 @@
     "js-cookie": "^3.0.5",
     "mock": "^0.1.1",
     "pintura": "^0.3.10",
+    "razorpay": "^2.9.2",
     "react": "^18.2.0",
     "react-avatar-editor": "^13.0.0",
     "react-awesome-tags-input": "^1.0.5",
@@ -29,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-image-crop": "^10.1.8",
+    "react-razorpay": "^2.0.1",
     "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
     "react-tag-autocomplete": "^7.1.0",
@@ -36,16 +38,17 @@
     "react-tags-js": "^1.0.2",
     "react-tagsinput": "^3.20.3",
     "react-toastify": "^9.1.3",
+    "react-tooltip": "^5.26.3",
     "rsuite": "^5.53.2",
     "sass": "^1.69.1",
     "socket.io-client": "^4.7.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": [
@@ -67,6 +70,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@craco/craco": "^7.1.0",
     "case-sensitive-paths-webpack-plugin": "^2.4.0"
   }
 }

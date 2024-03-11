@@ -3,6 +3,9 @@ import './style.scss';
 import { handleInput, handleInputInsideInputChange } from '../../utilities';
 
 const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
+  if (!profile.phone_code) {
+    handleInput('phone_code', '+91', setProfile);
+  }
   const handlePhoneNumberChange = (e) => {
     // Limit input to 10 digits
     const phoneNumber = e.target.value.replace(/\D/g, '').slice(0, 10);
@@ -29,8 +32,8 @@ const ContactInfo = ({ profile, editProfileEnable, setProfile }) => {
                     value={profile.phone_code}
                     onChange={(e) => handleInput('phone_code', e.target.value, setProfile)}
                   >
-                    <option value="+1">+1 (USA)</option>
-                    <option value="+91">+91 (India)</option>
+                    <option value="+1">+1(USA)</option>
+                    <option value="+91">+91(India)</option>
                   </select>
                   <input
                     type="tel"

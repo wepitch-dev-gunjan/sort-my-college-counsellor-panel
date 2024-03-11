@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import "./style.scss";
 import useClickOutside from "../../../customHooks/useClickOutside";
@@ -8,12 +8,19 @@ import DropDownMenuButton from "../dropDownMenuButton";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineSummarize } from "react-icons/md";
 import { MediaQueryContext } from "../../../context/MediaQueryContext";
+import { GrAdd } from "react-icons/gr";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { NotificationContext } from "../../../context/NotificationContext";
+
 
 const ProfileDropDownMenu = ({ name, image, onClick }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-  const { smallScreen } = useContext(MediaQueryContext);
+  const { setNotificationsEnable } = useContext(NotificationContext);
+  const { smallScreen, xSmallScreen } = useContext(MediaQueryContext);
+
+
 
   useClickOutside(dropdownRef, () => {
     setIsDropdownOpen(false);
@@ -28,10 +35,11 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
       <div className="left">
         <img src={image} alt="" />
       </div>
-      <div className="mid">
+
+      { !xSmallScreen && <div className="mid">
         <p className="top">Hello</p>
         <h4>{name}</h4>
-      </div>
+      </div>}
       <div className="right">
         <BiChevronDown />
       </div>
@@ -42,18 +50,32 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
             icon={PersonIcon}
             text="Profile"
           />
-          {smallScreen && (
+          {/* {smallScreen && (
             <DropDownMenuButton
               onClick={() => ""}
               icon={MdOutlineSummarize}
               text="Summary"
             />
-          )}
+          )} */}
           <DropDownMenuButton
             onClick={onClick}
             icon={AiOutlineLogout}
             text="Log out"
           />
+          {xSmallScreen && (
+          <>
+            <DropDownMenuButton
+              onClick={() => navigate("/session")}
+              icon={GrAdd}
+              text="Add Session"
+            /> 
+            <DropDownMenuButton
+              onClick={() => setNotificationsEnable((prev) => !prev)}
+              icon={IoMdNotificationsOutline}
+              text="Notifications"
+            /> 
+          </>
+          )}
         </div>
       )}
     </div>

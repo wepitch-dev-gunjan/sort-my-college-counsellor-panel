@@ -1,31 +1,89 @@
-import React, { useRef } from "react";
-import { MdDeleteOutline } from "react-icons/md";
-import { Tooltip } from "@mui/material";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { MdDeleteForever } from "react-icons/md";
 import "./style.scss";
+import config from '@/config';
+import axios from "axios";
+import { toast } from "react-toastify";
+import { UserContext } from "../../../context/UserContext";
+import Spinner from "../../spinner/Index";
+import { ProfileContext } from "../../../context/ProfileContext";
+const { backend_url } = config;
 
 const DocumentItem = ({
-  index,
   document,
-  onDocumentChange,
-  onFieldChange,
-  onDelete,
+  setDocuments,
+  documentTypes,
+  getDocumentTypes,
+  getDocuments,
+  documentType,
+  file,
   editProfileEnable,
+  getIdByName,
+  getDocumentTypeFromId,
+  documents
 }) => {
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    onDocumentChange(index, file);
-  };
-
   const hiddenFileInput = useRef(null);
+  const { user } = useContext(UserContext);
+  const [currentField, setCurrentField] = useState(documentTypes[0]?.name);
+  const [loading, setLoading] = useState(true)
+  const { documentDelete, setDocumentDelete } = useContext(ProfileContext)
+
+  const handleSelect = (e) => {
+    setCurrentField(e.target.value);
+  }
 
   const handleClick = () => {
     hiddenFileInput.current.click();
   };
 
-  const handleFieldChange = (e) => {
-    const selectedField = e.target.value;
-    onFieldChange(index, selectedField);
+  const handleFileChange = async (e) => {
+    try {
+      setLoading(false)
+      const file = e.target.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const { data } = await axios.post(
+        `${backend_url}/counsellor/document/upload-document`,
+        formData,
+        {
+          headers: {
+            Authorization: user.token // Assuming user.token contains the authorization token
+          },
+          params: {
+            document_type: getIdByName(currentField) // Assuming currentField is defined elsewhere in your code
+          }
+        }
+      );
+
+
+      // Update state or do something with the response data if needed
+      setDocuments(prev => [...prev.slice(0, prev.length - 1), data])
+      // setDocumentTypes(prev => prev.filter(documentType => documentType.name != currentField))
+      getDocumentTypes()
+      toast.success("Document uploaded successfully"); // Assuming toast is defined and comes from a library like react-toastify
+      setLoading(true)
+
+
+
+    } catch (error) {
+      // Improve error handling
+      console.error("Error uploading document:", error.response ? error.response.data : error.message);
+      toast.error("Error uploading document. Please try again later.");
+    }
   };
+
+  const handleDeleteDocument = async () => {
+    setDocumentDelete(prev => !prev)
+    try {
+      await getDocuments()
+      await getDocumentTypes()
+      const newUrl = `${window.location.pathname}/${document._id}`;
+      window.history.replaceState(null, null, newUrl);
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="DocumentItem">
@@ -33,48 +91,49 @@ const DocumentItem = ({
       <div className="row DocumentItemRow">
         <div className="col DocumentItemCol">
           <div className="dropdown">
-            <select
-              onChange={handleFieldChange}
-              value={document?.selectedField}
-            >
-              <option value="field1">Career Counselling Certificate</option>
-              <option value="field2">Experience Certificate</option>
-              <option value="field3">Proof of working</option>
-              <option value="field4">
-                Proof if you have your own counselling company
-              </option>
-              <option value="field5">Degree of Bachelor in Counselling</option>
-            </select>
-          </div>
-          <div className="upload">
-            <button className="button-upload" onClick={handleClick}>
-              Upload a file
-            </button>
-            <input
-              className="upload-btn"
-              type="file"
-              onChange={handleFileChange}
-              accept=".pdf"
-              ref={hiddenFileInput}
-              style={{ display: "none" }}
-            />
-            {editProfileEnable && (
-              <div className="up-icons">
-                <Tooltip title="Delete" placement="bottom">
-                  <div
-                    className="delete-icon"
-                    onClick={() => onDelete(index)}
-                    disabled={index === 0}
-                  >
-                    <MdDeleteOutline size="16" />
-                  </div>
-                </Tooltip>
-              </div>
+            {editProfileEnable && !documentType ? (
+              <select
+                onChange={handleSelect}
+                value={currentField}
+              >
+                {documentTypes.map(dType => (
+                  <option value={dType.name} key={dType._id} >{dType.name}</option>
+                ))}
+              </select>
+            ) : (
+              <>
+                <p>{getDocumentTypeFromId(documentType)}</p>
+              </>
             )}
+
           </div>
+
+          {editProfileEnable ? (
+            <>
+              <button className="button-upload" onClick={handleClick}>
+                {loading ?
+                  "Upload a file" : <Spinner />
+                }
+              </button>
+              <input
+                className="upload-btn"
+                type="file"
+                onChange={handleFileChange}
+                accept=".pdf"
+                ref={hiddenFileInput}
+                style={{ display: "none" }}
+              />
+              <div className="delete-button" onClick={handleDeleteDocument}>
+                <MdDeleteForever size="20" />
+              </div>
+            </>
+          ) : (
+            <div >
+              <a href={file} target="_blank" >link</a>
+            </div>
+          )}
         </div>
       </div>
-      {/* changed by r  */}
     </div>
   );
 };

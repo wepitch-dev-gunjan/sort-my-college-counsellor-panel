@@ -1,46 +1,62 @@
 .DocumentItem {
-  .DocumentItemRow{
-    width: 100%
+  .DocumentItemRow {
+    width: 100%;
   }
-  // .DocumentItemCol{
-  //   width: 70%;
-  // }
+  .DocumentItemCol {
+    .delete-button {
+      cursor: pointer;
+      padding: 20px;
+    }
+  }
   .row {
     .col {
       display: flex;
       justify-content: start;
       width: 100%;
-      // changed by r 
+      align-items: center;
+      gap: 16px;
+      // changed by r
       // gap: 12px;
-      // changed by r 
+      // changed by r
 
       .dropdown {
         width: 100%;
 
         select {
           padding: 12px;
-          font-size: 14px;
+          font-size: var(--fs-sm);
           border-radius: 8px;
           cursor: pointer;
-          // changed by r 
+          // changed by r
           text-overflow: ellipsis;
           width: 96%;
           // changed by r
         }
       }
 
-      .upload {
-        width: 100%;
+      .button-upload {
         display: flex;
-        .button-upload {
-          padding: 12px;
-          border-radius: 8px;
-          width: 50%;
-          border: 1px solid black;
-          font-size: 14px;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 8px;
+        width: 200px;
+        color: #111111;
+        border: 0px solid rgba(0, 0, 0, 0.267);
+        font-size: 14px !important;
+        &:hover {
+          box-shadow: 5px 5px 10px #1111116b;
         }
-        .button-upload:hover {
-          background-color: var(--background-dark);
+      }
+
+      .delete-button {
+        padding: 10px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all ease 0.3s;
+        &:hover {
+          box-shadow: 5px 5px 10px #1111116b;
         }
       }
 

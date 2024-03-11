@@ -3,13 +3,22 @@ import SessionItem from "../../components/sessionItem"
 import axios from "axios"
 import { UserContext } from "../../context/UserContext"
 import { useContext, useState } from "react"
-import { backend_url } from "../../config"
-import { useEffect } from "react"
+import config from '@/config';
+import { useEffect, useRef } from "react";
 import Filters from "../../components/filters"
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { MediaQueryContext } from "../../context/MediaQueryContext"
+import { MdKeyboardArrowLeft } from "react-icons/md";
 
-const Session = () => {
+const { backend_url } = config;
+
+
+const Session = ({rerender}) => {
   const [sessions, setSessions] = useState([]);
   const { user } = useContext(UserContext);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  
 
   const today = new Date();
   const startDate = new Date();
@@ -25,7 +34,7 @@ const Session = () => {
     session_fee: [0, 5000]
   };
   const [sessionFilters, setSessionFilters] = useState(defaultSessionFilters);
-
+  const { xSmallScreen } = useContext(MediaQueryContext)
   const resetFilters = () => {
     setSessionFilters(defaultSessionFilters);
   };
@@ -41,8 +50,26 @@ const Session = () => {
   }
 
   useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target) && event.target.classList.contains('fd-toggle-btn')) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(prevState => !prevState);
+  };
+
+  useEffect(() => {
     getResponse();
-  }, [sessionFilters]);
+  }, [sessionFilters,rerender]);
 
   return (
     <>
@@ -50,10 +77,27 @@ const Session = () => {
         <div className="session-header">
           <div className="left">
             <div className="reset-changes">
-              <h1>Filtres</h1>
-              <button onClick={resetFilters}>Reset filters</button>
+              {xSmallScreen ?
+                <h1 onClick={toggleDropdown}>
+                  <span className={`fd-toggle-btn ${isDropdownOpen ? 'active' : ''}`} >Filters{" "} {isDropdownOpen ? <RiArrowDropDownLine /> : <MdKeyboardArrowLeft />}</span>
+                </h1> : <h1>Filters</h1>}
+              {!xSmallScreen && <button onClick={resetFilters}>Reset filters</button>}
+              {isDropdownOpen && xSmallScreen && (
+                <div ref={dropdownRef} className="dropdown-menu">
+                  <div className="filter-dropdown-main" >
+                    <div className='filter-dropdown-sub' >
+                      <div className='fd-item fd-reset-btn' >
+                        <button onClick={resetFilters} >Reset Filters</button>
+                      </div>
+                      <div className='fd-item' >
+                        <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-            <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />
+            {!xSmallScreen && <Filters sessionFilters={sessionFilters} setSessionFilters={setSessionFilters} />}
           </div>
         </div>
         <div className="sessionContainer">

@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState, createContext } from "react";
 import { UserContext } from "./UserContext";
-import { backend_url } from "../config";
+import config from '@/config';
 import axios from "axios";
+const { backend_url } = config;
 
 export const FollowerContext = createContext();
 

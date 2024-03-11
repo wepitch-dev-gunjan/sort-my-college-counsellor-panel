@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import axios from "axios";
 import "./style.scss";
-import { backend_url } from "../../../../config";
+import config from '@/config';
 import { NotificationContext } from "../../../../context/NotificationContext";
 import { UserContext } from "../../../../context/UserContext";
+const { backend_url } = config;
 
 const Notification = ({ title, message, read, index, notificationId }) => {
   const { notifications, setNotifications } = useContext(NotificationContext);

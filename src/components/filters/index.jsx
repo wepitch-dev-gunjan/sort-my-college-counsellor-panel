@@ -79,7 +79,6 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
   function valuetext(value) {
     return `${value}m`;
   }
-
   return (
     <div className="filter-container">
       <div className="type">
@@ -119,6 +118,7 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
         handleEndDateChange={handleEndDateChange}
         // edits r 
         />
+        
       </div>
       <div className="duration">
         <p>Session duration</p>

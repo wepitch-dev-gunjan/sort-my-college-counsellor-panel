@@ -28,26 +28,33 @@ import FaqAndTroubleshooting from "./pages/faqAndTroubleshooting";
 import AskQuestion from "./pages/askQuestion";
 import "rsuite/dist/rsuite-no-reset.min.css";
 import { HelpContext } from "./context/HelpContext";
+import DocumentDelete from "./components/documentDelete";
+import QuestionForum from "./pages/questionForum";
 
 function App() {
   const addProfilePicRef = useRef(null);
   const { user, setUser } = useContext(UserContext);
-  const { addMode, setAddMode, sessions, setSessions } =
+  const { addMode, setAddMode, sessions, setSessions,rerender,setRerender } =
     useContext(SessionContext);
   const { profilePicEditMode, setProfilePicEditMode } =
     useContext(ProfileContext);
   const { coverImageEditMode, setCoverImageEditMode } =
     useContext(ProfileContext);
+    const {documentDelete,setDocumentDelete}=useContext(ProfileContext)
 
   const { askQuestionEnable, setAskQuestionEnable } = useContext(HelpContext);
+  const {askQuestionDisable, setAskQuestionDisable} = useContext(HelpContext);
+
 
   const addCoverImageRef = useRef(null);
+  const askQuestionRef = useRef(null);
 
   const { notificationsEnable, setNotificationsEnable, notificationsRef } =
     useContext(NotificationContext);
   const { isLoggedIn } = user;
 
   const navigate = useNavigate();
+
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -58,6 +65,10 @@ function App() {
 
   useClickOutside(addProfilePicRef, () => {
     setProfilePicEditMode((prev) => !prev);
+  });
+
+  useClickOutside(askQuestionRef, () => {
+    setAskQuestionEnable(false);
   });
 
   useClickOutside(addCoverImageRef, () => {
@@ -90,9 +101,19 @@ function App() {
         </div>
       )}
 
-      {askQuestionEnable && (
+      { askQuestionDisable && askQuestionEnable && (
         <div className="ask-a-question">
-          <AskQuestion />
+          <AskQuestion ref={askQuestionRef} 
+          setAskQuestionDisable={setAskQuestionDisable}
+          askQuestionDisable={askQuestionDisable}
+          
+          />
+
+        </div>
+      )}
+       {documentDelete && (
+        <div className="ask-a-question">
+          <DocumentDelete documentDelete={documentDelete} setDocumentDelete={setDocumentDelete} />
         </div>
       )}
 
@@ -108,7 +129,7 @@ function App() {
             {isLoggedIn ? (
               <>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/session" element={<Session />} />
+                <Route path="/session" element={<Session rerender={rerender} />} />
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/users" element={<Users />} />
@@ -116,9 +137,14 @@ function App() {
                 <Route path="/feedbacks" element={<Feedbacks />} />
                 <Route path="/login" element={<Navigate replace to="/" />} />
                 <Route path="/help" element={<Help />} />
+                <Route path="/profile/:documentId" element={<DocumentDelete/>} />
+                <Route path="/question-forum" element={<QuestionForum />} />
+
+
+
                 <Route
                   path="/help/faq-and-troubleshooting"
-                  element={<FaqAndTroubleshooting />}
+                  element={<FaqAndTroubleshooting setAskQuestionDisable={setAskQuestionDisable} />}
                 />
                 {/* <Route
                   path="/help/faq-and-troubleshooting/ask-a-question"
@@ -131,6 +157,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Login />} />
                 <Route path="/password-reset" element={<Login />} />
+
               </>
             )}
           </Routes>
