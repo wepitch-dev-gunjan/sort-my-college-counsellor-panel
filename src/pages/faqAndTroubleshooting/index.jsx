@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom'
 import { useContext, useState } from 'react';
 import { HelpContext } from '../../context/HelpContext';
 
-const FaqAndTroubleshooting = () => {
+const FaqAndTroubleshooting = ({setAskQuestionDisable}) => {
 
     return(
         <div className="fat-main">
 
-            <QnaList />
+            <QnaList setAskQuestionDisable={setAskQuestionDisable} />
         </div>
     )
 }
