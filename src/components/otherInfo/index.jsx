@@ -245,7 +245,7 @@ const OtherInfo = ({
 
 
 
-        <div className="row">
+        {/* <div className="row">
           <div className="col">
             <div className="info-field">
               <p>Group session price</p>
@@ -256,9 +256,9 @@ const OtherInfo = ({
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="row">
+        {/* <div className="row">
           <div className="col">
             <div className="info-field">
               <p>Personal session price</p>
@@ -269,7 +269,7 @@ const OtherInfo = ({
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
