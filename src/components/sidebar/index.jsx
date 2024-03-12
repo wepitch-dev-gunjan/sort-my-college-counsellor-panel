@@ -195,13 +195,13 @@ const Sidebar = () => {
           expand={expand}
         />
 
-        <div className="upgrade-button" onClick={handlePayment}>
+        {/* <div className="upgrade-button" onClick={handlePayment}>
           {!expand ? <div className="upgrade-button-icon"> <GiUpgrade className="upgrad-icon" title="Upgrade" id="upgrad-icon" />  </div> :
             <Button appearance="primary" active >
               Upgrade to Pro
             </Button>
           }
-        </div>
+        </div> */}
       </div>
     </div>
   );
