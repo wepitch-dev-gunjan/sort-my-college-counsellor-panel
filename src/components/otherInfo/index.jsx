@@ -71,8 +71,35 @@ const OtherInfo = ({
                 <p>{`${profile.experience_in_years}+ years`}</p>
               )}
             </div>
+
+            
           </div>
         </div>
+
+        <div className="row">
+          <div className="col">
+            <div className="info-field">
+              <p>Designation</p>
+            </div>
+
+            <div className="info-value">
+              {editProfileEnable ? (
+                <>
+                  <input
+                    type="text"
+                    value={profile.designation}
+                    onChange={e => handleInput('designation', e.target.value, setProfile)}
+                  />
+                </>
+              ) : (
+                <p>{`${profile.designation}`}</p>
+              )}
+            </div>
+
+            
+          </div>
+        </div>
+
 
         <div className="row">
           <div className="col">
