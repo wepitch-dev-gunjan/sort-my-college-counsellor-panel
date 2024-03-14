@@ -1,14 +1,19 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import './style.scss'
 import { HelpContext } from '../../context/HelpContext'
-import useClickOutside from '../../customHooks/useClickOutside'
+// import useClickOutside from '../../customHooks/useClickOutside'
 import Image from '../../assets/Ask_Ques.jpg'
 const AskQuestion = ({setAskQuestionDisable}) => {
     const {askQuestionRef} = useContext(HelpContext)
 
-    useClickOutside(askQuestionRef, () => setAskQuestionDisable(false));
-   
-
+    // useClickOutside(askQuestionRef, () => setAskQuestionDisable(false));
+   const [query,setQuery] = useState('');
+   const resetQuery = (e)=>{
+    setQuery(e.target.value);
+   }
+   const handleCancel=() =>{
+    setQuery(' ');
+   }
     return(
         <div  className='ask-question-main'>
 
@@ -19,7 +24,7 @@ const AskQuestion = ({setAskQuestionDisable}) => {
              </div>
              <div className="ask_question_text">
                 <h4>Having Any questions ? Ask Here</h4>
-                    <div className='ask-question-dropdown'> 
+                    {/* <div className='ask-question-dropdown'> 
                     <select >
                         <option value="">Choose a category</option>
                         <option value="Counselor Services">Counselor Services</option>
@@ -40,13 +45,22 @@ const AskQuestion = ({setAskQuestionDisable}) => {
                         <option value="Webinar">Webinar</option>
                         <option value="other">Other</option>                        
                     </select>
-                </div>
+                </div> */}
                 <div className='ask-question-textarea' >
-                    <textarea placeholder='Type your question here...'></textarea>
+                    <textarea 
+                   placeholder='Type Your Query Here...'
+                    value={query}
+                    onChange ={resetQuery}
+                    />
                 </div>
-                {/* edited */}
+                <div className="btn-container">
+                 {/* edited */}
                 <div className='ask-question-btn' >
                     <button>SEND</button>
+                </div>
+                <div className='ask-question-btn-cancel' >
+                    <button onClick={handleCancel}>CANCEL</button>
+                </div>
                 </div>
             </div>
         </div>

@@ -43,7 +43,7 @@ function App() {
     const {documentDelete,setDocumentDelete}=useContext(ProfileContext)
 
   const { askQuestionEnable, setAskQuestionEnable } = useContext(HelpContext);
-  const {askQuestionDisable, setAskQuestionDisable} = useContext(HelpContext);
+  // const {askQuestionDisable, setAskQuestionDisable} = useContext(HelpContext);
 
 
   const addCoverImageRef = useRef(null);
@@ -101,11 +101,11 @@ function App() {
         </div>
       )}
 
-      { askQuestionDisable && askQuestionEnable && (
+      {  askQuestionEnable && (
         <div className="ask-a-question">
           <AskQuestion ref={askQuestionRef} 
-          setAskQuestionDisable={setAskQuestionDisable}
-          askQuestionDisable={askQuestionDisable}
+          // setAskQuestionDisable={setAskQuestionDisable}
+          // askQuestionDisable={askQuestionDisable}
           
           />
 
@@ -136,16 +136,19 @@ function App() {
                 <Route path="/feeds" element={<MyFeeds />} />
                 <Route path="/feedbacks" element={<Feedbacks />} />
                 <Route path="/login" element={<Navigate replace to="/" />} />
-                <Route path="/help" element={<Help />} />
+                {/* no need yet */}
+                {/* <Route path="/help" element={<Help />} /> */}
+                <Route path = "/help" element= {<AskQuestion />}/>
                 <Route path="/profile/:documentId" element={<DocumentDelete/>} />
-                <Route path="/question-forum" element={<QuestionForum />} />
+                {/* no need yet */}
+                {/* <Route path="/question-forum" element={<QuestionForum />} /> */}
 
 
-
-                <Route
+            {/* no need yet */}
+                {/* <Route
                   path="/help/faq-and-troubleshooting"
                   element={<FaqAndTroubleshooting setAskQuestionDisable={setAskQuestionDisable} />}
-                />
+                /> */}
                 {/* <Route
                   path="/help/faq-and-troubleshooting/ask-a-question"
                   element={<AskQuestion />}

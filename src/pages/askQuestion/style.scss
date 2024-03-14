@@ -5,7 +5,6 @@
  display: flex;
  align-items: center;
  justify-content: center;
-
  .ask-question-containers {
      background-color: white; 
      border-radius: 10px;
@@ -49,24 +48,24 @@
                  height: 200px; /* Set a fixed height for the textarea or adjust as needed */
              }
          }
-
-         .ask-question-btn {
-             text-align: center;
-
+.btn-container{
+ display: flex;
+ justify-content: space-between;
+ .ask-question-btn-cancel{
+ button{
+  padding: 5px 14px;
+ }
+ }
              button {
-                 background-color: #7EBBF3;
-                 color: #ffffff;
+                 background-color: var(--primary-color);
+                 color: var(--background-light);
                  padding: 5px 20px;
                  border-radius: 10px;
                  transition: all 0.3s ease;
-                 width: 50%;
-             }
-
-             button:hover {
-                 background-color: #F55355;
-                 box-shadow: none;
-             }
-         }
+                 cursor: pointer;
+                 // width: 50%;
+             }         
+        }
      }
  }
 }
@@ -75,4 +74,9 @@
  .ask-question-main{
   width: 80%;
  }
+ // .ask-question-containers{
+ //  // display: flex;
+ //  width: fit-content;
+ //  flex-wrap: wrap;
+ // }
 }

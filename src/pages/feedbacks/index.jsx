@@ -10,7 +10,6 @@ const Feedbacks = () => {
   useEffect(() => {
     getFeedbacks();
   }, []);
-
   return (
     <div className="Feedbacks-container">
       <div className="feedbacks">
