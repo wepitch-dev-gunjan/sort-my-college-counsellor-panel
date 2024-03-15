@@ -10,15 +10,22 @@ import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
 import Documents from "../../components/document";
 
-import config from '@/config';
+import config from "@/config";
 import axios from "axios";
 import { toast } from "react-toastify";
 import BankInfo from "../../components/bankInfo";
+import HowMayIHelpYou from "../../components/howMayIHelpYou";
 
 const { backend_url } = config;
 const Profile = () => {
   const { user } = useContext(UserContext);
-  const { profile, setProfile, documentsUpdated, editProfileEnable, setEditProfileEnable } = useContext(ProfileContext);
+  const {
+    profile,
+    setProfile,
+    documentsUpdated,
+    editProfileEnable,
+    setEditProfileEnable,
+  } = useContext(ProfileContext);
   const [initialUserProfileBackup, setInitialUserProfileBackup] =
     useState(profile);
 
@@ -30,19 +37,19 @@ const Profile = () => {
   const handleSave = async () => {
     try {
       const endpointUrl = `${backend_url}/counsellor/${user._id}`; // Replace with your actual endpoint URL
-      console.log(profile)
+      console.log(profile);
       const response = await axios.put(endpointUrl, profile, {
         headers: {
-          Authorization: user.token
-        }
+          Authorization: user.token,
+        },
       });
       setProfile(response.data);
       setInitialUserProfileBackup(response.data);
       setEditProfileEnable(false);
-      toast('Profile successfully saved');
+      toast("Profile successfully saved");
     } catch (error) {
       // Handle errors if the request fails
-      toast(error.message)
+      toast(error.message);
       console.error("Error while saving:", error);
       // You might want to handle the error state here
     }
@@ -86,6 +93,11 @@ const Profile = () => {
               editProfileEnable={editProfileEnable}
               setProfile={setProfile}
             />
+            <HowMayIHelpYou
+              profile={profile}
+              setProfile={setProfile}
+              editProfileEnable={editProfileEnable}
+            />
             <EducationInfo
               profile={profile}
               setProfile={setProfile}
@@ -102,7 +114,7 @@ const Profile = () => {
               setProfile={setProfile}
             />
             {
-              // documentsUpdated && 
+              // documentsUpdated &&
               <Documents
                 key={documentsUpdated}
                 profile={profile}

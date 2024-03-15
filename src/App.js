@@ -34,17 +34,16 @@ import QuestionForum from "./pages/questionForum";
 function App() {
   const addProfilePicRef = useRef(null);
   const { user, setUser } = useContext(UserContext);
-  const { addMode, setAddMode, sessions, setSessions,rerender,setRerender } =
+  const { addMode, setAddMode, sessions, setSessions, rerender, setRerender } =
     useContext(SessionContext);
   const { profilePicEditMode, setProfilePicEditMode } =
     useContext(ProfileContext);
   const { coverImageEditMode, setCoverImageEditMode } =
     useContext(ProfileContext);
-    const {documentDelete,setDocumentDelete}=useContext(ProfileContext)
+  const { documentDelete, setDocumentDelete } = useContext(ProfileContext);
 
   const { askQuestionEnable, setAskQuestionEnable } = useContext(HelpContext);
   // const {askQuestionDisable, setAskQuestionDisable} = useContext(HelpContext);
-
 
   const addCoverImageRef = useRef(null);
   const askQuestionRef = useRef(null);
@@ -54,7 +53,6 @@ function App() {
   const { isLoggedIn } = user;
 
   const navigate = useNavigate();
-
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -101,19 +99,21 @@ function App() {
         </div>
       )}
 
-      {  askQuestionEnable && (
+      {askQuestionEnable && (
         <div className="ask-a-question">
-          <AskQuestion ref={askQuestionRef} 
-          // setAskQuestionDisable={setAskQuestionDisable}
-          // askQuestionDisable={askQuestionDisable}
-          
+          <AskQuestion
+            ref={askQuestionRef}
+            // setAskQuestionDisable={setAskQuestionDisable}
+            // askQuestionDisable={askQuestionDisable}
           />
-
         </div>
       )}
-       {documentDelete && (
+      {documentDelete && (
         <div className="ask-a-question">
-          <DocumentDelete documentDelete={documentDelete} setDocumentDelete={setDocumentDelete} />
+          <DocumentDelete
+            documentDelete={documentDelete}
+            setDocumentDelete={setDocumentDelete}
+          />
         </div>
       )}
 
@@ -129,7 +129,10 @@ function App() {
             {isLoggedIn ? (
               <>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/session" element={<Session rerender={rerender} />} />
+                <Route
+                  path="/session"
+                  element={<Session rerender={rerender} />}
+                />
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/users" element={<Users />} />
@@ -138,13 +141,15 @@ function App() {
                 <Route path="/login" element={<Navigate replace to="/" />} />
                 {/* no need yet */}
                 {/* <Route path="/help" element={<Help />} /> */}
-                <Route path = "/help" element= {<AskQuestion />}/>
-                <Route path="/profile/:documentId" element={<DocumentDelete/>} />
+                <Route path="/help" element={<AskQuestion />} />
+                <Route
+                  path="/profile/:documentId"
+                  element={<DocumentDelete />}
+                />
                 {/* no need yet */}
                 {/* <Route path="/question-forum" element={<QuestionForum />} /> */}
 
-
-            {/* no need yet */}
+                {/* no need yet */}
                 {/* <Route
                   path="/help/faq-and-troubleshooting"
                   element={<FaqAndTroubleshooting setAskQuestionDisable={setAskQuestionDisable} />}
@@ -160,7 +165,6 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Login />} />
                 <Route path="/password-reset" element={<Login />} />
-
               </>
             )}
           </Routes>
