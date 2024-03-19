@@ -14,6 +14,7 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
   // edits r
   const [startDate, setStartDate] = useState(dayjs().subtract(5, 'day').format('MM-DD-YYYY'));
   const [endDate, setEndDate] = useState(dayjs().add(5, 'day').format('MM-DD-YYYY'));
+  const [feeChange, setFeeChange] = useState(sessionFilters.session_fee)
 
   useEffect(()=>{
     setSessionFilters(prev => ({
@@ -31,6 +32,7 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
   // edits r
 
   const handleFeeChange = (e, newValue) => {
+    console.log('onCHangeCOmmitted')
     setSessionFilters(prev => ({ ...prev, session_fee: newValue }));
     if (newValue[0] >= newValue[1]) {
       setSessionFilters(prev => ({ ...prev, session_fee: [newValue[0] - 100, newValue[1]] }));
@@ -93,8 +95,9 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
         <p>Session Fee</p>
         <Box sx={{ width: 200 }}>
           <Slider
-            value={sessionFilters.session_fee}
-            onChange={handleFeeChange}
+            value={feeChange}
+            onChange={((e, newValue) => setFeeChange([newValue[0] - 100, newValue[1]]))}
+            onChangeCommitted={handleFeeChange}
             min={0}
             max={5000}
             step={100}
