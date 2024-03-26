@@ -19,7 +19,7 @@ const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
   return (
     <div className="howmayihelpyou-container">
       <div className="heading">
-        <h2 style={{ fontSize: "1.6rem" }}>HowMayIHelpYou</h2>
+        <h2 style={{ fontSize: "1.6rem" }}>How May I Help You</h2>
       </div>
 
       <div className="info">

@@ -19,9 +19,6 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
   const navigate = useNavigate();
   const { setNotificationsEnable } = useContext(NotificationContext);
   const { smallScreen, xSmallScreen } = useContext(MediaQueryContext);
-
-
-
   useClickOutside(dropdownRef, () => {
     setIsDropdownOpen(false);
   });
@@ -30,12 +27,28 @@ const ProfileDropDownMenu = ({ name, image, onClick }) => {
     setIsDropdownOpen((prevState) => !prevState);
   };
 
+// function to generate avatar from name
+const generateAvatarFromName = (name)=>{
+ if(!name)return "";
+ const partsName = name.split(" ");
+ const firstName =partsName[0].charAt(0).toUpperCase();
+ const lastname =  partsName[partsName.length -1].charAt(0).toUpperCase();
+ return `${firstName}${lastname}`;
+};
+console.log("name",name);
+console.log("generated Avatar",generateAvatarFromName(name));
+
   return (
     <div className="ProfileDropDownMenu-container" onClick={toggleDropdown}>
       <div className="left">
-        <img src={image} alt="" />
-      </div>
-
+    {image ? (
+    <img src={image} alt="" />
+    ):(  
+<div className="avatar">{generateAvatarFromName(name)}</div>
+    )}
+    </div>
+     {/* {image != img_default ? <img src={image} alt="" /> : <div className="avatar">{generateAvatarFromName(name)}</div>}
+    </div> */}
       { !xSmallScreen && <div className="mid">
         <p className="top">Hello</p>
         <h4>{name}</h4>
