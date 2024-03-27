@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import "./style.scss";
-import config from '@/config';
+import config from "@/config";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { UserContext } from "../../../context/UserContext";
@@ -20,17 +20,17 @@ const DocumentItem = ({
   editProfileEnable,
   getIdByName,
   getDocumentTypeFromId,
-  documents
+  documents,
 }) => {
   const hiddenFileInput = useRef(null);
   const { user } = useContext(UserContext);
   const [currentField, setCurrentField] = useState(documentTypes[0]?.name);
-  const [loading, setLoading] = useState(true)
-  const { documentDelete, setDocumentDelete } = useContext(ProfileContext)
+  const [loading, setLoading] = useState(true);
+  const { documentDelete, setDocumentDelete } = useContext(ProfileContext);
 
   const handleSelect = (e) => {
     setCurrentField(e.target.value);
-  }
+  };
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -38,7 +38,7 @@ const DocumentItem = ({
 
   const handleFileChange = async (e) => {
     try {
-      setLoading(false)
+      setLoading(false);
       const file = e.target.files[0];
       const formData = new FormData();
       formData.append("file", file);
@@ -48,42 +48,41 @@ const DocumentItem = ({
         formData,
         {
           headers: {
-            Authorization: user.token // Assuming user.token contains the authorization token
+            Authorization: user.token, // Assuming user.token contains the authorization token
           },
           params: {
-            document_type: getIdByName(currentField) // Assuming currentField is defined elsewhere in your code
-          }
+            document_type: getIdByName(currentField), // Assuming currentField is defined elsewhere in your code
+          },
         }
       );
 
-
       // Update state or do something with the response data if needed
-      setDocuments(prev => [...prev.slice(0, prev.length - 1), data])
+      setDocuments((prev) => [...prev.slice(0, prev.length - 1), data]);
       // setDocumentTypes(prev => prev.filter(documentType => documentType.name != currentField))
-      getDocumentTypes()
+      getDocumentTypes();
       toast.success("Document uploaded successfully"); // Assuming toast is defined and comes from a library like react-toastify
-      setLoading(true)
-
-
-
+      setLoading(true);
     } catch (error) {
       // Improve error handling
-      console.error("Error uploading document:", error.response ? error.response.data : error.message);
+      console.error(
+        "Error uploading document:",
+        error.response ? error.response.data : error.message
+      );
       toast.error("Error uploading document. Please try again later.");
     }
   };
 
   const handleDeleteDocument = async () => {
-    setDocumentDelete(prev => !prev)
+    setDocumentDelete((prev) => !prev);
     try {
-      await getDocuments()
-      await getDocumentTypes()
+      await getDocuments();
+      await getDocumentTypes();
       const newUrl = `${window.location.pathname}/${document._id}`;
       window.history.replaceState(null, null, newUrl);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="DocumentItem">
@@ -92,12 +91,11 @@ const DocumentItem = ({
         <div className="col DocumentItemCol">
           <div className="dropdown">
             {editProfileEnable && !documentType ? (
-              <select
-                onChange={handleSelect}
-                value={currentField}
-              >
-                {documentTypes.map(dType => (
-                  <option value={dType.name} key={dType._id} >{dType.name}</option>
+              <select onChange={handleSelect} value={currentField}>
+                {documentTypes.map((dType) => (
+                  <option value={dType.name} key={dType._id}>
+                    {dType.name}
+                  </option>
                 ))}
               </select>
             ) : (
@@ -105,21 +103,17 @@ const DocumentItem = ({
                 <p>{getDocumentTypeFromId(documentType)}</p>
               </>
             )}
-
           </div>
 
           {editProfileEnable ? (
             <>
               <button className="button-upload" onClick={handleClick}>
-                {loading ?
-                  "Upload a file" : <Spinner />
-                }
+                {loading ? "Upload a file" : <Spinner />}
               </button>
               <input
                 className="upload-btn"
                 type="file"
                 onChange={handleFileChange}
-                accept=".pdf"
                 ref={hiddenFileInput}
                 style={{ display: "none" }}
               />
@@ -128,8 +122,10 @@ const DocumentItem = ({
               </div>
             </>
           ) : (
-            <div >
-              <a href={file} target="_blank" >link</a>
+            <div>
+              <a href={file} target="_blank">
+                link
+              </a>
             </div>
           )}
         </div>

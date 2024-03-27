@@ -4,17 +4,45 @@ import "./style.scss";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { handleInput } from "../../utilities";
+import { toast } from "react-toastify";
 
 const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
+  const [dobError, setDobError] = useState("");
+
   const handleDateChange = (date) => {
-    setProfile((prev) => ({
-      ...prev,
-      date_of_birth: formatDate(date),
-    }));
+    const formattedDate = formatDate(date);
+    const age = calculateAge(date);
+    if (age < 0) {
+      setDobError("Please select a date in the past.");
+      toast("Please select a date in the past.");
+    } else if (age < 18) {
+      setDobError("You must be at least 18 years old.");
+      toast("You must be at least 18 years old.");
+    } else {
+      setDobError("");
+      setProfile((prev) => ({
+        ...prev,
+        date_of_birth: formattedDate,
+      }));
+    }
   };
 
   const formatDate = (date) => {
-    return dayjs(date).format('YYYY-MM-DD');
+    return dayjs(date).format("YYYY-MM-DD");
+  };
+
+  const calculateAge = (date) => {
+    const today = new Date();
+    const birthDate = new Date(date);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birthDate.getDate())
+    ) {
+      age--;
+    }
+    return age;
   };
 
   return (
@@ -34,7 +62,9 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
                 <input
                   type="text"
                   value={profile.email}
-                  onChange={(e) => handleInput("email", e.target.value, setProfile)}
+                  onChange={(e) =>
+                    handleInput("email", e.target.value, setProfile)
+                  }
                 />
               ) : (
                 <p>{profile.email}</p>
@@ -56,7 +86,9 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
                       type="radio"
                       value="Male"
                       checked={profile.gender === "Male"}
-                      onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                      onChange={(e) =>
+                        handleInput("gender", e.target.value, setProfile)
+                      }
                     />
                     Male
                   </label>
@@ -66,19 +98,24 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
                         type="radio"
                         value="Female"
                         checked={profile.gender === "Female"}
-                        onChange={(e) => handleInput("gender", e.target.value, setProfile)}
+                        onChange={(e) =>
+                          handleInput("gender", e.target.value, setProfile)
+                        }
                       />
                       Female
                     </div>
                   </label>
                   <label>
                     <div className="gender-text">
-                      <span><input
-                        type="radio"
-                        value="Other"
-                        checked={profile.gender === "Other"}
-                        onChange={(e) => handleInput("gender", e.target.value, setProfile)}
-                      />
+                      <span>
+                        <input
+                          type="radio"
+                          value="Other"
+                          checked={profile.gender === "Other"}
+                          onChange={(e) =>
+                            handleInput("gender", e.target.value, setProfile)
+                          }
+                        />
                       </span>
                       Other
                     </div>
@@ -98,11 +135,15 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-
-                <DatePicker label="Date of birth"
-                  defaultValue={dayjs(profile.date_of_birth)}
-                  onChange={(date) => handleDateChange(date)}
-                />
+                <>
+                  <DatePicker
+                    label="Date of birth"
+                    defaultValue={dayjs(profile.date_of_birth)}
+                    onChange={(date) => handleDateChange(date)}
+                    error={dobError !== ""}
+                    helperText={dobError}
+                  />
+                </>
               ) : (
                 <p>{formatDate(profile.date_of_birth)}</p>
               )}
@@ -110,7 +151,7 @@ const BasicInfo = ({ profile, editProfileEnable, setProfile }) => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
