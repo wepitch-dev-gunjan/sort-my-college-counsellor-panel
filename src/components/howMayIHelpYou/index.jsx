@@ -37,7 +37,7 @@ const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
                   <div className="col">
                     <div className="info-fields">
                       <h6 onChange={(e) => handleInputChange(index, e)}>
-                        {index}
+                        {index + 1}
                       </h6>
 
                       <TextareaAutosize
