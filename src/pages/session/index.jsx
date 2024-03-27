@@ -11,8 +11,6 @@ import { MediaQueryContext } from "../../context/MediaQueryContext"
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
 const { backend_url } = config;
-
-
 const Session = ({rerender}) => {
   const [sessions, setSessions] = useState([]);
   const { user } = useContext(UserContext);
