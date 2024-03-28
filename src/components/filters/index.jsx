@@ -16,7 +16,7 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
   const [endDate, setEndDate] = useState(dayjs().add(5, 'day').format('MM-DD-YYYY'));
   const [feeChange, setFeeChange] = useState(sessionFilters.session_fee)
 
-  useEffect(()=>{
+  useEffect(() => {
     setSessionFilters(prev => ({
       ...prev,
       session_dates: [startDate, endDate]
@@ -29,13 +29,18 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
   const handleEndDateChange = (date) => {
     setEndDate(date);
   };
-  // edits r
 
   const handleFeeChange = (e, newValue) => {
-    console.log('onCHangeCOmmitted')
     setSessionFilters(prev => ({ ...prev, session_fee: newValue }));
     if (newValue[0] >= newValue[1]) {
       setSessionFilters(prev => ({ ...prev, session_fee: [newValue[0] - 100, newValue[1]] }));
+    }
+  };
+
+  const handleFeeDebouncedChange = (e, newValue) => {
+    setFeeChange(newValue);
+    if (newValue[0] >= newValue[1]) {
+      setSessionFilters([newValue[0] - 100, newValue[1]]);
     }
   };
 
@@ -96,7 +101,7 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
         <Box sx={{ width: 200 }}>
           <Slider
             value={feeChange}
-            onChange={((e, newValue) => setFeeChange([newValue[0] - 100, newValue[1]]))}
+            onChange={handleFeeDebouncedChange}
             onChangeCommitted={handleFeeChange}
             min={0}
             max={5000}
@@ -111,17 +116,17 @@ const Filters = ({ sessionFilters, setSessionFilters }) => {
       </div>
       <div className="date-range">
         <p>Select Date Range</p>
-        <DateRangePicker 
-        sessionFilters={sessionFilters} 
-        setSessionFilters={setSessionFilters}
-        // edits r 
-        startDate={startDate}
-        endDate={endDate}
-        handleStartDateChange={handleStartDateChange}
-        handleEndDateChange={handleEndDateChange}
+        <DateRangePicker
+          sessionFilters={sessionFilters}
+          setSessionFilters={setSessionFilters}
+          // edits r 
+          startDate={startDate}
+          endDate={endDate}
+          handleStartDateChange={handleStartDateChange}
+          handleEndDateChange={handleEndDateChange}
         // edits r 
         />
-        
+
       </div>
       <div className="duration">
         <p>Session duration</p>

@@ -16,7 +16,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
   const Ref = useRef(null);
   const { user } = useContext(UserContext);
   const { sessionLoading, setSessionLoading } = useContext(SessionContext);
-  const {rerender,setRerender} =useContext(SessionContext)
+  const { rerender, setRerender } = useContext(SessionContext)
 
   const formatDate = (date) => {
     return dayjs(date).format("YYYY-MM-DD");
@@ -84,9 +84,9 @@ const AddSession = ({ setSessions, setAddMode }) => {
       setSessionLoading(false);
       setAddMode(false);
       toast("Session created successfully");
-        setRerender(!rerender)
+      setRerender(!rerender)
 
-      
+
     }
     catch (error) {
       setSessionLoading(false);

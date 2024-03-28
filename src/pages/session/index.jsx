@@ -11,26 +11,28 @@ import { MediaQueryContext } from "../../context/MediaQueryContext"
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
 const { backend_url } = config;
-const Session = ({rerender}) => {
+const Session = ({ rerender }) => {
   const [sessions, setSessions] = useState([]);
   const { user } = useContext(UserContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-  
 
-  const today = new Date();
-  const startDate = new Date();
-  const endDate = new Date();
+  const defaultSessionFilters = () => {
+    const today = new Date();
+    const startDate = new Date();
+    const endDate = new Date();
 
-  startDate.setDate(today.getDate() - 10);
-  endDate.setDate(today.getDate() + 0);
-  const defaultSessionFilters = {
-    session_type: 'All',
-    session_dates: [startDate, endDate],
-    session_duration: 60,
-    session_status: 'All',
-    session_fee: [0, 5000]
-  };
+    startDate.setDate(today.getDate() - 5);
+    endDate.setDate(today.getDate() + 5);
+    return {
+      session_type: 'All',
+      session_dates: [startDate, endDate],
+      session_duration: 120,
+      session_status: 'All',
+      session_fee: [0, 5000]
+    }
+  }
+
   const [sessionFilters, setSessionFilters] = useState(defaultSessionFilters);
   const { xSmallScreen } = useContext(MediaQueryContext)
   const resetFilters = () => {
@@ -67,7 +69,7 @@ const Session = ({rerender}) => {
 
   useEffect(() => {
     getResponse();
-  }, [sessionFilters,rerender]);
+  }, [sessionFilters, rerender]);
 
   return (
     <>
