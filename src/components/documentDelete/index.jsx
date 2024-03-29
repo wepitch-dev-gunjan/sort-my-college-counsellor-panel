@@ -22,10 +22,7 @@ const DocumentDelete = ({ documentDelete, setDocumentDelete }) => {
   const handleDeleteDocument = async () => {
     try {
       const currentPath = window.location.pathname;
-
       const documentId = currentPath.split("/profile/")[1];
-      console.log(documentId);
-
       const { data } = await axios.delete(
         `${backend_url}/counsellor/document/${documentId}`
       );
@@ -33,8 +30,6 @@ const DocumentDelete = ({ documentDelete, setDocumentDelete }) => {
 
       toast.success(data.message);
       randomize();
-      console.log("aa gya");
-      console.log(currentPath.split("/profile/")[1]);
     } catch (error) {
       console.log(error);
     }

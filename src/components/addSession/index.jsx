@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./style.scss";
 import { UserContext } from "../../context/UserContext";
-import config from '@/config';
+import config from "@/config";
 import useClickOutside from "../../customHooks/useClickOutside";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
   const Ref = useRef(null);
   const { user } = useContext(UserContext);
   const { sessionLoading, setSessionLoading } = useContext(SessionContext);
-  const {rerender,setRerender} =useContext(SessionContext)
+  const { rerender, setRerender } = useContext(SessionContext);
 
   const formatDate = (date) => {
     return dayjs(date).format("YYYY-MM-DD");
@@ -84,11 +84,8 @@ const AddSession = ({ setSessions, setAddMode }) => {
       setSessionLoading(false);
       setAddMode(false);
       toast("Session created successfully");
-        setRerender(!rerender)
-
-      
-    }
-    catch (error) {
+      setRerender(!rerender);
+    } catch (error) {
       setSessionLoading(false);
       setAddMode(false);
       toast(error.response.data.error);
@@ -158,7 +155,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
                 type="number"
                 step="15"
                 min="45"
-                max="90"
+                max="120"
                 value={sessionDetails.session_duration}
                 onChange={(e) =>
                   setSessionDetails({
