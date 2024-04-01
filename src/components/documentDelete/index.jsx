@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./style.scss";
 import { HelpContext } from "../../context/HelpContext";
 import axios from "axios";
@@ -11,6 +11,7 @@ const { backend_url } = config;
 
 const DocumentDelete = ({ documentDelete, setDocumentDelete }) => {
   const { askQuestionRef } = useContext(HelpContext);
+
   const { user } = useContext(UserContext);
   const { randomize } = useContext(ProfileContext);
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const DocumentDelete = ({ documentDelete, setDocumentDelete }) => {
       const { data } = await axios.delete(
         `${backend_url}/counsellor/document/${documentId}`
       );
+
       setDocumentDelete((prev) => !prev);
 
       toast.success(data.message);

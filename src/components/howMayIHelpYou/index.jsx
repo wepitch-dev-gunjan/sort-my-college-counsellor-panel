@@ -24,12 +24,12 @@ const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
 
       <div className="info">
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <p>Heading</p>
+          <p>Serial No.</p>
           <p>Description</p>
         </div>
         <div>
           {!editProfileEnable ? (
-            <h6 className="askHeading">"Ask your Question here "</h6>
+            ""
           ) : (
             <div>
               {inputFields.map((field, index) => (
