@@ -10,11 +10,11 @@ import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
 import Documents from "../../components/document";
 
-import config from "@/config";
 import axios from "axios";
 import { toast } from "react-toastify";
 import BankInfo from "../../components/bankInfo";
 import HowMayIHelpYou from "../../components/howMayIHelpYou";
+import config from "@/config";
 
 const { backend_url } = config;
 const Profile = () => {
