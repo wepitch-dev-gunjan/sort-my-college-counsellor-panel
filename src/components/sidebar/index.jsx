@@ -171,18 +171,20 @@ const Sidebar = () => {
               text="My Followers"
               expand={expand}
             />
-            {/* {<SidebarMenuButton
-              href="/feedbacks"
-              icon={ReviewsIcon}
-              text="User Feedbacks"
-              expand={expand}
-            />} */}
-            <SidebarMenuButton
+            {
+              <SidebarMenuButton
+                href="/feedbacks"
+                icon={ReviewsIcon}
+                text="User Feedbacks"
+                expand={expand}
+              />
+            }
+            {/* <SidebarMenuButton
               href="/feeds"
               icon={FeedIcon}
               text="My Feeds"
               expand={expand}
-            />
+            /> */}
           </>
         )}
         <hr />
