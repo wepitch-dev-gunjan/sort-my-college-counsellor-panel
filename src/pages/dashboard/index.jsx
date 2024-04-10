@@ -81,7 +81,7 @@ const Dashboard = () => {
           <Payment />
         </div>
       </div>
-      <div className="summary">{!smallScreen && <Summary />}</div>
+      {/* <div className="summary">{!smallScreen && <Summary />}</div> */}
     </div>
   );
 };
