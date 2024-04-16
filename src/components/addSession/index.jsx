@@ -63,6 +63,8 @@ const AddSession = ({ setSessions, setAddMode }) => {
   useClickOutside(Ref, () => setAddMode(false));
 
   const handleCreateSession = async (event) => {
+    console.log(sessionDetails);
+
     event.preventDefault();
     try {
       setSessionLoading(true);
