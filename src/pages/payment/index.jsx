@@ -4,6 +4,7 @@ import config from "@/config";
 import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import { ProfileContext } from "../../context/ProfileContext";
+import OutstandingBalance from "../../components/outstandingBalance";
 
 const { backend_url } = config;
 
@@ -38,6 +39,7 @@ const Payment = () => {
     <div className="Payments-container">
       <div className="heading sticky">
         <h1>All Payments</h1>
+        <OutstandingBalance />
         {/* <div className="row">
           <div className="col pc-h4"><h4>ID</h4></div>
           <div className="col pc-h4"><h4>SERVICE</h4></div>

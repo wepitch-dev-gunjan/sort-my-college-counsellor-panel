@@ -73,7 +73,11 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
           },
         }
       );
-      toast(data.message);
+
+      console.log(data);
+      if (data.message) toast.success(data.message);
+      if (data.error) toast.error(data.error);
+
       getResponse();
     } catch (error) {
       toast(error.message);
