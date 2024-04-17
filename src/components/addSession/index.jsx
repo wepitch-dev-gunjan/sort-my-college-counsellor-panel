@@ -223,6 +223,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
                   <label>Available Slots:</label>
                   <input
                     type="number"
+                    min={2}
                     value={sessionDetails.session_available_slots}
                     onChange={(e) =>
                       setSessionDetails({
