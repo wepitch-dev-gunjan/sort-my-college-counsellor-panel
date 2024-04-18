@@ -94,7 +94,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
       console.error("An error occurred:", error.response.data);
     }
   };
-
+  // for push writing this
   const handleCancel = () => {
     setSessionDetails({
       session_date: formatDate(getTomorrowDate()),
