@@ -75,10 +75,9 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
       );
 
       console.log(data);
+      getResponse();
       if (data.message) return toast.success(data.message);
       if (data.error) return toast.error(data.error);
-
-      getResponse();
     } catch (error) {
       toast(error.message);
       console.error("An error occurred:", error);
