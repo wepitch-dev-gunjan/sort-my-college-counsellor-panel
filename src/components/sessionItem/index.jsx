@@ -64,7 +64,6 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
 
   const handleDelete = async () => {
     try {
-      // Send an axios request to the server to delete the session
       const { data } = await axios.delete(
         `${backend_url}/counsellor/sessions/${session._id}`,
         {
