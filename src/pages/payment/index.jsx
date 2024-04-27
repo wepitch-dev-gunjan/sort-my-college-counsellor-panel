@@ -5,6 +5,7 @@ import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import { ProfileContext } from "../../context/ProfileContext";
 import OutstandingBalance from "../../components/outstandingBalance";
+import { getCounsellorAmount } from "../../utilities";
 
 const { backend_url } = config;
 
@@ -70,10 +71,10 @@ const Payment = () => {
           <div className="payments-table-content">
             {payments.map((payment, i) => (
               <div className="row" key={i}>
-                <div className="col">{payment.id}</div>
+                <div className="col">{payment._id}</div>
                 <div className="col">{payment.service}</div>
-                <div className="col">{payment.date}</div>
-                <div className="col">{payment.payment}</div>
+                <div className="col">{payment.created_at}</div>
+                <div className="col">{getCounsellorAmount(payment.amount)}</div>
                 <div
                   className={`col ${
                     payment.status === "Cancelled"
