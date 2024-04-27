@@ -83,7 +83,7 @@ const DocumentItem = ({
       console.log(error);
     }
   };
-
+  useEffect(() => {}, [documentDelete]);
   return (
     <div className="DocumentItem">
       {/* changed by r  */}

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "./style.scss";
 import { UserContext } from "../../context/UserContext";
-import config from '@/config';
+import config from "@/config";
 import useClickOutside from "../../customHooks/useClickOutside";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
@@ -16,7 +16,11 @@ const AddSession = ({ setSessions, setAddMode }) => {
   const Ref = useRef(null);
   const { user } = useContext(UserContext);
   const { sessionLoading, setSessionLoading } = useContext(SessionContext);
+<<<<<<< HEAD
   const { rerender, setRerender } = useContext(SessionContext)
+=======
+  const { rerender, setRerender } = useContext(SessionContext);
+>>>>>>> 6d70cc32b106154ff12d9d5826b2dce4cffa33b6
 
   const formatDate = (date) => {
     return dayjs(date).format("YYYY-MM-DD");
@@ -63,6 +67,8 @@ const AddSession = ({ setSessions, setAddMode }) => {
   useClickOutside(Ref, () => setAddMode(false));
 
   const handleCreateSession = async (event) => {
+    console.log(sessionDetails);
+
     event.preventDefault();
     try {
       setSessionLoading(true);
@@ -84,18 +90,23 @@ const AddSession = ({ setSessions, setAddMode }) => {
       setSessionLoading(false);
       setAddMode(false);
       toast("Session created successfully");
+<<<<<<< HEAD
       setRerender(!rerender)
 
 
     }
     catch (error) {
+=======
+      setRerender(!rerender);
+    } catch (error) {
+>>>>>>> 6d70cc32b106154ff12d9d5826b2dce4cffa33b6
       setSessionLoading(false);
       setAddMode(false);
       toast(error.response.data.error);
       console.error("An error occurred:", error.response.data);
     }
   };
-
+  // for push writing this
   const handleCancel = () => {
     setSessionDetails({
       session_date: formatDate(getTomorrowDate()),
@@ -158,7 +169,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
                 type="number"
                 step="15"
                 min="45"
-                max="90"
+                max="120"
                 value={sessionDetails.session_duration}
                 onChange={(e) =>
                   setSessionDetails({
@@ -193,6 +204,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
                 type="number"
                 step="100"
                 min="0"
+                max="5000"
                 value={sessionDetails.session_fee}
                 onChange={(e) =>
                   setSessionDetails({
@@ -223,6 +235,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
                   <label>Available Slots:</label>
                   <input
                     type="number"
+                    min={2}
                     value={sessionDetails.session_available_slots}
                     onChange={(e) =>
                       setSessionDetails({

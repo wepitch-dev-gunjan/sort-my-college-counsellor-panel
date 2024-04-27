@@ -3,14 +3,12 @@ import DocumentItem from "./documentItem";
 import "./style.scss";
 import { toast } from "react-toastify";
 import axios from "axios";
-import config from '@/config';
+import config from "@/config";
 import { UserContext } from "../../context/UserContext";
 const { backend_url } = config;
 
-const Documents = ({
-  editProfileEnable,
-}) => {
-  const { user } = useContext(UserContext)
+const Documents = ({ editProfileEnable }) => {
+  const { user } = useContext(UserContext);
   const [documents, setDocuments] = useState([]);
   const [documentTypes, setDocumentTypes] = useState([]);
   const [filteredDocumentTypes, setFilteredDocumentTypes] = useState([]);
@@ -19,49 +17,61 @@ const Documents = ({
   // fetch documents and store it to the documents state
   const getDocuments = async () => {
     try {
-      const { data } = await axios.get(`${backend_url}/counsellor/document/get-documents`, {
-        headers: {
-          Authorization: user.token
+      const { data } = await axios.get(
+        `${backend_url}/counsellor/document/get-documents`,
+        {
+          headers: {
+            Authorization: user.token,
+          },
         }
-      });
-      setDocuments(data)
+      );
+      setDocuments(data);
     } catch (error) {
       console.log(error);
-      toast("Error getting documents")
+      toast("Error getting documents");
     }
-  }
+  };
   // fetch documentTypes and store it to documentTypes state
   const getDocumentTypes = async () => {
     try {
-      const { data } = await axios.get(`${backend_url}/counsellor/documentType/documentTypes`);
-      setDocumentTypes(data)
+      const { data } = await axios.get(
+        `${backend_url}/counsellor/documentType/documentTypes`
+      );
+      setDocumentTypes(data);
     } catch (error) {
       console.log(error);
-      toast("Error getting documents")
+      toast("Error getting documents");
     }
-  }
+  };
 
   const getFilteredDocumentTypes = (dTypes) => {
-    const filteredTypesFromDocuments = documents.map(document => document.document_type)
-    return dTypes.filter(documentType => !filteredTypesFromDocuments.includes(documentType._id))
-  }
+    const filteredTypesFromDocuments = documents.map(
+      (document) => document.document_type
+    );
+    return dTypes.filter(
+      (documentType) => !filteredTypesFromDocuments.includes(documentType._id)
+    );
+  };
 
   const handleAddDocument = () => {
-    setAddDocumentEnable(false)
-    setDocuments([...documents, {
-      user: user._id,
-      _id: user._id,
-      document_type: ""
-    }])
-  }
+    setAddDocumentEnable(false);
+    setDocuments([
+      ...documents,
+      {
+        user: user._id,
+        _id: user._id,
+        document_type: "",
+      },
+    ]);
+  };
 
   useEffect(() => {
     const promises = async () => {
-      await getDocuments()
-      await getDocumentTypes()
-    }
-    promises()
-  }, [user])
+      await getDocuments();
+      await getDocumentTypes();
+    };
+    promises();
+  }, [user]);
 
   function getIdByName(name) {
     for (let i = 0; i < documentTypes.length; i++) {
@@ -74,28 +84,27 @@ const Documents = ({
   }
 
   const getDocumentTypeFromId = (id) => {
-    const documentTypeName = documentTypes.filter(documentType => {
+    const documentTypeName = documentTypes.filter((documentType) => {
       return documentType._id === id;
     });
     return documentTypeName[0]?.name;
-  }
+  };
   useEffect(() => {
-    setFilteredDocumentTypes(getFilteredDocumentTypes(documentTypes))
-    if (documents.length < documentTypes.length)
-      setAddDocumentEnable(true);
-    else
-      setAddDocumentEnable(false);
-    console.log("documents length : " + documents.length,
+    setFilteredDocumentTypes(getFilteredDocumentTypes(documentTypes));
+    if (documents.length < documentTypes.length) setAddDocumentEnable(true);
+    else setAddDocumentEnable(false);
+    console.log(
+      "documents length : " + documents.length,
       "documentTypes length : " + documentTypes.length
-    )
-  }, [documentTypes])
+    );
+  }, [documentTypes]);
   return (
     <div className="Documents-container">
       <div className="heading">
         <h2>Documents</h2>
       </div>
 
-      {documents.map(document => (
+      {documents.map((document) => (
         <DocumentItem
           document={document}
           setDocuments={setDocuments}
@@ -113,9 +122,7 @@ const Documents = ({
       ))}
 
       {editProfileEnable && addDocumentEnable && (
-        <div className="add-document"
-          onClick={handleAddDocument}
-        >
+        <div className="add-document" onClick={handleAddDocument}>
           <span>Add document</span>
         </div>
       )}

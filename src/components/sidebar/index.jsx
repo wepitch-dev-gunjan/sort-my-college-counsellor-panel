@@ -8,12 +8,12 @@ import RightLeftArrow from "../buttons/rightLeftArrow";
 import GroupIcon from "@mui/icons-material/Group";
 import ReviewsIcon from "@mui/icons-material/Reviews";
 import FeedIcon from "@mui/icons-material/Feed";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import useRazorpay from "react-razorpay";
 import { GiUpgrade } from "react-icons/gi";
 import PersonIcon from "@mui/icons-material/Person";
 import { ProfileContext } from "../../context/ProfileContext";
-import config from '@/config';
+import config from "@/config";
 import axios from "axios";
 import { Button } from "rsuite";
 import { UserContext } from "../../context/UserContext";
@@ -22,8 +22,8 @@ import { rgbToHex } from "@mui/material";
 const { backend_url } = config;
 const Sidebar = () => {
   const [expand, setExpand] = useState(true);
-  const { profile } = useContext(ProfileContext)
-  const { user } = useContext(UserContext)
+  const { profile } = useContext(ProfileContext);
+  const { user } = useContext(UserContext);
   const [Razorpay] = useRazorpay();
 
   // edited
@@ -53,22 +53,26 @@ const Sidebar = () => {
 
   const createOrder = async () => {
     try {
-      const { data } = await axios.post(`${backend_url}/admin/payments/create-order`, {
-        amount: 10,
-        email: "gunjan@wepitch.uk",
-        name: "Gunjan Soral",
-        description: "Group session booking",
-        phone_no: "917611821710"
-      }, {
-        headers: {
-          Authorization: user.token
+      const { data } = await axios.post(
+        `${backend_url}/admin/payments/create-order`,
+        {
+          amount: 10,
+          email: "gunjan@wepitch.uk",
+          name: "Gunjan Soral",
+          description: "Group session booking",
+          phone_no: "917611821710",
+        },
+        {
+          headers: {
+            Authorization: user.token,
+          },
         }
-      })
-      return data.data
+      );
+      return data.data;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handlePayment = useCallback(async () => {
     const order = await createOrder();
@@ -78,31 +82,35 @@ const Sidebar = () => {
       currency: "INR",
       name: order.name,
       description: order.description,
-      image: "https://counsellor.sortmycollege.com/static/media/logo.f4bd489af960789456c45340be8c6d4f.svg",
+      image:
+        "https://counsellor.sortmycollege.com/static/media/logo.f4bd489af960789456c45340be8c6d4f.svg",
       order_id: order.id,
       handler: async (res) => {
-
         try {
           // Check if payment is successful
           if (res.razorpay_payment_id) {
             // Payment successful, update your database with order details
-            const { data } = await axios.post(`${backend_url}/admin/payments/create-payment`, {
-              order_id: order.id,
-              payment_id: res.razorpay_payment_id,
-              amount: order.amount,
-              amount_due: order.amount_due,
-              amount_paid: order.amount_paid,
-              currency: order.currency,
-              created_at: order.created_at,
-              entity: order.entity,
-              name: order.name,
-              email: order.email,
-              phone_no: order.phone_no,
-              description: order.description,
-              status: order.status
-            }, {
-              headers: { Authorization: user.token }
-            });
+            const { data } = await axios.post(
+              `${backend_url}/admin/payments/create-payment`,
+              {
+                order_id: order.id,
+                payment_id: res.razorpay_payment_id,
+                amount: order.amount,
+                amount_due: order.amount_due,
+                amount_paid: order.amount_paid,
+                currency: order.currency,
+                created_at: order.created_at,
+                entity: order.entity,
+                name: order.name,
+                email: order.email,
+                phone_no: order.phone_no,
+                description: order.description,
+                status: order.status,
+              },
+              {
+                headers: { Authorization: user.token },
+              }
+            );
             // Handle response from your backend if needed
             console.log("Order details stored:", data);
           } else {
@@ -136,10 +144,9 @@ const Sidebar = () => {
         <RightLeftArrow expand={expand} />
       </div>
       <div className="sidebar-container">
-        {
-          profile.verified &&
-          // !profile.verified && 
-          (<>
+        {profile.verified && (
+          // !profile.verified &&
+          <>
             <SidebarMenuButton
               href="/"
               icon={DashboardIcon}
@@ -164,22 +171,22 @@ const Sidebar = () => {
               text="My Followers"
               expand={expand}
             />
-            <SidebarMenuButton
-              href="/feedbacks"
-              icon={ReviewsIcon}
-              text="User Feedbacks"
-              expand={expand}
-            />
-            <SidebarMenuButton
+            {
+              <SidebarMenuButton
+                href="/feedbacks"
+                icon={ReviewsIcon}
+                text="User Feedbacks"
+                expand={expand}
+              />
+            }
+            {/* <SidebarMenuButton
               href="/feeds"
               icon={FeedIcon}
               text="My Feeds"
               expand={expand}
-            />
-
-          </>)
-
-        }
+            /> */}
+          </>
+        )}
         <hr />
 
         <SidebarMenuButton

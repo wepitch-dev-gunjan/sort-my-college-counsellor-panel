@@ -10,11 +10,13 @@ import EducationInfo from "../../components/educationInfo";
 import { ProfileContext } from "../../context/ProfileContext";
 import Documents from "../../components/document";
 
-import config from "@/config";
 import axios from "axios";
 import { toast } from "react-toastify";
 import BankInfo from "../../components/bankInfo";
 import HowMayIHelpYou from "../../components/howMayIHelpYou";
+import config from "@/config";
+import { handleInput } from "../../utilities";
+import { BorderBottom } from "@mui/icons-material";
 
 const { backend_url } = config;
 const Profile = () => {
@@ -79,8 +81,38 @@ const Profile = () => {
         <br />
         <div className="profile-info">
           <div className="top">
-            <h1>{profile.name}</h1>
-            <h3>{profile.designation}</h3>
+            {editProfileEnable ? (
+              <h1>
+                {" "}
+                <input
+                  style={{
+                    borderBottom: "2px solid black",
+                    width: "100%",
+                    justifyContent: "center",
+                  }}
+                  value={profile.name}
+                  onChange={(e) =>
+                    handleInput("name", e.target.value, setProfile)
+                  }
+                />
+              </h1>
+            ) : (
+              <h1>{profile.name}</h1>
+            )}
+            {editProfileEnable ? (
+              <h3>
+                {" "}
+                <input
+                  style={{ borderBottom: "2px solid black", width: "100%" }}
+                  value={profile.designation}
+                  onChange={(e) =>
+                    handleInput("designation", e.target.value, setProfile)
+                  }
+                />
+              </h3>
+            ) : (
+              <h3>{profile.designation}</h3>
+            )}
           </div>
           <div className="middle">
             <BasicInfo

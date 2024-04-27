@@ -9,6 +9,7 @@ import axios from "axios";
 import config from "@/config";
 import { DashboardContext } from "../../context/DashboardContext";
 import { ProfileContext } from "../../context/ProfileContext";
+import Payment from "../payment";
 const { backend_url } = config;
 
 const Dashboard = () => {
@@ -76,10 +77,11 @@ const Dashboard = () => {
         {/* {isSmallScreen ? null : <RecentPayments />} */}
         {/* <RecentPayments /> */}
         <div className="dashboard-recent-payments-main">
-          <RecentPayments />
+          {/* <RecentPayments /> */}
+          <Payment />
         </div>
       </div>
-      <div className="summary">{!smallScreen && <Summary />}</div>
+      {/* <div className="summary">{!smallScreen && <Summary />}</div> */}
     </div>
   );
 };
