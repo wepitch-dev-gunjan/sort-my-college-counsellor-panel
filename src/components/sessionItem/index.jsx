@@ -13,6 +13,7 @@ const { backend_url } = config;
 
 const SessionCard = ({ session, setSessions, getResponse }) => {
   const menuRef = useRef(null);
+  console.log(session);
   const { user } = useContext(UserContext);
   const [showMenu, setShowMenu] = useState(false);
   const [editMode, setEditMode] = useState(false);
@@ -262,7 +263,12 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
             </tbody>
           </table>
           <div className="bottom">
-            <button onClick={handleJoinNow}>Join Now</button>
+            <button
+              disabled={!session.is_about_to_start}
+              onClick={handleJoinNow}
+            >
+              Join Now
+            </button>
           </div>
         </>
       )}

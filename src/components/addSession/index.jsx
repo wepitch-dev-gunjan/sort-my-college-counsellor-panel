@@ -16,11 +16,10 @@ const AddSession = ({ setSessions, setAddMode }) => {
   const Ref = useRef(null);
   const { user } = useContext(UserContext);
   const { sessionLoading, setSessionLoading } = useContext(SessionContext);
-<<<<<<< HEAD
-  const { rerender, setRerender } = useContext(SessionContext)
-=======
+
   const { rerender, setRerender } = useContext(SessionContext);
->>>>>>> 6d70cc32b106154ff12d9d5826b2dce4cffa33b6
+
+  // const { rerender, setRerender } = useContext(SessionContext);
 
   const formatDate = (date) => {
     return dayjs(date).format("YYYY-MM-DD");
@@ -50,7 +49,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
     session_date: formatDate(getTomorrowDate()),
     session_time: getCurrentTime(),
     session_duration: "60",
-    session_type: "Group",
+    session_type: "Personal",
     session_fee: "0",
     session_status: "Available",
     session_available_slots: "5",
@@ -90,16 +89,8 @@ const AddSession = ({ setSessions, setAddMode }) => {
       setSessionLoading(false);
       setAddMode(false);
       toast("Session created successfully");
-<<<<<<< HEAD
-      setRerender(!rerender)
-
-
-    }
-    catch (error) {
-=======
       setRerender(!rerender);
     } catch (error) {
->>>>>>> 6d70cc32b106154ff12d9d5826b2dce4cffa33b6
       setSessionLoading(false);
       setAddMode(false);
       toast(error.response.data.error);
@@ -112,7 +103,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
       session_date: formatDate(getTomorrowDate()),
       session_time: getCurrentTime(),
       session_duration: "60",
-      session_type: "Group",
+      session_type: "Personal",
       session_fee: "0",
       session_status: "Available",
       session_available_slots: "5",
@@ -193,12 +184,33 @@ const AddSession = ({ setSessions, setAddMode }) => {
                   }
                   required
                 >
-                  <option value="Personal">Personal</option>
                   <option value="Group">Group</option>
+                  <option value="Personal">Personal</option>
                 </select>
               </div>
             </div>
-            <div>
+            {sessionDetails.session_type === "Personal" ? (
+              <div>
+                <label>Fee:</label>
+                <input
+                  type="number"
+                  step="100"
+                  min="0"
+                  max="5000"
+                  value={sessionDetails.session_fee}
+                  onChange={(e) =>
+                    setSessionDetails({
+                      ...sessionDetails,
+                      session_fee: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
+            ) : (
+              ""
+            )}
+            {/* <div>
               <label>Fee:</label>
               <input
                 type="number"
@@ -214,7 +226,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
                 }
                 required
               />
-            </div>
+            </div> */}
             <div>
               <label>Status:</label>
               <input
