@@ -58,7 +58,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
   useEffect(() => {
     const updatedSessionDetails = {
       ...sessionDetails,
-      session_fee: sessionDetails.session_type === "Personal" ? "500" : "1000",
+      session_fee: sessionDetails.session_type === "Personal" ? "500" : "0",
     };
     setSessionDetails(updatedSessionDetails);
   }, [sessionDetails.session_type]);
@@ -208,25 +208,26 @@ const AddSession = ({ setSessions, setAddMode }) => {
                 />
               </div>
             ) : (
-              ""
+              <div>
+                <label>Fee:</label>
+                <input
+                  type="number"
+                  step="100"
+                  min="0"
+                  max="0"
+                  // max="5000"
+                  value={sessionDetails.session_fee}
+                  onChange={(e) =>
+                    setSessionDetails({
+                      ...sessionDetails,
+                      session_fee: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
             )}
-            {/* <div>
-              <label>Fee:</label>
-              <input
-                type="number"
-                step="100"
-                min="0"
-                max="5000"
-                value={sessionDetails.session_fee}
-                onChange={(e) =>
-                  setSessionDetails({
-                    ...sessionDetails,
-                    session_fee: e.target.value,
-                  })
-                }
-                required
-              />
-            </div> */}
+
             <div>
               <label>Status:</label>
               <input
