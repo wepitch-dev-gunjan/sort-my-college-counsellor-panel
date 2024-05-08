@@ -49,7 +49,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
     session_date: formatDate(getTomorrowDate()),
     session_time: getCurrentTime(),
     session_duration: "60",
-    session_type: "Personal",
+    session_type: "Group",
     session_fee: "0",
     session_status: "Available",
     session_available_slots: "5",
@@ -58,7 +58,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
   useEffect(() => {
     const updatedSessionDetails = {
       ...sessionDetails,
-      session_fee: sessionDetails.session_type === "Personal" ? "500" : "0",
+      session_fee: sessionDetails.session_type === "Personal" ? "500" : "1000",
     };
     setSessionDetails(updatedSessionDetails);
   }, [sessionDetails.session_type]);
@@ -103,7 +103,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
       session_date: formatDate(getTomorrowDate()),
       session_time: getCurrentTime(),
       session_duration: "60",
-      session_type: "Personal",
+      session_type: "Group",
       session_fee: "0",
       session_status: "Available",
       session_available_slots: "5",
@@ -189,44 +189,24 @@ const AddSession = ({ setSessions, setAddMode }) => {
                 </select>
               </div>
             </div>
-            {sessionDetails.session_type === "Personal" ? (
-              <div>
-                <label>Fee:</label>
-                <input
-                  type="number"
-                  step="100"
-                  min="0"
-                  max="5000"
-                  value={sessionDetails.session_fee}
-                  onChange={(e) =>
-                    setSessionDetails({
-                      ...sessionDetails,
-                      session_fee: e.target.value,
-                    })
-                  }
-                  required
-                />
-              </div>
-            ) : (
-              <div>
-                <label>Fee:</label>
-                <input
-                  type="number"
-                  step="100"
-                  min="0"
-                  max="0"
-                  // max="5000"
-                  value={sessionDetails.session_fee}
-                  onChange={(e) =>
-                    setSessionDetails({
-                      ...sessionDetails,
-                      session_fee: e.target.value,
-                    })
-                  }
-                  required
-                />
-              </div>
-            )}
+
+            <div>
+              <label>Fee:</label>
+              <input
+                type="number"
+                step="100"
+                min="0"
+                max="5000"
+                value={sessionDetails.session_fee}
+                onChange={(e) =>
+                  setSessionDetails({
+                    ...sessionDetails,
+                    session_fee: e.target.value,
+                  })
+                }
+                required
+              />
+            </div>
 
             <div>
               <label>Status:</label>
