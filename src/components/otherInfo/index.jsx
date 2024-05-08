@@ -34,6 +34,7 @@ const OtherInfo = ({ profile, setProfile, editProfileEnable }) => {
       : [...profile.degree_focused, value];
     handleInput(fieldName, updatedDegrees, setProfile);
   };
+  //testing
 
   return (
     <div className="OtherInfo-container">
