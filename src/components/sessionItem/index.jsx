@@ -264,7 +264,7 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
           </table>
           <div className="bottom">
             <button
-              disabled={!session.is_about_to_start}
+              // disabled={!session.is_about_to_start}
               onClick={handleJoinNow}
             >
               Join Now
