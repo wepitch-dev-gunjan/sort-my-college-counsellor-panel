@@ -1,5 +1,5 @@
 import TagsInput from "react-tagsinput";
-import { handleArrayInputChange } from "../../utilities";
+import { handleArrayInputChange, handleInput } from "../../utilities";
 import "./style.scss";
 import React, { useState } from "react";
 import "react-tagsinput/react-tagsinput.css";
