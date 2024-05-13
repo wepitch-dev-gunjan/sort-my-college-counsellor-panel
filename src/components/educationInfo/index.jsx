@@ -23,9 +23,10 @@ const EducationInfo = ({ profile, setProfile, editProfileEnable }) => {
               {editProfileEnable ? (
                 <TagsInput
                   value={profile.qualifications}
-                  onChange={(newTags) =>
-                    setProfile({ ...profile, qualifications: newTags })
-                  }
+                  validate
+                  onChange={(e) =>
+                   handleInput("qualifications", e.target.value, setProfile)
+                 }
                 />
               ) : (
                 profile.qualifications?.map((qualification, i) => (

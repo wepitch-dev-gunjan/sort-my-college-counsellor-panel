@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 import "./style.scss";
 import { TextareaAutosize } from "@mui/material";
+import { handleInput } from "../../utilities";
+import { Textarea } from "@mui/joy";
 
 const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
-  const [inputFields, setInputFields] = useState([{ value: "" }]);
+  const [inputFields, setInputFields] = useState(profile.how_will_i_help || [""]);
 
   const handleAddField = () => {
-    setInputFields([...inputFields, { value: "" }]);
+    setInputFields([...inputFields, ""]);
   };
 
-  const handleInputChange = (index, event) => {
+  const handleInputChange = (index, value) => {
     const newFields = [...inputFields];
-    newFields[index].value = event.target.value;
+    newFields[index] = value;
     setInputFields(newFields);
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      how_will_i_help: newFields, // Update the about field with newAboutInputs
+    }));
   };
-  console.log(inputFields);
 
   return (
     <div className="howmayihelpyou-container">
@@ -28,23 +33,18 @@ const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
           <p>Description</p>
         </div>
         <div>
-          {!editProfileEnable ? (
-            ""
-          ) : (
-            <div>
+          {editProfileEnable ? (
+            <>
               {inputFields.map((field, index) => (
                 <div className="row" key={index}>
                   <div className="col">
                     <div className="info-fields">
-                      <h6 onChange={(e) => handleInputChange(index, e)}>
-                        {index + 1}
-                      </h6>
-
-                      <TextareaAutosize
+                      <h6>{index + 1}</h6>
+                      <Textarea
                         minRows="2"
                         style={{ overflowY: "scroll", resize: "vertical" }}
-                        value={field.value}
-                        onChange={(e) => handleInputChange(index, e)}
+                        value={field}
+                        onChange={(e) => handleInputChange(index, e.target.value)}
                       />
                     </div>
                   </div>
@@ -55,7 +55,20 @@ const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
                   Add
                 </button>
               </div>
-            </div>
+            </>
+          ) : (
+            <>
+              {inputFields.map((field, index) => (
+                <div className="row" key={index}>
+                  <div className="col">
+                    <div className="info-fields">
+                      <h6>{index + 1}</h6>
+                      <p>{field}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </>
           )}
         </div>
       </div>
