@@ -5,8 +5,31 @@ import React, { useState } from "react";
 import "react-tagsinput/react-tagsinput.css";
 
 const EducationInfo = ({ profile, setProfile, editProfileEnable }) => {
-  const [tags, setTags] = useState(["hjhjh", "hghghg"]);
+  const [inputQualifications, setInputQualifications] = useState(
+    profile.qualifications || [""]
+  );
 
+  const handleInputChange = (index, value) => {
+    const newInput = [...inputQualifications];
+    newInput[index] = value;
+    setInputQualifications(newInput);
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      qualifications: newInput,
+    }));
+  };
+  const handleAddFields = () => {
+    setInputQualifications([...inputQualifications, ""]);
+  };
+  const handleRmoveInputs = (index) => {
+    const newInput = [...inputQualifications];
+    newInput.splice(index, 1);
+    setInputQualifications(newInput);
+    setProfile((prevProfile) => ({
+     ...prevProfile,
+     qualifications: newInput,
+   }));
+  };
   return (
     <div className="BasicInfo-container">
       <div className="heading">
@@ -21,19 +44,32 @@ const EducationInfo = ({ profile, setProfile, editProfileEnable }) => {
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <TagsInput
-                  value={profile.qualifications}
-                  validate
-                  onChange={(e) =>
-                   handleInput("qualifications", e.target.value, setProfile)
-                 }
-                />
+                <>
+                  {inputQualifications.map((field, index) => (
+                    <div className="inputFields" key = {index}>
+                      <input
+                        value={field}
+                        validate
+                        onChange={(e) =>
+                          handleInputChange(index, e.target.value)
+                        }
+                      />
+                      {index >= 0 && (
+                        <button
+                          className="remove-about-point"
+                          onClick={() => handleRmoveInputs(index)}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  <div className="addButton">
+                    <button onClick={handleAddFields}>Add</button>
+                  </div>
+                </>
               ) : (
-                profile.qualifications?.map((qualification, i) => (
-                  <p key={i}>{`${qualification}${
-                    i < profile.qualifications.length - 1 ? "," : ""
-                  }`}</p>
-                ))
+                <p> {profile.qualifications.join(",")}</p>
               )}
             </div>
           </div>

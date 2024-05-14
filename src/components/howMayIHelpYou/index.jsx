@@ -17,10 +17,18 @@ const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
     setInputFields(newFields);
     setProfile((prevProfile) => ({
       ...prevProfile,
-      how_will_i_help: newFields, // Update the about field with newAboutInputs
+      how_will_i_help: newFields, 
     }));
   };
-
+  const handleRmoveInputs = (index) => {
+   const newFields = [...inputFields];
+   newFields.splice(index, 1);
+   setInputFields(newFields);
+   setProfile((prevProfile) => ({
+    ...prevProfile,
+    how_will_i_help: newFields, 
+  }));
+ };
   return (
     <div className="howmayihelpyou-container">
       <div className="heading">
@@ -46,6 +54,14 @@ const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
                         value={field}
                         onChange={(e) => handleInputChange(index, e.target.value)}
                       />
+                       {index >= 0 && (
+                        <button
+                          className="remove-about-point"
+                          onClick={() => handleRmoveInputs(index)}
+                        >
+                          Remove
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
