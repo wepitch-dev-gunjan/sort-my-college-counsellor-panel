@@ -69,7 +69,12 @@ const EducationInfo = ({ profile, setProfile, editProfileEnable }) => {
                   </div>
                 </>
               ) : (
-                <p> {profile.qualifications.join(",")}</p>
+               <>
+               {profile.qualifications.map((qualification, i) => (
+                <p>{qualification}</p>
+               ))}
+               {/* <p> {profile.qualifications}</p> */}
+               </>
               )}
             </div>
           </div>

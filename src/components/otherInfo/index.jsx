@@ -13,28 +13,60 @@ const OtherInfo = ({ profile, setProfile, editProfileEnable }) => {
   //     handleInput('years_of_experience', value);
   //   }
   // };
-  const [inputFields , setInputFields] = useState(profile.languages_spoken || [""]);
-const handleAddField = () => {
- setInputFields([...inputFields,""]);
-};
-const handleInputChange = (index,value) => {
- const newInputFields = [...inputFields];
- newInputFields[index] =value;
- setInputFields(newInputFields);
- setProfile(( prevProfile) =>({
-  ...prevProfile,
-  languages_spoken : newInputFields
- }));
-};
-const handleRemoveInput = (index) => {
- const newFields = [...inputFields];
- newFields.splice(index, 1);
- setInputFields(newFields);
- setProfile((prevProfile) => ({
-   ...prevProfile,
-   languages_spoken: newFields 
- }));
-};
+  const [inputFields, setInputFields] = useState(
+    profile.languages_spoken || [""]
+  );
+  const [inputCourses, setInputCourses] = useState(
+    profile.courses_focused || [""]
+  );
+
+  const handleAddField = (type) => {
+    if (type === "languages") {
+      setInputFields([...inputFields, ""]);
+    } else if (type === "courses") {
+      setInputCourses([...inputCourses, ""]);
+    }
+  };
+
+  const handleInputChange = (index, value, type) => {
+    if (type === "languages") {
+      const newInputFields = [...inputFields];
+      newInputFields[index] = value;
+      setInputFields(newInputFields);
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        languages_spoken: newInputFields,
+      }));
+    } else if (type === "courses") {
+      const newInputCourses = [...inputCourses];
+      newInputCourses[index] = value;
+      setInputCourses(newInputCourses);
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        courses_focused: newInputCourses,
+      }));
+    }
+  };
+
+  const handleRemoveInput = (index, type) => {
+    if (type === "languages") {
+      const newFields = [...inputFields];
+      newFields.splice(index, 1);
+      setInputFields(newFields);
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        languages_spoken: newFields,
+      }));
+    } else if (type === "courses") {
+      const newCourses = [...inputCourses];
+      newCourses.splice(index, 1);
+      setInputCourses(newCourses);
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        courses_focused: newCourses,
+      }));
+    }
+  };
 
   const handleRadioChange = (e) => {
     setProfile((prevProfile) => ({
@@ -125,27 +157,40 @@ const handleRemoveInput = (index) => {
             {/* Languages Spoken */}
             <div className="info-value">
               {editProfileEnable ? (
-               <>
-               {inputFields.map((field,index) =>(
-<>
-<input
-value={field}
-onChange = {(e) => handleInputChange(index,e.target.value)}
-/>
-{index >=0 && (
- <button className="remove_btn" 
- onClick={() => handleRemoveInput(index)}> 
- Remove
- </button>
-)}
-</>
-               ))}
-               <div className="addButton">
-                <button onClick={handleAddField}>ADD </button>
-               </div>
-               </>
-              ):(
-<p>{profile.languages_spoken.join(",")}</p>
+                <>
+                  {inputFields.map((field, index) => (
+                    <>
+                      <input
+                        value={field}
+                        onChange={(e) =>
+                          handleInputChange(index, e.target.value, "languages")
+                        }
+                      />
+                      {index >= 0 && (
+                        <button
+                          className="remove_btn"
+                          onClick={() => handleRemoveInput(index, "languages")}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </>
+                  ))}
+                  <div className="addButton">
+                    <button onClick={() => handleAddField("languages")}>
+                      ADD
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                <ul>
+                  {profile.languages_spoken.map((language, index) => (
+                   
+                    <p>{language}</p>
+                  ))}
+                  </ul>
+                </>
               )}
             </div>
           </div>
@@ -305,19 +350,41 @@ onChange = {(e) => handleInputChange(index,e.target.value)}
             </div>
             <div className="info-value">
               {editProfileEnable ? (
-                <TagsInput
-                  value={profile.courses_focused}
-                  onChange={(newTags) =>
-                    setProfile({ ...profile, courses_focused: newTags })
-                  }
-                />
+                <>
+                  {inputCourses.map((field, index) => (
+                    <>
+                      <input
+                        value={field}
+                        onChange={(e) =>
+                          handleInputChange(index, e.target.value, "courses")
+                        }
+                      />
+                      {index >= 0 && (
+                        <button
+                          className="remove_btn"
+                          onClick={() => handleRemoveInput(index, "courses")}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </>
+                  ))}
+                  <div className="addButton">
+                    <button onClick={() => handleAddField("courses")}>
+                      ADD
+                    </button>
+                  </div>
+                </>
               ) : (
-                profile.courses_focused?.map((courses_focused, i) => (
-                  <p key={i}>{`${courses_focused}${
-                    i < profile.courses_focused.length - 1 ? "," : ""
-                  }`}</p>
-                ))
-              )}
+                <>
+                <ul>
+                  {profile.courses_focused.map((course, index) => (
+                    <p>{course}</p>
+                  ))}
+                </ul>
+                </>
+              )
+              }
             </div>
           </div>
         </div>
