@@ -3,7 +3,7 @@ import "./style.scss";
 import { FaIndianRupeeSign } from "react-icons/fa6";
 import { handleInput } from "../../utilities";
 import TagsInput from "react-tagsinput";
-import React from "react";
+import React, { useState } from "react";
 import "react-tagsinput/react-tagsinput.css";
 
 const OtherInfo = ({ profile, setProfile, editProfileEnable }) => {
@@ -13,6 +13,28 @@ const OtherInfo = ({ profile, setProfile, editProfileEnable }) => {
   //     handleInput('years_of_experience', value);
   //   }
   // };
+  const [inputFields , setInputFields] = useState(profile.languages_spoken || [""]);
+const handleAddField = () => {
+ setInputFields([...inputFields,""]);
+};
+const handleInputChange = (index,value) => {
+ const newInputFields = [...inputFields];
+ newInputFields[index] =value;
+ setInputFields(newInputFields);
+ setProfile(( prevProfile) =>({
+  ...prevProfile,
+  languages_spoken : newInputFields
+ }));
+};
+const handleRemoveInput = (index) => {
+ const newFields = [...inputFields];
+ newFields.splice(index, 1);
+ setInputFields(newFields);
+ setProfile((prevProfile) => ({
+   ...prevProfile,
+   languages_spoken: newFields 
+ }));
+};
 
   const handleRadioChange = (e) => {
     setProfile((prevProfile) => ({
@@ -100,20 +122,30 @@ const OtherInfo = ({ profile, setProfile, editProfileEnable }) => {
             <div className="info-field">
               <p>Languages I know</p>
             </div>
+            {/* Languages Spoken */}
             <div className="info-value">
               {editProfileEnable ? (
-                <TagsInput
-                  value={profile.languages_spoken}
-                  onChange={(newTags) =>
-                    setProfile({ ...profile, languages_spoken: newTags })
-                  }
-                />
-              ) : (
-                profile.languages_spoken?.map((language, i) => (
-                  <p key={i}>{`${language}${
-                    i < profile.languages_spoken.length - 1 ? "," : ""
-                  }`}</p>
-                ))
+               <>
+               {inputFields.map((field,index) =>(
+<>
+<input
+value={field}
+onChange = {(e) => handleInputChange(index,e.target.value)}
+/>
+{index >=0 && (
+ <button className="remove_btn" 
+ onClick={() => handleRemoveInput(index)}> 
+ Remove
+ </button>
+)}
+</>
+               ))}
+               <div className="addButton">
+                <button onClick={handleAddField}>ADD </button>
+               </div>
+               </>
+              ):(
+<p>{profile.languages_spoken.join(",")}</p>
               )}
             </div>
           </div>

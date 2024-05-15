@@ -3,6 +3,8 @@ import "./style.scss";
 import { TextareaAutosize } from "@mui/material";
 import { handleInput } from "../../utilities";
 import { Textarea } from "@mui/joy";
+import { GoDotFill } from "react-icons/go";
+
 
 const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
   const [inputFields, setInputFields] = useState(profile.how_will_i_help || [""]);
@@ -34,20 +36,15 @@ const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
       <div className="heading">
         <h2 style={{ fontSize: "1.6rem" }}>How will I Help</h2>
       </div>
-
-      <div className="info">
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <p>Serial No.</p>
-          <p>Description</p>
-        </div>
+      <div className=" hwih-sub-headings">
         <div>
           {editProfileEnable ? (
             <>
               {inputFields.map((field, index) => (
                 <div className="row" key={index}>
                   <div className="col">
-                    <div className="info-fields">
-                      <h6>{index + 1}</h6>
+                    <div className="info-fields hwihu-edit">
+                      <p>{index + 1}</p>
                       <Textarea
                         minRows="2"
                         style={{ overflowY: "scroll", resize: "vertical" }}
@@ -78,7 +75,7 @@ const HowMayIHelpYou = ({ profile, setProfile, editProfileEnable }) => {
                 <div className="row" key={index}>
                   <div className="col">
                     <div className="info-fields">
-                      <h6>{index + 1}</h6>
+                      {/* <p>{index + 1}</p> */}
                       <p>{field}</p>
                     </div>
                   </div>

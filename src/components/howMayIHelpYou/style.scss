@@ -7,6 +7,12 @@
   border: 1px solid #1111111a;
   border-radius: 20px;
   gap: 24px;
+
+  .hwih-sub-headings{
+    display: flex;
+    justify-content: space-between;
+
+  }
   .heading {
     border-bottom: 1px solid #1111111a;
     padding-bottom: 12px;
@@ -25,10 +31,17 @@
       .col {
         width: 100%;
         .info-fields {
-          font-weight: 700;
           display: flex;
-          justify-content: space-around;
           width: 100%;
+          p{
+           font-weight : 0;
+           display: flex;
+           align-items: center;
+           font-size: 0.8em;
+           padding: 0.9em;
+           padding-bottom: 0.9em;
+           border-left: 1px solid #111111;
+          }
         }
       }
     }
@@ -37,5 +50,16 @@
       margin-top: 100px;
       padding: 20px;
     }
+  }
+  .hwihu-edit{
+   width: 100%;
+   display: flex;
+   // justify-content: space-between;
+   gap: 1em;
+   padding: 1em;
+
+   button{
+    padding: 0.7em 0.5em 0.7em 0.5em;
+   }
   }
 }
