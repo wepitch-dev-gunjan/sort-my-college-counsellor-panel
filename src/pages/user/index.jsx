@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import "./style.scss";
 import { FollowerContext } from "../../context/FollowerContext";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const { followers } = useContext(FollowerContext);
+  console.log(followers);
   return (
     <div className="users-container">
       <div className="heading sticky">
@@ -25,37 +27,45 @@ const Users = () => {
       </div>
       <div className="AllUsers-container">
         <div className="table">
-         {/* edited */}
-<div className="All-row">
-<div className="row">
-          <div className="col">
-            <h4>IMAGE</h4>
+          {/* edited */}
+          <div className="All-row">
+            <div className="row">
+              <div className="col">
+                <h4>IMAGE</h4>
+              </div>
+              <div className="col">
+                <h4>NAME</h4>
+              </div>
+              <div className="col">
+                <h4>EMAIL</h4>
+              </div>
+              <div className="col">
+                <h4>FOLLOW DATE</h4>
+              </div>
+              <div className="col">
+                <h4>User Profile</h4>
+              </div>
+            </div>
           </div>
-          <div className="col">
-            <h4>NAME</h4>
-          </div>
-          <div className="col">
-            <h4>EMAIL</h4>
-          </div>
-          <div className="col">
-            <h4>FOLLOW DATE</h4>
-          </div>
-        </div>
-</div>
           {followers.map((follower, i) => (
             <div className="row" key={i}>
               <div className="col">
-                <img src={follower.follower_profile_pic} alt="follower avatar" />
+                <img
+                  src={follower.follower_profile_pic}
+                  alt="follower avatar"
+                />
               </div>
 
               <div className="col">{follower.follower_name}</div>
               <div className="col">{follower.follower_email}</div>
               <div className="col">{follower.updatedAt}</div>
+              <Link className="col" to={`/user/${follower._id}`}>
+                Visit Profile
+              </Link>
             </div>
           ))}
         </div>
       </div>
-
     </div>
   );
 };

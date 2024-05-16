@@ -30,6 +30,7 @@ import "rsuite/dist/rsuite-no-reset.min.css";
 import { HelpContext } from "./context/HelpContext";
 import DocumentDelete from "./components/documentDelete";
 import QuestionForum from "./pages/questionForum";
+import UserDetails from "./components/userDetails";
 
 function App() {
   const addProfilePicRef = useRef(null);
@@ -136,6 +137,8 @@ function App() {
                 <Route path="/payment" element={<Payment />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/user/:user_id" element={<UserDetails />} />
+
                 <Route path="/feeds" element={<MyFeeds />} />
                 <Route path="/feedbacks" element={<Feedbacks />} />
                 <Route path="/login" element={<Navigate replace to="/" />} />
