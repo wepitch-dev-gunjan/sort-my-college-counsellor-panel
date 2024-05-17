@@ -13,8 +13,6 @@ const UserDetails = () => {
   const { user_id } = useParams();
   const { user } = useContext(UserContext);
 
-  console.log("idddddddddd", follower);
-
   const getSingleUser = async () => {
     try {
       const { data } = await axios.get(
