@@ -57,6 +57,8 @@ const Profile = () => {
     } catch (error) {
       // Handle errors if the request fails
       toast(error.message);
+      setLoading((prev) => !prev);
+
       console.error("Error while saving:", error);
       // You might want to handle the error state here
     }
