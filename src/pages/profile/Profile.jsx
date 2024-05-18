@@ -17,9 +17,11 @@ import HowMayIHelpYou from "../../components/howMayIHelpYou";
 import config from "@/config";
 import { handleInput } from "../../utilities";
 import { BorderBottom } from "@mui/icons-material";
+import Spinner from "../../components/spinner/Index";
 
 const { backend_url } = config;
 const Profile = () => {
+  const [loading, setLoading] = useState(false);
   const { user } = useContext(UserContext);
   const {
     profile,
@@ -38,6 +40,7 @@ const Profile = () => {
   // Function to handle saving changes
   const handleSave = async () => {
     try {
+      setLoading((prev) => !prev);
       const endpointUrl = `${backend_url}/counsellor/${user._id}`; // Replace with your actual endpoint URL
       console.log(profile);
       const response = await axios.put(endpointUrl, profile, {
@@ -45,6 +48,8 @@ const Profile = () => {
           Authorization: user.token,
         },
       });
+      setLoading((prev) => !prev);
+
       setProfile(response.data);
       setInitialUserProfileBackup(response.data);
       setEditProfileEnable(false);
@@ -52,6 +57,8 @@ const Profile = () => {
     } catch (error) {
       // Handle errors if the request fails
       toast(error.message);
+      setLoading((prev) => !prev);
+
       console.error("Error while saving:", error);
       // You might want to handle the error state here
     }
@@ -159,7 +166,7 @@ const Profile = () => {
             {editProfileEnable && (
               <div className="buttons">
                 <div className="edit-profile-button" onClick={handleSave}>
-                  Save
+                  {loading ? <Spinner /> : "Save"}
                 </div>
                 <div className="edit-profile-button" onClick={handleCancel}>
                   Cancel

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import config from '@/config';
+import config from "@/config";
 import { UserContext } from "./UserContext";
 const { backend_url } = config;
 
@@ -20,15 +20,15 @@ export const DashboardProvider = ({ children }) => {
             `${backend_url}/counsellor/dashboard/dashboard-data`,
             {
               headers: {
-                Authorization: user.token
-              }
+                Authorization: user.token,
+              },
             }
           );
           setDashboardData(data);
         } else {
           setDashboardData({
             totalFollowers: 0,
-            totalSessions: 0
+            totalSessions: 0,
           }); // Set followers count to 0 if user or token is not available
         }
         setLoading(false); // Update loading state
@@ -38,7 +38,7 @@ export const DashboardProvider = ({ children }) => {
         setLoading(false); // Update loading state
         setDashboardData({
           totalFollowers: 0,
-          totalSessions: 0
+          totalSessions: 0,
         });
       }
     };
@@ -52,7 +52,7 @@ export const DashboardProvider = ({ children }) => {
         dashboardData,
         setDashboardData,
         error,
-        loading
+        loading,
       }}
     >
       {children}
