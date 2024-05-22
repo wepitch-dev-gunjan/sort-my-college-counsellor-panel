@@ -24,7 +24,7 @@ const SidebarMenuButton = ({ href, icon: Icon, text, expand }) => {
           >
             <div className="inner-container">
               <Icon />
-              {expand && <span><div className="Text_Content">{text}</div></span> }
+              {expand && <span><div className="Text_Content">{text}</div></span>}
             </div>
           </div>
         </Link>

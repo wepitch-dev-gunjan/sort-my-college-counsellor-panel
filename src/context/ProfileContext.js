@@ -19,8 +19,7 @@ export const ProfileProvider = ({ children }) => {
             Authorization: user.token
           }
         });
-      console.log(response.data[0])
-      setProfile(response.data[0])
+      setProfile(response.data)
     } catch (err) {
       console.error('Error fetching profile:', err);
     }
