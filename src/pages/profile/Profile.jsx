@@ -49,7 +49,6 @@ const Profile = () => {
         },
       });
       setLoading((prev) => !prev);
-
       setProfile(response.data);
       setInitialUserProfileBackup(response.data);
       setEditProfileEnable(false);
