@@ -233,6 +233,10 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
           <table className="display-mode-table">
             <tbody>
               <tr>
+                <td>Session Topic:</td>
+                <td className="truncate">{session.session_topic}</td>
+              </tr>
+              <tr>
                 <td>Date:</td>
                 <td>{formatDate(session.session_date)}</td>
               </tr>

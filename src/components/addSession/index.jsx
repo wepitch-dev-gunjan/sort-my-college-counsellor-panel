@@ -19,15 +19,13 @@ const AddSession = ({ setSessions, setAddMode }) => {
 
   const { rerender, setRerender } = useContext(SessionContext);
 
-  // const { rerender, setRerender } = useContext(SessionContext);
-
   const formatDate = (date) => {
     return dayjs(date).format("YYYY-MM-DD");
   };
 
   function getTomorrowDate() {
     const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1); // Get tomorrow's date
+    tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow;
   }
 
@@ -36,9 +34,9 @@ const AddSession = ({ setSessions, setAddMode }) => {
     let hours = now.getHours().toString().padStart(2, "0");
     let minutes = now.getMinutes();
     if (minutes < 30) {
-      minutes = 30; // Set to 30 if earlier than 30
+      minutes = 30;
     } else {
-      minutes = 0; // Reset to 0 and add an hour if 30 or later
+      minutes = 0;
       hours = (parseInt(hours) + 1).toString().padStart(2, "0");
     }
     const currentTime = `${hours}:${minutes.toString().padStart(2, "0")}`;
@@ -46,6 +44,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
   }
 
   const [sessionDetails, setSessionDetails] = useState({
+    session_topic: "SCM Counsellor Sessions",
     session_date: formatDate(getTomorrowDate()),
     session_time: getCurrentTime(),
     session_duration: "60",
@@ -100,6 +99,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
   // for push writing this
   const handleCancel = () => {
     setSessionDetails({
+      session_topic: "SCM Counsellor Sessions",
       session_date: formatDate(getTomorrowDate()),
       session_time: getCurrentTime(),
       session_duration: "60",
@@ -124,7 +124,20 @@ const AddSession = ({ setSessions, setAddMode }) => {
       {!sessionLoading && (
         <form onSubmit={handleCreateSession} className="edit-mode-form">
           <div className="edit-mode-fields">
-            <div></div>
+            <div>
+              <label>Session Topic :</label>
+              <input
+                type="text"
+                value={sessionDetails.session_topic}
+                onChange={(e) =>
+                  setSessionDetails({
+                    ...sessionDetails,
+                    session_topic: e.target.value,
+                  })
+                }
+                required
+              />
+            </div>
             <div>
               <label>Date:</label>
               <input
