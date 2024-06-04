@@ -83,6 +83,10 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
       console.error("An error occurred:", error);
     }
   };
+  const truncateText = (text, maxLength) => {
+    if (!text) return "";
+    return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+  };
 
   return (
     <div className="sessions-i">
@@ -176,6 +180,7 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
               </tr>
               <tr>
                 <td>Fees:</td>
+
                 <td>
                   <input
                     type="number"
@@ -234,7 +239,9 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
             <tbody>
               <tr>
                 <td>Session Topic:</td>
-                <td className="truncate">{session.session_topic}</td>
+                <td className="truncate">
+                  {truncateText(session.session_topic, 10)}
+                </td>
               </tr>
               <tr>
                 <td>Date:</td>
