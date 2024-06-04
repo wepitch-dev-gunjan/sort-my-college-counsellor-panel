@@ -36,9 +36,9 @@ const Users = () => {
               <div className="col">
                 <h4>NAME</h4>
               </div>
-              <div className="col">
+              {/* <div className="col">
                 <h4>EMAIL</h4>
-              </div>
+              </div> */}
               <div className="col">
                 <h4>FOLLOW DATE</h4>
               </div>
@@ -57,7 +57,7 @@ const Users = () => {
               </div>
 
               <div className="col">{follower.follower_name}</div>
-              <div className="col">{follower.follower_email}</div>
+              {/* <div className="col">{follower.follower_email}</div> */}
               <div className="col">{follower.updatedAt}</div>
               <Link className="col" to={`/user/${follower._id}`}>
                 Visit Profile
