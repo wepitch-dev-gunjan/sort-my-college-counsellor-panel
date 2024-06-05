@@ -124,20 +124,25 @@ const AddSession = ({ setSessions, setAddMode }) => {
       {!sessionLoading && (
         <form onSubmit={handleCreateSession} className="edit-mode-form">
           <div className="edit-mode-fields">
-            <div>
-              <label>Session Topic :</label>
-              <input
-                type="text"
-                value={sessionDetails.session_topic}
-                onChange={(e) =>
-                  setSessionDetails({
-                    ...sessionDetails,
-                    session_topic: e.target.value,
-                  })
-                }
-                required
-              />
-            </div>
+            {sessionDetails.session_type === "Group" ? (
+              <div>
+                <label>Session Topic :</label>
+                <input
+                  type="text"
+                  value={sessionDetails.session_topic}
+                  onChange={(e) =>
+                    setSessionDetails({
+                      ...sessionDetails,
+                      session_topic: e.target.value,
+                    })
+                  }
+                  required
+                />
+              </div>
+            ) : (
+              ""
+            )}
+
             <div>
               <label>Date:</label>
               <input

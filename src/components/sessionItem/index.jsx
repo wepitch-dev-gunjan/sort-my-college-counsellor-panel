@@ -237,12 +237,17 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
         <>
           <table className="display-mode-table">
             <tbody>
-              <tr>
-                <td>Session Topic:</td>
-                <td className="truncate">
-                  {truncateText(session.session_topic, 10)}
-                </td>
-              </tr>
+              {session.session_type === "Group" ? (
+                <tr>
+                  <td>Session Topic:</td>
+                  <td className="truncate">
+                    {truncateText(session.session_topic, 10)}
+                  </td>
+                </tr>
+              ) : (
+                ""
+              )}
+
               <tr>
                 <td>Date:</td>
                 <td>{formatDate(session.session_date)}</td>

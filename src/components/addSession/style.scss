@@ -17,8 +17,12 @@
   border-radius: 20px;
   box-shadow: 2px 2px 32px rgba(17, 0, 255, 0.055);
   width: 400px;
-  height: 420px;
+  // height: 420px;
   background-color: var(--background-light);
+
+  .edit-mode-fields {
+    padding-bottom: 10px;
+  }
   .edit-mode-bottom {
     display: flex;
     justify-content: space-evenly;
