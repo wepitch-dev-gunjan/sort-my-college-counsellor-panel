@@ -29,6 +29,7 @@ const Dashboard = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  console.log(dashboardData);
 
   useEffect(() => {
     const incrementActivityPoint = async () => {
@@ -65,7 +66,7 @@ const Dashboard = () => {
           <h1>Business Dashboard</h1>
           <div className="widgets-container">
             <Widget heading="FOLLOWERS" value={dashboardData.totalFollowers} />
-            <Widget heading="INCOME" value="$10000" />
+            <Widget heading="INCOME" value={dashboardData.dynamicIncome} />
             <Widget heading="SESSIONS" value={dashboardData.totalSessions} />
           </div>
         </div>

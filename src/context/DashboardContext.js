@@ -24,6 +24,7 @@ export const DashboardProvider = ({ children }) => {
               },
             }
           );
+          console.log(data);
           setDashboardData(data);
         } else {
           setDashboardData({
