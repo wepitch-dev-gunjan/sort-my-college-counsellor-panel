@@ -110,7 +110,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
     });
     setAddMode(false);
   };
-
+  //test
   return (
     <div ref={Ref} className="session-item">
       {sessionLoading && (
