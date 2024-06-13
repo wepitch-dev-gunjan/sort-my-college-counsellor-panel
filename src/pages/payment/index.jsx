@@ -5,7 +5,7 @@ import axios from "axios";
 import { UserContext } from "../../context/UserContext";
 import { ProfileContext } from "../../context/ProfileContext";
 import OutstandingBalance from "../../components/outstandingBalance";
-import { getCounsellorAmount } from "../../utilities";
+import { getCounsellorAmount, parseTimestamp } from "../../utilities";
 
 const { backend_url } = config;
 
@@ -62,6 +62,9 @@ const Payment = () => {
               <h4>DATE</h4>
             </div>
             <div className="col pc-h4">
+              <h4>Time</h4>
+            </div>
+            <div className="col pc-h4">
               <h4>PAYMENT</h4>
             </div>
             <div className="col pc-h4">
@@ -72,8 +75,13 @@ const Payment = () => {
             {payments.map((payment, i) => (
               <div className="row" key={i}>
                 <div className="col">{payment._id}</div>
-                <div className="col">{payment.service}</div>
-                <div className="col">{payment.created_at}</div>
+                <div className="col">{payment.session_type}</div>
+                <div className="col">
+                  {parseTimestamp(payment.created_at).date}
+                </div>
+                <div className="col">
+                  {parseTimestamp(payment.created_at).time}
+                </div>
                 <div className="col">{getCounsellorAmount(payment.amount)}</div>
                 <div
                   className={`col ${
