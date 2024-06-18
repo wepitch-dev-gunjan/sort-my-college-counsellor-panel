@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "./style.scss";
 import { FollowerContext } from "../../context/FollowerContext";
 import { Link } from "react-router-dom";
+import { parseTimestamp } from "../../utilities";
 
 const Users = () => {
   const { followers } = useContext(FollowerContext);
@@ -58,7 +59,9 @@ const Users = () => {
 
               <div className="col">{follower.follower_name}</div>
               {/* <div className="col">{follower.follower_email}</div> */}
-              <div className="col">{follower.updatedAt}</div>
+              <div className="col">
+                {parseTimestamp(follower.updatedAt).date}
+              </div>
               <Link className="col" to={`/user/${follower._id}`}>
                 Visit Profile
               </Link>
