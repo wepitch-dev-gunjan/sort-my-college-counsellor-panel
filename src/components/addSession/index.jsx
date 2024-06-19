@@ -231,12 +231,12 @@ const AddSession = ({ setSessions, setAddMode }) => {
               <input
                 type="text"
                 value={sessionDetails.session_status}
-                onChange={(e) =>
-                  setSessionDetails({
-                    ...sessionDetails,
-                    session_status: e.target.value,
-                  })
-                }
+                // onChange={(e) =>
+                //   setSessionDetails({
+                //     ...sessionDetails,
+                //     session_status: e.target.value,
+                //   })
+                // }
                 required
               />
             </div>
@@ -247,6 +247,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
                   <input
                     type="number"
                     min={2}
+                    max={10}
                     value={sessionDetails.session_available_slots}
                     onChange={(e) =>
                       setSessionDetails({

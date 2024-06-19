@@ -82,7 +82,7 @@ const Payment = () => {
                 <div className="col">
                   {parseTimestamp(payment.created_at).time}
                 </div>
-                <div className="col">{getCounsellorAmount(payment.amount)}</div>
+                <div className="col">{payment.amount_due}</div>
                 <div
                   className={`col ${
                     payment.status === "Cancelled"
