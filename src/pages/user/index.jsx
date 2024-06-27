@@ -43,9 +43,6 @@ const Users = () => {
               <div className="col">
                 <h4>FOLLOW DATE</h4>
               </div>
-              <div className="col">
-                <h4>User Profile</h4>
-              </div>
             </div>
           </div>
           {followers.map((follower, i) => (
@@ -62,9 +59,6 @@ const Users = () => {
               <div className="col">
                 {parseTimestamp(follower.updatedAt).date}
               </div>
-              <Link className="col" to={`/user/${follower._id}`}>
-                Visit Profile
-              </Link>
             </div>
           ))}
         </div>
