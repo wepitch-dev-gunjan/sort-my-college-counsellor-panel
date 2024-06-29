@@ -274,7 +274,7 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
               </tr>
               <tr>
                 <td>Available Slots:</td>
-                <td>{session.session_available_slots}</td>
+                <td>{`${sessionDetails.session_users.length}/${session.session_slots}`}</td>
               </tr>
             </tbody>
           </table>

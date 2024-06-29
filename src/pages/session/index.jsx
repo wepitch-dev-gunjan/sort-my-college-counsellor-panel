@@ -46,7 +46,10 @@ const Session = ({ rerender }) => {
         },
       }
     );
-    setSessions(data);
+    const sortedData = data.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+    setSessions(sortedData);
   };
 
   useEffect(() => {
@@ -84,8 +87,9 @@ const Session = ({ rerender }) => {
               {xSmallScreen ? (
                 <h1 onClick={toggleDropdown}>
                   <span
-                    className={`fd-toggle-btn ${isDropdownOpen ? "active" : ""
-                      }`}
+                    className={`fd-toggle-btn ${
+                      isDropdownOpen ? "active" : ""
+                    }`}
                   >
                     Filters{" "}
                     {isDropdownOpen ? (
