@@ -68,7 +68,8 @@ const DocumentItem = ({
         "Error uploading document:",
         error.response ? error.response.data : error.message
       );
-      toast.error("Error uploading document. Please try again later.");
+      toast.error(`Error uploading document: ${error.response.data.error}`);
+      setLoading(true);
     }
   };
 
