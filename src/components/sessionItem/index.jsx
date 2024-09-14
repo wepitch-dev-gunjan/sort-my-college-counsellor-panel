@@ -241,7 +241,7 @@ const SessionCard = ({ session, setSessions, getResponse }) => {
                 <tr>
                   <td>Session Topic:</td>
                   <td className="truncate">
-                    {truncateText(session.session_topic, 10)}
+                    {truncateText(session.session_topic, 28)}
                   </td>
                 </tr>
               ) : (
