@@ -743,7 +743,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
               <input
                 type="number"
                 step="100"
-                min="1"
+                min="100"
                 max="5000"
                 value={sessionDetails.session_fee}
                 onChange={(e) =>
