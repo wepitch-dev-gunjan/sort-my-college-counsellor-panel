@@ -686,7 +686,7 @@ const AddSession = ({ setSessions, setAddMode }) => {
                       session_topic: e.target.value,
                     })
                   }
-                  placeholder="Write Session"
+                  placeholder="Write a topic"
                   required
                 />
               </div>
