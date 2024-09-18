@@ -65,6 +65,9 @@ const Payment = () => {
               <h4>Time</h4>
             </div>
             <div className="col pc-h4">
+              <h4>FEES</h4>
+            </div>
+            <div className="col pc-h4">
               <h4>PAYMENT</h4>
             </div>
             <div className="col pc-h4">
@@ -82,6 +85,7 @@ const Payment = () => {
                 <div className="col">
                   {parseTimestamp(payment.created_at).time}
                 </div>
+                <div className="col">{payment.amount}</div>
                 <div className="col">{payment.amount_due}</div>
                 <div
                   className={`col ${
