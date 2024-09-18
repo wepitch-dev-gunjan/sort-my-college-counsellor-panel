@@ -86,7 +86,7 @@ const Payment = () => {
                   {parseTimestamp(payment.created_at).time}
                 </div>
                 <div className="col">
-                  {(payment.amount - payment.amount_paid)}
+                  {payment.amount - (payment.gst + payment.convenience_charges)}
                 </div>
                 <div className="col">{payment.amount_due}</div>
                 <div
