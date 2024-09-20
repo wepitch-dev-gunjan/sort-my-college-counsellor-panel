@@ -61,7 +61,11 @@ const AskQuestion = ({setAskQuestionDisable}) => {
               {/* edited */}
 
               <div className="ask-question-btn">
-                <a href="mailto:support@sortmycollege.com">
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=support@sortmycollege.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <button>EMAIL US</button>
                 </a>
               </div>
