@@ -14,17 +14,21 @@ const AskQuestion = ({setAskQuestionDisable}) => {
    const handleCancel=() =>{
     setQuery(' ');
    }
-    return(
-        <div  className='ask-question-main'>
+    return (
+      <div className="ask-question-main">
+        <div ref={askQuestionRef} className="ask-question-containers">
+          {/* edited */}
+          <div className="Ask_Ques_img">
+            <img src={Image} alt="ask Question Image" />
+          </div>
+          <div className="ask_question_text">
+            {/* <h4>Having Any questions ? Ask Here</h4> */}
+            <h4>
+              Have questions or need further assistance? Click the button below
+              to send an email to our support team
+            </h4>
 
-            <div ref={askQuestionRef} className='ask-question-containers'>
-             {/* edited */}
-             <div className="Ask_Ques_img">
-              <img src={Image} alt="ask Question Image" />
-             </div>
-             <div className="ask_question_text">
-                <h4>Having Any questions ? Ask Here</h4>
-                    {/* <div className='ask-question-dropdown'> 
+            {/* <div className='ask-question-dropdown'> 
                     <select >
                         <option value="">Choose a category</option>
                         <option value="Counselor Services">Counselor Services</option>
@@ -46,26 +50,30 @@ const AskQuestion = ({setAskQuestionDisable}) => {
                         <option value="other">Other</option>                        
                     </select>
                 </div> */}
-                <div className='ask-question-textarea' >
-                    <textarea 
-                   placeholder='Type Your Query Here...'
-                    value={query}
-                    onChange ={resetQuery}
-                    />
-                </div>
-                <div className="btn-container">
-                 {/* edited */}
-                <div className='ask-question-btn' >
-                    <button>SEND</button>
-                </div>
-                <div className='ask-question-btn-cancel' >
-                    <button onClick={handleCancel}>CANCEL</button>
-                </div>
-                </div>
+            {/* <div className="ask-question-textarea">
+              <textarea
+                placeholder="Type Your Query Here..."
+                value={query}
+                onChange={resetQuery}
+              />
+            </div> */}
+            <div className="btn-container">
+              {/* edited */}
+
+              <div className="ask-question-btn">
+                <a href="mailto:support@sortmycollege.com">
+                  <button>EMAIL US</button>
+                </a>
+              </div>
+
+              {/* <div className="ask-question-btn-cancel">
+                <button onClick={handleCancel}>CANCEL</button>
+              </div> */}
             </div>
+          </div>
         </div>
-        </div>
-    )
+      </div>
+    );
 }
 
 export default AskQuestion
